@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0">
-        <title>这是一篇新的博客 | Mynote</title>
+        <title>Vue事件的基本使用 | Mynote</title>
         <meta name="author" content="参商">
         <meta name="description" content="个人笔记">
         <meta name="keywords" content="love&peace">
@@ -120,7 +120,7 @@
                         
 <div class="article">
     <div>
-        <h1>这是一篇新的博客 </h1>
+        <h1>Vue事件的基本使用 </h1>
     </div>
     <div class="info">
         <span class="date">
@@ -138,7 +138,7 @@
             
             <span class="tag">
                 
-                <a href="/tags/vue" style="color: #00bcd4">
+                <a href="/tags/vue" style="color: #ffa2c4">
                     vue
                 </a>
             </span>
@@ -147,7 +147,23 @@
         
     </div>
     <div class="content" v-pre>
-        <p>zhshi yij baljd jihhhhhhhhhhhhhhhh</p>
+        <p>事件的基本使用：</p>
+<p>1.使用v-on:xxx或@xxx绑定事件，其中xxx是事件名</p>
+<p>2.事件的回调需要配置在methods对象中，最终会在vm上</p>
+<p>3.methods中配置的函数，不需要箭头函数，否则this就不是vm了</p>
+<p>4.methods中配置的函数，都是被Vue所管理的函数，this的指向是vm或组件实例对象</p>
+<p>5.@click&#x3D;”demo”和@click&#x3D;”demo($event)”效果一致，但后者可以传参</p>
+<pre><code>&lt;button @click=&quot;demo1&quot;&gt;点击传参1&lt;/button&gt;
+&lt;button @click=&quot;demo2($event,66)&quot;&gt;点击传参2&lt;/button&gt;
+
+methods:&#123;
+    demo1()&#123;     
+    &#125;,
+    demo2(event,number)&#123;
+    &#125;
+&#125;
+</code></pre>
+<p>传参时通过$event进行传参，接收时通过event进行接收</p>
 
     </div>
     
