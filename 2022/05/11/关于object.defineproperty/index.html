@@ -143,6 +143,23 @@
 <p>configurable:控制属性是否可被删除，默认false</p>
 <p>get(){}:当有人读取属性时，get函数（getter）就会被调用，且返回值就是要定义&#x2F;读取的值</p>
 <p>set(value){}:当有人定义&#x2F;修改属性时，set函数(setter)就会被调用，且会收到修改的具体值</p>
+<p>一个简单的数据代理</p>
+<pre><code>let obj = &#123; x: 100 &#125;
+let obj2 = &#123; y: 200 &#125;
+
+
+Object.defineProperty(obj2, &#39;x&#39;, &#123;
+    get() &#123;
+        return obj.x
+    &#125;,
+    set(value) &#123;
+        obj.x = value
+    &#125;
+&#125;)
+
+obj2.x = 300
+console.log(obj.x, obj2.x)//300 300
+</code></pre>
 
     </div>
     
