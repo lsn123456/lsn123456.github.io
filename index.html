@@ -333,7 +333,7 @@
         
         <span class="tag">
             
-            <a href="/tags/vue" style="color: #ffa2c4">
+            <a href="/tags/vue" style="color: #00a596">
                 vue
             </a>
         </span>
@@ -347,7 +347,7 @@
 <div class="post">
     <a href="/2022/05/11/vue2记录/">
         <h2>
-            Vue2记录
+            关于object.defineproperty()
         </h2>
     </a>
     <div class="category-and-date">
@@ -362,25 +362,22 @@
     <div class="excerpt">
         <div class="content" v-pre>
             
-            <p>重新学习下vue,特此记录</p>
-<p>vueecffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff</p>
+            <p>object.defineproperty():给一个对象定义一个新属性或修改一个对象的现有属性，并返回此对象。</p>
+<p>object.defineproperty(object,’propName’,descriptor);</p>
+<p>object:要定义的对象</p>
+<p>propName:要定义&#x2F;修改的属性名</p>
+<p>descriptor:要定义&#x2F;修改的属性描述</p>
+<p>enumerable:控制属性是否可枚举，默认false</p>
+<p>writeable:控制属性是否可修改，默认false</p>
+<p>configurable:控制属性是否可被删除，默认false</p>
+<p>get(){}:当有人读取属性时，get函数（getter）就会被调用，且返回值就是要定义&#x2F;读取的值</p>
+<p>set(value){}:当有人定义&#x2F;修改属性时，set函数(setter)就会被调用，且会收到修改的具体值</p>
 
             
         </div>
     </div>
     <div class="post-tags">
         
-        <span class="icon">
-            <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
-        </span>
-        
-        
-        <span class="tag">
-            
-            <a href="/tags/vue" style="color: #00bcd4">
-                vue
-            </a>
-        </span>
         
     </div>
     <a href="/2022/05/11/vue2记录/" class="go-post">
