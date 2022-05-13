@@ -138,7 +138,7 @@
             
             <span class="tag">
                 
-                <a href="/tags/vue" style="color: #ffa2c4">
+                <a href="/tags/vue" style="color: #00a596">
                     vue
                 </a>
             </span>
@@ -154,6 +154,7 @@
 <p>4.capture:使用事件的捕获模式</p>
 <p>5.self:只有event.target是当前操作的元素时才触发事件</p>
 <p>6.passive:事件的默认行为立即执行，无需等待事件回调执行完毕</p>
+<p>ps:vue中事件修饰符可以连着写，如：@click.stop.prevent阻止事件冒泡和默认事件，效果与@click.prevent.click相同</p>
 <p>1.prevent：点击a链接时会执行alert事件，然后跳转到百度，prevent阻止跳转到百度的默认事件</p>
 <pre><code>&lt;a href=&quot;http://www.baidu.com&quot; @click=&quot;demo&quot;&gt;阻止默认行为1&lt;/a&gt;
 &lt;a href=&quot;http://www.baidu.com&quot; @click.prevent=&quot;demo2&quot;&gt;阻止默认行为2&lt;/a&gt;

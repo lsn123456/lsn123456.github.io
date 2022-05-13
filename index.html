@@ -184,7 +184,7 @@
         
         <span class="tag">
             
-            <a href="/tags/markdown" style="color: #03a9f4">
+            <a href="/tags/markdown" style="color: #00bcd4">
                 markdown
             </a>
         </span>
@@ -279,6 +279,7 @@ methods:&#123;
 <p>4.capture:使用事件的捕获模式</p>
 <p>5.self:只有event.target是当前操作的元素时才触发事件</p>
 <p>6.passive:事件的默认行为立即执行，无需等待事件回调执行完毕</p>
+<p>ps:vue中事件修饰符可以连着写，如：@click.stop.prevent阻止事件冒泡和默认事件，效果与@click.prevent.click相同</p>
 <p>1.prevent：点击a链接时会执行alert事件，然后跳转到百度，prevent阻止跳转到百度的默认事件</p>
 <pre><code>&lt;a href=&quot;http://www.baidu.com&quot; @click=&quot;demo&quot;&gt;阻止默认行为1&lt;/a&gt;
 &lt;a href=&quot;http://www.baidu.com&quot; @click.prevent=&quot;demo2&quot;&gt;阻止默认行为2&lt;/a&gt;
@@ -375,7 +376,7 @@ methods：&#123;
         
         <span class="tag">
             
-            <a href="/tags/vue" style="color: #00bcd4">
+            <a href="/tags/vue" style="color: #ff7d73">
                 vue
             </a>
         </span>
@@ -441,6 +442,9 @@ methods：&#123;
 <li><p>配合keyup使用：按下修饰键的同时，再按下其他键，然后释放其他键，事件才会被触发</p>
 </li>
 <li><p>配合keydown使用：正常触发事件</p>
+</li>
+<li><p>只有按下特定按键才会触发：如@keyup.ctrl.y,只有按下ctrl和y两个按键时才会触发</p>
+<p>​</p>
 <p> 4.使用keyCode去指定具体按键，如keyup.13,但是不推荐</p>
 <p> 5.定制按键别名：Vue.config.keyCodes.自定义键名&#x3D;键码，如Vue.config.keyCodes.huiche&#x3D;13</p>
 </li>
@@ -508,7 +512,7 @@ methods：&#123;
         
         <span class="tag">
             
-            <a href="/tags/vue" style="color: #00a596">
+            <a href="/tags/vue" style="color: #ff7d73">
                 vue
             </a>
         </span>
