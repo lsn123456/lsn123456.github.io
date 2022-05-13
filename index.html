@@ -167,13 +167,19 @@
 <li>初次读取时会执行一次</li>
 <li>当依赖的属性发生变化时会被调用</li>
 </ol>
-<p>4.优势：与methods相比，内部有缓存机制（复用），效率更高，更加方便。</p>
-<p>5.备注：</p>
+<p>4.set什么时候执行：当计算属性被修改时</p>
+<p>5.优势：与methods相比，内部有缓存机制（复用），效率更高，更加方便。</p>
+<p>6.备注：</p>
 <ul>
 <li>计算属性最终会出现在vm上，直接使用即可</li>
 <li>如果计算属性需要修改，那么必须通过set函数去相应修改，且set中要引起计算时依赖性的数据发生改变。</li>
 </ul>
 <p><img src="/2022/05/13/vue%E4%B8%AD%E7%9A%84%E8%AE%A1%E7%AE%97%E5%B1%9E%E6%80%A7/jisuanshuxing.png"></p>
+<p>7.简写：只读取不修改时，计算属性可采取简写形式，把计算属性当成其get来写，如下</p>
+<pre><code> full() &#123;
+    return this.first + &#39;-&#39; + this.last
+ &#125;
+</code></pre>
 
             
         </div>
@@ -241,7 +247,7 @@
         
         <span class="tag">
             
-            <a href="/tags/markdown" style="color: #00bcd4">
+            <a href="/tags/markdown" style="color: #ff7d73">
                 markdown
             </a>
         </span>
@@ -300,7 +306,7 @@ methods:&#123;
         
         <span class="tag">
             
-            <a href="/tags/vue" style="color: #03a9f4">
+            <a href="/tags/vue" style="color: #00bcd4">
                 vue
             </a>
         </span>
@@ -433,7 +439,7 @@ methods：&#123;
         
         <span class="tag">
             
-            <a href="/tags/vue" style="color: #ff7d73">
+            <a href="/tags/vue" style="color: #ffa2c4">
                 vue
             </a>
         </span>
@@ -519,7 +525,7 @@ methods：&#123;
         
         <span class="tag">
             
-            <a href="/tags/vue" style="color: #ff7d73">
+            <a href="/tags/vue" style="color: #00a596">
                 vue
             </a>
         </span>
@@ -569,7 +575,7 @@ methods：&#123;
         
         <span class="tag">
             
-            <a href="/tags/vue" style="color: #00a596">
+            <a href="/tags/vue" style="color: #ff7d73">
                 vue
             </a>
         </span>
