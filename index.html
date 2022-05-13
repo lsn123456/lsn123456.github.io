@@ -184,7 +184,7 @@
         
         <span class="tag">
             
-            <a href="/tags/markdown" style="color: #ff7d73">
+            <a href="/tags/markdown" style="color: #ffa2c4">
                 markdown
             </a>
         </span>
@@ -243,7 +243,7 @@ methods:&#123;
         
         <span class="tag">
             
-            <a href="/tags/vue" style="color: #00bcd4">
+            <a href="/tags/vue" style="color: #ffa2c4">
                 vue
             </a>
         </span>
@@ -404,11 +404,47 @@ methods：&#123;
     <div class="excerpt">
         <div class="content" v-pre>
             
-            <p>keyup:键盘按下后抬起</p>
+            <hr>
+<p>keyup:键盘按下后抬起</p>
 <p>keydown：键盘按下</p>
-<p>事件修饰符</p>
-<p>1.enter:按下回车后触发</p>
+<ol>
+<li><p>Vue中常用的按键别名：</p>
+<ul>
+<li><p>回车   &#x3D;&gt;  enter</p>
+</li>
+<li><p>删除   &#x3D;&gt;  delete(捕获“删除”和“退格”键)</p>
+</li>
+<li><p>退出   &#x3D;&gt;  esc</p>
+</li>
+<li><p>空格   &#x3D;&gt; space</p>
+</li>
+<li><p>换行   &#x3D;&gt; tab(特殊，必须配合keydown使用)</p>
+</li>
+<li><p>上   &#x3D;&gt;   up</p>
+</li>
+<li><p>下   &#x3D;&gt;   down</p>
+</li>
+<li><p>左   &#x3D;&gt;   left</p>
+</li>
+<li><p>右   &#x3D;&gt;   right</p>
+<p>enter:按下回车后触发</p>
 <p><img src="/2022/05/11/vue%E4%B8%AD%E7%9A%84%E9%94%AE%E7%9B%98%E4%BA%8B%E4%BB%B6/jianpanshijian.png"></p>
+</li>
+</ul>
+</li>
+</ol>
+<p>​    2.Vue未提供别名的按键，可以使用按键原始的key值去绑定，需要注意的是，例如CapsLock这种需要转为caps-lock来使用</p>
+<p>​          e.key:键盘按键名</p>
+<p>​          e.keyCode:按键编码</p>
+<p>​    3.系统修饰符：ctrl、alt、shift、meta</p>
+<ul>
+<li><p>配合keyup使用：按下修饰键的同时，再按下其他键，然后释放其他键，事件才会被触发</p>
+</li>
+<li><p>配合keydown使用：正常触发事件</p>
+<p> 4.使用keyCode去指定具体按键，如keyup.13,但是不推荐</p>
+<p> 5.定制按键别名：Vue.config.keyCodes.自定义键名&#x3D;键码，如Vue.config.keyCodes.huiche&#x3D;13</p>
+</li>
+</ul>
 
             
         </div>
@@ -422,7 +458,7 @@ methods：&#123;
         
         <span class="tag">
             
-            <a href="/tags/vue" style="color: #ff7d73">
+            <a href="/tags/vue" style="color: #00bcd4">
                 vue
             </a>
         </span>
@@ -472,7 +508,7 @@ methods：&#123;
         
         <span class="tag">
             
-            <a href="/tags/vue" style="color: #03a9f4">
+            <a href="/tags/vue" style="color: #ffa2c4">
                 vue
             </a>
         </span>
