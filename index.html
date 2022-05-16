@@ -159,7 +159,16 @@
     <div class="excerpt">
         <div class="content" v-pre>
             
-            <p>绑定class:</p>
+            <p>绑定样式：</p>
+<p>1.class样式：</p>
+<p>​            写法：    ：class&#x3D;”xxx”,xxx可以是字符串、对象、数组</p>
+<p>​           字符串写法适用于：类型不确定，要动态获取</p>
+<p>​           对象写法适用于：要绑定多个样式，个数不确定，名字也不确定</p>
+<p>​           数组写法适用于需要绑定多个样式，个数不确定，名字也不确定</p>
+<p>2.style样式：</p>
+<p>​            ：style&#x3D;”{fontSize:xxx}”,其中xxx是动态值</p>
+<p>​            :   style&#x3D;”[a,b]”,其中a,b是样式对象</p>
+<p>绑定class:</p>
 <ol>
 <li><p>字符串写法：适用于样式的类名不确定，需要动态指定</p>
 <pre><code>  &lt;div class=&quot;box1&quot; :class=&quot;activeclass&quot; @click=&quot;getclass&quot;&gt;盒子&lt;/div&gt;
@@ -218,9 +227,51 @@
        .class3&#123;&#125;
        .class4&#123;&#125;
 </code></pre>
-<p>​</p>
 </li>
 </ol>
+<p>style样式：</p>
+<p>1.对象写法：</p>
+<pre><code>&lt;div :style=&quot;&#123;fontSize:fsize+&#39;px&#39;&#125;&quot;&gt;gg&lt;/div&gt;//font-size这种都需要改成驼峰写法
+          data() &#123;
+               return &#123;                
+                    fsize: 40,
+                &#125;
+            &#125;,
+</code></pre>
+  <div :style="styleobj">gg</div>//写法二
+            data() {
+                return {              
+                    styleobj: {
+                        fontSize: '40px'
+                    }
+
+<p>​                }<br>            },</p>
+<p>2.数组写法</p>
+<pre><code>  &lt;div :style=&quot;[styleobj,styleobj2]&quot;&gt;gg&lt;/div&gt;
+           data() &#123;
+                return &#123;                  
+                    styleobj: &#123;
+                        fontSize: &#39;40px&#39;
+                    &#125;,
+                    styleobj2: &#123;
+                        color: &#39;green&#39;
+                    &#125;
+
+                &#125;
+            &#125;,
+</code></pre>
+<pre><code>   &lt;div :style=&quot;stylearr&quot;&gt;gg&lt;/div&gt;
+            data() &#123;
+                return &#123;                
+                    stylearr: [&#123;
+                        fontSize: &#39;40px&#39;
+                    &#125;, &#123;
+                        color: &#39;green&#39;
+                    &#125;,]
+
+                &#125;
+            &#125;,
+</code></pre>
 
             
         </div>
@@ -234,7 +285,7 @@
         
         <span class="tag">
             
-            <a href="/tags/vue" style="color: #00a596">
+            <a href="/tags/vue" style="color: #ffa2c4">
                 vue
             </a>
         </span>
@@ -310,7 +361,7 @@
         
         <span class="tag">
             
-            <a href="/tags/vue" style="color: #00a596">
+            <a href="/tags/vue" style="color: #ffa2c4">
                 vue
             </a>
         </span>
@@ -373,7 +424,7 @@
         
         <span class="tag">
             
-            <a href="/tags/vue" style="color: #ffa2c4">
+            <a href="/tags/vue" style="color: #00a596">
                 vue
             </a>
         </span>
@@ -427,7 +478,7 @@
         
         <span class="tag">
             
-            <a href="/tags/markdown" style="color: #00a596">
+            <a href="/tags/markdown" style="color: #ff7d73">
                 markdown
             </a>
         </span>
@@ -486,7 +537,7 @@ methods:&#123;
         
         <span class="tag">
             
-            <a href="/tags/vue" style="color: #00a596">
+            <a href="/tags/vue" style="color: #ffa2c4">
                 vue
             </a>
         </span>
@@ -619,7 +670,7 @@ methods：&#123;
         
         <span class="tag">
             
-            <a href="/tags/vue" style="color: #00a596">
+            <a href="/tags/vue" style="color: #00bcd4">
                 vue
             </a>
         </span>
@@ -705,7 +756,7 @@ methods：&#123;
         
         <span class="tag">
             
-            <a href="/tags/vue" style="color: #00bcd4">
+            <a href="/tags/vue" style="color: #ff7d73">
                 vue
             </a>
         </span>
