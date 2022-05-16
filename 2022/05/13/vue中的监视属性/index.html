@@ -138,7 +138,7 @@
             
             <span class="tag">
                 
-                <a href="/tags/vue" style="color: #00a596">
+                <a href="/tags/vue" style="color: #ff7d73">
                     vue
                 </a>
             </span>
@@ -171,6 +171,16 @@
 <p><img src="/2022/05/13/vue%E4%B8%AD%E7%9A%84%E7%9B%91%E8%A7%86%E5%B1%9E%E6%80%A7/deepwatch.png"></p>
 <p>当监视属性中只用到handler函数而没有其他配置项时，可以简写，有两种简写方式，如下：</p>
 <p><img src="/2022/05/13/vue%E4%B8%AD%E7%9A%84%E7%9B%91%E8%A7%86%E5%B1%9E%E6%80%A7/jianxie.png"></p>
+<p>computed和watch之间的区别：</p>
+<ol>
+<li>computed能完成的功能，watch都可以完成</li>
+<li>watch能完成的功能，computed不一定能完成，例如：watch可以进行异步操作</li>
+</ol>
+<p>两个重要的小原则:</p>
+<ol>
+<li>被vue所管理的函数，最好写成普通函数，这样this的指向才是vm或组件实例对象</li>
+<li>不被vue所管理的函数（定时器的回调函数，ajax的回调函数，promise的回调函数），最好写成箭头函数，这样this的指向才是vm或组件实例对象。</li>
+</ol>
 
     </div>
     
