@@ -229,7 +229,155 @@
 <p>​        2.如果不存在对数据的逆序添加、逆序删除等破坏顺序操作，仅用于渲染列表，用于展示，使用index作为key是没有问题的</p>
 </li>
 </ol>
-<p>​      </p>
+<p>过滤：</p>
+<p>watch实现：</p>
+<pre><code>    &lt;div id=&quot;root&quot;&gt;
+
+        &lt;input type=&quot;text&quot; placeholder=&quot;请输入姓名&quot; v-model=&quot;keyword&quot;&gt;
+        &lt;ul&gt;
+            &lt;li v-for=&quot;(item,index) in filPerson&quot; :key=&quot;item.id&quot;&gt; &#123;&#123;item.name&#125;&#125;-&#123;&#123;item.age&#125;&#125;-&#123;&#123;item.sex&#125;&#125;                 &lt;/li&gt;
+        &lt;/ul&gt;
+
+    &lt;/div&gt;
+    
+           data() &#123;
+                return &#123;
+                    persons: [&#123;
+                        id: 001,
+                        name: &#39;马冬梅&#39;,
+                        age: 18,
+                        sex: &#39;女&#39;
+                    &#125;,
+                    &#123;
+                        id: 002,
+                        name: &#39;周冬雨&#39;,
+                        age: 19,
+                        sex: &#39;女&#39;
+                    &#125;, &#123;
+                        id: 003,
+                        name: &#39;周杰伦&#39;,
+                        age: 20,
+                        sex: &#39;男&#39;
+                    &#125;, &#123;
+                        id: 004,
+                        name: &#39;温兆伦&#39;,
+                        age: 21,
+                        sex: &#39;男&#39;
+                    &#125;],
+                    filPerson: [],
+                    keyword: &#39;&#39;
+
+                &#125;
+            &#125;,
+            watch: &#123;
+                keyword: &#123;
+                    immediate: true,//indexof(&#39;&#39;)===0,所以会返回全部数据
+                    handler(val) &#123;
+                        this.filPerson = this.persons.filter(item =&gt; &#123;
+                            return item.name.indexOf(val) !== -1
+                        &#125;)
+                    &#125;
+
+                &#125;
+
+            &#125;,
+</code></pre>
+<p>​      计算属性实现：</p>
+<pre><code>        &lt;input type=&quot;text&quot; placeholder=&quot;请输入姓名&quot; v-model=&quot;keyword&quot;&gt;
+        &lt;ul&gt;
+            &lt;li v-for=&quot;(item,index) in filPerson&quot; :key=&quot;item.id&quot;&gt; &#123;&#123;item.name&#125;&#125;-&#123;&#123;item.age&#125;&#125;-&#123;&#123;item.sex&#125;&#125;                 &lt;/li&gt;
+        &lt;/ul&gt;
+         data() &#123;
+                return &#123;
+                    persons: [&#123;
+                        id: 001,
+                        name: &#39;马冬梅&#39;,
+                        age: 18,
+                        sex: &#39;女&#39;
+                    &#125;,
+                    &#123;
+                        id: 002,
+                        name: &#39;周冬雨&#39;,
+                        age: 19,
+                        sex: &#39;女&#39;
+                    &#125;, &#123;
+                        id: 003,
+                        name: &#39;周杰伦&#39;,
+                        age: 20,
+                        sex: &#39;男&#39;
+                    &#125;, &#123;
+                        id: 004,
+                        name: &#39;温兆伦&#39;,
+                        age: 21,
+                        sex: &#39;男&#39;
+                    &#125;],
+                    keyword: &#39;&#39;
+
+                &#125;
+            &#125;,
+             computed: &#123;
+                filPerson() &#123;
+                    return this.persons.filter(item =&gt; &#123;
+                        return item.name.indexOf(this.keyword) !== -1
+                    &#125;)
+                &#125;
+            &#125;,
+        
+        
+</code></pre>
+<p>排序：</p>
+<pre><code>        &lt;input type=&quot;text&quot; placeholder=&quot;请输入姓名&quot; v-model=&quot;keyword&quot;&gt;
+        &lt;button @click=&quot;type=0&quot;&gt;原顺序&lt;/button&gt;
+        &lt;button @click=&quot;type=1&quot;&gt;升序&lt;/button&gt;
+        &lt;button @click=&quot;type=2&quot;&gt;降序&lt;/button&gt;
+        &lt;ul&gt;
+            &lt;li v-for=&quot;(item,index) in filPerson&quot; :key=&quot;item.id&quot;&gt; &#123;&#123;item.name&#125;&#125;-&#123;&#123;item.age&#125;&#125;-&#123;&#123;item.sex&#125;&#125;                 &lt;/li&gt;
+        &lt;/ul&gt;
+          data() &#123;
+                return &#123;
+                    persons: [
+                        &#123;
+                            id: 001,
+                            name: &#39;马冬梅&#39;,
+                            age: 19,
+                            sex: &#39;女&#39;
+                        &#125;,
+                        &#123;
+                            id: 002,
+                            name: &#39;周冬雨&#39;,
+                            age: 18,
+                            sex: &#39;女&#39;
+                        &#125;, &#123;
+                            id: 003,
+                            name: &#39;周杰伦&#39;,
+                            age: 20,
+                            sex: &#39;男&#39;
+                        &#125;, &#123;
+                            id: 004,
+                            name: &#39;温兆伦&#39;,
+                            age: 17,
+                            sex: &#39;男&#39;
+                        &#125;
+                    ],
+                    keyword: &#39;&#39;,
+                    type: 0//0原顺序，1升序，2降序
+
+                &#125;
+            &#125;,
+            computed: &#123;
+                filPerson() &#123;
+                    const arr = this.persons.filter((item) =&gt; &#123;
+                        return item.name.indexOf(this.keyword) !== -1
+                    &#125;)
+                    if (this.type) &#123;
+                        arr.sort((a, b) =&gt; &#123;
+                            return this.type == 1 ? a.age - b.age : b.age - a.age
+                        &#125;)
+                    &#125;
+                    return arr
+                &#125;
+            &#125;,
+</code></pre>
 
             
         </div>
@@ -303,7 +451,7 @@
         
         <span class="tag">
             
-            <a href="/tags/vue" style="color: #ff7d73">
+            <a href="/tags/vue" style="color: #ffa2c4">
                 vue
             </a>
         </span>
@@ -458,7 +606,7 @@
         
         <span class="tag">
             
-            <a href="/tags/vue" style="color: #ffa2c4">
+            <a href="/tags/vue" style="color: #ff7d73">
                 vue
             </a>
         </span>
@@ -597,7 +745,7 @@
         
         <span class="tag">
             
-            <a href="/tags/vue" style="color: #ffa2c4">
+            <a href="/tags/vue" style="color: #03a9f4">
                 vue
             </a>
         </span>
@@ -651,7 +799,7 @@
         
         <span class="tag">
             
-            <a href="/tags/markdown" style="color: #ff7d73">
+            <a href="/tags/markdown" style="color: #00a596">
                 markdown
             </a>
         </span>
@@ -843,7 +991,7 @@ methods：&#123;
         
         <span class="tag">
             
-            <a href="/tags/vue" style="color: #ffa2c4">
+            <a href="/tags/vue" style="color: #00a596">
                 vue
             </a>
         </span>
@@ -929,7 +1077,7 @@ methods：&#123;
         
         <span class="tag">
             
-            <a href="/tags/vue" style="color: #00bcd4">
+            <a href="/tags/vue" style="color: #ffa2c4">
                 vue
             </a>
         </span>
@@ -979,7 +1127,7 @@ methods：&#123;
         
         <span class="tag">
             
-            <a href="/tags/vue" style="color: #ffa2c4">
+            <a href="/tags/vue" style="color: #00bcd4">
                 vue
             </a>
         </span>
