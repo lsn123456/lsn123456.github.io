@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0">
-        <title>Vue中的条件渲染 | Mynote</title>
+        <title>Vue中的一些指令 | Mynote</title>
         <meta name="author" content="参商">
         <meta name="description" content="个人笔记">
         <meta name="keywords" content="love&peace">
@@ -120,7 +120,7 @@
                         
 <div class="article">
     <div>
-        <h1>Vue中的条件渲染 </h1>
+        <h1>Vue中的一些指令 </h1>
     </div>
     <div class="info">
         <span class="date">
@@ -138,7 +138,7 @@
             
             <span class="tag">
                 
-                <a href="/tags/vue" style="color: #ff7d73">
+                <a href="/tags/vue" style="color: #ffa2c4">
                     vue
                 </a>
             </span>
@@ -147,24 +147,15 @@
         
     </div>
     <div class="content" v-pre>
-        <p>条件渲染：</p>
-<ol>
-<li>v-if:</li>
-</ol>
-<ul>
-<li>v-if&#x3D;”表达式”</li>
-<li>v-else-if&#x3D;”表达式”</li>
-<li>v-else&#x3D;”表达式”</li>
-<li>适用于切换频率比较低的场景，不展示的dom元素直接被移除</li>
-<li>v-if可以和v-else-if、v-else一起使用，但要求结构不能被打断</li>
-<li>v-if可以和template一起使用，解析时浏览器中的源代码里template不会出现，结构不会被改变，但v-show不可以。</li>
-</ul>
-<p>2.v-show:</p>
-<ul>
-<li>v-show&#x3D;”表达式”</li>
-<li>适用于切换频率比较高的场景，不展示的dom元素未被移除，仅仅是使用样式隐藏掉</li>
-<li>使用v-if时，元素可能无法获取到，但使用v-show一定可以获取到</li>
-</ul>
+        <p>v-text:</p>
+<p>1.作用：向其所在的节点中渲染文本内容</p>
+<p>2.与插值语法的区别：v-text会替换掉节点中的内容，则不会</p>
+<p>v-html:</p>
+<p>1.作用：向指定节点中渲染包含html结构的内容</p>
+<p>2.与插值语法的区别：v-html会替换掉节点中的内容，则不会</p>
+<p>3.注意点：v-html有安全性问题</p>
+<p>​                    在网站上动态渲染任意的HTML是非常危险的，容易导致XSS攻击</p>
+<p>​                     一定要在可信的内容上使用v-html，永远不要在用户提交的内容上</p>
 
     </div>
     
