@@ -168,6 +168,25 @@
 <p>3.注意点：v-html有安全性问题</p>
 <p>​                    在网站上动态渲染任意的HTML是非常危险的，容易导致XSS攻击</p>
 <p>​                     一定要在可信的内容上使用v-html，永远不要在用户提交的内容上</p>
+<p>v-cloak(没有值):</p>
+<p>1.v-cloak本质是一个特殊的属性，Vue实例创建完毕并接管容器后，会删掉v-cloak属性。</p>
+<p>2.使用css配合v-cloak可以解决网速慢时页面展示出的问题</p>
+<p>3.配合属性选择器使用：[v-cloak]{   display:none;  }</p>
+<p>v-once(没有值):</p>
+<p>1.v-once所在的节点在初次动态渲染后，就视为静态内容了（只在初始化时渲染一次，后面数据的更改不受影响）</p>
+<p>2.以后数据的改变不会引起v-once所在结构的更新，可以用于优化性能</p>
+<pre><code>        &lt;h1 v-once&gt;使用v-once的number:&#123;&#123;number&#125;&#125;&lt;/h1&gt;
+        &lt;h2&gt;直接展示number:&#123;&#123;number&#125;&#125;&lt;/h2&gt;
+        &lt;button @click=&quot;number++&quot;&gt;点击按钮number+1&lt;/button&gt;
+          data() &#123;
+                return &#123;
+                    number: 1
+                &#125;
+            &#125;,
+</code></pre>
+<p>v-pre(没有值):</p>
+<p>1.跳过其所在节点的编译过程。</p>
+<p>2.可利用它跳过：没有使用指令语法、没有使用插值语法的节点，会加快编译。</p>
 
             
         </div>
@@ -343,7 +362,7 @@
         
         <span class="tag">
             
-            <a href="/tags/vue" style="color: #00a596">
+            <a href="/tags/vue" style="color: #03a9f4">
                 vue
             </a>
         </span>
@@ -431,7 +450,7 @@
         
         <span class="tag">
             
-            <a href="/tags/vue" style="color: #00a596">
+            <a href="/tags/vue" style="color: #00bcd4">
                 vue
             </a>
         </span>
@@ -692,7 +711,7 @@
         
         <span class="tag">
             
-            <a href="/tags/vue" style="color: #00a596">
+            <a href="/tags/vue" style="color: #ff7d73">
                 vue
             </a>
         </span>
@@ -752,7 +771,7 @@
         
         <span class="tag">
             
-            <a href="/tags/vue" style="color: #ff7d73">
+            <a href="/tags/vue" style="color: #00a596">
                 vue
             </a>
         </span>
@@ -907,7 +926,7 @@
         
         <span class="tag">
             
-            <a href="/tags/vue" style="color: #ffa2c4">
+            <a href="/tags/vue" style="color: #ff7d73">
                 vue
             </a>
         </span>
@@ -983,7 +1002,7 @@
         
         <span class="tag">
             
-            <a href="/tags/vue" style="color: #00a596">
+            <a href="/tags/vue" style="color: #00bcd4">
                 vue
             </a>
         </span>
@@ -1046,7 +1065,7 @@
         
         <span class="tag">
             
-            <a href="/tags/vue" style="color: #00bcd4">
+            <a href="/tags/vue" style="color: #00a596">
                 vue
             </a>
         </span>
@@ -1100,7 +1119,7 @@
         
         <span class="tag">
             
-            <a href="/tags/markdown" style="color: #ff7d73">
+            <a href="/tags/markdown" style="color: #ffa2c4">
                 markdown
             </a>
         </span>
