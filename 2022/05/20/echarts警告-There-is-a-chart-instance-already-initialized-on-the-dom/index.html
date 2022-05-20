@@ -138,7 +138,7 @@
             
             <span class="tag">
                 
-                <a href="/tags/echarts" style="color: #03a9f4">
+                <a href="/tags/echarts" style="color: #00a596">
                     echarts
                 </a>
             </span>
@@ -152,6 +152,7 @@
 <p><img src="/2022/05/20/echarts%E8%AD%A6%E5%91%8A-There-is-a-chart-instance-already-initialized-on-the-dom/echartswarn.png"></p>
 <p>这个问题的出现在于，在一张表上渲染不同数据，其实dom已经存在了，但是我们在每次数据发生改变的时间都重新进行了一次渲染，导致出现警告</p>
 <p>解决方法：初始化时判断echarts是否存在，如果存在将其销毁，然后重新渲染</p>
+<p>vue中：</p>
 <pre><code>  data() &#123;
       return &#123;
         myChart: null,
@@ -178,6 +179,30 @@
           this.myChart.resize()
         &#125;)
       &#125;,
+</code></pre>
+<p>react中：</p>
+<pre><code>import * as echarts from &#39;echarts/lib/echarts.js&#39;
+import china from &#39;../../utils/china.json&#39;
+function Home(props) &#123;
+    //在方法最外层定义全局变量
+    var myChart; 
+
+    const mapOption = (mapName, data, mapdata) =&gt; &#123;
+     //判断是否存在
+        if (myChart !== null &amp;&amp; myChart !== &quot;&quot; &amp;&amp; myChart !== undefined) &#123;
+            myChart.dispose();
+        &#125;
+        myChart = echarts.init(document.querySelector(&#39;.map&#39;));
+        echarts.registerMap(&#39;china&#39;, &#123; geoJSON: china &#125;)
+        var option = &#123;&#125;        
+        myChart.setOption(option);
+    &#125;
+    return (
+        &lt;div div className=&#39;page-home&#39; &gt;
+            &lt;div className=&#39;map&#39;&gt;&lt;/div&gt;          
+        &lt;/div &gt;
+    )
+&#125;
 </code></pre>
 
     </div>
