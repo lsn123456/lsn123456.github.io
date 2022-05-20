@@ -138,7 +138,7 @@
             
             <span class="tag">
                 
-                <a href="/tags/echarts" style="color: #00a596">
+                <a href="/tags/echarts" style="color: #ffa2c4">
                     echarts
                 </a>
             </span>
@@ -159,7 +159,7 @@
       &#125;
     &#125;,
      drawChart() &#123;
-        //判断是否存在
+        //判断是否存在 != 是不等于
         if (
           this.myChart != null &amp;&amp;
           this.myChart != &#39;&#39; &amp;&amp;
@@ -188,7 +188,7 @@ function Home(props) &#123;
     var myChart; 
 
     const mapOption = (mapName, data, mapdata) =&gt; &#123;
-     //判断是否存在
+     //判断是否存在 !== 是不等于
         if (myChart !== null &amp;&amp; myChart !== &quot;&quot; &amp;&amp; myChart !== undefined) &#123;
             myChart.dispose();
         &#125;
