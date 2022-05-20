@@ -138,7 +138,7 @@
             
             <span class="tag">
                 
-                <a href="/tags/vue" style="color: #00bcd4">
+                <a href="/tags/vue" style="color: #03a9f4">
                     vue
                 </a>
             </span>
@@ -180,6 +180,14 @@
 <p>简写方式：</p>
 <pre><code>const school=Vue.extend(options)可简写为 : const school=options
 </code></pre>
+<p>关于VueComponent:</p>
+<p>1.school组件本质是一个名为VueComponent的构造函数，且不是程序员定义的，是Vue.extend生成的</p>
+<p>2.我们只需要写<school>或<school></school>，Vue解析时会帮我们创建school组件的实例对象，即Vue帮我们执行:new VueComponent(options)</school></p>
+<p>3.特别注意：每次调用Vue.extend,返回的都是一个全新的VueComponent</p>
+<p>4.关于this指向：</p>
+<p>​           1.组件配置中：data函数，methods中的函数，watch中的函数，computed中的函数，它们的this均是【VueComponent实例对象】</p>
+<p>​            2.new Vue(options)配置中：data函数，methods中的函数，watch中的函数，computed中的函数，它们的this均是【Vue实例对象】</p>
+<p>5.VueComponent实例对象：也可以称之为组件实例对象，可用vc简称,Vue实例对象，可简称为vm</p>
 
     </div>
     
