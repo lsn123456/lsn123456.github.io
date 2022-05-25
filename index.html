@@ -142,6 +142,57 @@
             
 
 <div class="post">
+    <a href="/2022/05/25/单文件组件/">
+        <h2>
+            单文件组件
+        </h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="date">
+            <span class="icon">
+                <svg class="fa-icon"><use xlink:href="#calendar-solid"></use></svg>
+            </span>
+            2022/5/25
+        </span>
+    </div>
+    <div class="excerpt">
+        <div class="content" v-pre>
+            
+            <p>关于不同版本的Vue:</p>
+<p>1.vue.js与vue.runtime.xxx.js的区别：</p>
+<p>​               vue.js是完整版的vue,包含：核心功能+模板解析器</p>
+<p>​               vue.runtime.xxx.js是运行版vue，只包含核心功能，没有模板解析器</p>
+<p>2.因为vue.runtime.xxx.js没有模板解析器，所以不能使用template配置项，需要使用render函数接收到                                        </p>
+<p>​               createElement函数去指定具体内容</p>
+<pre><code>render: createElement=&gt; createElement(&#39;标签名&#39;，&#39;标签体内容&#39;)或写为
+render:h=&gt;h(App)
+</code></pre>
+
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        <span class="icon">
+            <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
+        </span>
+        
+        
+        <span class="tag">
+            
+            <a href="/tags/vue" style="color: #ff7d73">
+                vue
+            </a>
+        </span>
+        
+    </div>
+    <a href="/2022/05/25/单文件组件/" class="go-post">
+        阅读全文
+    </a>
+</div>
+
+<div class="post">
     <a href="/2022/05/20/echarts警告-There-is-a-chart-instance-already-initialized-on-the-dom/">
         <h2>
             Echarts警告--There Is a Chart Instance Already Initialized on the Dom.
@@ -299,6 +350,11 @@ function Home(props) &#123;
 <p>​           1.组件配置中：data函数，methods中的函数，watch中的函数，computed中的函数，它们的this均是【VueComponent实例对象】</p>
 <p>​            2.new Vue(options)配置中：data函数，methods中的函数，watch中的函数，computed中的函数，它们的this均是【Vue实例对象】</p>
 <p>5.VueComponent实例对象：也可以称之为组件实例对象，可用vc简称,Vue实例对象，可简称为vm</p>
+<p>内置关系：</p>
+<pre><code>VueComponent.prototype__proto__=Vue.prototype
+</code></pre>
+<p>作用：让组件实例对象（vc）可以访问到Vue原型上的属性、方法。</p>
+<p><img src="/2022/05/19/vue%E7%BB%84%E4%BB%B6%E7%9A%84%E6%B3%A8%E5%86%8C%E4%BD%BF%E7%94%A8/vuecomponent.png"></p>
 
             
         </div>
@@ -312,7 +368,7 @@ function Home(props) &#123;
         
         <span class="tag">
             
-            <a href="/tags/vue" style="color: #00bcd4">
+            <a href="/tags/vue" style="color: #00a596">
                 vue
             </a>
         </span>
@@ -369,7 +425,7 @@ function Home(props) &#123;
         
         <span class="tag">
             
-            <a href="/tags/vue" style="color: #03a9f4">
+            <a href="/tags/vue" style="color: #ffa2c4">
                 vue
             </a>
         </span>
@@ -431,7 +487,7 @@ function Home(props) &#123;
         
         <span class="tag">
             
-            <a href="/tags/vue" style="color: #ff7d73">
+            <a href="/tags/vue" style="color: #ffa2c4">
                 vue
             </a>
         </span>
@@ -501,7 +557,7 @@ function Home(props) &#123;
         
         <span class="tag">
             
-            <a href="/tags/vue" style="color: #ffa2c4">
+            <a href="/tags/vue" style="color: #03a9f4">
                 vue
             </a>
         </span>
@@ -610,7 +666,7 @@ function Home(props) &#123;
         
         <span class="tag">
             
-            <a href="/tags/vue" style="color: #ff7d73">
+            <a href="/tags/vue" style="color: #00a596">
                 vue
             </a>
         </span>
@@ -751,7 +807,7 @@ function Home(props) &#123;
         
         <span class="tag">
             
-            <a href="/tags/vue" style="color: #ffa2c4">
+            <a href="/tags/vue" style="color: #03a9f4">
                 vue
             </a>
         </span>
@@ -1019,66 +1075,6 @@ function Home(props) &#123;
         
     </div>
     <a href="/2022/05/17/vue中的v-for列表渲染/" class="go-post">
-        阅读全文
-    </a>
-</div>
-
-<div class="post">
-    <a href="/2022/05/17/vue中的条件渲染/">
-        <h2>
-            Vue中的条件渲染
-        </h2>
-    </a>
-    <div class="category-and-date">
-        
-        <span class="date">
-            <span class="icon">
-                <svg class="fa-icon"><use xlink:href="#calendar-solid"></use></svg>
-            </span>
-            2022/5/17
-        </span>
-    </div>
-    <div class="excerpt">
-        <div class="content" v-pre>
-            
-            <p>条件渲染：</p>
-<ol>
-<li>v-if:</li>
-</ol>
-<ul>
-<li>v-if&#x3D;”表达式”</li>
-<li>v-else-if&#x3D;”表达式”</li>
-<li>v-else&#x3D;”表达式”</li>
-<li>适用于切换频率比较低的场景，不展示的dom元素直接被移除</li>
-<li>v-if可以和v-else-if、v-else一起使用，但要求结构不能被打断</li>
-<li>v-if可以和template一起使用，解析时浏览器中的源代码里template不会出现，结构不会被改变，但v-show不可以。</li>
-</ul>
-<p>2.v-show:</p>
-<ul>
-<li>v-show&#x3D;”表达式”</li>
-<li>适用于切换频率比较高的场景，不展示的dom元素未被移除，仅仅是使用样式隐藏掉</li>
-<li>使用v-if时，元素可能无法获取到，但使用v-show一定可以获取到</li>
-</ul>
-
-            
-        </div>
-    </div>
-    <div class="post-tags">
-        
-        <span class="icon">
-            <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
-        </span>
-        
-        
-        <span class="tag">
-            
-            <a href="/tags/vue" style="color: #00bcd4">
-                vue
-            </a>
-        </span>
-        
-    </div>
-    <a href="/2022/05/17/vue中的条件渲染/" class="go-post">
         阅读全文
     </a>
 </div>
