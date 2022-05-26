@@ -142,6 +142,55 @@
             
 
 <div class="post">
+    <a href="/2022/05/26/vue中ref的使用/">
+        <h2>
+            Vue中ref的使用
+        </h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="date">
+            <span class="icon">
+                <svg class="fa-icon"><use xlink:href="#calendar-solid"></use></svg>
+            </span>
+            2022/5/26
+        </span>
+    </div>
+    <div class="excerpt">
+        <div class="content" v-pre>
+            
+            <p>ref属性</p>
+<p>1.被用来给元素或子组件注册引用信息（id的替代者）</p>
+<p>2.应用在html标签上获取的是真实DOM元素，应用在组件标签上是组件实例对象（vc）</p>
+<p>3.使用方式：</p>
+<pre><code>打标识：&lt;div ref=&quot;xxx&quot;&gt;……&lt;/div&gt;或组件标签：&lt;School ref=&quot;xxx&quot;&gt;&lt;/School&gt;
+获取：this.$refs.xxx
+</code></pre>
+
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        <span class="icon">
+            <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
+        </span>
+        
+        
+        <span class="tag">
+            
+            <a href="/tags/vue" style="color: #00a596">
+                vue
+            </a>
+        </span>
+        
+    </div>
+    <a href="/2022/05/26/vue中ref的使用/" class="go-post">
+        阅读全文
+    </a>
+</div>
+
+<div class="post">
     <a href="/2022/05/25/单文件组件/">
         <h2>
             单文件组件
@@ -181,7 +230,7 @@ render:h=&gt;h(App)
         
         <span class="tag">
             
-            <a href="/tags/vue" style="color: #ff7d73">
+            <a href="/tags/vue" style="color: #ffa2c4">
                 vue
             </a>
         </span>
@@ -280,7 +329,7 @@ function Home(props) &#123;
         
         <span class="tag">
             
-            <a href="/tags/echarts" style="color: #ffa2c4">
+            <a href="/tags/echarts" style="color: #ff7d73">
                 echarts
             </a>
         </span>
@@ -368,7 +417,7 @@ function Home(props) &#123;
         
         <span class="tag">
             
-            <a href="/tags/vue" style="color: #00a596">
+            <a href="/tags/vue" style="color: #ffa2c4">
                 vue
             </a>
         </span>
@@ -487,7 +536,7 @@ function Home(props) &#123;
         
         <span class="tag">
             
-            <a href="/tags/vue" style="color: #ffa2c4">
+            <a href="/tags/vue" style="color: #03a9f4">
                 vue
             </a>
         </span>
@@ -557,7 +606,7 @@ function Home(props) &#123;
         
         <span class="tag">
             
-            <a href="/tags/vue" style="color: #03a9f4">
+            <a href="/tags/vue" style="color: #00a596">
                 vue
             </a>
         </span>
@@ -666,7 +715,7 @@ function Home(props) &#123;
         
         <span class="tag">
             
-            <a href="/tags/vue" style="color: #00a596">
+            <a href="/tags/vue" style="color: #00bcd4">
                 vue
             </a>
         </span>
@@ -719,7 +768,7 @@ function Home(props) &#123;
         
         <span class="tag">
             
-            <a href="/tags/vue" style="color: #03a9f4">
+            <a href="/tags/vue" style="color: #00bcd4">
                 vue
             </a>
         </span>
@@ -818,267 +867,6 @@ function Home(props) &#123;
     </a>
 </div>
 
-<div class="post">
-    <a href="/2022/05/17/vue中的v-for列表渲染/">
-        <h2>
-            Vue中的v-For列表渲染
-        </h2>
-    </a>
-    <div class="category-and-date">
-        
-        <span class="date">
-            <span class="icon">
-                <svg class="fa-icon"><use xlink:href="#calendar-solid"></use></svg>
-            </span>
-            2022/5/17
-        </span>
-    </div>
-    <div class="excerpt">
-        <div class="content" v-pre>
-            
-            <p>v-for指令：</p>
-<ol>
-<li>用于展示列表数据</li>
-<li>语法：v-for&#x3D;”(item,index) in xxx” :key&#x3D;”yyy”</li>
-<li>可以遍历数组，对象，字符串（用的很少），指定次数（用的很少）</li>
-</ol>
-<pre><code>  &lt;div id=&quot;root&quot;&gt;
-        &lt;ul&gt;
-            &lt;li v-for=&quot;(item,index) in persons&quot; :key=&quot;item.id&quot;&gt;
-                &#123;&#123;item.name&#125;&#125;-&#123;&#123;item.age&#125;&#125;
-            &lt;/li&gt;
-        &lt;/ul&gt;
-        &lt;div v-for=&quot;(value,key) in car&quot; :key=&quot;index&quot;&gt; &#123;&#123;value&#125;&#125;-&#123;&#123;key&#125;&#125;&lt;/div&gt;
-        &lt;div v-for=&quot;(char,index) in teststr&quot; :key=&quot;index&quot;&gt; &#123;&#123;char&#125;&#125;-&#123;&#123;index&#125;&#125;&lt;/div&gt;
-        &lt;ul&gt;
-            &lt;li v-for=&quot;(number,index) in 5&quot; :key=&quot;index&quot;&gt; &#123;&#123;number&#125;&#125;-&#123;&#123;index&#125;&#125;&lt;/li&gt;
-        &lt;/ul&gt;
-    &lt;/div&gt;
-       data() &#123;
-                return &#123;
-                    persons: [&#123;
-                        id: 001,
-                        name: &#39;张三&#39;,
-                        age: 18
-                    &#125;,
-                    &#123;
-                        id: 002,
-                        name: &#39;李四&#39;,
-                        age: 19
-                    &#125;, &#123;
-                        id: 003,
-                        name: &#39;王五&#39;,
-                        age: 20
-                    &#125;],
-                    car: &#123;
-                        name: &#39;车名&#39;,
-                        price: &#39;价格&#39;,
-                        color: &#39;颜色&#39;
-                    &#125;,
-                    teststr: &#39;hello&#39;
-                &#125;
-</code></pre>
-<p>react、vue中key的作用（内部原理）</p>
-<ol>
-<li><p>虚拟DOM中key的作用</p>
-<ul>
-<li>key时虚拟DOM对象的标识，当数据发生变化时，Vue会根据新数据生成新的虚拟DOM，随后Vue进行新虚拟DOM和旧虚拟DOM的差异比较，规则如下</li>
-</ul>
-<p>2.对比规则：</p>
-</li>
-</ol>
-<ul>
-<li>旧虚拟DOM中找到了与新虚拟DOM相同的key：</li>
-</ul>
-<p>​            如果虚拟DOM中内容没变，直接使用之前的真实DOM</p>
-<p>​            如果虚拟DOM中内容变了，则生成新的真实DOM，随后替换掉页面中之前的真实DOM</p>
-<ul>
-<li><p>旧虚拟DOM中未找到与新虚拟DOM相同的key:</p>
-<p>​      创建新的真实DOM，随后渲染到页面</p>
-<p> 3.用index作为key可能会引发的问题：</p>
-</li>
-</ul>
-<p>​              1.若对数据进行逆序添加、逆序删除等破坏顺序操作时，会产生没有必要的真实DOM更新，界面效果没问题，但效率低。</p>
-<p>​              2.如果结构中还包含输入类的DOM，则会产生错误的DOM更新，界面会有问题。</p>
-<ol start="4">
-<li><p>开发中如何选择key：</p>
-<p>​       1.最好使用每条数据的唯一标识作为key,比如id、手机号、身份证号、学号等唯一值</p>
-<p>​        2.如果不存在对数据的逆序添加、逆序删除等破坏顺序操作，仅用于渲染列表，用于展示，使用index作为key是没有问题的</p>
-</li>
-</ol>
-<p>过滤：</p>
-<p>watch实现：</p>
-<pre><code>    &lt;div id=&quot;root&quot;&gt;
-
-        &lt;input type=&quot;text&quot; placeholder=&quot;请输入姓名&quot; v-model=&quot;keyword&quot;&gt;
-        &lt;ul&gt;
-            &lt;li v-for=&quot;(item,index) in filPerson&quot; :key=&quot;item.id&quot;&gt; &#123;&#123;item.name&#125;&#125;-&#123;&#123;item.age&#125;&#125;-&#123;&#123;item.sex&#125;&#125;                 &lt;/li&gt;
-        &lt;/ul&gt;
-
-    &lt;/div&gt;
-    
-           data() &#123;
-                return &#123;
-                    persons: [&#123;
-                        id: 001,
-                        name: &#39;马冬梅&#39;,
-                        age: 18,
-                        sex: &#39;女&#39;
-                    &#125;,
-                    &#123;
-                        id: 002,
-                        name: &#39;周冬雨&#39;,
-                        age: 19,
-                        sex: &#39;女&#39;
-                    &#125;, &#123;
-                        id: 003,
-                        name: &#39;周杰伦&#39;,
-                        age: 20,
-                        sex: &#39;男&#39;
-                    &#125;, &#123;
-                        id: 004,
-                        name: &#39;温兆伦&#39;,
-                        age: 21,
-                        sex: &#39;男&#39;
-                    &#125;],
-                    filPerson: [],
-                    keyword: &#39;&#39;
-
-                &#125;
-            &#125;,
-            watch: &#123;
-                keyword: &#123;
-                    immediate: true,//indexof(&#39;&#39;)===0,所以会返回全部数据
-                    handler(val) &#123;
-                        this.filPerson = this.persons.filter(item =&gt; &#123;
-                            return item.name.indexOf(val) !== -1
-                        &#125;)
-                    &#125;
-
-                &#125;
-
-            &#125;,
-</code></pre>
-<p>​      计算属性实现：</p>
-<pre><code>        &lt;input type=&quot;text&quot; placeholder=&quot;请输入姓名&quot; v-model=&quot;keyword&quot;&gt;
-        &lt;ul&gt;
-            &lt;li v-for=&quot;(item,index) in filPerson&quot; :key=&quot;item.id&quot;&gt; &#123;&#123;item.name&#125;&#125;-&#123;&#123;item.age&#125;&#125;-&#123;&#123;item.sex&#125;&#125;                 &lt;/li&gt;
-        &lt;/ul&gt;
-         data() &#123;
-                return &#123;
-                    persons: [&#123;
-                        id: 001,
-                        name: &#39;马冬梅&#39;,
-                        age: 18,
-                        sex: &#39;女&#39;
-                    &#125;,
-                    &#123;
-                        id: 002,
-                        name: &#39;周冬雨&#39;,
-                        age: 19,
-                        sex: &#39;女&#39;
-                    &#125;, &#123;
-                        id: 003,
-                        name: &#39;周杰伦&#39;,
-                        age: 20,
-                        sex: &#39;男&#39;
-                    &#125;, &#123;
-                        id: 004,
-                        name: &#39;温兆伦&#39;,
-                        age: 21,
-                        sex: &#39;男&#39;
-                    &#125;],
-                    keyword: &#39;&#39;
-
-                &#125;
-            &#125;,
-             computed: &#123;
-                filPerson() &#123;
-                    return this.persons.filter(item =&gt; &#123;
-                        return item.name.indexOf(this.keyword) !== -1
-                    &#125;)
-                &#125;
-            &#125;,
-        
-        
-</code></pre>
-<p>排序：</p>
-<pre><code>        &lt;input type=&quot;text&quot; placeholder=&quot;请输入姓名&quot; v-model=&quot;keyword&quot;&gt;
-        &lt;button @click=&quot;type=0&quot;&gt;原顺序&lt;/button&gt;
-        &lt;button @click=&quot;type=1&quot;&gt;升序&lt;/button&gt;
-        &lt;button @click=&quot;type=2&quot;&gt;降序&lt;/button&gt;
-        &lt;ul&gt;
-            &lt;li v-for=&quot;(item,index) in filPerson&quot; :key=&quot;item.id&quot;&gt; &#123;&#123;item.name&#125;&#125;-&#123;&#123;item.age&#125;&#125;-&#123;&#123;item.sex&#125;&#125;                 &lt;/li&gt;
-        &lt;/ul&gt;
-          data() &#123;
-                return &#123;
-                    persons: [
-                        &#123;
-                            id: 001,
-                            name: &#39;马冬梅&#39;,
-                            age: 19,
-                            sex: &#39;女&#39;
-                        &#125;,
-                        &#123;
-                            id: 002,
-                            name: &#39;周冬雨&#39;,
-                            age: 18,
-                            sex: &#39;女&#39;
-                        &#125;, &#123;
-                            id: 003,
-                            name: &#39;周杰伦&#39;,
-                            age: 20,
-                            sex: &#39;男&#39;
-                        &#125;, &#123;
-                            id: 004,
-                            name: &#39;温兆伦&#39;,
-                            age: 17,
-                            sex: &#39;男&#39;
-                        &#125;
-                    ],
-                    keyword: &#39;&#39;,
-                    type: 0//0原顺序，1升序，2降序
-
-                &#125;
-            &#125;,
-            computed: &#123;
-                filPerson() &#123;
-                    const arr = this.persons.filter((item) =&gt; &#123;
-                        return item.name.indexOf(this.keyword) !== -1
-                    &#125;)
-                    if (this.type) &#123;
-                        arr.sort((a, b) =&gt; &#123;
-                            return this.type == 1 ? a.age - b.age : b.age - a.age
-                        &#125;)
-                    &#125;
-                    return arr
-                &#125;
-            &#125;,
-</code></pre>
-
-            
-        </div>
-    </div>
-    <div class="post-tags">
-        
-        <span class="icon">
-            <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
-        </span>
-        
-        
-        <span class="tag">
-            
-            <a href="/tags/vue" style="color: #ffa2c4">
-                vue
-            </a>
-        </span>
-        
-    </div>
-    <a href="/2022/05/17/vue中的v-for列表渲染/" class="go-post">
-        阅读全文
-    </a>
-</div>
-
              
 <div class="page-current">
     <div class="prev">
@@ -1094,6 +882,12 @@ function Home(props) &#123;
             <a href="/page/2/">
                 <span class="page-num">
                     2
+                </span>
+            </a>
+            
+            <a href="/page/3">
+                <span class="page-num">
+                    3
                 </span>
             </a>
             
