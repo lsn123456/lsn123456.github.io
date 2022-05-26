@@ -142,6 +142,142 @@
             
 
 <div class="post">
+    <a href="/2022/05/11/vue中的键盘事件/">
+        <h2>
+            Vue中的键盘事件
+        </h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="date">
+            <span class="icon">
+                <svg class="fa-icon"><use xlink:href="#calendar-solid"></use></svg>
+            </span>
+            2022/5/11
+        </span>
+    </div>
+    <div class="excerpt">
+        <div class="content" v-pre>
+            
+            <hr>
+<p>keyup:键盘按下后抬起</p>
+<p>keydown：键盘按下</p>
+<ol>
+<li><p>Vue中常用的按键别名：</p>
+<ul>
+<li><p>回车   &#x3D;&gt;  enter</p>
+</li>
+<li><p>删除   &#x3D;&gt;  delete(捕获“删除”和“退格”键)</p>
+</li>
+<li><p>退出   &#x3D;&gt;  esc</p>
+</li>
+<li><p>空格   &#x3D;&gt; space</p>
+</li>
+<li><p>换行   &#x3D;&gt; tab(特殊，必须配合keydown使用)</p>
+</li>
+<li><p>上   &#x3D;&gt;   up</p>
+</li>
+<li><p>下   &#x3D;&gt;   down</p>
+</li>
+<li><p>左   &#x3D;&gt;   left</p>
+</li>
+<li><p>右   &#x3D;&gt;   right</p>
+<p>enter:按下回车后触发</p>
+<p><img src="/2022/05/11/vue%E4%B8%AD%E7%9A%84%E9%94%AE%E7%9B%98%E4%BA%8B%E4%BB%B6/jianpanshijian.png"></p>
+</li>
+</ul>
+</li>
+</ol>
+<p>​    2.Vue未提供别名的按键，可以使用按键原始的key值去绑定，需要注意的是，例如CapsLock这种需要转为caps-lock来使用</p>
+<p>​          e.key:键盘按键名</p>
+<p>​          e.keyCode:按键编码</p>
+<p>​    3.系统修饰符：ctrl、alt、shift、meta</p>
+<ul>
+<li><p>配合keyup使用：按下修饰键的同时，再按下其他键，然后释放其他键，事件才会被触发</p>
+</li>
+<li><p>配合keydown使用：正常触发事件</p>
+</li>
+<li><p>只有按下特定按键才会触发：如@keyup.ctrl.y,只有按下ctrl和y两个按键时才会触发</p>
+<p>​</p>
+<p> 4.使用keyCode去指定具体按键，如keyup.13,但是不推荐</p>
+<p> 5.定制按键别名：Vue.config.keyCodes.自定义键名&#x3D;键码，如Vue.config.keyCodes.huiche&#x3D;13</p>
+</li>
+</ul>
+
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        <span class="icon">
+            <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
+        </span>
+        
+        
+        <span class="tag">
+            
+            <a href="/tags/vue" style="color: #00a596">
+                vue
+            </a>
+        </span>
+        
+    </div>
+    <a href="/2022/05/11/vue中的键盘事件/" class="go-post">
+        阅读全文
+    </a>
+</div>
+
+<div class="post">
+    <a href="/2022/05/11/vue中的数据代理/">
+        <h2>
+            Vue中的数据代理
+        </h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="date">
+            <span class="icon">
+                <svg class="fa-icon"><use xlink:href="#calendar-solid"></use></svg>
+            </span>
+            2022/5/11
+        </span>
+    </div>
+    <div class="excerpt">
+        <div class="content" v-pre>
+            
+            <p>放一下天禹老师的ppt</p>
+<p><img src="/2022/05/11/vue%E4%B8%AD%E7%9A%84%E6%95%B0%E6%8D%AE%E4%BB%A3%E7%90%86/shujudaili.png"></p>
+<p>笔记：</p>
+<p>1.vue中的数据代理：通过vm对象来代理data对象中属性的操作（读&#x2F;写）</p>
+<p>2.vue中数据代理的好处：更加方便的操作data中的数据（否则需要通过_data来拿数据）</p>
+<p>3.基本原理：通过object.defineProperty()把data对象中所有属性添加到vm上</p>
+<p>​                       为每一个添加到vm上的属性都指定一个getter&#x2F;setter</p>
+<p>​                        在getter&#x2F;setter内部去操作（读&#x2F;写）data中对应的属性</p>
+
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        <span class="icon">
+            <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
+        </span>
+        
+        
+        <span class="tag">
+            
+            <a href="/tags/vue" style="color: #00a596">
+                vue
+            </a>
+        </span>
+        
+    </div>
+    <a href="/2022/05/11/vue中的数据代理/" class="go-post">
+        阅读全文
+    </a>
+</div>
+
+<div class="post">
     <a href="/2022/05/11/关于object.defineproperty/">
         <h2>
             关于object.defineproperty()
