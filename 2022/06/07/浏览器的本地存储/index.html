@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0">
-        <title>Vue监视数据的原理 | Mynote</title>
+        <title>浏览器的本地存储 | Mynote</title>
         <meta name="author" content="参商">
         <meta name="description" content="个人笔记">
         <meta name="keywords" content="love&peace">
@@ -120,14 +120,14 @@
                         
 <div class="article">
     <div>
-        <h1>Vue监视数据的原理 </h1>
+        <h1>浏览器的本地存储 </h1>
     </div>
     <div class="info">
         <span class="date">
             <span class="icon">
                 <svg class="fa-icon"><use xlink:href="#calendar-solid"></use></svg>
             </span>
-            2022/5/17
+            2022/6/7
         </span>
         
         
@@ -138,8 +138,8 @@
             
             <span class="tag">
                 
-                <a href="/tags/vue" style="color: #00a596">
-                    vue
+                <a href="/tags/html" style="color: #03a9f4">
+                    html
                 </a>
             </span>
             
@@ -147,52 +147,20 @@
         
     </div>
     <div class="content" v-pre>
-        <p>vue监视数据的原理：</p>
-<ol>
-<li><p>vue会监视data中所有层次的数据</p>
-</li>
-<li><p>如何监测对象中的数据：</p>
-<p>​      通过setter实现监视，且要在new Vue时就传入要监测的数据</p>
+        <h3 id="webStorage"><a href="#webStorage" class="headerlink" title="webStorage"></a>webStorage</h3><p>1.存储内容一般支持5MB左右（不同浏览器可能不同）</p>
+<p>2.浏览器端通过Window.sessionStorage和Window.localStorage属性来实现本地存储机制</p>
+<p>3.相关API：</p>
 <ul>
-<li><p>对象中后追加的属性，Vue默认不做响应式处理</p>
-</li>
-<li><p>如需给后添加的属性做响应式，请使用如下API：</p>
-<p>​         Vue.set(target.propertyName&#x2F;index,value)或vm.$set(target.propertyName&#x2F;index,value)</p>
-</li>
+<li>xxxxStorage.setItem(‘key’,’value’):该方法接受一个键和值作为参数，会把键值对添加到存储中，如果键名存在，则更新其对应的值</li>
+<li>xxxxStorage.getItem(‘person’):该方法接受一个键名作为参数，并把该键名从存储中删除</li>
+<li>xxxxStorage.removeItem(‘key’):该方法接受一个键名作为参数，并把该键名从存储中删除</li>
+<li>xxxxStorage.clear():该方法会清空存储中的所有数据</li>
 </ul>
-</li>
-</ol>
-<p>3.如何监测数组中的数据：</p>
-<p>​          通过包裹数组更新元素的方法实现，本质上就做了两件事：</p>
-<p>​            1.调用原生对应的方法对数组进行更新</p>
-<p>​             2.重新解析模板，进而更新页面</p>
-<p>4.在Vue修改数组中的某个元素时一定要用如下方法：</p>
-<p>​           1.使用如下API：push()、pop()、shift()、unshift()、splice()、sort()、reverse()(会改变原数组)</p>
-<p>​           2.使用Vue.set()或vm.$set()</p>
-<p>​          替换数组： filter()、concat()、slice()不会变更原始数组，而是返回一个新的数组，这种情况下可以使用新数组替换就数组</p>
-<pre><code>this.student.hobby=this.student.hobby.filter((h)=&gt;&#123;return h!==&#39;xxx&#125;)
-</code></pre>
-<p>​     Vue.set()或vm.$set()不能给vm或者vm的根数据对象添加属性</p>
-<pre><code>        &lt;div&gt;&#123;&#123;student.name&#125;&#125;-&#123;&#123;student.age&#125;&#125;&lt;/div&gt;
-        &lt;button @click=&quot;addSex&quot;&gt;添加属性&lt;/button&gt;
-        &lt;div v-if=&quot;student.sex&quot;&gt; &#123;&#123;student.sex&#125;&#125;&lt;/div&gt;
-         data() &#123;
-                return &#123;
-                    student: &#123;
-                        age: 18,
-                        name: &#39;张三&#39;
-                    &#125;
-                &#125;
-            &#125;,
-            methods: &#123;
-                addSex() &#123;
-                    //两种写法都可以给对象添加相应式的属性，不过添加的对象不可以是vue实例对象或其data根对象
-                    // Vue.set(this.student, &#39;sex&#39;, &#39;男&#39;)
-                    this.$set(this.student, &#39;sex&#39;, &#39;男&#39;)
-                &#125;
-            &#125;,
-</code></pre>
-<p>​         </p>
+<p>4.备注：</p>
+<p>1.SessionStorage存储的内容会随着浏览器的窗口关闭而消失</p>
+<p>2.LocalStorage存储的内容需要手动清楚才会消失</p>
+<p>3.xxxxstorage.getItem(xxx)如果xxx对应的value获取不到，那么getItem的返回值是null</p>
+<p>4.JSON.parse(null)的结果依然是null</p>
 
     </div>
     
