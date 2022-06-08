@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0">
-        <title>Vue中的条件渲染 | Mynote</title>
+        <title>this.$nextTick | Mynote</title>
         <meta name="author" content="参商">
         <meta name="description" content="个人笔记">
         <meta name="keywords" content="love&peace">
@@ -120,14 +120,14 @@
                         
 <div class="article">
     <div>
-        <h1>Vue中的条件渲染 </h1>
+        <h1>this.$nextTick </h1>
     </div>
     <div class="info">
         <span class="date">
             <span class="icon">
                 <svg class="fa-icon"><use xlink:href="#calendar-solid"></use></svg>
             </span>
-            2022/5/17
+            2022/6/8
         </span>
         
         
@@ -138,7 +138,7 @@
             
             <span class="tag">
                 
-                <a href="/tags/vue" style="color: #ff7d73">
+                <a href="/tags/vue" style="color: #03a9f4">
                     vue
                 </a>
             </span>
@@ -147,24 +147,13 @@
         
     </div>
     <div class="content" v-pre>
-        <p>条件渲染：</p>
-<ol>
-<li>v-if:</li>
-</ol>
-<ul>
-<li>v-if&#x3D;”表达式”</li>
-<li>v-else-if&#x3D;”表达式”</li>
-<li>v-else&#x3D;”表达式”</li>
-<li>适用于切换频率比较低的场景，不展示的dom元素直接被移除</li>
-<li>v-if可以和v-else-if、v-else一起使用，但要求结构不能被打断</li>
-<li>v-if可以和template一起使用，解析时浏览器中的源代码里template不会出现，结构不会被改变，但v-show不可以。</li>
-</ul>
-<p>2.v-show:</p>
-<ul>
-<li>v-show&#x3D;”表达式”</li>
-<li>适用于切换频率比较高的场景，不展示的dom元素未被移除，仅仅是使用样式隐藏掉</li>
-<li>使用v-if时，元素可能无法获取到，但使用v-show一定可以获取到</li>
-</ul>
+        <h3 id="this-nextTick"><a href="#this-nextTick" class="headerlink" title="this.$nextTick"></a>this.$nextTick</h3><p>1.语法：this.$nextTick(回调函数)</p>
+<p>2.作用：在下一次DOM更新结束后执行其指定的回调</p>
+<p>3.什么时候使用：当数据改变之后，要基于更新后的DOM进行某些操作时，要在nextTick所指定的回调函数中进行，如</p>
+<pre><code>this.$nextTick(function()&#123;
+    this.$refs.inputref.focus()//dom更新完毕后使输入框聚焦
+&#125;)
+</code></pre>
 
     </div>
     

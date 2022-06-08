@@ -138,7 +138,7 @@
             
             <span class="tag">
                 
-                <a href="/tags/vue" style="color: #ff7d73">
+                <a href="/tags/vue" style="color: #03a9f4">
                     vue
                 </a>
             </span>
@@ -156,7 +156,7 @@
 </li>
 <li><p>接收数据：A组件想要接收数据，则在A组件中订阅消息，订阅的回调留在A组件自身</p>
 <pre><code>methods()&#123;
-    demo(data)&#123;&#125;
+    demo(msgname,data)&#123;&#125;//传递两个参数，第一个是订阅消息的名字，第二个才是传递的数据
 &#125;
 mounted()&#123;
     this.pid=pubsub.subscribe(&#39;xxx&#39;,this.demo)//订阅消息

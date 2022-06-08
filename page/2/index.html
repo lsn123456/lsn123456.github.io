@@ -142,6 +142,156 @@
             
 
 <div class="post">
+    <a href="/2022/05/25/单文件组件/">
+        <h2>
+            单文件组件
+        </h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="date">
+            <span class="icon">
+                <svg class="fa-icon"><use xlink:href="#calendar-solid"></use></svg>
+            </span>
+            2022/5/25
+        </span>
+    </div>
+    <div class="excerpt">
+        <div class="content" v-pre>
+            
+            <p>关于不同版本的Vue:</p>
+<p>1.vue.js与vue.runtime.xxx.js的区别：</p>
+<p>​               vue.js是完整版的vue,包含：核心功能+模板解析器</p>
+<p>​               vue.runtime.xxx.js是运行版vue，只包含核心功能，没有模板解析器</p>
+<p>2.因为vue.runtime.xxx.js没有模板解析器，所以不能使用template配置项，需要使用render函数接收到                                        </p>
+<p>​               createElement函数去指定具体内容</p>
+<pre><code>render: createElement=&gt; createElement(&#39;标签名&#39;，&#39;标签体内容&#39;)或写为
+render:h=&gt;h(App)
+</code></pre>
+
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        <span class="icon">
+            <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
+        </span>
+        
+        
+        <span class="tag">
+            
+            <a href="/tags/vue" style="color: #03a9f4">
+                vue
+            </a>
+        </span>
+        
+    </div>
+    <a href="/2022/05/25/单文件组件/" class="go-post">
+        阅读全文
+    </a>
+</div>
+
+<div class="post">
+    <a href="/2022/05/20/echarts警告-There-is-a-chart-instance-already-initialized-on-the-dom/">
+        <h2>
+            Echarts警告--There Is a Chart Instance Already Initialized on the Dom.
+        </h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="date">
+            <span class="icon">
+                <svg class="fa-icon"><use xlink:href="#calendar-solid"></use></svg>
+            </span>
+            2022/5/20
+        </span>
+    </div>
+    <div class="excerpt">
+        <div class="content" v-pre>
+            
+            <p>突然发现一个echarts警告：</p>
+<p>There is a chart instance already initialized on the dom.</p>
+<p><img src="/2022/05/20/echarts%E8%AD%A6%E5%91%8A-There-is-a-chart-instance-already-initialized-on-the-dom/echartswarn.png"></p>
+<p>这个问题的出现在于，在一张表上渲染不同数据，其实dom已经存在了，但是我们在每次数据发生改变的时间都重新进行了一次渲染，导致出现警告</p>
+<p>解决方法：初始化时判断echarts是否存在，如果存在将其销毁，然后重新渲染</p>
+<p>vue中：</p>
+<pre><code>  data() &#123;
+      return &#123;
+        myChart: null,
+      &#125;
+    &#125;,
+     drawChart() &#123;
+        //判断是否存在 != 是不等于
+        if (
+          this.myChart != null &amp;&amp;
+          this.myChart != &#39;&#39; &amp;&amp;
+          this.myChart != undefined
+        ) &#123;
+          this.myChart.dispose()
+        &#125;
+        var chartDom = document.getElementById(&#39;main&#39;)
+        this.myChart = echarts.init(chartDom)
+
+        var option
+        option = &#123;
+        &#125;
+        option &amp;&amp; this.myChart.setOption(option)
+        //echarts自适应屏幕大小
+        window.addEventListener(&#39;resize&#39;, () =&gt; &#123;
+          this.myChart.resize()
+        &#125;)
+      &#125;,
+</code></pre>
+<p>react中：</p>
+<pre><code>import * as echarts from &#39;echarts/lib/echarts.js&#39;
+import china from &#39;../../utils/china.json&#39;
+function Home(props) &#123;
+    //在方法最外层定义全局变量
+    var myChart; 
+
+    const mapOption = (mapName, data, mapdata) =&gt; &#123;
+     //判断是否存在 !== 是不等于
+        if (myChart !== null &amp;&amp; myChart !== &quot;&quot; &amp;&amp; myChart !== undefined) &#123;
+            myChart.dispose();
+        &#125;
+        myChart = echarts.init(document.querySelector(&#39;.map&#39;));
+        echarts.registerMap(&#39;china&#39;, &#123; geoJSON: china &#125;)
+        var option = &#123;&#125;        
+        myChart.setOption(option);
+    &#125;
+    return (
+        &lt;div div className=&#39;page-home&#39; &gt;
+            &lt;div className=&#39;map&#39;&gt;&lt;/div&gt;          
+        &lt;/div &gt;
+    )
+&#125;
+</code></pre>
+
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        <span class="icon">
+            <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
+        </span>
+        
+        
+        <span class="tag">
+            
+            <a href="/tags/echarts" style="color: #00a596">
+                echarts
+            </a>
+        </span>
+        
+    </div>
+    <a href="/2022/05/20/echarts警告-There-is-a-chart-instance-already-initialized-on-the-dom/" class="go-post">
+        阅读全文
+    </a>
+</div>
+
+<div class="post">
     <a href="/2022/05/19/vue组件的注册使用/">
         <h2>
             Vue组件的注册使用
@@ -218,7 +368,7 @@
         
         <span class="tag">
             
-            <a href="/tags/vue" style="color: #00a596">
+            <a href="/tags/vue" style="color: #ff7d73">
                 vue
             </a>
         </span>
@@ -275,7 +425,7 @@
         
         <span class="tag">
             
-            <a href="/tags/vue" style="color: #03a9f4">
+            <a href="/tags/vue" style="color: #00a596">
                 vue
             </a>
         </span>
@@ -337,7 +487,7 @@
         
         <span class="tag">
             
-            <a href="/tags/vue" style="color: #00a596">
+            <a href="/tags/vue" style="color: #00bcd4">
                 vue
             </a>
         </span>
@@ -516,7 +666,7 @@
         
         <span class="tag">
             
-            <a href="/tags/vue" style="color: #03a9f4">
+            <a href="/tags/vue" style="color: #00a596">
                 vue
             </a>
         </span>
@@ -569,7 +719,7 @@
         
         <span class="tag">
             
-            <a href="/tags/vue" style="color: #ffa2c4">
+            <a href="/tags/vue" style="color: #00bcd4">
                 vue
             </a>
         </span>
@@ -657,7 +807,7 @@
         
         <span class="tag">
             
-            <a href="/tags/vue" style="color: #00bcd4">
+            <a href="/tags/vue" style="color: #ff7d73">
                 vue
             </a>
         </span>
@@ -918,228 +1068,13 @@
         
         <span class="tag">
             
-            <a href="/tags/vue" style="color: #ff7d73">
-                vue
-            </a>
-        </span>
-        
-    </div>
-    <a href="/2022/05/17/vue中的v-for列表渲染/" class="go-post">
-        阅读全文
-    </a>
-</div>
-
-<div class="post">
-    <a href="/2022/05/17/vue中的条件渲染/">
-        <h2>
-            Vue中的条件渲染
-        </h2>
-    </a>
-    <div class="category-and-date">
-        
-        <span class="date">
-            <span class="icon">
-                <svg class="fa-icon"><use xlink:href="#calendar-solid"></use></svg>
-            </span>
-            2022/5/17
-        </span>
-    </div>
-    <div class="excerpt">
-        <div class="content" v-pre>
-            
-            <p>条件渲染：</p>
-<ol>
-<li>v-if:</li>
-</ol>
-<ul>
-<li>v-if&#x3D;”表达式”</li>
-<li>v-else-if&#x3D;”表达式”</li>
-<li>v-else&#x3D;”表达式”</li>
-<li>适用于切换频率比较低的场景，不展示的dom元素直接被移除</li>
-<li>v-if可以和v-else-if、v-else一起使用，但要求结构不能被打断</li>
-<li>v-if可以和template一起使用，解析时浏览器中的源代码里template不会出现，结构不会被改变，但v-show不可以。</li>
-</ul>
-<p>2.v-show:</p>
-<ul>
-<li>v-show&#x3D;”表达式”</li>
-<li>适用于切换频率比较高的场景，不展示的dom元素未被移除，仅仅是使用样式隐藏掉</li>
-<li>使用v-if时，元素可能无法获取到，但使用v-show一定可以获取到</li>
-</ul>
-
-            
-        </div>
-    </div>
-    <div class="post-tags">
-        
-        <span class="icon">
-            <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
-        </span>
-        
-        
-        <span class="tag">
-            
             <a href="/tags/vue" style="color: #00bcd4">
                 vue
             </a>
         </span>
         
     </div>
-    <a href="/2022/05/17/vue中的条件渲染/" class="go-post">
-        阅读全文
-    </a>
-</div>
-
-<div class="post">
-    <a href="/2022/05/16/样式绑定/">
-        <h2>
-            样式绑定
-        </h2>
-    </a>
-    <div class="category-and-date">
-        
-        <span class="date">
-            <span class="icon">
-                <svg class="fa-icon"><use xlink:href="#calendar-solid"></use></svg>
-            </span>
-            2022/5/16
-        </span>
-    </div>
-    <div class="excerpt">
-        <div class="content" v-pre>
-            
-            <p>绑定样式：</p>
-<p>1.class样式：</p>
-<p>​            写法：    ：class&#x3D;”xxx”,xxx可以是字符串、对象、数组</p>
-<p>​           字符串写法适用于：类型不确定，要动态获取</p>
-<p>​           对象写法适用于：要绑定多个样式，个数不确定，名字也不确定</p>
-<p>​           数组写法适用于需要绑定多个样式，个数不确定，名字也不确定</p>
-<p>2.style样式：</p>
-<p>​            ：style&#x3D;”{fontSize:xxx}”,其中xxx是动态值</p>
-<p>​            :   style&#x3D;”[a,b]”,其中a,b是样式对象</p>
-<p>绑定class:</p>
-<ol>
-<li><p>字符串写法：适用于样式的类名不确定，需要动态指定</p>
-<pre><code>  &lt;div class=&quot;box1&quot; :class=&quot;activeclass&quot; @click=&quot;getclass&quot;&gt;盒子&lt;/div&gt;
-  
-    const vm = new Vue(&#123;
-            el: &#39;#root&#39;,
-            data() &#123;
-                return &#123;
-                    activeclass: &#39;&#39;
-                &#125;
-            &#125;,
-            methods: &#123;
-                getclass() &#123;
-                    this.activeclass = &#39;box2&#39;
-                &#125;
-            &#125;,
-
-        &#125;)
-
-       .box1 &#123;
-            height: 100px;
-            width: 100px;
-            background-color: blue;
-        &#125;
-
-        .box2 &#123;
-            border-radius: 4px;
-        &#125;
-</code></pre>
-<p>2.数组写法：适用于要绑定的样式个数不确定，名字也不确定</p>
-<pre><code>   &lt;div class=&quot;box1&quot; :class=&quot;classarr&quot; @click=&quot;getclass&quot;&gt;盒子&lt;/div&gt;
-
-           data() &#123;
-                return &#123;
-                    classarr: [&#39;class1&#39;, &#39;class2&#39;, &#39;class3&#39;]
-                &#125;
-            &#125;,
-            
-   .class1&#123;&#125;
-   .class2&#123;&#125;
-   .class3&#123;&#125;
-</code></pre>
-<p>3.对象写法：适用于要绑定的样式个数确定，名字也确定，但要动态决定用不用</p>
-<pre><code>   &lt;div class=&quot;box1&quot; :class=&quot;classobj&quot; @click=&quot;getclass&quot;&gt;盒子&lt;/div&gt;
-
-           data() &#123;
-                return &#123;                            
-                    classobj: &#123;
-                        class3: false,
-                        class4: false
-                    &#125;
-                &#125;
-            &#125;,
-            
-            
-       .class3&#123;&#125;
-       .class4&#123;&#125;
-</code></pre>
-</li>
-</ol>
-<p>style样式：</p>
-<p>1.对象写法：</p>
-<pre><code>&lt;div :style=&quot;&#123;fontSize:fsize+&#39;px&#39;&#125;&quot;&gt;gg&lt;/div&gt;//font-size这种都需要改成驼峰写法
-          data() &#123;
-               return &#123;                
-                    fsize: 40,
-                &#125;
-            &#125;,
-</code></pre>
-  <div :style="styleobj">gg</div>//写法二
-            data() {
-                return {              
-                    styleobj: {
-                        fontSize: '40px'
-                    }
-
-<p>​                }<br>            },</p>
-<p>2.数组写法</p>
-<pre><code>  &lt;div :style=&quot;[styleobj,styleobj2]&quot;&gt;gg&lt;/div&gt;
-           data() &#123;
-                return &#123;                  
-                    styleobj: &#123;
-                        fontSize: &#39;40px&#39;
-                    &#125;,
-                    styleobj2: &#123;
-                        color: &#39;green&#39;
-                    &#125;
-
-                &#125;
-            &#125;,
-</code></pre>
-<pre><code>   &lt;div :style=&quot;stylearr&quot;&gt;gg&lt;/div&gt;
-            data() &#123;
-                return &#123;                
-                    stylearr: [&#123;
-                        fontSize: &#39;40px&#39;
-                    &#125;, &#123;
-                        color: &#39;green&#39;
-                    &#125;,]
-
-                &#125;
-            &#125;,
-</code></pre>
-
-            
-        </div>
-    </div>
-    <div class="post-tags">
-        
-        <span class="icon">
-            <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
-        </span>
-        
-        
-        <span class="tag">
-            
-            <a href="/tags/vue" style="color: #ffa2c4">
-                vue
-            </a>
-        </span>
-        
-    </div>
-    <a href="/2022/05/16/样式绑定/" class="go-post">
+    <a href="/2022/05/17/vue中的v-for列表渲染/" class="go-post">
         阅读全文
     </a>
 </div>
