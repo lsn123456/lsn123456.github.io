@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0">
-        <title>Vue中的条件渲染 | Mynote</title>
+        <title>Vue组件通信（子传父自定义事件） | Mynote</title>
         <meta name="author" content="参商">
         <meta name="description" content="个人笔记">
         <meta name="keywords" content="love&peace">
@@ -120,14 +120,14 @@
                         
 <div class="article">
     <div>
-        <h1>Vue中的条件渲染 </h1>
+        <h1>Vue组件通信（子传父自定义事件） </h1>
     </div>
     <div class="info">
         <span class="date">
             <span class="icon">
                 <svg class="fa-icon"><use xlink:href="#calendar-solid"></use></svg>
             </span>
-            2022/5/17
+            2022/6/8
         </span>
         
         
@@ -138,7 +138,7 @@
             
             <span class="tag">
                 
-                <a href="/tags/vue" style="color: #ff7d73">
+                <a href="/tags/vue" style="color: #00bcd4">
                     vue
                 </a>
             </span>
@@ -147,24 +147,29 @@
         
     </div>
     <div class="content" v-pre>
-        <p>条件渲染：</p>
-<ol>
-<li>v-if:</li>
+        <h3 id="vue组件通信-子传父"><a href="#vue组件通信-子传父" class="headerlink" title="vue组件通信-子传父"></a>vue组件通信-子传父</h3><p>1.使用场景：A是父组件，B是子组件，子组件B想给父组件A传数据，那么就需要在父组件A中给子组件B绑定自定义事件（事件的回调在父组件A中）</p>
+<p>2.绑定自定义事件：</p>
+<p>1.第一种方式：在父组件中 </p>
+<pre><code>&lt;Demo  @peiqi=&quot;test&quot;/&gt;或&lt;Demo  v-on:peiqi=&quot;test&quot;/&gt;
+</code></pre>
+<p>子组件中触发自定义事件</p>
+<pre><code>this.$emit(&#39;peiqi&#39;,数据)
+</code></pre>
+<p>2.第二种方式：在父组件中</p>
+<pre><code>&lt;Demo ref=&quot;demo&quot;  /&gt;
+
+mounted()&#123;
+    this.$refs.demo.$on(&#39;peiqi&#39;,this.test)
+&#125;
+</code></pre>
+<p>3.如果想要自定义事件只触发一次，可以使用once修饰符，或者$once方法</p>
+<p>4.解绑自定义事件：this.$off(‘peiqi’)</p>
+<p>5.组件上也可以绑定原生DOM事件，需要使用native修饰符</p>
+<ol start="6">
+<li></li>
 </ol>
-<ul>
-<li>v-if&#x3D;”表达式”</li>
-<li>v-else-if&#x3D;”表达式”</li>
-<li>v-else&#x3D;”表达式”</li>
-<li>适用于切换频率比较低的场景，不展示的dom元素直接被移除</li>
-<li>v-if可以和v-else-if、v-else一起使用，但要求结构不能被打断</li>
-<li>v-if可以和template一起使用，解析时浏览器中的源代码里template不会出现，结构不会被改变，但v-show不可以。</li>
-</ul>
-<p>2.v-show:</p>
-<ul>
-<li>v-show&#x3D;”表达式”</li>
-<li>适用于切换频率比较高的场景，不展示的dom元素未被移除，仅仅是使用样式隐藏掉</li>
-<li>使用v-if时，元素可能无法获取到，但使用v-show一定可以获取到</li>
-</ul>
+<pre><code>通过this.$refs.xxx.$on(&#39;peiqi&#39;,回调)绑定自定义事件时，回调要么配置在methods中，要么用箭头函数，否则会出现this指向问题
+</code></pre>
 
     </div>
     

@@ -142,6 +142,68 @@
             
 
 <div class="post">
+    <a href="/2022/05/18/vue的自定义指令/">
+        <h2>
+            Vue的自定义指令
+        </h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="date">
+            <span class="icon">
+                <svg class="fa-icon"><use xlink:href="#calendar-solid"></use></svg>
+            </span>
+            2022/5/18
+        </span>
+    </div>
+    <div class="excerpt">
+        <div class="content" v-pre>
+            
+            <p>自定义指令调用的时机：</p>
+<p>1.指令与元素成功绑定时</p>
+<p>2.指令所在的模板被重新解析时</p>
+<p>定义语法：</p>
+<p>1.局部指令：</p>
+<p>directives:{   指令名：配置对象 }   或    directives:{   指令名：回调函数 }</p>
+<p>2.全局指令：</p>
+<p>Vue.directive(‘指令名’，配置对象)    或   Vue.directive(‘指令名’，回调函数)</p>
+<p>配置对象中常用的三个回调：</p>
+<p>1.bind:指令与元素成功绑定时调用。</p>
+<p>2.inserted:指令所在元素被插入页面时调用</p>
+<p>3.update:指令所在模板结构被重新解析时调用</p>
+<p>备注：</p>
+<p>1.指令定义时不加v-,但使用时要加v-</p>
+<p>2.指令名如果是多个单词，要使用kebab-case命名（如user-name），不要用camelCase命名（userName）</p>
+<p><img src="/2022/05/18/vue%E7%9A%84%E8%87%AA%E5%AE%9A%E4%B9%89%E6%8C%87%E4%BB%A4/directives.png"></p>
+<p>一个实际应用案例：elementui 远程搜索，下拉加载更多，通过懒加载实现，添加去抖减少消耗</p>
+<p><img src="/2022/05/18/vue%E7%9A%84%E8%87%AA%E5%AE%9A%E4%B9%89%E6%8C%87%E4%BB%A4/selectmore.png"></p>
+<p><img src="/2022/05/18/vue%E7%9A%84%E8%87%AA%E5%AE%9A%E4%B9%89%E6%8C%87%E4%BB%A4/loadmore.png"></p>
+<p>遇到的问题：因为远程搜索可能有选中的项，比如选中的项是第十三条，但是懒加载首次只加载了十条数据，这样一来选中的项无法展示出来，展现出来的是没有文字的框。我解决的方法是，将选中的项从数组中提取出来，添加到首次加载的数组里前面，这样点开远程搜索，上方展示的就是已经选中的内容。对剩下的数组进行遍历，如果数组中的内容含有选中项，已经加载过了，那么将这项从数组中删除，然后将数组添加到加载出来的数组中，可能比较麻烦，但是是我能想出来的唯一办法了，但是公司需求改了，代码被删了，上方是远程搜索的代码。</p>
+
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        <span class="icon">
+            <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
+        </span>
+        
+        
+        <span class="tag">
+            
+            <a href="/tags/vue" style="color: #00bcd4">
+                vue
+            </a>
+        </span>
+        
+    </div>
+    <a href="/2022/05/18/vue的自定义指令/" class="go-post">
+        阅读全文
+    </a>
+</div>
+
+<div class="post">
     <a href="/2022/05/17/vue中的一些指令/">
         <h2>
             Vue中的一些指令
@@ -309,7 +371,7 @@
         
         <span class="tag">
             
-            <a href="/tags/vue" style="color: #ff7d73">
+            <a href="/tags/vue" style="color: #ffa2c4">
                 vue
             </a>
         </span>
@@ -362,7 +424,7 @@
         
         <span class="tag">
             
-            <a href="/tags/vue" style="color: #00bcd4">
+            <a href="/tags/vue" style="color: #00a596">
                 vue
             </a>
         </span>
@@ -926,7 +988,7 @@
         
         <span class="tag">
             
-            <a href="/tags/vue" style="color: #ff7d73">
+            <a href="/tags/vue" style="color: #00a596">
                 vue
             </a>
         </span>
@@ -1065,67 +1127,13 @@
         
         <span class="tag">
             
-            <a href="/tags/vue" style="color: #ffa2c4">
+            <a href="/tags/vue" style="color: #ff7d73">
                 vue
             </a>
         </span>
         
     </div>
     <a href="/2022/05/13/vue中的计算属性/" class="go-post">
-        阅读全文
-    </a>
-</div>
-
-<div class="post">
-    <a href="/2022/05/12/markdown语法/">
-        <h2>
-            Markdown语法
-        </h2>
-    </a>
-    <div class="category-and-date">
-        
-        <span class="date">
-            <span class="icon">
-                <svg class="fa-icon"><use xlink:href="#calendar-solid"></use></svg>
-            </span>
-            2022/5/12
-        </span>
-    </div>
-    <div class="excerpt">
-        <div class="content" v-pre>
-            
-            <p>关于markdown的简单了解：</p>
-<p>1.标题，使用#，后面跟一个标题，和html比价类似，有几个#就是几级标题</p>
-<p>2.引用，通过&gt;后面加一个空格即可引用一句话</p>
-<p>3.无序列表：-后面加一个空格，即可构成无序列表的li</p>
-<p>4.有序列表：序号后面一个英文句号，后面加一个空格，即构成有序列表，如1. </p>
-<p>5.图片引入：英文输入状态下感叹号+[图片文本]+(url地址)</p>
-<p>6：超链接:和图片类似，[跳转连接名称]+(跳转地址，如百度为：<a target="_blank" rel="noopener" href="http://www.baidu.com/">www.baidu.com</a>)</p>
-<p>7.文字加粗：双星号包裹要加粗的文字</p>
-<p>8.斜体：单星号包裹文字</p>
-<p>9.文字颜色、字号等的修改：通过font标签进行修改，font中的属性，face用来修改字体，color用来修改颜色，size用来更改文字大小</p>
-<p>10.文字居中：通过center标签，标签体内是居中的文字</p>
-<p>11.居左居右：通过p标签包裹，标签内用align为left或right来设置位置，图片一样</p>
-
-            
-        </div>
-    </div>
-    <div class="post-tags">
-        
-        <span class="icon">
-            <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
-        </span>
-        
-        
-        <span class="tag">
-            
-            <a href="/tags/markdown" style="color: #ffa2c4">
-                markdown
-            </a>
-        </span>
-        
-    </div>
-    <a href="/2022/05/12/markdown语法/" class="go-post">
         阅读全文
     </a>
 </div>
