@@ -142,6 +142,69 @@
             
 
 <div class="post">
+    <a href="/2022/06/08/全局事件总线/">
+        <h2>
+            全局事件总线
+        </h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="date">
+            <span class="icon">
+                <svg class="fa-icon"><use xlink:href="#calendar-solid"></use></svg>
+            </span>
+            2022/6/8
+        </span>
+    </div>
+    <div class="excerpt">
+        <div class="content" v-pre>
+            
+            <h3 id="全局事件总线（GlobalEventBus）"><a href="#全局事件总线（GlobalEventBus）" class="headerlink" title="全局事件总线（GlobalEventBus）"></a>全局事件总线（GlobalEventBus）</h3><p>1.全局事件总线是一种组件间通信的方式，适用于任意组件间通信</p>
+<p>2.安装全局事件总线：</p>
+<pre><code>new Vue(&#123;
+    beforeCreate()&#123;
+        Vue.prototype.$bus=this//安装全局事件总线，$bus就是当前应用的vm
+    &#125;
+&#125;)
+</code></pre>
+<p>3.使用事件总线：</p>
+<p>1.接受数据：A组件想要接收数据，则在A组件中给$bus绑定自定义事件，事件的回调留在A组件自身</p>
+<pre><code>methods()&#123;
+    demo(data)&#123;&#125;
+&#125;,
+mounted()&#123;
+    this.$bus.$on(&#39;xxx&#39;,this.demo)
+&#125;
+</code></pre>
+<p>2.提供数据：</p>
+<pre><code>this.$bus.$emit(&#39;xxx&#39;,数据)
+</code></pre>
+<p>4.最好在beforeDestory钩子中，用$off去解绑当前组件所用到的事件</p>
+
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        <span class="icon">
+            <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
+        </span>
+        
+        
+        <span class="tag">
+            
+            <a href="/tags/vue" style="color: #ff7d73">
+                vue
+            </a>
+        </span>
+        
+    </div>
+    <a href="/2022/06/08/全局事件总线/" class="go-post">
+        阅读全文
+    </a>
+</div>
+
+<div class="post">
     <a href="/2022/06/08/vue组件通信（子传父自定义事件）/">
         <h2>
             Vue组件通信（子传父自定义事件）
@@ -195,7 +258,7 @@ mounted()&#123;
         
         <span class="tag">
             
-            <a href="/tags/vue" style="color: #03a9f4">
+            <a href="/tags/vue" style="color: #ffa2c4">
                 vue
             </a>
         </span>
@@ -251,7 +314,7 @@ mounted()&#123;
         
         <span class="tag">
             
-            <a href="/tags/html" style="color: #03a9f4">
+            <a href="/tags/html" style="color: #ffa2c4">
                 html
             </a>
         </span>
@@ -393,7 +456,7 @@ Vue.mixin(mixin2)
         
         <span class="tag">
             
-            <a href="/tags/vue" style="color: #03a9f4">
+            <a href="/tags/vue" style="color: #ff7d73">
                 vue
             </a>
         </span>
@@ -471,7 +534,7 @@ Vue.mixin(mixin2)
         
         <span class="tag">
             
-            <a href="/tags/vue" style="color: #00bcd4">
+            <a href="/tags/vue" style="color: #ff7d73">
                 vue
             </a>
         </span>
@@ -520,7 +583,7 @@ Vue.mixin(mixin2)
         
         <span class="tag">
             
-            <a href="/tags/vue" style="color: #00bcd4">
+            <a href="/tags/vue" style="color: #ffa2c4">
                 vue
             </a>
         </span>
@@ -571,7 +634,7 @@ render:h=&gt;h(App)
         
         <span class="tag">
             
-            <a href="/tags/vue" style="color: #03a9f4">
+            <a href="/tags/vue" style="color: #00bcd4">
                 vue
             </a>
         </span>
@@ -758,70 +821,13 @@ function Home(props) &#123;
         
         <span class="tag">
             
-            <a href="/tags/vue" style="color: #00a596">
+            <a href="/tags/vue" style="color: #ff7d73">
                 vue
             </a>
         </span>
         
     </div>
     <a href="/2022/05/19/vue组件的注册使用/" class="go-post">
-        阅读全文
-    </a>
-</div>
-
-<div class="post">
-    <a href="/2022/05/18/vue的生命周期/">
-        <h2>
-            Vue的生命周期
-        </h2>
-    </a>
-    <div class="category-and-date">
-        
-        <span class="date">
-            <span class="icon">
-                <svg class="fa-icon"><use xlink:href="#calendar-solid"></use></svg>
-            </span>
-            2022/5/18
-        </span>
-    </div>
-    <div class="excerpt">
-        <div class="content" v-pre>
-            
-            <p>生命周期：</p>
-<p>1.又名生命周期回调函数、生命周期函数、生命周期钩子</p>
-<p>2.是什么：Vue在关键时刻帮我们调用的一些特殊名称的函数</p>
-<p>3.生命周期函数的名字不可更改，但函数的具体内容是程序员根据需求编写的</p>
-<p>4.生命周期函数中的this指向是vm或组件实例对象</p>
-<p>常用的生命周期钩子：</p>
-<p>1.mounted:发送ajax请求，启动定时器，绑定自定义事件，订阅消息等（初始化操作）</p>
-<p>2.beforeDestory:清楚定时器，解绑自定义事件，取消订阅消息等（收尾工作）</p>
-<p>关于销毁Vue实例：</p>
-<p>1.销毁后借助Vue开发者工具看不到任何消息</p>
-<p>2.销毁后自定义事件会失效，但原生DOM事件依然有效（如console.log）</p>
-<p>3.一般不会在beforeDestory操作数据，因为即使操作数据，也不会触发更新流程了</p>
-<p>放两张天禹老师的ppt</p>
-<p><img src="/2022/05/18/vue%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/smzq.png"></p>
-<p><img src="/2022/05/18/vue%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/smzq2.png"></p>
-
-            
-        </div>
-    </div>
-    <div class="post-tags">
-        
-        <span class="icon">
-            <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
-        </span>
-        
-        
-        <span class="tag">
-            
-            <a href="/tags/vue" style="color: #00a596">
-                vue
-            </a>
-        </span>
-        
-    </div>
-    <a href="/2022/05/18/vue的生命周期/" class="go-post">
         阅读全文
     </a>
 </div>

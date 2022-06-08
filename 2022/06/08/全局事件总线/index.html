@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0">
-        <title>Vue中的事件修饰符 | Mynote</title>
+        <title>全局事件总线 | Mynote</title>
         <meta name="author" content="参商">
         <meta name="description" content="个人笔记">
         <meta name="keywords" content="love&peace">
@@ -120,14 +120,14 @@
                         
 <div class="article">
     <div>
-        <h1>Vue中的事件修饰符 </h1>
+        <h1>全局事件总线 </h1>
     </div>
     <div class="info">
         <span class="date">
             <span class="icon">
                 <svg class="fa-icon"><use xlink:href="#calendar-solid"></use></svg>
             </span>
-            2022/5/12
+            2022/6/8
         </span>
         
         
@@ -138,7 +138,7 @@
             
             <span class="tag">
                 
-                <a href="/tags/vue" style="color: #ff7d73">
+                <a href="/tags/vue" style="color: #ffa2c4">
                     vue
                 </a>
             </span>
@@ -147,97 +147,27 @@
         
     </div>
     <div class="content" v-pre>
-        <p>vue中的事件修饰符：</p>
-<p>1.prevent:阻止默认事件</p>
-<p>2.stop:阻止事件冒泡</p>
-<p>3.once:事件只触发一次</p>
-<p>4.capture:使用事件的捕获模式</p>
-<p>5.self:只有event.target是当前操作的元素时才触发事件</p>
-<p>6.passive:事件的默认行为立即执行，无需等待事件回调执行完毕</p>
-<p>ps:vue中事件修饰符可以连着写，如：@click.stop.prevent阻止事件冒泡和默认事件，效果与@click.prevent.click相同</p>
-<p>1.prevent：点击a链接时会执行alert事件，然后跳转到百度，prevent阻止跳转到百度的默认事件</p>
-<pre><code>&lt;a href=&quot;http://www.baidu.com&quot; @click=&quot;demo&quot;&gt;阻止默认行为1&lt;/a&gt;
-&lt;a href=&quot;http://www.baidu.com&quot; @click.prevent=&quot;demo2&quot;&gt;阻止默认行为2&lt;/a&gt;
-methods:&#123;
-    demo(e)&#123;
-        e.preventDefault()//阻止默认行为
-        alert(&#39;同学，你好&#39;)
-    &#125;,
-    demo2()&#123;
-         alert(&#39;同学，你好&#39;)
+        <h3 id="全局事件总线（GlobalEventBus）"><a href="#全局事件总线（GlobalEventBus）" class="headerlink" title="全局事件总线（GlobalEventBus）"></a>全局事件总线（GlobalEventBus）</h3><p>1.全局事件总线是一种组件间通信的方式，适用于任意组件间通信</p>
+<p>2.安装全局事件总线：</p>
+<pre><code>new Vue(&#123;
+    beforeCreate()&#123;
+        Vue.prototype.$bus=this//安装全局事件总线，$bus就是当前应用的vm
     &#125;
+&#125;)
+</code></pre>
+<p>3.使用事件总线：</p>
+<p>1.接受数据：A组件想要接收数据，则在A组件中给$bus绑定自定义事件，事件的回调留在A组件自身</p>
+<pre><code>methods()&#123;
+    demo(data)&#123;&#125;
+&#125;,
+mounted()&#123;
+    this.$bus.$on(&#39;xxx&#39;,this.demo)
 &#125;
 </code></pre>
-<p>2.stop:点击button，其showmsg事件时会冒泡到父元素身上，父元素也会执行showmsg事件，stop阻止showmsg事件冒泡到父元素身上</p>
-<pre><code> &lt;div @click=&quot;showmsg&quot; style=&quot;width: 200px;height:200px;background-color:#ccc&quot;&gt;
-      &lt;button @click=&quot;showmsg&quot;&gt;阻止冒泡事件1&lt;/button&gt;
- &lt;/div&gt;
- &lt;div @click=&quot;showmsg2&quot; style=&quot;width: 200px;height:200px;background-color:#ededed&quot;&gt;
-      &lt;button @click.stop=&quot;showmsg2&quot;&gt;阻止冒泡事件2&lt;/button&gt;
- &lt;/div&gt;
-methods：&#123;
-   showmsg(e) &#123;
-          e.stopPropagation()
-          alert(&#39;同学你好&#39;)
-          &#125;,
-  showmsg2() &#123;
-          alert(&#39;同学你好&#39;)
-          &#125;
-&#125;
+<p>2.提供数据：</p>
+<pre><code>this.$bus.$emit(&#39;xxx&#39;,数据)
 </code></pre>
-<p>3.once:事件只触发一次，后面事件不再触发</p>
-<pre><code> &lt;button @click.once=&quot;showmsg&quot;&gt;事件只触发一次&lt;/button&gt;
-</code></pre>
-<p>4.capture:事件分为捕获阶段和冒泡阶段，先捕获再冒泡，捕获阶段是由外到内的，冒泡阶段是由内到外的，假如没有阻止事件冒泡，应先输出2再输出1，capture则在捕获阶段处理事件，所以先输出1，再输出2</p>
-<pre><code> &lt;div @click=&quot;showinfo(1)&quot; style=&quot;width: 200px;height:200px;background-color:#ededed&quot;&gt;
-     &lt;div @click=&quot;showinfo(2)&quot; style=&quot;height: 100px; width:100px;background-color:#ccc&quot;&gt;捕获事件&lt;/div&gt;
- &lt;/div&gt;
- methods:&#123;
-      showinfo(number) &#123;
-          console.log(number)//2 1
-      &#125;
- &#125;
- 
- 
-  &lt;div @click.capture=&quot;showinfo(1)&quot; style=&quot;width: 200px;height:200px;background-color:#ededed&quot;&gt;
-     &lt;div @click=&quot;showinfo(2)&quot; style=&quot;height: 100px; width:100px;background-color:#ccc&quot;&gt;捕获事件&lt;/div&gt;
- &lt;/div&gt;
- methods:&#123;
-      showinfo(number) &#123;
-          console.log(number)//1 2
-      &#125;
- &#125;
-</code></pre>
-<p>5.self:e.target是当前操作元素时才触发,当div中的click事件使用.self修饰符时，点击button,由于e.target是button而不是当前div，所以没有触发div中的事件</p>
-<pre><code>  &lt;div @click=&quot;demo&quot; style=&quot;width: 200px;height:200px;background-color:#ededed&quot;&gt;
-     &lt;button @click=&quot;demo&quot; style=&quot;height: 100px; width:100px;background-color:#ccc&quot;&gt;e.target&lt;/button&gt;
-  &lt;/div&gt;
-  methods:&#123;
-       demo(e) &#123;
-            console.log(e.target)//点击button时输出两次button代码，因为e.target是button
-       &#125;
-  &#125;
-</code></pre>
-<p>6.passive:事件的默认行为立即执行，无需等待事件回调执行完毕。</p>
-<p>​    scroll和wheel的区别：scroll是监听滚动条的滚动事件，鼠标滚轮和键盘上下键都可以触发，滚动条到底后再往下则不触发；whell监听的是鼠标滚轮的滚动事件，只要鼠标滚轮滚动就会触发事件。</p>
-<pre><code>  &lt;ul @wheel=&quot;demo&quot; style=&quot;height:200px;width:200px;background-color:#ccc;overflow: auto;&quot;&gt;
-         &lt;li style=&quot;height: 100px;&quot;&gt;1&lt;/li&gt;
-         &lt;li style=&quot;height: 100px;&quot;&gt;2&lt;/li&gt;
-         &lt;li style=&quot;height: 100px;&quot;&gt;3&lt;/li&gt;
-         &lt;li style=&quot;height: 100px;&quot;&gt;4&lt;/li&gt;
-
-  &lt;/ul&gt;
-  methods:&#123;
-       demo() &#123;
-             for (i = 0; i &lt; 100000; i++) &#123;
-                console.log(&quot;xxx&quot;)
-             &#125;
-            console.log(&quot;完成&quot;)
-
-       &#125;
-  &#125;
-</code></pre>
-<p>如果没加.passive修饰符，会先执行for循环，然后再滑动，加了以后不用等待for循环结束，直接滑动</p>
+<p>4.最好在beforeDestory钩子中，用$off去解绑当前组件所用到的事件</p>
 
     </div>
     

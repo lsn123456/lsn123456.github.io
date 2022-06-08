@@ -142,6 +142,63 @@
             
 
 <div class="post">
+    <a href="/2022/05/18/vue的生命周期/">
+        <h2>
+            Vue的生命周期
+        </h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="date">
+            <span class="icon">
+                <svg class="fa-icon"><use xlink:href="#calendar-solid"></use></svg>
+            </span>
+            2022/5/18
+        </span>
+    </div>
+    <div class="excerpt">
+        <div class="content" v-pre>
+            
+            <p>生命周期：</p>
+<p>1.又名生命周期回调函数、生命周期函数、生命周期钩子</p>
+<p>2.是什么：Vue在关键时刻帮我们调用的一些特殊名称的函数</p>
+<p>3.生命周期函数的名字不可更改，但函数的具体内容是程序员根据需求编写的</p>
+<p>4.生命周期函数中的this指向是vm或组件实例对象</p>
+<p>常用的生命周期钩子：</p>
+<p>1.mounted:发送ajax请求，启动定时器，绑定自定义事件，订阅消息等（初始化操作）</p>
+<p>2.beforeDestory:清楚定时器，解绑自定义事件，取消订阅消息等（收尾工作）</p>
+<p>关于销毁Vue实例：</p>
+<p>1.销毁后借助Vue开发者工具看不到任何消息</p>
+<p>2.销毁后自定义事件会失效，但原生DOM事件依然有效（如console.log）</p>
+<p>3.一般不会在beforeDestory操作数据，因为即使操作数据，也不会触发更新流程了</p>
+<p>放两张天禹老师的ppt</p>
+<p><img src="/2022/05/18/vue%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/smzq.png"></p>
+<p><img src="/2022/05/18/vue%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/smzq2.png"></p>
+
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        <span class="icon">
+            <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
+        </span>
+        
+        
+        <span class="tag">
+            
+            <a href="/tags/vue" style="color: #ffa2c4">
+                vue
+            </a>
+        </span>
+        
+    </div>
+    <a href="/2022/05/18/vue的生命周期/" class="go-post">
+        阅读全文
+    </a>
+</div>
+
+<div class="post">
     <a href="/2022/05/18/vue的自定义指令/">
         <h2>
             Vue的自定义指令
@@ -424,7 +481,7 @@
         
         <span class="tag">
             
-            <a href="/tags/vue" style="color: #00a596">
+            <a href="/tags/vue" style="color: #ffa2c4">
                 vue
             </a>
         </span>
@@ -512,7 +569,7 @@
         
         <span class="tag">
             
-            <a href="/tags/vue" style="color: #00bcd4">
+            <a href="/tags/vue" style="color: #03a9f4">
                 vue
             </a>
         </span>
@@ -773,7 +830,7 @@
         
         <span class="tag">
             
-            <a href="/tags/vue" style="color: #03a9f4">
+            <a href="/tags/vue" style="color: #00bcd4">
                 vue
             </a>
         </span>
@@ -833,7 +890,7 @@
         
         <span class="tag">
             
-            <a href="/tags/vue" style="color: #ffa2c4">
+            <a href="/tags/vue" style="color: #03a9f4">
                 vue
             </a>
         </span>
@@ -988,7 +1045,7 @@
         
         <span class="tag">
             
-            <a href="/tags/vue" style="color: #00a596">
+            <a href="/tags/vue" style="color: #ffa2c4">
                 vue
             </a>
         </span>
@@ -1064,76 +1121,13 @@
         
         <span class="tag">
             
-            <a href="/tags/vue" style="color: #ff7d73">
+            <a href="/tags/vue" style="color: #03a9f4">
                 vue
             </a>
         </span>
         
     </div>
     <a href="/2022/05/13/vue中的监视属性/" class="go-post">
-        阅读全文
-    </a>
-</div>
-
-<div class="post">
-    <a href="/2022/05/13/vue中的计算属性/">
-        <h2>
-            Vue中的计算属性
-        </h2>
-    </a>
-    <div class="category-and-date">
-        
-        <span class="date">
-            <span class="icon">
-                <svg class="fa-icon"><use xlink:href="#calendar-solid"></use></svg>
-            </span>
-            2022/5/13
-        </span>
-    </div>
-    <div class="excerpt">
-        <div class="content" v-pre>
-            
-            <p>计算属性：</p>
-<p>1.定义：通过已有属性计算得来的</p>
-<p>2.原理：底层借助了object.defineproperty方法提供的getter和setter.</p>
-<p>3.get函数什么时候执行？</p>
-<ol>
-<li>初次读取时会执行一次</li>
-<li>当依赖的属性发生变化时会被调用</li>
-</ol>
-<p>4.set什么时候执行：当计算属性被修改时</p>
-<p>5.优势：与methods相比，内部有缓存机制（复用），效率更高，更加方便。</p>
-<p>6.备注：</p>
-<ul>
-<li>计算属性最终会出现在vm上，直接使用即可</li>
-<li>如果计算属性需要修改，那么必须通过set函数去相应修改，且set中要引起计算时依赖性的数据发生改变。</li>
-</ul>
-<p><img src="/2022/05/13/vue%E4%B8%AD%E7%9A%84%E8%AE%A1%E7%AE%97%E5%B1%9E%E6%80%A7/jisuanshuxing.png"></p>
-<p>7.简写：只读取不修改时，计算属性可采取简写形式，把计算属性当成其get来写，如下</p>
-<pre><code> full() &#123;
-    return this.first + &#39;-&#39; + this.last
- &#125;
-</code></pre>
-
-            
-        </div>
-    </div>
-    <div class="post-tags">
-        
-        <span class="icon">
-            <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
-        </span>
-        
-        
-        <span class="tag">
-            
-            <a href="/tags/vue" style="color: #ff7d73">
-                vue
-            </a>
-        </span>
-        
-    </div>
-    <a href="/2022/05/13/vue中的计算属性/" class="go-post">
         阅读全文
     </a>
 </div>
