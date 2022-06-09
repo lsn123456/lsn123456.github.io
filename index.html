@@ -142,6 +142,143 @@
             
 
 <div class="post">
+    <a href="/2022/06/09/vue中配置代理/">
+        <h2>
+            Vue中配置代理
+        </h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="date">
+            <span class="icon">
+                <svg class="fa-icon"><use xlink:href="#calendar-solid"></use></svg>
+            </span>
+            2022/6/9
+        </span>
+    </div>
+    <div class="excerpt">
+        <div class="content" v-pre>
+            
+            <h3 id="vue中配置代理"><a href="#vue中配置代理" class="headerlink" title="vue中配置代理"></a>vue中配置代理</h3><h4 id="方法一-配置单个代理-："><a href="#方法一-配置单个代理-：" class="headerlink" title="方法一(配置单个代理)："></a>方法一(配置单个代理)：</h4><p>在vue.config.js中添加如下配置：</p>
+<pre><code>module.exports=&#123;
+    devServer:&#123;
+    proxy:&quot;http://localhost:5000&quot;
+    &#125;
+&#125;
+
+请求：
+getSrudent()&#123;
+    axios.get(&#39;http://localhost:8080/students&#39;).then(
+    response=&gt;&#123;
+        console.log(&quot;请求成功&quot;,response.data)
+    &#125;,
+    error=&gt;&#123;
+        console.log(&quot;请求失败&quot;,error.message)
+    &#125;
+    )
+&#125;
+</code></pre>
+<p>1.优点：配置简单，请求资源时直接发送给前端（8080）即可</p>
+<p>2.缺点：不能配置多个代理，不能灵活的控制请求是否走代理</p>
+<p>3.工作方式：按如上方式配置代理时，当请求了前端不存在的资源时，该请求会转发给服务器（优先匹配前端资源）</p>
+<h4 id="方法二（配置多个代理）："><a href="#方法二（配置多个代理）：" class="headerlink" title="方法二（配置多个代理）："></a>方法二（配置多个代理）：</h4><p>在vue.config.js配置具体代理规则：</p>
+<pre><code>module.exports=&#123;
+    devServer:&#123;
+        proxy:&#123;
+            &#39;/api1&#39;:&#123;//匹配所有以&#39;/api1&#39;开头的请求路径
+                target:&#39;http://localhost:5000&#39;,//代理目标的基础路径
+                changeOrigin:true,
+                pathRewrite:&#123;&#39;^/api1&#39;:&#39;&#39;&#125;
+            &#125;,
+             &#39;/api2&#39;:&#123;//匹配所有以&#39;/api2&#39;开头的请求路径
+                target:&#39;http://localhost:5000&#39;,//代理目标的基础路径
+                changeOrigin:true,
+                pathRewrite:&#123;&#39;^/api2&#39;:&#39;&#39;&#125;
+            &#125;
+        &#125;
+    &#125;
+&#125;
+
+请求:
+getStudents()&#123;
+ axios.get(&#39;http://localhost:8080/api1/students&#39;).then(
+    response=&gt;&#123;
+        console.log(&quot;请求成功&quot;,response.data)
+    &#125;,
+    error=&gt;&#123;
+        console.log(&quot;请求失败&quot;,error.message)
+    &#125;
+    )    
+&#125;,
+getCars()&#123;
+ axios.get(&#39;http://localhost:8080/api2/cars&#39;).then(
+    response=&gt;&#123;
+        console.log(&quot;请求成功&quot;,response.data)
+    &#125;,
+    error=&gt;&#123;
+        console.log(&quot;请求失败&quot;,error.message)
+    &#125;
+    )    
+&#125;,
+</code></pre>
+<p>1.优点：可以匹配多个代理，且可以灵活的控制请求是否走代理</p>
+<p>2.缺点：配置略微繁琐，且请求资源时必须加前缀</p>
+<p>react中配置多条代理的方法：</p>
+<p>在src目录下新建setupProxy.js文件</p>
+<p><img src="/2022/06/09/vue%E4%B8%AD%E9%85%8D%E7%BD%AE%E4%BB%A3%E7%90%86/proxy.png"></p>
+<pre><code>const &#123; createProxyMiddleware &#125; = require(&#39;http-proxy-middleware&#39;)
+
+module.exports = function (app) &#123;
+    app.use(createProxyMiddleware(&#39;/g2&#39;, &#123;
+        target: &#39;https://view.inews.qq.com&#39;,
+        changeOrigin: true,
+    &#125;))
+    app.use(createProxyMiddleware(&#39;/api&#39;, &#123; // 遇见 /api 前缀的请求 就会触发该代理配置
+        target: &#39;http://localhost:9999/&#39;,// 请求转发给谁
+        changeOrigin: true// 控制服务器接收到的请求头Host的值
+    &#125;))
+    app.use(createProxyMiddleware(&#39;/news&#39;, &#123;
+        target: &#39;https://interface.sina.cn/&#39;,
+        changeOrigin: true,
+    &#125;))
+    app.use(createProxyMiddleware(&#39;/ncov&#39;, &#123;
+        target: &#39;http://api.tianapi.com/&#39;,
+        changeOrigin: true,
+    &#125;))
+    app.use(createProxyMiddleware(&#39;/pages&#39;, &#123;
+        target: &#39;https://api.webhunt.cn/api/v1&#39;,
+        changeOrigin: true,
+    &#125;))
+
+&#125;
+</code></pre>
+<p>具体请转：<a target="_blank" rel="noopener" href="https://www.freesion.com/article/2055333464/">https://www.freesion.com/article/2055333464/</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.freesion.com/article/2055333464/">跳转地址</a></p>
+
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        <span class="icon">
+            <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
+        </span>
+        
+        
+        <span class="tag">
+            
+            <a href="/tags/vue" style="color: #00bcd4">
+                vue
+            </a>
+        </span>
+        
+    </div>
+    <a href="/2022/06/09/vue中配置代理/" class="go-post">
+        阅读全文
+    </a>
+</div>
+
+<div class="post">
     <a href="/2022/06/09/vue封装的过度与动画/">
         <h2>
             Vue封装的过渡与动画
@@ -241,7 +378,7 @@
         
         <span class="tag">
             
-            <a href="/tags/vue" style="color: #03a9f4">
+            <a href="/tags/vue" style="color: #00bcd4">
                 vue
             </a>
         </span>
@@ -290,7 +427,7 @@
         
         <span class="tag">
             
-            <a href="/tags/vue" style="color: #ffa2c4">
+            <a href="/tags/vue" style="color: #ff7d73">
                 vue
             </a>
         </span>
@@ -352,7 +489,7 @@ mounted()&#123;
         
         <span class="tag">
             
-            <a href="/tags/vue" style="color: #00a596">
+            <a href="/tags/vue" style="color: #00bcd4">
                 vue
             </a>
         </span>
@@ -415,7 +552,7 @@ mounted()&#123;
         
         <span class="tag">
             
-            <a href="/tags/vue" style="color: #ffa2c4">
+            <a href="/tags/vue" style="color: #03a9f4">
                 vue
             </a>
         </span>
@@ -678,91 +815,13 @@ Vue.mixin(mixin2)
         
         <span class="tag">
             
-            <a href="/tags/vue" style="color: #03a9f4">
+            <a href="/tags/vue" style="color: #00bcd4">
                 vue
             </a>
         </span>
         
     </div>
     <a href="/2022/05/26/mixin混入（混合）/" class="go-post">
-        阅读全文
-    </a>
-</div>
-
-<div class="post">
-    <a href="/2022/05/26/vue组件通信/">
-        <h2>
-            Vue组件通信
-        </h2>
-    </a>
-    <div class="category-and-date">
-        
-        <span class="date">
-            <span class="icon">
-                <svg class="fa-icon"><use xlink:href="#calendar-solid"></use></svg>
-            </span>
-            2022/5/26
-        </span>
-    </div>
-    <div class="excerpt">
-        <div class="content" v-pre>
-            
-            <h3 id="1-父传子（props）"><a href="#1-父传子（props）" class="headerlink" title="1.父传子（props）"></a>1.父传子（props）</h3><p>功能：让组件接收外部传过来的数据</p>
-<p>（1）传递数据（父组件）：</p>
-<pre><code>           &lt;Demo  name=&quot;xxx&quot;/&gt; 或   &lt;Demo  :age=&quot;xxx&quot;/&gt; 
-           直接传是字符串，如name,通过绑定传递的是js表达式，如果绑定了变量，需要再data中声明
-</code></pre>
-<p>(2)  接收数据（子组件）：</p>
-<pre><code>第一种（只接收）：props:[&#39;name&#39;,&#39;age&#39;]
-第二种（限制类型）：
-               props:&#123;
-                   name:String，
-                   age:Number
-               &#125;
-第三种（限制类型、限制必要性、指定默认值）： 通常required和default不会同时出现
-               props:&#123;
-                   name:&#123;
-                       type:String,//类型
-                       required:true//是否必须传值
-                   &#125;,
-                   age:&#123;
-                       type:Number,
-                       default:18  //父组件未传值时使用，指定默认值
-                   &#125;
-               &#125;
-注意:通过props接收的变量是只读的，不可以直接修改，如果进行了修改，就会发出警告
-    如果确实需要修改，那么请复制props中的内容到data中一份，然后修改data中的数据
-              data()&#123;
-                  return&#123;
-                  myage:this.age//props中的变量先出现，data中后出现，可在这里使用props中的数据进行复制                 
-                  &#125;，
-                  methods:&#123;
-                      updateage()&#123;
-                          this.myage++//修改时修改data中的数据
-                      &#125;
-                  &#125;
-              &#125;
-</code></pre>
-
-            
-        </div>
-    </div>
-    <div class="post-tags">
-        
-        <span class="icon">
-            <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
-        </span>
-        
-        
-        <span class="tag">
-            
-            <a href="/tags/vue" style="color: #03a9f4">
-                vue
-            </a>
-        </span>
-        
-    </div>
-    <a href="/2022/05/26/vue组件通信/" class="go-post">
         阅读全文
     </a>
 </div>
