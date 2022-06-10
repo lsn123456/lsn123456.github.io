@@ -144,7 +144,7 @@
 <div class="post">
     <a href="/2022/06/09/vue中配置代理/">
         <h2>
-            Vue中配置代理
+            Vue中配置代理、vue-Resource插件
         </h2>
     </a>
     <div class="category-and-date">
@@ -254,6 +254,19 @@ module.exports = function (app) &#123;
 </code></pre>
 <p>具体请转：<a target="_blank" rel="noopener" href="https://www.freesion.com/article/2055333464/">https://www.freesion.com/article/2055333464/</a></p>
 <p><a target="_blank" rel="noopener" href="https://www.freesion.com/article/2055333464/">跳转地址</a></p>
+<h3 id="Vue-resource"><a href="#Vue-resource" class="headerlink" title="Vue-resource"></a>Vue-resource</h3><p>1.下载vue-resource: npm i vue-resource</p>
+<p>2.在main.js中引入并挂载：import vueResource from ‘vue-resource’</p>
+<p>​                                               Vue.use(vueResource)</p>
+<p>3.使用：使用方法与axios相同，不过通过this.$http发送请求                                                         </p>
+<pre><code> this.$http.get(&#39;http://localhost:8080/api1/students&#39;).then(
+    response=&gt;&#123;
+        console.log(&quot;请求成功&quot;,response.data)
+    &#125;,
+    error=&gt;&#123;
+        console.log(&quot;请求失败&quot;,error.message)
+    &#125;
+    )    
+</code></pre>
 
             
         </div>
@@ -267,7 +280,7 @@ module.exports = function (app) &#123;
         
         <span class="tag">
             
-            <a href="/tags/vue" style="color: #00bcd4">
+            <a href="/tags/vue" style="color: #00a596">
                 vue
             </a>
         </span>
@@ -336,55 +349,13 @@ module.exports = function (app) &#123;
         
         <span class="tag">
             
-            <a href="/tags/vue" style="color: #00bcd4">
+            <a href="/tags/vue" style="color: #ffa2c4">
                 vue
             </a>
         </span>
         
     </div>
     <a href="/2022/06/09/vue封装的过度与动画/" class="go-post">
-        阅读全文
-    </a>
-</div>
-
-<div class="post">
-    <a href="/2022/06/08/this.$nextTick/">
-        <h2>
-            this.$nextTick
-        </h2>
-    </a>
-    <div class="category-and-date">
-        
-        <span class="date">
-            <span class="icon">
-                <svg class="fa-icon"><use xlink:href="#calendar-solid"></use></svg>
-            </span>
-            2022/6/8
-        </span>
-    </div>
-    <div class="excerpt">
-        <div class="content" v-pre>
-            
-            
-            
-        </div>
-    </div>
-    <div class="post-tags">
-        
-        <span class="icon">
-            <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
-        </span>
-        
-        
-        <span class="tag">
-            
-            <a href="/tags/vue" style="color: #00bcd4">
-                vue
-            </a>
-        </span>
-        
-    </div>
-    <a href="/2022/06/08/this.$nextTick/" class="go-post">
         阅读全文
     </a>
 </div>
@@ -427,13 +398,62 @@ module.exports = function (app) &#123;
         
         <span class="tag">
             
-            <a href="/tags/vue" style="color: #ff7d73">
+            <a href="/tags/vue" style="color: #00bcd4">
                 vue
             </a>
         </span>
         
     </div>
     <a href="/2022/06/08/this/" class="go-post">
+        阅读全文
+    </a>
+</div>
+
+<div class="post">
+    <a href="/2022/06/08/this.$nextTick /">
+        <h2>
+            this.$nextTick
+        </h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="date">
+            <span class="icon">
+                <svg class="fa-icon"><use xlink:href="#calendar-solid"></use></svg>
+            </span>
+            2022/6/8
+        </span>
+    </div>
+    <div class="excerpt">
+        <div class="content" v-pre>
+            
+            <h3 id="this-nextTick"><a href="#this-nextTick" class="headerlink" title="this.$nextTick"></a>this.$nextTick</h3><p>1.语法：this.$nextTick(回调函数)</p>
+<p>2.作用：在下一次DOM更新结束后执行其指定的回调</p>
+<p>3.什么时候使用：当数据改变之后，要基于更新后的DOM进行某些操作时，要在nextTick所指定的回调函数中进行，如</p>
+<pre><code>this.$nextTick(function()&#123;
+    this.$refs.inputref.focus()//dom更新完毕后使输入框聚焦
+&#125;)
+</code></pre>
+
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        <span class="icon">
+            <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
+        </span>
+        
+        
+        <span class="tag">
+            
+            <a href="/tags/vue" style="color: #03a9f4">
+                vue
+            </a>
+        </span>
+        
+    </div>
+    <a href="/2022/06/08/this.$nextTick /" class="go-post">
         阅读全文
     </a>
 </div>
@@ -489,7 +509,7 @@ mounted()&#123;
         
         <span class="tag">
             
-            <a href="/tags/vue" style="color: #00bcd4">
+            <a href="/tags/vue" style="color: #ffa2c4">
                 vue
             </a>
         </span>
@@ -617,7 +637,7 @@ mounted()&#123;
         
         <span class="tag">
             
-            <a href="/tags/vue" style="color: #ffa2c4">
+            <a href="/tags/vue" style="color: #00a596">
                 vue
             </a>
         </span>
@@ -673,7 +693,7 @@ mounted()&#123;
         
         <span class="tag">
             
-            <a href="/tags/html" style="color: #ffa2c4">
+            <a href="/tags/html" style="color: #00a596">
                 html
             </a>
         </span>
@@ -741,7 +761,7 @@ Vue.use(plugins)
         
         <span class="tag">
             
-            <a href="/tags/vue" style="color: #03a9f4">
+            <a href="/tags/vue" style="color: #00a596">
                 vue
             </a>
         </span>
@@ -815,7 +835,7 @@ Vue.mixin(mixin2)
         
         <span class="tag">
             
-            <a href="/tags/vue" style="color: #00bcd4">
+            <a href="/tags/vue" style="color: #03a9f4">
                 vue
             </a>
         </span>

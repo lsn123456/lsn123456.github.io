@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0">
-        <title>Vue中配置代理 | Mynote</title>
+        <title>Vue中配置代理、vue-Resource插件 | Mynote</title>
         <meta name="author" content="参商">
         <meta name="description" content="个人笔记">
         <meta name="keywords" content="love&peace">
@@ -120,7 +120,7 @@
                         
 <div class="article">
     <div>
-        <h1>Vue中配置代理 </h1>
+        <h1>Vue中配置代理、vue-Resource插件 </h1>
     </div>
     <div class="info">
         <span class="date">
@@ -242,6 +242,19 @@ module.exports = function (app) &#123;
 </code></pre>
 <p>具体请转：<a target="_blank" rel="noopener" href="https://www.freesion.com/article/2055333464/">https://www.freesion.com/article/2055333464/</a></p>
 <p><a target="_blank" rel="noopener" href="https://www.freesion.com/article/2055333464/">跳转地址</a></p>
+<h3 id="Vue-resource"><a href="#Vue-resource" class="headerlink" title="Vue-resource"></a>Vue-resource</h3><p>1.下载vue-resource: npm i vue-resource</p>
+<p>2.在main.js中引入并挂载：import vueResource from ‘vue-resource’</p>
+<p>​                                               Vue.use(vueResource)</p>
+<p>3.使用：使用方法与axios相同，不过通过this.$http发送请求                                                         </p>
+<pre><code> this.$http.get(&#39;http://localhost:8080/api1/students&#39;).then(
+    response=&gt;&#123;
+        console.log(&quot;请求成功&quot;,response.data)
+    &#125;,
+    error=&gt;&#123;
+        console.log(&quot;请求失败&quot;,error.message)
+    &#125;
+    )    
+</code></pre>
 
     </div>
     
