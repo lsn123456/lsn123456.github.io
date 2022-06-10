@@ -142,6 +142,80 @@
             
 
 <div class="post">
+    <a href="/2022/05/26/mixin混入（混合）/">
+        <h2>
+            Mixin混入（混合）
+        </h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="date">
+            <span class="icon">
+                <svg class="fa-icon"><use xlink:href="#calendar-solid"></use></svg>
+            </span>
+            2022/5/26
+        </span>
+    </div>
+    <div class="excerpt">
+        <div class="content" v-pre>
+            
+            <p>mixin(混入)：</p>
+<p>功能：可以把多个组件共用的配置提取成一个混入对象</p>
+<p>使用方式：</p>
+<pre><code>第一步定义混合：在main.js同级目录下定义一个mixin.js文件，然后定义混合的数据或方法
+
+组件中的data,methods,mounted,computed等都可以在这里配置，data,methods这些，如果组件中定义了，混入的不再使用，使用组件自己的，但是生命周期钩子函数，组件和混入的都会使用
+
+export const mixin =&#123;
+   data()&#123;
+    return&#123;       
+    &#125;
+    &#125;,
+    methods:&#123;&#125;,
+    mounted()&#123;&#125;
+&#125;
+export const mixin2=&#123;&#125;
+
+
+第二步使用混入:
+import &#123;mixin,mixin2&#125;form &#39;xxx&#39;
+export default&#123;
+    data()&#123;&#125;,
+    mixins:[mixin，mixin2]
+&#125;
+</code></pre>
+<p>全局混入：</p>
+<pre><code>在main.js中设置，然后所有组件均可以使用混入的方法、数据等
+
+import &#123;mixin,mixin2&#125;form &#39;xxx&#39;
+Vue.mixin(mixin)
+Vue.mixin(mixin2)
+</code></pre>
+
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        <span class="icon">
+            <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
+        </span>
+        
+        
+        <span class="tag">
+            
+            <a href="/tags/vue" style="color: #ffa2c4">
+                vue
+            </a>
+        </span>
+        
+    </div>
+    <a href="/2022/05/26/mixin混入（混合）/" class="go-post">
+        阅读全文
+    </a>
+</div>
+
+<div class="post">
     <a href="/2022/05/26/vue组件通信/">
         <h2>
             Vue组件通信
@@ -208,7 +282,7 @@
         
         <span class="tag">
             
-            <a href="/tags/vue" style="color: #03a9f4">
+            <a href="/tags/vue" style="color: #ff7d73">
                 vue
             </a>
         </span>
@@ -308,7 +382,7 @@ render:h=&gt;h(App)
         
         <span class="tag">
             
-            <a href="/tags/vue" style="color: #03a9f4">
+            <a href="/tags/vue" style="color: #ffa2c4">
                 vue
             </a>
         </span>
@@ -407,7 +481,7 @@ function Home(props) &#123;
         
         <span class="tag">
             
-            <a href="/tags/echarts" style="color: #00bcd4">
+            <a href="/tags/echarts" style="color: #ff7d73">
                 echarts
             </a>
         </span>
@@ -552,7 +626,7 @@ function Home(props) &#123;
         
         <span class="tag">
             
-            <a href="/tags/vue" style="color: #03a9f4">
+            <a href="/tags/vue" style="color: #00bcd4">
                 vue
             </a>
         </span>
@@ -614,7 +688,7 @@ function Home(props) &#123;
         
         <span class="tag">
             
-            <a href="/tags/vue" style="color: #03a9f4">
+            <a href="/tags/vue" style="color: #ffa2c4">
                 vue
             </a>
         </span>
@@ -684,7 +758,7 @@ function Home(props) &#123;
         
         <span class="tag">
             
-            <a href="/tags/vue" style="color: #ff7d73">
+            <a href="/tags/vue" style="color: #00a596">
                 vue
             </a>
         </span>
@@ -793,66 +867,13 @@ function Home(props) &#123;
         
         <span class="tag">
             
-            <a href="/tags/vue" style="color: #03a9f4">
+            <a href="/tags/vue" style="color: #ffa2c4">
                 vue
             </a>
         </span>
         
     </div>
     <a href="/2022/05/17/vue过滤器的使用/" class="go-post">
-        阅读全文
-    </a>
-</div>
-
-<div class="post">
-    <a href="/2022/05/17/收集表单数据/">
-        <h2>
-            收集表单数据
-        </h2>
-    </a>
-    <div class="category-and-date">
-        
-        <span class="date">
-            <span class="icon">
-                <svg class="fa-icon"><use xlink:href="#calendar-solid"></use></svg>
-            </span>
-            2022/5/17
-        </span>
-    </div>
-    <div class="excerpt">
-        <div class="content" v-pre>
-            
-            <p>收集表单数据：</p>
-<p>若：&lt; input type&#x3D;”text” &#x2F;&gt;,则 v-model收集的是value值，用户输入的就是value值</p>
-<p>若：&lt; input type&#x3D;”radio” &#x2F;&gt;,则 v-model收集的是value值，且要给标签配置value值</p>
-<p>若：&lt; input type&#x3D;”checkbox” &#x2F;&gt;</p>
-<p>  1.没有配置Input的value属性：</p>
-<p>​                     v-model的初始值是非数组，那么收集的就是checked（勾选或未勾选，是布尔值）</p>
-<p>​                      v-model的初始值是数组，那么收集的就是value组成的数组</p>
-<p>v-model的三个修饰符：</p>
-<p>​                   lazy:失去焦点再收集数据</p>
-<p>​                   number：输入字符串转为有效数字，input的type最好同样改为number</p>
-<p>​                   trim:输入首位空格过滤</p>
-
-            
-        </div>
-    </div>
-    <div class="post-tags">
-        
-        <span class="icon">
-            <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
-        </span>
-        
-        
-        <span class="tag">
-            
-            <a href="/tags/vue" style="color: #00bcd4">
-                vue
-            </a>
-        </span>
-        
-    </div>
-    <a href="/2022/05/17/收集表单数据/" class="go-post">
         阅读全文
     </a>
 </div>

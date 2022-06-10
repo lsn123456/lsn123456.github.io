@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0">
-        <title>this.$nextTick | Mynote</title>
+        <title>Vue插槽 | Mynote</title>
         <meta name="author" content="参商">
         <meta name="description" content="个人笔记">
         <meta name="keywords" content="love&peace">
@@ -120,14 +120,14 @@
                         
 <div class="article">
     <div>
-        <h1>this.$nextTick </h1>
+        <h1>Vue插槽 </h1>
     </div>
     <div class="info">
         <span class="date">
             <span class="icon">
                 <svg class="fa-icon"><use xlink:href="#calendar-solid"></use></svg>
             </span>
-            2022/6/8
+            2022/6/10
         </span>
         
         
@@ -147,12 +147,78 @@
         
     </div>
     <div class="content" v-pre>
-        <h3 id="this-nextTick"><a href="#this-nextTick" class="headerlink" title="this.$nextTick"></a>this.$nextTick</h3><p>1.语法：this.$nextTick(回调函数)</p>
-<p>2.作用：在下一次DOM更新结束后执行其指定的回调</p>
-<p>3.什么时候使用：当数据改变之后，要基于更新后的DOM进行某些操作时，要在nextTick所指定的回调函数中进行，如</p>
-<pre><code>this.$nextTick(function()&#123;
-    this.$refs.inputref.focus()//dom更新完毕后使输入框聚焦
-&#125;)
+        <h3 id="插槽"><a href="#插槽" class="headerlink" title="插槽"></a>插槽</h3><p>1.作用：让父组件可以向子组件指定位置插入html结构，也是一种组件间通信的方式，适用于<strong>父组件&#x3D;&#x3D;&#x3D;》子组件</strong></p>
+<p>2.分类：默认插槽、具名插槽、作用域插槽</p>
+<p>3.默认插槽</p>
+<pre><code>父组件中：
+&lt;Category&gt;
+     &lt;div&gt;html结构&lt;/div&gt;
+&lt;/Category&gt;
+
+子组件中：
+&lt;div&gt;
+     &lt;slot&gt;插槽默认内容，如果父组件给插槽传递数据，则展示传递的html结构，否则展示默认内容&lt;/slot&gt;
+&lt;/div&gt;
+</code></pre>
+<p>4.具名插槽：</p>
+<pre><code>父组件中：
+&lt;Category&gt;
+     &lt;div slot=&quot;center&quot;&gt;   指定插槽的名称
+          &lt;div&gt;html结构&lt;/div&gt;
+     &lt;/div&gt;
+      &lt;template v-slot:footer&gt;  指定插槽的名称，但v-slot:footer只能使用在template标签上
+          &lt;div&gt;html结构&lt;/div&gt;    使用template标签，解析时该标签不会出现在html结构中
+     &lt;/template&gt;
+      &lt;template slot=&quot;footer&quot;&gt;  template也可以直接使用slot=&quot;footer&quot;，两种方式皆可
+          &lt;div&gt;html结构&lt;/div&gt;    可以往footer插槽多次指定内容
+     &lt;/template&gt;
+&lt;/Category&gt;
+
+子组件中：
+&lt;template&gt;
+     &lt;div&gt;
+          &lt;slot name=&quot;center&quot;&gt;插槽默认内容&lt;/slot&gt;
+          &lt;slot name=&quot;footer&quot;&gt;插槽默认内容&lt;/slot&gt;
+     &lt;/div&gt;
+&lt;/template&gt;
+</code></pre>
+<p>5.作用域插槽：</p>
+<p>理解：数据在子组件自身，但根据数据生成的结构需要父组件来决定（比如games数据在category组件中，但使用数据遍历出来的结构由父组件App决定）</p>
+<pre><code>父组件中：
+&lt;Category&gt;
+     &lt;template scope=&quot;scopeData&quot;&gt;   用scope接收子组件传递过来的数据   
+           &lt;ul&gt;
+              &lt;li v-for=&quot;g in scopeData.games&quot; :key=&quot;g&quot;&gt;&#123;&#123;g&#125;&#125;&lt;/li&gt;
+           &lt;/ul&gt;
+     &lt;/template&gt;
+&lt;/Category&gt;
+&lt;Category&gt;
+     &lt;template scope=&quot;&#123;games&#125;&quot;&gt;   
+           &lt;ol&gt;
+              &lt;li v-for=&quot;g in games&quot; :key=&quot;g&quot;&gt;&#123;&#123;g&#125;&#125;&lt;/li&gt;
+           &lt;/ol&gt;
+     &lt;/template&gt;
+&lt;/Category&gt;
+&lt;Category&gt;
+     &lt;template slot-scope=&quot;&#123;games&#125;&quot;&gt;  scope与slot-scope均可用来接收数据，使用方法相同 
+              &lt;h3 v-for=&quot;g in games&quot; :key=&quot;g&quot;&gt;&#123;&#123;g&#125;&#125;&lt;/h3&gt;
+     &lt;/template&gt;
+&lt;/Category&gt;
+
+子组件中：
+&lt;template&gt;
+     &lt;div&gt;
+          &lt;slot :games=&quot;games&quot;&gt;插槽默认内容&lt;/slot&gt; 通过：games=&quot;games&quot;给父组件传递数据，这里也可                                                                       以使用具名插槽，不冲突
+     &lt;/div&gt;
+&lt;/template&gt;
+
+export default&#123;
+    data()&#123;
+        return&#123;
+            games:[&#39;1&#39;,&#39;2&#39;,&#39;3&#39;]
+        &#125;
+    &#125;
+&#125;
 </code></pre>
 
     </div>

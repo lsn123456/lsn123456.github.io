@@ -142,6 +142,121 @@
             
 
 <div class="post">
+    <a href="/2022/06/10/vue插槽/">
+        <h2>
+            Vue插槽
+        </h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="date">
+            <span class="icon">
+                <svg class="fa-icon"><use xlink:href="#calendar-solid"></use></svg>
+            </span>
+            2022/6/10
+        </span>
+    </div>
+    <div class="excerpt">
+        <div class="content" v-pre>
+            
+            <h3 id="插槽"><a href="#插槽" class="headerlink" title="插槽"></a>插槽</h3><p>1.作用：让父组件可以向子组件指定位置插入html结构，也是一种组件间通信的方式，适用于<strong>父组件&#x3D;&#x3D;&#x3D;》子组件</strong></p>
+<p>2.分类：默认插槽、具名插槽、作用域插槽</p>
+<p>3.默认插槽</p>
+<pre><code>父组件中：
+&lt;Category&gt;
+     &lt;div&gt;html结构&lt;/div&gt;
+&lt;/Category&gt;
+
+子组件中：
+&lt;div&gt;
+     &lt;slot&gt;插槽默认内容，如果父组件给插槽传递数据，则展示传递的html结构，否则展示默认内容&lt;/slot&gt;
+&lt;/div&gt;
+</code></pre>
+<p>4.具名插槽：</p>
+<pre><code>父组件中：
+&lt;Category&gt;
+     &lt;div slot=&quot;center&quot;&gt;   指定插槽的名称
+          &lt;div&gt;html结构&lt;/div&gt;
+     &lt;/div&gt;
+      &lt;template v-slot:footer&gt;  指定插槽的名称，但v-slot:footer只能使用在template标签上
+          &lt;div&gt;html结构&lt;/div&gt;    使用template标签，解析时该标签不会出现在html结构中
+     &lt;/template&gt;
+      &lt;template slot=&quot;footer&quot;&gt;  template也可以直接使用slot=&quot;footer&quot;，两种方式皆可
+          &lt;div&gt;html结构&lt;/div&gt;    可以往footer插槽多次指定内容
+     &lt;/template&gt;
+&lt;/Category&gt;
+
+子组件中：
+&lt;template&gt;
+     &lt;div&gt;
+          &lt;slot name=&quot;center&quot;&gt;插槽默认内容&lt;/slot&gt;
+          &lt;slot name=&quot;footer&quot;&gt;插槽默认内容&lt;/slot&gt;
+     &lt;/div&gt;
+&lt;/template&gt;
+</code></pre>
+<p>5.作用域插槽：</p>
+<p>理解：数据在子组件自身，但根据数据生成的结构需要父组件来决定（比如games数据在category组件中，但使用数据遍历出来的结构由父组件App决定）</p>
+<pre><code>父组件中：
+&lt;Category&gt;
+     &lt;template scope=&quot;scopeData&quot;&gt;   用scope接收子组件传递过来的数据   
+           &lt;ul&gt;
+              &lt;li v-for=&quot;g in scopeData.games&quot; :key=&quot;g&quot;&gt;&#123;&#123;g&#125;&#125;&lt;/li&gt;
+           &lt;/ul&gt;
+     &lt;/template&gt;
+&lt;/Category&gt;
+&lt;Category&gt;
+     &lt;template scope=&quot;&#123;games&#125;&quot;&gt;   
+           &lt;ol&gt;
+              &lt;li v-for=&quot;g in games&quot; :key=&quot;g&quot;&gt;&#123;&#123;g&#125;&#125;&lt;/li&gt;
+           &lt;/ol&gt;
+     &lt;/template&gt;
+&lt;/Category&gt;
+&lt;Category&gt;
+     &lt;template slot-scope=&quot;&#123;games&#125;&quot;&gt;  scope与slot-scope均可用来接收数据，使用方法相同 
+              &lt;h3 v-for=&quot;g in games&quot; :key=&quot;g&quot;&gt;&#123;&#123;g&#125;&#125;&lt;/h3&gt;
+     &lt;/template&gt;
+&lt;/Category&gt;
+
+子组件中：
+&lt;template&gt;
+     &lt;div&gt;
+          &lt;slot :games=&quot;games&quot;&gt;插槽默认内容&lt;/slot&gt; 通过：games=&quot;games&quot;给父组件传递数据，这里也可                                                                       以使用具名插槽，不冲突
+     &lt;/div&gt;
+&lt;/template&gt;
+
+export default&#123;
+    data()&#123;
+        return&#123;
+            games:[&#39;1&#39;,&#39;2&#39;,&#39;3&#39;]
+        &#125;
+    &#125;
+&#125;
+</code></pre>
+
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        <span class="icon">
+            <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
+        </span>
+        
+        
+        <span class="tag">
+            
+            <a href="/tags/vue" style="color: #ffa2c4">
+                vue
+            </a>
+        </span>
+        
+    </div>
+    <a href="/2022/06/10/vue插槽/" class="go-post">
+        阅读全文
+    </a>
+</div>
+
+<div class="post">
     <a href="/2022/06/09/vue中配置代理/">
         <h2>
             Vue中配置代理、vue-Resource插件
@@ -280,7 +395,7 @@ module.exports = function (app) &#123;
         
         <span class="tag">
             
-            <a href="/tags/vue" style="color: #00a596">
+            <a href="/tags/vue" style="color: #00bcd4">
                 vue
             </a>
         </span>
@@ -349,7 +464,7 @@ module.exports = function (app) &#123;
         
         <span class="tag">
             
-            <a href="/tags/vue" style="color: #ffa2c4">
+            <a href="/tags/vue" style="color: #00a596">
                 vue
             </a>
         </span>
@@ -447,7 +562,7 @@ module.exports = function (app) &#123;
         
         <span class="tag">
             
-            <a href="/tags/vue" style="color: #03a9f4">
+            <a href="/tags/vue" style="color: #ffa2c4">
                 vue
             </a>
         </span>
@@ -509,7 +624,7 @@ mounted()&#123;
         
         <span class="tag">
             
-            <a href="/tags/vue" style="color: #ffa2c4">
+            <a href="/tags/vue" style="color: #ff7d73">
                 vue
             </a>
         </span>
@@ -572,7 +687,7 @@ mounted()&#123;
         
         <span class="tag">
             
-            <a href="/tags/vue" style="color: #03a9f4">
+            <a href="/tags/vue" style="color: #ff7d73">
                 vue
             </a>
         </span>
@@ -637,7 +752,7 @@ mounted()&#123;
         
         <span class="tag">
             
-            <a href="/tags/vue" style="color: #00a596">
+            <a href="/tags/vue" style="color: #ffa2c4">
                 vue
             </a>
         </span>
@@ -693,7 +808,7 @@ mounted()&#123;
         
         <span class="tag">
             
-            <a href="/tags/html" style="color: #00a596">
+            <a href="/tags/html" style="color: #03a9f4">
                 html
             </a>
         </span>
@@ -761,87 +876,13 @@ Vue.use(plugins)
         
         <span class="tag">
             
-            <a href="/tags/vue" style="color: #00a596">
+            <a href="/tags/vue" style="color: #ffa2c4">
                 vue
             </a>
         </span>
         
     </div>
     <a href="/2022/05/26/vue插件/" class="go-post">
-        阅读全文
-    </a>
-</div>
-
-<div class="post">
-    <a href="/2022/05/26/mixin混入（混合）/">
-        <h2>
-            Mixin混入（混合）
-        </h2>
-    </a>
-    <div class="category-and-date">
-        
-        <span class="date">
-            <span class="icon">
-                <svg class="fa-icon"><use xlink:href="#calendar-solid"></use></svg>
-            </span>
-            2022/5/26
-        </span>
-    </div>
-    <div class="excerpt">
-        <div class="content" v-pre>
-            
-            <p>mixin(混入)：</p>
-<p>功能：可以把多个组件共用的配置提取成一个混入对象</p>
-<p>使用方式：</p>
-<pre><code>第一步定义混合：在main.js同级目录下定义一个mixin.js文件，然后定义混合的数据或方法
-
-组件中的data,methods,mounted,computed等都可以在这里配置，data,methods这些，如果组件中定义了，混入的不再使用，使用组件自己的，但是生命周期钩子函数，组件和混入的都会使用
-
-export const mixin =&#123;
-   data()&#123;
-    return&#123;       
-    &#125;
-    &#125;,
-    methods:&#123;&#125;,
-    mounted()&#123;&#125;
-&#125;
-export const mixin2=&#123;&#125;
-
-
-第二步使用混入:
-import &#123;mixin,mixin2&#125;form &#39;xxx&#39;
-export default&#123;
-    data()&#123;&#125;,
-    mixins:[mixin，mixin2]
-&#125;
-</code></pre>
-<p>全局混入：</p>
-<pre><code>在main.js中设置，然后所有组件均可以使用混入的方法、数据等
-
-import &#123;mixin,mixin2&#125;form &#39;xxx&#39;
-Vue.mixin(mixin)
-Vue.mixin(mixin2)
-</code></pre>
-
-            
-        </div>
-    </div>
-    <div class="post-tags">
-        
-        <span class="icon">
-            <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
-        </span>
-        
-        
-        <span class="tag">
-            
-            <a href="/tags/vue" style="color: #03a9f4">
-                vue
-            </a>
-        </span>
-        
-    </div>
-    <a href="/2022/05/26/mixin混入（混合）/" class="go-post">
         阅读全文
     </a>
 </div>
