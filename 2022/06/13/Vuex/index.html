@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0">
-        <title>this.$nextTick | Mynote</title>
+        <title>Vuex | Mynote</title>
         <meta name="author" content="参商">
         <meta name="description" content="个人笔记">
         <meta name="keywords" content="love&peace">
@@ -120,14 +120,14 @@
                         
 <div class="article">
     <div>
-        <h1>this.$nextTick </h1>
+        <h1>Vuex </h1>
     </div>
     <div class="info">
         <span class="date">
             <span class="icon">
                 <svg class="fa-icon"><use xlink:href="#calendar-solid"></use></svg>
             </span>
-            2022/6/8
+            2022/6/13
         </span>
         
         
@@ -138,7 +138,7 @@
             
             <span class="tag">
                 
-                <a href="/tags/vue" style="color: #03a9f4">
+                <a href="/tags/vue" style="color: #ffa2c4">
                     vue
                 </a>
             </span>
@@ -147,13 +147,65 @@
         
     </div>
     <div class="content" v-pre>
-        <h3 id="this-nextTick"><a href="#this-nextTick" class="headerlink" title="this.$nextTick"></a>this.$nextTick</h3><p>1.语法：this.$nextTick(回调函数)</p>
-<p>2.作用：在下一次DOM更新结束后执行其指定的回调</p>
-<p>3.什么时候使用：当数据改变之后，要基于更新后的DOM进行某些操作时，要在nextTick所指定的回调函数中进行，如</p>
-<pre><code>this.$nextTick(function()&#123;
-    this.$refs.inputref.focus()//dom更新完毕后使输入框聚焦
+        <h3 id="Vuex介绍"><a href="#Vuex介绍" class="headerlink" title="Vuex介绍"></a>Vuex介绍</h3><p><img src="/2022/06/13/Vuex/vuex.png"></p>
+<p><strong>1.概念：</strong>Vuex是Vue中实现集中式状态（数据）管理的Vue插件，对vue应用中多个组件的共享状态进行集中式管理（读&#x2F;写），也是一种组件间通信的方式，且适用于任意组件间通信</p>
+<p><strong>2.何时使用</strong>：多个组件需要共享数据时</p>
+<p><strong>3.搭建vuex环境</strong>：1.创建文件：<code>src/store/index.js</code></p>
+<pre><code>//引入Vue核心库
+import Vue from &#39;Vue&#39;
+//引入Vuex
+//import Vuex from &#39;vuex&#39;
+//应用Vuex插件
+Vue.use(Vuex)
+
+//准备actions:用于响应组件中的动作
+const actions=&#123;&#125;
+//准备mutations:用于操作数据（state）
+const mutations=&#123;&#125;
+//准备state:用于存储数据（state）
+const state=&#123;&#125;
+
+//创建并暴露store
+export default new Vuex.Store(&#123;
+    actions,
+    mutations,
+    state
 &#125;)
 </code></pre>
+<p>2.在<code>main.js</code>中创建vm时传入<code>store</code>配置项</p>
+<pre><code>//引入store
+import store from &#39;./store&#39;
+//创建vm
+new Vue(&#123;
+    el:&#39;#app&#39;,
+    render:h=&gt;h(App),
+    store
+&#125;)
+</code></pre>
+<p><img src="/2022/06/13/Vuex/store.png"></p>
+<p><img src="/2022/06/13/Vuex/main.png"></p>
+<p><strong>使用案例：</strong></p>
+<p>context:minstore，缩水的store</p>
+<p><img src="/2022/06/13/Vuex/anli1.png"></p>
+<p><img src="/2022/06/13/Vuex/anli2.png"></p>
+<p><img src="/2022/06/13/Vuex/anli3.png"></p>
+<p>1.组件中读取vuex中的数据：<code>$store.state.sum</code></p>
+<p>2.组件中修改vuex中的数据：<code>$store.dispatch(&#39;action中的方法名&#39;,数据)</code>或<code>$store.commit(&#39;mutations中的方法名&#39;，数据)</code></p>
+<p>3.如果没有网络请求或其他业务逻辑，组件中也可以越过actions，即不写dispatch，直接写commit，actions中，如果业务逻辑过于复杂，可以拆分成几个函数，不断dispatch调用新的函数去执行</p>
+<p><img src="/2022/06/13/Vuex/anli4.png"></p>
+<p><strong>4.getters的使用：</strong></p>
+<p>1.概念：当state中的数据需要经过加工后再使用时，可以使用getters加工</p>
+<p>2.再store.js中追加gettres配置</p>
+<pre><code>const getters=&#123;
+    bigSum(state)&#123;
+        return state.sum*10
+    &#125;
+&#125;
+export default new Vuex.store(&#123;
+    getters
+&#125;)
+</code></pre>
+<p>组件中读取数据：<code>$store.getters.bigSum</code></p>
 
     </div>
     
