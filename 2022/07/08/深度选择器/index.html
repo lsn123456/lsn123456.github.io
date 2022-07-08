@@ -131,9 +131,41 @@
         </span>
         
         
+        <span class="tags">
+            <span class="icon">
+                <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/tags/css" style="color: #00bcd4">
+                    css
+                </a>
+            </span>
+            
+        </span>
+        
     </div>
     <div class="content" v-pre>
-        
+        <p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_38810813/article/details/121798059">大佬原博</a> </p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_39357177/article/details/114371187">另一大佬原博</a></p>
+<p>在编译组件的时候，如果当前组件内style标签上有scoped属性，那么会在当前所有标签上添加一个【data-v-<a target="_blank" rel="noopener" href="https://so.csdn.net/so/search?q=hash&spm=1001.2101.3001.7020">hash</a>】属性，而当前样式表内的所有末尾选择器后面也会加上该属性，那么就使得当前组件内的样式只会作用于当前组件内的元素。</p>
+<p>1、&gt;&gt;&gt;:只作用于css</p>
+<pre><code>  .allfunctions-container &gt;&gt;&gt; .el-upload-list &#123;
+    margin-bottom: 50px;
+  &#125;
+</code></pre>
+<p>2.&#x2F;deep&#x2F;:作用域sass less css,注意：vue-cli3以上版本不可以</p>
+<pre><code> .bid-securityfund-container /deep/.el-table-filter__bottom button:hover &#123;
+    color: #42989f;
+  &#125;
+</code></pre>
+<p>3、::v-deep 如果使用了预处理器都可以使用</p>
+<pre><code>  ::v-deep .el-table th.el-table__cell &gt; .cell.highlight &#123;
+    color: #42989f;
+  &#125;
+</code></pre>
+
     </div>
     
     <link rel="stylesheet" href="https://cdn.staticfile.org/gitalk/1.7.2/gitalk.min.css">
