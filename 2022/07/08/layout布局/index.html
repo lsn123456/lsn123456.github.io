@@ -147,7 +147,7 @@
             
             <span class="tag">
                 
-                <a href="/tags/vue" style="color: #ff7d73">
+                <a href="/tags/vue" style="color: #00bcd4">
                     vue
                 </a>
             </span>
@@ -180,7 +180,10 @@
     &lt;/el-row&gt;
 </code></pre>
 <p><img src="/2022/07/08/layout%E5%B8%83%E5%B1%80/layout.png"></p>
-<p>通过上图可以看出，无论时使用样式选择器，还是直接写style样式，gutter都会失效，因此使用gutter时需要注意，不要直接在el-col设置样式，最好在el-col内部使用一个div,在此div上设置样式，否则gutter会设置失效</p>
+<p>一开始我觉得是样式的原因，通过上图可以看出，无论时使用样式选择器，还是直接写style样式，gutter都会失效</p>
+<p><img src="/2022/07/08/layout%E5%B8%83%E5%B1%80/padding.png"></p>
+<p><img src="/2022/07/08/layout%E5%B8%83%E5%B1%80/padding2.png"></p>
+<p>后来发现，gutter的实现是由el-col上的padding实现的，饿了么给每个el-col左右指定了相同的padding,里面使用一个盒子，我们看到的其实是里面这个盒子的宽度，因此使用时需要在el-col里使用一个div将我们要写的内容包裹起来，否则gutter会失效，在此div上写样式就没问题了</p>
 
     </div>
     
