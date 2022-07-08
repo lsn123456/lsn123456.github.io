@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0">
-        <title>浏览器的本地存储 | Mynote</title>
+        <title>Echarts的一些配置项 | Mynote</title>
         <meta name="author" content="参商">
         <meta name="description" content="个人笔记">
         <meta name="keywords" content="love&peace">
@@ -120,14 +120,14 @@
                         
 <div class="article">
     <div>
-        <h1>浏览器的本地存储 </h1>
+        <h1>Echarts的一些配置项 </h1>
     </div>
     <div class="info">
         <span class="date">
             <span class="icon">
                 <svg class="fa-icon"><use xlink:href="#calendar-solid"></use></svg>
             </span>
-            2022/6/7
+            2022/7/5
         </span>
         
         
@@ -138,8 +138,8 @@
             
             <span class="tag">
                 
-                <a href="/tags/html" style="color: #03a9f4">
-                    html
+                <a href="/tags/echarts" style="color: #00a596">
+                    echarts
                 </a>
             </span>
             
@@ -147,20 +147,110 @@
         
     </div>
     <div class="content" v-pre>
-        <h3 id="webStorage"><a href="#webStorage" class="headerlink" title="webStorage"></a>webStorage</h3><p>1.存储内容一般支持5MB左右（不同浏览器可能不同）</p>
-<p>2.浏览器端通过Window.sessionStorage和Window.localStorage属性来实现本地存储机制</p>
-<p>3.相关API：</p>
-<ul>
-<li>xxxxStorage.setItem(‘key’,’value’):该方法接受一个键和值作为参数，会把键值对添加到存储中，如果键名存在，则更新其对应的值</li>
-<li>xxxxStorage.getItem(‘person’):该方法接受一个键名作为参数，并把该键名从存储中删除</li>
-<li>xxxxStorage.removeItem(‘key’):该方法接受一个键名作为参数，并把该键名从存储中删除</li>
-<li>xxxxStorage.clear():该方法会清空存储中的所有数据</li>
-</ul>
-<p>4.备注：</p>
-<p>1.SessionStorage存储的内容会随着浏览器的窗口关闭而消失</p>
-<p>2.LocalStorage存储的内容需要手动清楚才会消失</p>
-<p>3.xxxxstorage.getItem(xxx)如果xxx对应的value获取不到，那么getItem的返回值是null</p>
-<p>4.JSON.parse(null)的结果依然是null</p>
+        <p>title:标题</p>
+<pre><code>主标题和副标题
+title: &#123;
+    text: &#39;主标题&#39;,
+    subtext: &#39;副标题&#39;,
+    top: 10,
+    left: 10
+  &#125;,
+  也可以多个标题
+   title: [ &#123;
+     text:&#39;标题1&#39;,
+     left:20,
+     show:false//是否显示标题
+   &#125;,
+   &#123;
+     text:&#39;这是一个长长的标题，可以换行\n哈哈&#39;,//标题文本，支持换行
+     left:20,
+     top:40,
+    textStyle:&#123;//文本样式
+      color:&#39;skyblue&#39;,
+      fontSize:20,
+    &#125;
+   &#125;],
+</code></pre>
+<p>legend</p>
+<pre><code> legend: &#123;
+            orient: &#39;vertical&#39;,//图例方向
+            icon: &#39;circle&#39;,//
+            type:&#39;scroll&#39;,//图例过多时可滚动，默认plain
+            itemWidth: 8, // 设置宽度
+            itemHeight: 8, // 设置高度
+            itemGap: 15, // 设置间距
+            left: &#39;right&#39;,//图例组件离容器左侧的距离,可为像素值，百分比，center等
+            //top:&#39;40%&#39;,//图例组件离容器上侧的距离,同上
+            bottom:&#39;10%&#39;,//百分比或像素值，right相同
+            show:true,//是否显示图例
+            width:120,//图例组件的宽度。默认自适应。
+            height:200,//图例组件的高度。默认自适应。
+            padding: [5, 10],
+            formatter: function (name) &#123;
+                let data = option.series[0].data
+                let total = 0
+                let tarValue
+                for (let i = 0; i &lt; data.length; i++) &#123;
+                   total += data[i].value
+                   if (data[i].name === name) &#123;
+                    tarValue = data[i].value
+                    &#125;
+                  &#125;
+               let v = tarValue
+                return name+v+&#39;元&#39;
+            &#125;,
+            textStyle: &#123;
+              fontWeight: 400,
+              fontSize: 14,
+              color: &#39;#606266&#39;,
+            &#125;,
+          &#125;,
+          或
+             legend: &#123;
+             orient: &#39;vertical&#39;,
+             icon: &#39;circle&#39;,
+             itemWidth: 8, // 设置宽度
+             itemHeight: 8, // 设置高度
+             itemGap: 15, // 设置间距
+             left: &#39;45%&#39;,
+             textStyle: &#123;
+               fontWeight: 400,
+               fontSize: 14,
+               color: &#39;#606266&#39;,
+               rich: &#123;
+               one: &#123;
+                   fontSize: 14,
+                   fontWeight: 400,
+                   fontFamily: &#39;Microsoft YaHei-Regular, Microsoft YaHei&#39;,
+                   width: 110,
+                   color: &#39;#606266&#39;,
+                   padding: [0, 0, 0, 4],
+                 &#125;,
+                 two: &#123;
+                   fontSize: 14,
+                   fontWeight: 400,
+                   color: &#39;#606266&#39;,
+                 &#125;,
+               &#125;,
+             &#125;,
+           &#125;,
+             formatter: function (name) &#123;
+             let data = option.series[0].data
+             let total = 0
+             let tarValue
+             for (let i = 0; i &lt; data.length; i++) &#123;
+               total += data[i].value
+               if (data[i].name === name) &#123;
+                 tarValue = data[i].value
+               &#125;
+             &#125;
+             // 数量
+             let v = tarValue
+             // 百分比
+             let p = Math.round((tarValue / total) * 100)
+             return `&#123;one|$&#123;name&#125;&#125; &#123;two|$&#123;number_format(v, 0)&#125;元&#125;`
+           &#125;,
+</code></pre>
 
     </div>
     

@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0">
-        <title>浏览器的本地存储 | Mynote</title>
+        <title>鼠标相关的一些事件 | Mynote</title>
         <meta name="author" content="参商">
         <meta name="description" content="个人笔记">
         <meta name="keywords" content="love&peace">
@@ -120,14 +120,14 @@
                         
 <div class="article">
     <div>
-        <h1>浏览器的本地存储 </h1>
+        <h1>鼠标相关的一些事件 </h1>
     </div>
     <div class="info">
         <span class="date">
             <span class="icon">
                 <svg class="fa-icon"><use xlink:href="#calendar-solid"></use></svg>
             </span>
-            2022/6/7
+            2022/7/8
         </span>
         
         
@@ -138,8 +138,8 @@
             
             <span class="tag">
                 
-                <a href="/tags/html" style="color: #03a9f4">
-                    html
+                <a href="/tags/鼠标事件" style="color: #03a9f4">
+                    鼠标事件
                 </a>
             </span>
             
@@ -147,20 +147,86 @@
         
     </div>
     <div class="content" v-pre>
-        <h3 id="webStorage"><a href="#webStorage" class="headerlink" title="webStorage"></a>webStorage</h3><p>1.存储内容一般支持5MB左右（不同浏览器可能不同）</p>
-<p>2.浏览器端通过Window.sessionStorage和Window.localStorage属性来实现本地存储机制</p>
-<p>3.相关API：</p>
-<ul>
-<li>xxxxStorage.setItem(‘key’,’value’):该方法接受一个键和值作为参数，会把键值对添加到存储中，如果键名存在，则更新其对应的值</li>
-<li>xxxxStorage.getItem(‘person’):该方法接受一个键名作为参数，并把该键名从存储中删除</li>
-<li>xxxxStorage.removeItem(‘key’):该方法接受一个键名作为参数，并把该键名从存储中删除</li>
-<li>xxxxStorage.clear():该方法会清空存储中的所有数据</li>
-</ul>
-<p>4.备注：</p>
-<p>1.SessionStorage存储的内容会随着浏览器的窗口关闭而消失</p>
-<p>2.LocalStorage存储的内容需要手动清楚才会消失</p>
-<p>3.xxxxstorage.getItem(xxx)如果xxx对应的value获取不到，那么getItem的返回值是null</p>
-<p>4.JSON.parse(null)的结果依然是null</p>
+        <p><strong>鼠标右键：  @contextmenu.prevent&#x3D;”handleMemberEditShow(index, $event)”</strong></p>
+<p><img src="/2022/07/08/%E9%BC%A0%E6%A0%87%E7%9B%B8%E5%85%B3%E7%9A%84%E4%B8%80%E4%BA%9B%E4%BA%8B%E4%BB%B6/team.png"></p>
+<p><strong>鼠标移入移出事件</strong>：<a target="_blank" rel="noopener" href="https://blog.csdn.net/JackieDYH/article/details/120197449">大佬原博</a></p>
+<p>1.mouseover 和 mouseout</p>
+<p>2.mouseenter 和 mouseleave</p>
+<p><strong>1.mouseover 和 mouseout：根据鼠标事件的target进行触发，是一种精确触发。</strong></p>
+<p>当为某一组件(如div或ul)设置这两个事件时，当事件的target是该组件时，就会触发mouseover，但是当鼠标划到该组件的子组件上时，因为target改变了，所以就触发了 mouseout 事件，这往往就会造成页面元素的闪烁。<br>在实际开发过程中，更多的是针对范围的操作。如果鼠标在某个组件(如div)范围内就触发进入组件的操作，如果离开这个组件的页面范围，就触发离开的事件。</p>
+<p><strong>2.mouseenter 和 mouseleave：根据组件在页面的范围(坐标)进行触发的。</strong></p>
+<p>不管组件中是否有子组件，只要鼠标进入到组件的范围内，就可以触发mouseenter事件，离开范围，则触发mouseleave事件。</p>
+<p><strong>鼠标右键</strong>（案例：鼠标右键弹出编辑删除，再次右键隐藏）</p>
+<p>要求：右键小盒子出现，再次右键小盒子消失。</p>
+<p>思路：当memberIndex与当前index相同时，让小盒子出现，否则隐藏。</p>
+<p>遍历每个li，右键时传递当前点击的li的index,让this.memberIndex &#x3D; index，两者相同盒子出现。再次点击时让 this.memberIndex &#x3D; -1，两者不相同，盒子消失</p>
+<pre><code>
+  
+  
+    &lt;ul style=&quot;padding-right: 9px; height: 175px; overflow: auto&quot;&gt;
+            &lt;li
+              v-for=&quot;(user, index) in userList&quot;
+              :key=&quot;user.id&quot;
+              :class=&quot;memberIndex === index ? &#39;teamactive&#39; : &#39;&#39;&quot;
+              @contextmenu.prevent=&quot;handleMemberEditShow(index, $event)&quot;
+              @mouseleave=&quot;hiddenBox2&quot;
+            &gt;
+              &lt;div&gt;
+                &#123;&#123; user.name.slice(0, 1) &#125;&#125;
+              &lt;/div&gt;
+              &lt;div&gt;
+                &#123;&#123; user.name &#125;&#125;
+              &lt;/div&gt;
+              &lt;div
+                style=&quot;font-size: 14px; color: #2864d7; float: right&quot;
+              &gt;
+                &#123;&#123; user.role &#125;&#125;
+              &lt;/div&gt;
+              &lt;div
+                class=&quot;deatils&quot;
+                :class=&quot;
+                  memberIndex === index &amp;&amp; myrole == &#39;组长&#39;
+                    ? &#39;active&#39;
+                    : &#39;hidden&#39;
+                &quot;&gt;
+                &lt;div @click=&quot;deleteMember(user)&quot; &gt;
+                  移除
+                &lt;/div&gt;
+                &lt;div @click=&quot;setLeader(user)&quot;&gt;
+                  设为副组长
+                &lt;/div&gt;
+              &lt;/div&gt;
+            &lt;/li&gt;
+          &lt;/ul&gt;
+          
+   data() &#123;
+      return &#123;
+        memberIndex: -1,
+      &#125;
+    &#125;,
+                  
+      handleMemberEditShow(index, e) &#123;
+        if (index != this.memberIndex) &#123;
+          this.memberIndex = index
+        &#125; else &#123;
+          this.memberIndex = -1
+        &#125;
+      &#125;,
+</code></pre>
+<p><strong>鼠标移入移出</strong>（鼠标移除当前li后，盒子消失）</p>
+<p>还是这个案例，如果用mouseout，点击编辑时，因为进入了子组件，会被认为鼠标离开，因此盒子消失，因此这里应该使用mouseleave</p>
+<pre><code>           &lt;li
+              v-for=&quot;(user, index) in userList&quot;
+              :key=&quot;user.id&quot;
+              :class=&quot;memberIndex === index ? &#39;teamactive&#39; : &#39;&#39;&quot;
+              @contextmenu.prevent=&quot;handleMemberEditShow(index, $event)&quot;
+              @mouseleave=&quot;hiddenBox2&quot;
+            &gt;
+ 
+       hiddenBox2() &#123;
+        this.memberIndex = -1
+      &#125;,
+</code></pre>
 
     </div>
     
