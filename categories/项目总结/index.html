@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0">
-        <title>Vue组件通信（子传父自定义事件） | Mynote</title>
+        <title>Categories: 项目总结 | Mynote</title>
         <meta name="author" content="参商">
         <meta name="description" content="个人笔记">
         <meta name="keywords" content="love&peace">
@@ -117,68 +117,62 @@
 </nav>
                     </div>
                     <div id="main">
-                        
-<div class="article">
-    <div>
-        <h1>Vue组件通信（子传父自定义事件） </h1>
-    </div>
-    <div class="info">
-        <span class="date">
-            <span class="icon">
-                <svg class="fa-icon"><use xlink:href="#calendar-solid"></use></svg>
-            </span>
-            2022/6/8
+                         
+<div class="categories-tags">
+    
+    <div class="all-s">
+        
+        
+        <span>
+            <a href="/categories/项目总结/" style="background: linear-gradient(120deg, #9abbf7 0%, #ffbbf4 100%)">
+                <span class="icon">
+                    <svg class="fa-icon"><use xlink:href="#bookmark-solid"></use></svg>
+                </span>
+                项目总结
+            </a>
         </span>
         
+    </div>
+    <div id="archives">
         
-        <span class="tags">
-            <span class="icon">
-                <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
-            </span>
-            
-            <span class="tag">
-                
-                <a href="/tags/vue" style="color: #03a9f4">
-                    vue
+        <div class="timeline">
+            <div class="timeline-tail"></div>
+            <div class="timeline-content">
+                <div class="item-time">2022/7/8</div>
+                <a href="/2022/07/08/鼠标相关的一些事件/">
+                    <h3>鼠标相关的一些事件</h3>
                 </a>
-            </span>
-            
-        </span>
+                <div class="info">
+                    
+                    <span class="category">
+                        <a href="/categories/项目总结">
+                            <span class="icon">
+                                <svg class="fa-icon"><use xlink:href="#bookmark-solid"></use></svg>
+                            </span>
+                            项目总结
+                        </a>
+                    </span>
+                    
+                    
+                    <span class="tags">
+                        <span class="icon">
+                            <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
+                        </span>
+                        
+                        <span class="tag">
+                            
+                            <a href="/tags/鼠标事件" style="color: #03a9f4">
+                                鼠标事件
+                            </a>
+                        </span>
+                        
+                    </span>
+                    
+                </div>
+            </div>
+        </div>
         
     </div>
-    <div class="content" v-pre>
-        <h3 id="vue组件通信-子传父"><a href="#vue组件通信-子传父" class="headerlink" title="vue组件通信-子传父"></a>vue组件通信-子传父</h3><p>1.使用场景：A是父组件，B是子组件，子组件B想给父组件A传数据，那么就需要在父组件A中给子组件B绑定自定义事件（事件的回调在父组件A中）</p>
-<p>2.绑定自定义事件：</p>
-<p>1.第一种方式：在父组件中 </p>
-<pre><code>&lt;Demo  @peiqi=&quot;test&quot;/&gt;或&lt;Demo  v-on:peiqi=&quot;test&quot;/&gt;
-</code></pre>
-<p>子组件中触发自定义事件</p>
-<pre><code>this.$emit(&#39;peiqi&#39;,数据)
-</code></pre>
-<p>2.第二种方式：在父组件中</p>
-<pre><code>&lt;Demo ref=&quot;demo&quot;  /&gt;
-
-mounted()&#123;
-    this.$refs.demo.$on(&#39;peiqi&#39;,this.test)
-&#125;
-</code></pre>
-<p>3.如果想要自定义事件只触发一次，可以使用once修饰符，或者$once方法</p>
-<p>4.解绑自定义事件：this.$off(‘peiqi’)</p>
-<p>5.组件上也可以绑定原生DOM事件，需要使用native修饰符</p>
-<ol start="6">
-<li></li>
-</ol>
-<pre><code>通过this.$refs.xxx.$on(&#39;peiqi&#39;,回调)绑定自定义事件时，回调要么配置在methods中，要么用箭头函数，否则会出现this指向问题
-</code></pre>
-
-    </div>
-    
-    <link rel="stylesheet" href="https://cdn.staticfile.org/gitalk/1.7.2/gitalk.min.css">
-    <div id="comment">
-        <div id="gitalk-container">
-        </div>
-    </div>
-    
 </div>
                          
 <footer id="footer">
@@ -207,23 +201,6 @@ mounted()&#123;
         <script src="/js/particlex.js"></script>
         <script src="/js/showimg.js"></script>
         
-<script src="https://cdn.staticfile.org/gitalk/1.7.2/gitalk.min.js"></script>
-<script>
-    var clientID = "", clientSecret = "";
-    
-    const gitalk = new Gitalk({
-        clientID: clientID,
-        clientSecret: clientSecret,
-        repo: "",
-        owner: "",
-        admin: [""],
-        language: "zh-CN",
-        id: location.pathname,
-        distractionFreeMode: true
-    })
-    gitalk.render("gitalk-container")
-</script>
-
 
     </body>
 </html>
