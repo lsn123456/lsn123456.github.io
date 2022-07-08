@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0">
-        <title>Vue组件通信 | Mynote</title>
+        <title>深度选择器 | Mynote</title>
         <meta name="author" content="参商">
         <meta name="description" content="个人笔记">
         <meta name="keywords" content="love&peace">
@@ -120,70 +120,20 @@
                         
 <div class="article">
     <div>
-        <h1>Vue组件通信 </h1>
+        <h1>深度选择器 </h1>
     </div>
     <div class="info">
         <span class="date">
             <span class="icon">
                 <svg class="fa-icon"><use xlink:href="#calendar-solid"></use></svg>
             </span>
-            2022/5/26
+            2022/7/8
         </span>
         
-        
-        <span class="tags">
-            <span class="icon">
-                <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
-            </span>
-            
-            <span class="tag">
-                
-                <a href="/tags/vue" style="color: #00a596">
-                    vue
-                </a>
-            </span>
-            
-        </span>
         
     </div>
     <div class="content" v-pre>
-        <h3 id="1-父传子（props）"><a href="#1-父传子（props）" class="headerlink" title="1.父传子（props）"></a>1.父传子（props）</h3><p>功能：让组件接收外部传过来的数据</p>
-<p>（1）传递数据（父组件）：</p>
-<pre><code>           &lt;Demo  name=&quot;xxx&quot;/&gt; 或   &lt;Demo  :age=&quot;xxx&quot;/&gt; 
-           直接传是字符串，如name,通过绑定传递的是js表达式，如果绑定了变量，需要再data中声明
-</code></pre>
-<p>(2)  接收数据（子组件）：</p>
-<pre><code>第一种（只接收）：props:[&#39;name&#39;,&#39;age&#39;]
-第二种（限制类型）：
-               props:&#123;
-                   name:String，
-                   age:Number
-               &#125;
-第三种（限制类型、限制必要性、指定默认值）： 通常required和default不会同时出现
-               props:&#123;
-                   name:&#123;
-                       type:String,//类型
-                       required:true//是否必须传值
-                   &#125;,
-                   age:&#123;
-                       type:Number,
-                       default:18  //父组件未传值时使用，指定默认值
-                   &#125;
-               &#125;
-注意:通过props接收的变量是只读的，不可以直接修改，如果进行了修改，就会发出警告
-    如果确实需要修改，那么请复制props中的内容到data中一份，然后修改data中的数据
-              data()&#123;
-                  return&#123;
-                  myage:this.age//props中的变量先出现，data中后出现，可在这里使用props中的数据进行复制                 
-                  &#125;，
-                  methods:&#123;
-                      updateage()&#123;
-                          this.myage++//修改时修改data中的数据
-                      &#125;
-                  &#125;
-              &#125;
-</code></pre>
-
+        
     </div>
     
     <link rel="stylesheet" href="https://cdn.staticfile.org/gitalk/1.7.2/gitalk.min.css">
