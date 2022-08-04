@@ -236,7 +236,7 @@
         
         <span class="tag">
             
-            <a href="/tags/js" style="color: #ff7d73">
+            <a href="/tags/js" style="color: #03a9f4">
                 js
             </a>
         </span>
@@ -310,6 +310,276 @@
         
     </div>
     <a href="/2022/08/03/js数据类型/" class="go-post">
+        阅读全文
+    </a>
+</div>
+
+<div class="post">
+    <a href="/2022/08/01/vue-router/">
+        <h2>
+            Vue-Router
+        </h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="date">
+            <span class="icon">
+                <svg class="fa-icon"><use xlink:href="#calendar-solid"></use></svg>
+            </span>
+            2022/8/1
+        </span>
+    </div>
+    <div class="excerpt">
+        <div class="content" v-pre>
+            
+            <p><strong>路由：</strong></p>
+<p>1.理解：一个路由(route)就是一组映射关系(key-value)，多个路由需要路由器(router进行管理)。</p>
+<p>2.前端路由：key是路径，value是组件。</p>
+<p><strong>基本使用</strong></p>
+<p>1.安装vue-router,命令：npm i vue-router@3（vue2中使用）</p>
+<p>2.应用插件:在main.js中引入并应用</p>
+<p><code>import VueRouter from &#39;vue-router&#39;</code></p>
+<p><code>Vue.use(VueRouter)</code></p>
+<p><strong>编写router配置项</strong></p>
+<pre><code>//引入VueRouter
+
+import VueRout from &#39;vue-router&#39;
+
+//引入组件
+
+import About from &#39;xxx&#39;
+
+import Home from &#39;xxx&#39;
+
+//创建router实例对象，去管理一组一组的路由规则
+
+const router=new VueRouter(&#123;
+
+routes:[
+
+&#123;
+
+path:&#39;/about&#39;,
+
+component:About
+
+&#125;,
+
+&#123;
+
+path:&#39;/home&#39;,
+
+component:Home
+
+&#125;
+
+]
+
+&#125;)
+export default router
+</code></pre>
+<p>或</p>
+<pre><code>const router=new VueRouter(&#123;
+
+routes:[
+
+&#123;
+
+path:&#39;/about&#39;,
+
+component:()=&gt;imoort (&#39;@/views/xxx&#39;)
+
+&#125;,
+
+&#123;
+
+path:&#39;/home&#39;,
+
+component:()=&gt;imoort (&#39;@/views/xxx&#39;)
+
+&#125;
+
+]
+
+&#125;)
+export default router
+</code></pre>
+<p><strong>切换(ative-class可配置高亮样式)</strong></p>
+<p><code>&lt;router-link active-class=&quot;active&quot; to=&quot;/about&quot;&gt;about&lt;/router-link/&gt;</code></p>
+<p><strong>指定展示位置</strong></p>
+<p><code>&lt;router-view&gt;&lt;/router-link&gt;</code></p>
+<p><strong>注意：</strong></p>
+<p>1.路由组件通常存放在<code>pages</code>文件夹，一般组件通常存放在<code>components</code>文件夹</p>
+<p>2.通过切换，”隐藏”了的路由组件，默认是被销毁掉的，需要的时候再去挂载</p>
+<p>3.每个组件都有自己的<code>$route</code>属性，里面存储着自己的路由信息</p>
+<p>4.整个应用只有一个router，可以通过组建的<code>$route</code>r属性获取到</p>
+<p><strong>多级路由(嵌套路由)</strong></p>
+<pre><code>import Messag from &#39;xxx&#39;
+import News from &#39;xxx&#39;
+const router=new VueRouter(&#123;
+
+routes:[
+
+&#123;
+
+path:&#39;/home&#39;,
+
+component:Home，
+children:[
+    &#123;
+        path:&#39;news&#39;,//子路由的path中无需/
+        component:News
+    &#125;,
+     &#123;
+        path:&#39;message&#39;,
+        component:Message
+    &#125;
+]
+
+&#125;
+
+]
+
+&#125;)
+export default router
+</code></pre>
+<pre><code>&lt;router-link active-class=&quot;active&quot; to=&quot;/home/news&quot;&gt;news&lt;/router-link/&gt;//跳转时路径为完整路径（需带着父组件的路径）
+</code></pre>
+<p><strong>路由的query参数</strong></p>
+<p>1.传递参数</p>
+<pre><code>&lt;router-link :to=&quot;`/home/message/detail?id=$&#123;item.id&#125;&amp;title=$&#123;item.title&#125;`&quot;跳转&lt;/router-link&gt;
+&lt;router-link :to=&quot;&#123;
+    path:&#39;/home/message/detail&#39;,
+    query:&#123;
+        id:item.id,
+        title:item.title
+    &#125;
+&#125;&quot;跳转&lt;/router-link&gt;
+</code></pre>
+<p>2.接收参数</p>
+<pre><code>this.$route.query.id
+this.$route.query.title
+</code></pre>
+<p><strong>命名路由</strong></p>
+<p>1.作用：简化路由的跳转</p>
+<p>2.使用</p>
+<pre><code>1.给路由命名
+
+&#123;
+
+path:&#39;/home&#39;,
+
+component:Home，
+children:[
+     &#123;
+        path:&#39;news&#39;,
+        component:News
+    &#125;，
+    children:[
+        &#123;
+             name:&#39;xiangqing&#39;,
+             path:&#39;detail&#39;,
+             component:Detail
+        &#125;
+    ]
+]
+
+&#125;
+
+]
+2.简化跳转
+//简化前
+&lt;router-link to=&quot;/home/news/detail&quot;&gt;跳转&lt;/router-link&gt;
+//简化后
+&lt;router-link :to=&quot;&#123;name:&#39;xiangqing&#39;,query:&#123;id:item.id,title,item.title&#125;&#125;&quot;&gt;跳转&lt;/router-link&gt;
+</code></pre>
+<p><strong>路由的params参数</strong></p>
+<p>1.配置路由，声明接受params参数</p>
+<pre><code>&#123;
+ path:&#39;/home&#39;,
+ component:Home，
+ children:[
+     &#123;
+        path:&#39;news&#39;,
+        component:News,
+        children:&#123;
+             name:&#39;xiangqing&#39;,
+             path:&#39;detail/:id/:title&#39;,//使用占位符声明接受params参数
+             component:Detail
+        &#125;
+     &#125;
+ ]
+&#125;
+</code></pre>
+<p>2.传递参数</p>
+<pre><code>//跳转并携带params参数，to的字符串写法
+&lt;router-link :to=&quot;/home/message/detail/001/你好&quot;&gt;跳转&lt;/router-link&gt;
+//跳转并携带params参数，to的对象写法
+&lt;router-link
+:to=&quot;&#123;
+    name:&#39;xiangqing&#39;,
+    params:&#123;
+        id:001,
+        title:&#39;你好&#39;
+    &#125;
+&#125;&quot;
+//使用对象写法时，不能使用path配置项，必须使用name配置
+</code></pre>
+<p>3.接收参数</p>
+<pre><code>this.$route.params.id
+this.$route.params.title
+</code></pre>
+<p><strong>使用props接收路由参数</strong></p>
+<pre><code>&#123;
+ path:&#39;/home&#39;,
+ component:Home，
+ children:[
+     &#123;
+        path:&#39;news&#39;,
+        component:News,
+        children:&#123;
+             name:&#39;xiangqing&#39;,
+             path:&#39;detail/:id/:title&#39;,//使用占位符声明接受params参数
+             component:Detail,
+             props:&#123;a:1,b:&#39;hello&#39;&#125;//props的第一种写法，值为对象，该对象中的所有key-value都会以props的形式传给Detail组件，不过数值是死的，固定为a:1,b:&#39;hello&#39;
+             props:true,//props的第二种写法，值为布尔值，若其为真，则会把该路由组件接收到的所有params参数，以props的形式传给Detail组件
+             props($route)&#123;
+                 return &#123;id:$route.query.id,title:$route.query.title&#125;//props的第三种写法，值为函数
+             &#125;或解构赋值为
+                props(&#123;$route&#125;)&#123;
+                 return &#123;id:query.id,title:query.title&#125;//props的第三种写法，值为函数
+             &#125;
+            
+        &#125;
+     &#125;
+ ]
+&#125;
+
+接收：
+props:[&#39;a&#39;,&#39;b&#39;]
+props:[&#39;id&#39;,&#39;title&#39;]
+props:[&#39;id&#39;,&#39;title&#39;]
+</code></pre>
+
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        <span class="icon">
+            <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
+        </span>
+        
+        
+        <span class="tag">
+            
+            <a href="/tags/vue" style="color: #00bcd4">
+                vue
+            </a>
+        </span>
+        
+    </div>
+    <a href="/2022/08/01/vue-router/" class="go-post">
         阅读全文
     </a>
 </div>
@@ -625,7 +895,7 @@
         
         <span class="tag">
             
-            <a href="/tags/鼠标事件" style="color: #00a596">
+            <a href="/tags/鼠标事件" style="color: #00bcd4">
                 鼠标事件
             </a>
         </span>
@@ -771,7 +1041,7 @@ title: &#123;
         
         <span class="tag">
             
-            <a href="/tags/echarts" style="color: #ff7d73">
+            <a href="/tags/echarts" style="color: #00bcd4">
                 echarts
             </a>
         </span>
@@ -913,128 +1183,13 @@ export default new Vuex.store(&#123;
         
         <span class="tag">
             
-            <a href="/tags/vue" style="color: #03a9f4">
+            <a href="/tags/vue" style="color: #00a596">
                 vue
             </a>
         </span>
         
     </div>
     <a href="/2022/06/13/Vuex/" class="go-post">
-        阅读全文
-    </a>
-</div>
-
-<div class="post">
-    <a href="/2022/06/10/vue插槽/">
-        <h2>
-            Vue插槽
-        </h2>
-    </a>
-    <div class="category-and-date">
-        
-        <span class="date">
-            <span class="icon">
-                <svg class="fa-icon"><use xlink:href="#calendar-solid"></use></svg>
-            </span>
-            2022/6/10
-        </span>
-    </div>
-    <div class="excerpt">
-        <div class="content" v-pre>
-            
-            <h3 id="插槽"><a href="#插槽" class="headerlink" title="插槽"></a>插槽</h3><p>1.作用：让父组件可以向子组件指定位置插入html结构，也是一种组件间通信的方式，适用于<strong>父组件&#x3D;&#x3D;&#x3D;》子组件</strong></p>
-<p>2.分类：默认插槽、具名插槽、作用域插槽</p>
-<p>3.默认插槽</p>
-<pre><code>父组件中：
-&lt;Category&gt;
-     &lt;div&gt;html结构&lt;/div&gt;
-&lt;/Category&gt;
-
-子组件中：
-&lt;div&gt;
-     &lt;slot&gt;插槽默认内容，如果父组件给插槽传递数据，则展示传递的html结构，否则展示默认内容&lt;/slot&gt;
-&lt;/div&gt;
-</code></pre>
-<p>4.具名插槽：</p>
-<pre><code>父组件中：
-&lt;Category&gt;
-     &lt;div slot=&quot;center&quot;&gt;   指定插槽的名称
-          &lt;div&gt;html结构&lt;/div&gt;
-     &lt;/div&gt;
-      &lt;template v-slot:footer&gt;  指定插槽的名称，但v-slot:footer只能使用在template标签上
-          &lt;div&gt;html结构&lt;/div&gt;    使用template标签，解析时该标签不会出现在html结构中
-     &lt;/template&gt;
-      &lt;template slot=&quot;footer&quot;&gt;  template也可以直接使用slot=&quot;footer&quot;，两种方式皆可
-          &lt;div&gt;html结构&lt;/div&gt;    可以往footer插槽多次指定内容
-     &lt;/template&gt;
-&lt;/Category&gt;
-
-子组件中：
-&lt;template&gt;
-     &lt;div&gt;
-          &lt;slot name=&quot;center&quot;&gt;插槽默认内容&lt;/slot&gt;
-          &lt;slot name=&quot;footer&quot;&gt;插槽默认内容&lt;/slot&gt;
-     &lt;/div&gt;
-&lt;/template&gt;
-</code></pre>
-<p>5.作用域插槽：</p>
-<p>理解：数据在子组件自身，但根据数据生成的结构需要父组件来决定（比如games数据在category组件中，但使用数据遍历出来的结构由父组件App决定）</p>
-<pre><code>父组件中：
-&lt;Category&gt;
-     &lt;template scope=&quot;scopeData&quot;&gt;   用scope接收子组件传递过来的数据   
-           &lt;ul&gt;
-              &lt;li v-for=&quot;g in scopeData.games&quot; :key=&quot;g&quot;&gt;&#123;&#123;g&#125;&#125;&lt;/li&gt;
-           &lt;/ul&gt;
-     &lt;/template&gt;
-&lt;/Category&gt;
-&lt;Category&gt;
-     &lt;template scope=&quot;&#123;games&#125;&quot;&gt;   
-           &lt;ol&gt;
-              &lt;li v-for=&quot;g in games&quot; :key=&quot;g&quot;&gt;&#123;&#123;g&#125;&#125;&lt;/li&gt;
-           &lt;/ol&gt;
-     &lt;/template&gt;
-&lt;/Category&gt;
-&lt;Category&gt;
-     &lt;template slot-scope=&quot;&#123;games&#125;&quot;&gt;  scope与slot-scope均可用来接收数据，使用方法相同 
-              &lt;h3 v-for=&quot;g in games&quot; :key=&quot;g&quot;&gt;&#123;&#123;g&#125;&#125;&lt;/h3&gt;
-     &lt;/template&gt;
-&lt;/Category&gt;
-
-子组件中：
-&lt;template&gt;
-     &lt;div&gt;
-          &lt;slot :games=&quot;games&quot;&gt;插槽默认内容&lt;/slot&gt; 通过：games=&quot;games&quot;给父组件传递数据，这里也可                                                                       以使用具名插槽，不冲突
-     &lt;/div&gt;
-&lt;/template&gt;
-
-export default&#123;
-    data()&#123;
-        return&#123;
-            games:[&#39;1&#39;,&#39;2&#39;,&#39;3&#39;]
-        &#125;
-    &#125;
-&#125;
-</code></pre>
-
-            
-        </div>
-    </div>
-    <div class="post-tags">
-        
-        <span class="icon">
-            <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
-        </span>
-        
-        
-        <span class="tag">
-            
-            <a href="/tags/vue" style="color: #ffa2c4">
-                vue
-            </a>
-        </span>
-        
-    </div>
-    <a href="/2022/06/10/vue插槽/" class="go-post">
         阅读全文
     </a>
 </div>
