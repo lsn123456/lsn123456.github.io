@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0">
-        <title>Tags: 鼠标事件 | Mynote</title>
+        <title>Iconfont的使用 | Mynote</title>
         <meta name="author" content="参商">
         <meta name="description" content="个人笔记">
         <meta name="keywords" content="love&peace">
@@ -117,122 +117,67 @@
 </nav>
                     </div>
                     <div id="main">
-                         
-<div class="categories-tags">
-    
-    <div class="all-s">
-        
-        
-        <span>
-            <a href="/tags/vue/" style="background: #ffa2c4">
-                <span class="icon">
-                    <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
-                </span>
-                vue
-            </a>
-        </span>
-        
-        
-        <span>
-            <a href="/tags/echarts/" style="background: #03a9f4">
-                <span class="icon">
-                    <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
-                </span>
-                echarts
-            </a>
-        </span>
-        
-        
-        <span>
-            <a href="/tags/js/" style="background: #ffa2c4">
-                <span class="icon">
-                    <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
-                </span>
-                js
-            </a>
-        </span>
-        
-        
-        <span>
-            <a href="/tags/markdown/" style="background: #ffa2c4">
-                <span class="icon">
-                    <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
-                </span>
-                markdown
-            </a>
-        </span>
-        
-        
-        <span>
-            <a href="/tags/html/" style="background: #ff7d73">
-                <span class="icon">
-                    <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
-                </span>
-                html
-            </a>
-        </span>
-        
-        
-        <span>
-            <a href="/tags/css/" style="background: #03a9f4">
-                <span class="icon">
-                    <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
-                </span>
-                css
-            </a>
-        </span>
-        
-        
-        <span>
-            <a href="/tags/鼠标事件/" style="background: linear-gradient(120deg, #9abbf7 0%, #ffbbf4 100%)">
-                <span class="icon">
-                    <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
-                </span>
-                鼠标事件
-            </a>
-        </span>
-        
+                        
+<div class="article">
+    <div>
+        <h1>Iconfont的使用 </h1>
     </div>
-    <div id="archives">
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <svg class="fa-icon"><use xlink:href="#calendar-solid"></use></svg>
+            </span>
+            2022/8/10
+        </span>
         
-        <div class="timeline">
-            <div class="timeline-tail"></div>
-            <div class="timeline-content">
-                <div class="item-time">2022/7/8</div>
-                <a href="/2022/07/08/鼠标相关的一些事件/">
-                    <h3>鼠标相关的一些事件</h3>
+        
+        <span class="tags">
+            <span class="icon">
+                <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/tags/css" style="color: #ffa2c4">
+                    css
                 </a>
-                <div class="info">
-                    
-                    <span class="category">
-                        <a href="/categories/bid项目总结">
-                            <span class="icon">
-                                <svg class="fa-icon"><use xlink:href="#bookmark-solid"></use></svg>
-                            </span>
-                            bid项目总结
-                        </a>
-                    </span>
-                    
-                    
-                    <span class="tags">
-                        <span class="icon">
-                            <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
-                        </span>
-                        
-                        <span class="tag">
-                            
-                            <a href="/tags/鼠标事件" style="color: #ff7d73">
-                                鼠标事件
-                            </a>
-                        </span>
-                        
-                    </span>
-                    
-                </div>
-            </div>
-        </div>
+            </span>
+            
+        </span>
         
     </div>
+    <div class="content" v-pre>
+        <p><strong>1.Symbol-在线使用</strong></p>
+<p><img src="/2022/08/10/iconfont%E7%9A%84%E4%BD%BF%E7%94%A8/step1.png"></p>
+<p><strong>2.选择Symbol方式引入，复制链接，然后在index.html文件中引入</strong></p>
+<p><img src="/2022/08/10/iconfont%E7%9A%84%E4%BD%BF%E7%94%A8/step2.png"></p>
+<pre><code>&lt;script src=&quot;https://at.alicdn.com/t/c/font_3572742_w51elmyzq3.js&quot;&gt;&lt;/script&gt;
+</code></pre>
+<p><strong>3.加入通用css代码（引入一次即可）</strong></p>
+<p><img src="/2022/08/10/iconfont%E7%9A%84%E4%BD%BF%E7%94%A8/step3.png"></p>
+<pre><code>.icon &#123;
+  width: 1em;
+  height: 1em;
+  overflow: hidden;
+  vertical-align: -0.15em;
+  fill: currentColor;
+&#125;
+</code></pre>
+<p>我放在了全局通用css文件里</p>
+<p><strong>4.使用：挑选相应图标并获取类名，应用于页面</strong></p>
+<pre><code>&lt;svg class=&quot;icon&quot; aria-hidden=&quot;true&quot;&gt;
+    &lt;use xlink:href=&quot;#icon-xxx&quot;&gt;&lt;/use&gt;
+&lt;/svg&gt;
+</code></pre>
+
+    </div>
+    
+    <link rel="stylesheet" href="https://cdn.staticfile.org/gitalk/1.7.2/gitalk.min.css">
+    <div id="comment">
+        <div id="gitalk-container">
+        </div>
+    </div>
+    
 </div>
                          
 <footer id="footer">
@@ -261,6 +206,23 @@
         <script src="/js/particlex.js"></script>
         <script src="/js/showimg.js"></script>
         
+<script src="https://cdn.staticfile.org/gitalk/1.7.2/gitalk.min.js"></script>
+<script>
+    var clientID = "", clientSecret = "";
+    
+    const gitalk = new Gitalk({
+        clientID: clientID,
+        clientSecret: clientSecret,
+        repo: "",
+        owner: "",
+        admin: [""],
+        language: "zh-CN",
+        id: location.pathname,
+        distractionFreeMode: true
+    })
+    gitalk.render("gitalk-container")
+</script>
+
 
     </body>
 </html>

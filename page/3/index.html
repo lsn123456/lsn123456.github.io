@@ -142,6 +142,148 @@
             
 
 <div class="post">
+    <a href="/2022/05/26/vue插件/">
+        <h2>
+            Vue插件
+        </h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="date">
+            <span class="icon">
+                <svg class="fa-icon"><use xlink:href="#calendar-solid"></use></svg>
+            </span>
+            2022/5/26
+        </span>
+    </div>
+    <div class="excerpt">
+        <div class="content" v-pre>
+            
+            <p>功能：用于增强Vue</p>
+<p>本质：包含install方法的一个对象，install的第一个参数是Vue，第二个以后的参数是插件使用者传递的数据。</p>
+<pre><code>定义：在main.js同级目录下定义一个插件文件plugins.js
+
+export default&#123;
+    install(Vue，options)&#123;
+        //使用全局过滤器
+        Vue.filter()&#123;&#125;
+        
+        //定义全局指令
+        Vue.directive(&#39;&#39;,&#123;&#125;)
+        
+        //定义全局混入
+        Vue.mixin(&#123;&#125;)
+        
+        //给vue原型上添加一个方法
+        Vue.prototype.方法名=()=&gt;&#123;&#125;
+    &#125;
+&#125;
+
+引入：在main.js中引入，需要在new Vue实例前引入
+import Plugins from &#39;xxxx&#39;
+
+使用：
+Vue.use(plugins)
+</code></pre>
+
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        <span class="icon">
+            <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
+        </span>
+        
+        
+        <span class="tag">
+            
+            <a href="/tags/vue" style="color: #00a596">
+                vue
+            </a>
+        </span>
+        
+    </div>
+    <a href="/2022/05/26/vue插件/" class="go-post">
+        阅读全文
+    </a>
+</div>
+
+<div class="post">
+    <a href="/2022/05/26/mixin混入（混合）/">
+        <h2>
+            Mixin混入（混合）
+        </h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="date">
+            <span class="icon">
+                <svg class="fa-icon"><use xlink:href="#calendar-solid"></use></svg>
+            </span>
+            2022/5/26
+        </span>
+    </div>
+    <div class="excerpt">
+        <div class="content" v-pre>
+            
+            <p>mixin(混入)：</p>
+<p>功能：可以把多个组件共用的配置提取成一个混入对象</p>
+<p>使用方式：</p>
+<pre><code>第一步定义混合：在main.js同级目录下定义一个mixin.js文件，然后定义混合的数据或方法
+
+组件中的data,methods,mounted,computed等都可以在这里配置，data,methods这些，如果组件中定义了，混入的不再使用，使用组件自己的，但是生命周期钩子函数，组件和混入的都会使用
+
+export const mixin =&#123;
+   data()&#123;
+    return&#123;       
+    &#125;
+    &#125;,
+    methods:&#123;&#125;,
+    mounted()&#123;&#125;
+&#125;
+export const mixin2=&#123;&#125;
+
+
+第二步使用混入:
+import &#123;mixin,mixin2&#125;form &#39;xxx&#39;
+export default&#123;
+    data()&#123;&#125;,
+    mixins:[mixin，mixin2]
+&#125;
+</code></pre>
+<p>全局混入：</p>
+<pre><code>在main.js中设置，然后所有组件均可以使用混入的方法、数据等
+
+import &#123;mixin,mixin2&#125;form &#39;xxx&#39;
+Vue.mixin(mixin)
+Vue.mixin(mixin2)
+</code></pre>
+
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        <span class="icon">
+            <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
+        </span>
+        
+        
+        <span class="tag">
+            
+            <a href="/tags/vue" style="color: #ff7d73">
+                vue
+            </a>
+        </span>
+        
+    </div>
+    <a href="/2022/05/26/mixin混入（混合）/" class="go-post">
+        阅读全文
+    </a>
+</div>
+
+<div class="post">
     <a href="/2022/05/26/vue组件通信/">
         <h2>
             Vue组件通信
@@ -208,7 +350,7 @@
         
         <span class="tag">
             
-            <a href="/tags/vue" style="color: #00bcd4">
+            <a href="/tags/vue" style="color: #03a9f4">
                 vue
             </a>
         </span>
@@ -308,7 +450,7 @@ render:h=&gt;h(App)
         
         <span class="tag">
             
-            <a href="/tags/vue" style="color: #00a596">
+            <a href="/tags/vue" style="color: #ff7d73">
                 vue
             </a>
         </span>
@@ -407,7 +549,7 @@ function Home(props) &#123;
         
         <span class="tag">
             
-            <a href="/tags/echarts" style="color: #03a9f4">
+            <a href="/tags/echarts" style="color: #ff7d73">
                 echarts
             </a>
         </span>
@@ -495,7 +637,7 @@ function Home(props) &#123;
         
         <span class="tag">
             
-            <a href="/tags/vue" style="color: #03a9f4">
+            <a href="/tags/vue" style="color: #ffa2c4">
                 vue
             </a>
         </span>
@@ -552,7 +694,7 @@ function Home(props) &#123;
         
         <span class="tag">
             
-            <a href="/tags/vue" style="color: #ff7d73">
+            <a href="/tags/vue" style="color: #03a9f4">
                 vue
             </a>
         </span>
@@ -692,175 +834,13 @@ function Home(props) &#123;
         
         <span class="tag">
             
-            <a href="/tags/vue" style="color: #ffa2c4">
-                vue
-            </a>
-        </span>
-        
-    </div>
-    <a href="/2022/05/17/vue中的一些指令/" class="go-post">
-        阅读全文
-    </a>
-</div>
-
-<div class="post">
-    <a href="/2022/05/17/vue过滤器的使用/">
-        <h2>
-            Vue过滤器的使用
-        </h2>
-    </a>
-    <div class="category-and-date">
-        
-        <span class="date">
-            <span class="icon">
-                <svg class="fa-icon"><use xlink:href="#calendar-solid"></use></svg>
-            </span>
-            2022/5/17
-        </span>
-    </div>
-    <div class="excerpt">
-        <div class="content" v-pre>
-            
-            <p>过滤器：</p>
-<p>定义：对要显示的数据进行特定格式化后再显示（适用于一些简单逻辑的处理）</p>
-<p>语法：</p>
-<p>​         1.注册过滤器：</p>
-<pre><code>Vue.filter(name,callback)或new Vue(filter())
-</code></pre>
-<p>​          2.使用过滤器：</p>
-<pre><code>&#123;&#123;xxx|过滤器名&#125;&#125;或v-bind:属性=&quot;xxx|过滤器名&quot;
-</code></pre>
-<p>备注：</p>
-<p>​          1.过滤器也可以接受额外参数，多个过滤器也可以串联</p>
-<p>​          2.过滤器并没有改变原本的数据，是产生新的对应的数据</p>
-<pre><code>   &lt;script src=&quot;https://cdn.bootcdn.net/ajax/libs/dayjs/1.10.4/dayjs.min.js&quot;&gt;&lt;/script&gt;
-   
-        &lt;h2&gt;计算属性当前时间为：&#123;&#123;filTime&#125;&#125;&lt;/h2&gt;
-        &lt;h2&gt;使用methods时间为：&#123;&#123;getformat()&#125;&#125;&lt;/h2&gt;
-        &lt;!--过滤器：将time当作参数传给dateformat --&gt;
-        &lt;h2&gt;局部过滤器时间：&#123;&#123;time|dateformat&#125;&#125;&lt;/h2&gt;
-        &lt;h2&gt;传递两个参数&#123;&#123;time|dateformat2('YYYY-MM-DD')&#125;&#125;&lt;/h2&gt;
-        &lt;h2&gt;使用默认参数，不传参&#123;&#123;time|dateformat3&#125;&#125;&lt;/h2&gt;
-        &lt;h2&gt;使用默认参数，传参&#123;&#123;time|dateformat3('YYYY-MM-DD')&#125;&#125;&lt;/h2&gt;
-        &lt;!-- 多个过滤器：将time当作参数传给format,然后将结果当作参数传给formatYear --&gt;
-        &lt;h2&gt;多个过滤器：&#123;&#123;time|dateformat|formatYear&#125;&#125;&lt;/h2&gt;
-        &lt;div :x=&quot;time|dateformat&quot;&gt;通过v-bind使用,标签会多一个属性x,x的值是当前时间&lt;/div&gt;
-        &lt;!-- 全局过滤器 --&gt;
-        &lt;h2&gt;全局过滤器时间：&#123;&#123;time|fMTtime&#125;&#125;&lt;/h2&gt;
-           Vue.filter(&#39;fMTtime&#39;, function (val) &#123;
-            return dayjs(val).format(&#39;YYYY MM DD HH:mm:ss&#39;)
-        &#125;)
-        const vm = new Vue(&#123;
-            el: &#39;#root&#39;,
-            filters: &#123;
-                //局部过滤器，会将time当作参数传给dateformat
-                dateformat(val) &#123;
-                    return dayjs(val).format(&#39;YYYY-MM-DD HH:mm:ss&#39;)
-                &#125;,
-                dateformat2(val, str) &#123;
-                    return dayjs(val).format(str)
-                &#125;,
-                dateformat3(val, str = &#39;YYYY-MM-DD HH:mm:ss&#39;) &#123;
-                    return dayjs(val).format(str)
-                &#125;,
-                formatYear(val) &#123;
-                    return val.slice(0, 4)
-                &#125;
-
-            &#125;,
-            data() &#123;
-                return &#123;
-                    time: 1652787801974
-                &#125;
-            &#125;,
-            computed: &#123;
-                filTime() &#123;
-                    return dayjs(this.time).format(&#39;YYYY-MM-DD HH:mm:ss&#39;)
-                &#125;
-            &#125;,
-            methods: &#123;
-                getformat() &#123;
-                    return dayjs(this.time).format(&#39;YYYY-MM-DD HH:mm:ss&#39;)
-                &#125;
-
-            &#125;,
-
-        &#125;)
-</code></pre>
-<p><img src="/2022/05/17/vue%E8%BF%87%E6%BB%A4%E5%99%A8%E7%9A%84%E4%BD%BF%E7%94%A8/filters.png"></p>
-
-            
-        </div>
-    </div>
-    <div class="post-tags">
-        
-        <span class="icon">
-            <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
-        </span>
-        
-        
-        <span class="tag">
-            
-            <a href="/tags/vue" style="color: #ffa2c4">
-                vue
-            </a>
-        </span>
-        
-    </div>
-    <a href="/2022/05/17/vue过滤器的使用/" class="go-post">
-        阅读全文
-    </a>
-</div>
-
-<div class="post">
-    <a href="/2022/05/17/收集表单数据/">
-        <h2>
-            收集表单数据
-        </h2>
-    </a>
-    <div class="category-and-date">
-        
-        <span class="date">
-            <span class="icon">
-                <svg class="fa-icon"><use xlink:href="#calendar-solid"></use></svg>
-            </span>
-            2022/5/17
-        </span>
-    </div>
-    <div class="excerpt">
-        <div class="content" v-pre>
-            
-            <p>收集表单数据：</p>
-<p>若：&lt; input type&#x3D;”text” &#x2F;&gt;,则 v-model收集的是value值，用户输入的就是value值</p>
-<p>若：&lt; input type&#x3D;”radio” &#x2F;&gt;,则 v-model收集的是value值，且要给标签配置value值</p>
-<p>若：&lt; input type&#x3D;”checkbox” &#x2F;&gt;</p>
-<p>  1.没有配置Input的value属性：</p>
-<p>​                     v-model的初始值是非数组，那么收集的就是checked（勾选或未勾选，是布尔值）</p>
-<p>​                      v-model的初始值是数组，那么收集的就是value组成的数组</p>
-<p>v-model的三个修饰符：</p>
-<p>​                   lazy:失去焦点再收集数据</p>
-<p>​                   number：输入字符串转为有效数字，input的type最好同样改为number</p>
-<p>​                   trim:输入首位空格过滤</p>
-
-            
-        </div>
-    </div>
-    <div class="post-tags">
-        
-        <span class="icon">
-            <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
-        </span>
-        
-        
-        <span class="tag">
-            
             <a href="/tags/vue" style="color: #ff7d73">
                 vue
             </a>
         </span>
         
     </div>
-    <a href="/2022/05/17/收集表单数据/" class="go-post">
+    <a href="/2022/05/17/vue中的一些指令/" class="go-post">
         阅读全文
     </a>
 </div>
