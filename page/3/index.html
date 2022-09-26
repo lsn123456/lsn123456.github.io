@@ -142,6 +142,62 @@
             
 
 <div class="post">
+    <a href="/2022/06/07/浏览器的本地存储/">
+        <h2>
+            浏览器的本地存储
+        </h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="date">
+            <span class="icon">
+                <svg class="fa-icon"><use xlink:href="#calendar-solid"></use></svg>
+            </span>
+            2022/6/7
+        </span>
+    </div>
+    <div class="excerpt">
+        <div class="content" v-pre>
+            
+            <h3 id="webStorage"><a href="#webStorage" class="headerlink" title="webStorage"></a>webStorage</h3><p>1.存储内容一般支持5MB左右（不同浏览器可能不同）</p>
+<p>2.浏览器端通过Window.sessionStorage和Window.localStorage属性来实现本地存储机制</p>
+<p>3.相关API：</p>
+<ul>
+<li>xxxxStorage.setItem(‘key’,’value’):该方法接受一个键和值作为参数，会把键值对添加到存储中，如果键名存在，则更新其对应的值</li>
+<li>xxxxStorage.getItem(‘person’):该方法接受一个键名作为参数，并把该键名从存储中删除</li>
+<li>xxxxStorage.removeItem(‘key’):该方法接受一个键名作为参数，并把该键名从存储中删除</li>
+<li>xxxxStorage.clear():该方法会清空存储中的所有数据</li>
+</ul>
+<p>4.备注：</p>
+<p>1.SessionStorage存储的内容会随着浏览器的窗口关闭而消失</p>
+<p>2.LocalStorage存储的内容需要手动清楚才会消失</p>
+<p>3.xxxxstorage.getItem(xxx)如果xxx对应的value获取不到，那么getItem的返回值是null</p>
+<p>4.JSON.parse(null)的结果依然是null</p>
+
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        <span class="icon">
+            <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
+        </span>
+        
+        
+        <span class="tag">
+            
+            <a href="/tags/html" style="color: #00bcd4">
+                html
+            </a>
+        </span>
+        
+    </div>
+    <a href="/2022/06/07/浏览器的本地存储/" class="go-post">
+        阅读全文
+    </a>
+</div>
+
+<div class="post">
     <a href="/2022/05/26/vue插件/">
         <h2>
             Vue插件
@@ -350,7 +406,7 @@ Vue.mixin(mixin2)
         
         <span class="tag">
             
-            <a href="/tags/vue" style="color: #00bcd4">
+            <a href="/tags/vue" style="color: #03a9f4">
                 vue
             </a>
         </span>
@@ -399,7 +455,7 @@ Vue.mixin(mixin2)
         
         <span class="tag">
             
-            <a href="/tags/vue" style="color: #ffa2c4">
+            <a href="/tags/vue" style="color: #03a9f4">
                 vue
             </a>
         </span>
@@ -450,7 +506,7 @@ render:h=&gt;h(App)
         
         <span class="tag">
             
-            <a href="/tags/vue" style="color: #ff7d73">
+            <a href="/tags/vue" style="color: #ffa2c4">
                 vue
             </a>
         </span>
@@ -764,83 +820,13 @@ function Home(props) &#123;
         
         <span class="tag">
             
-            <a href="/tags/vue" style="color: #00a596">
+            <a href="/tags/vue" style="color: #00bcd4">
                 vue
             </a>
         </span>
         
     </div>
     <a href="/2022/05/18/vue的自定义指令/" class="go-post">
-        阅读全文
-    </a>
-</div>
-
-<div class="post">
-    <a href="/2022/05/17/vue中的一些指令/">
-        <h2>
-            Vue中的一些指令
-        </h2>
-    </a>
-    <div class="category-and-date">
-        
-        <span class="date">
-            <span class="icon">
-                <svg class="fa-icon"><use xlink:href="#calendar-solid"></use></svg>
-            </span>
-            2022/5/17
-        </span>
-    </div>
-    <div class="excerpt">
-        <div class="content" v-pre>
-            
-            <p>v-text:</p>
-<p>1.作用：向其所在的节点中渲染文本内容</p>
-<p>2.与插值语法的区别：v-text会替换掉节点中的内容，则不会</p>
-<p>v-html:</p>
-<p>1.作用：向指定节点中渲染包含html结构的内容</p>
-<p>2.与插值语法的区别：v-html会替换掉节点中的内容，则不会</p>
-<p>3.注意点：v-html有安全性问题</p>
-<p>​                    在网站上动态渲染任意的HTML是非常危险的，容易导致XSS攻击</p>
-<p>​                     一定要在可信的内容上使用v-html，永远不要在用户提交的内容上</p>
-<p>v-cloak(没有值):</p>
-<p>1.v-cloak本质是一个特殊的属性，Vue实例创建完毕并接管容器后，会删掉v-cloak属性。</p>
-<p>2.使用css配合v-cloak可以解决网速慢时页面展示出的问题</p>
-<p>3.配合属性选择器使用：[v-cloak]{   display:none;  }</p>
-<p>v-once(没有值):</p>
-<p>1.v-once所在的节点在初次动态渲染后，就视为静态内容了（只在初始化时渲染一次，后面数据的更改不受影响）</p>
-<p>2.以后数据的改变不会引起v-once所在结构的更新，可以用于优化性能</p>
-<pre><code>        &lt;h1 v-once&gt;使用v-once的number:&#123;&#123;number&#125;&#125;&lt;/h1&gt;
-        &lt;h2&gt;直接展示number:&#123;&#123;number&#125;&#125;&lt;/h2&gt;
-        &lt;button @click=&quot;number++&quot;&gt;点击按钮number+1&lt;/button&gt;
-          data() &#123;
-                return &#123;
-                    number: 1
-                &#125;
-            &#125;,
-</code></pre>
-<p>v-pre(没有值):</p>
-<p>1.跳过其所在节点的编译过程。</p>
-<p>2.可利用它跳过：没有使用指令语法、没有使用插值语法的节点，会加快编译。</p>
-
-            
-        </div>
-    </div>
-    <div class="post-tags">
-        
-        <span class="icon">
-            <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
-        </span>
-        
-        
-        <span class="tag">
-            
-            <a href="/tags/vue" style="color: #03a9f4">
-                vue
-            </a>
-        </span>
-        
-    </div>
-    <a href="/2022/05/17/vue中的一些指令/" class="go-post">
         阅读全文
     </a>
 </div>

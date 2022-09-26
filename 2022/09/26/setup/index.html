@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0">
-        <title>算数运算符 | Mynote</title>
+        <title>Setup | Mynote</title>
         <meta name="author" content="参商">
         <meta name="description" content="个人笔记">
         <meta name="keywords" content="love&peace">
@@ -120,14 +120,14 @@
                         
 <div class="article">
     <div>
-        <h1>算数运算符 </h1>
+        <h1>Setup </h1>
     </div>
     <div class="info">
         <span class="date">
             <span class="icon">
                 <svg class="fa-icon"><use xlink:href="#calendar-solid"></use></svg>
             </span>
-            2022/8/3
+            2022/9/26
         </span>
         
         
@@ -138,8 +138,8 @@
             
             <span class="tag">
                 
-                <a href="/tags/js" style="color: #03a9f4">
-                    js
+                <a href="/tags/vue3" style="color: #00a596">
+                    vue3
                 </a>
             </span>
             
@@ -147,21 +147,32 @@
         
     </div>
     <div class="content" v-pre>
-        <p>运算符：也被成为操作符，是用于实现赋值、比较和执行算数运算等功能的符号</p>
-<p>算数运算符：+、-、*、&#x2F;、%(取余。9%2&#x3D;1)</p>
-<p>浮点数的最高精度是17位小数，在进行计算时其精度远不如整数，如0.1+0.2&#x3D;0.30000000000000004，而不是0.3，所以不要直接判断两个浮点数是否相等</p>
-<p>递增(++)、递减(–)运算符：根据在变量前还是后分为前置&#x2F;(后置)递增、递减运算符</p>
-<p>前置：先加后用、后置：先用后加，自减同理</p>
-<p>比较运算符:</p>
-<p>&#x3D;：赋值</p>
-<p>&#x3D;&#x3D;：判断左右两边值是否相等</p>
-<p>&#x3D;&#x3D;&#x3D;：判断左右两边值和数据类型是否相等</p>
-<p>逻辑运算：</p>
-<p>短路运算：</p>
-<p>逻辑与：表达式1&amp;&amp;表达式2，如果1为真则返回2，如果1为假，则返回1</p>
-<p>逻辑或：表达式1||表达式2，如果1为真则返回1，如果1为假则返回2</p>
-<p>运算优先级：</p>
-<p><img src="/2022/08/03/js%E7%AE%97%E6%95%B0%E8%BF%90%E7%AE%97%E7%AC%A6/yxj.jpg"></p>
+        <p>1.理解：vue3.0中一个新的配置项，值为一个函数</p>
+<p>2.setup是所有Composition API(组合API)表演的舞台</p>
+<p>3.组件中所用到的：数据、方法等等，均要配置在setup中</p>
+<p>4.setup函数的两种返回值</p>
+<p>​    1.若要返回一个对象，则对象中的属性、方法，在模板中均可以直接使用。</p>
+<p>​    2.若返回一个渲染函数，则可以自定义渲染内容</p>
+<p>5.注意点：</p>
+<p>1.尽量不要与vue2.x配置混用</p>
+<ul>
+<li>vue2.x配置（data、methods、computed…）中可以访问到setup中的属性、方法。</li>
+<li>但在setup中不能访问到vue2.x配置（data、methods、computed…）</li>
+<li>如果有重名，setup优先</li>
+</ul>
+<p>2.setup不能是一个async函数，因为返回值不再是return的对象，而是promise，模板看不到return对象中的属性。</p>
+<h3 id="1-setup"><a href="#1-setup" class="headerlink" title="1 setup"></a>1 setup</h3><p>vue3.0将组件的逻辑都写在了函数内部，<code>setup()</code>会取代options API的<code>data()</code>函数，返回一个对象暴露给模板。</p>
+<p> <code>setup</code> 选项在组件创建<strong>之前</strong>执行(所以在setup内部无法通过this来访问组件对象)，一旦 <code>props</code> 被解析，就将作为组合式 API 的入口。</p>
+<p><code>setup</code> 函数是个新的入口函数，相当于 vue2.x 中 <code>beforeCreate </code>和 <code>created</code>，在 <code>beforeCreate</code> 之后 <code>created </code>之前执行。</p>
+<p><strong>setup函数的特性：</strong></p>
+<ul>
+<li>使用Composition API 的入口</li>
+<li>在beforeCreate之后在created之前执行</li>
+<li>在setup中没有this</li>
+<li>可以返回一个对象，这个对象的属性被合并到渲染上下文，并可以在模板中直接使用；</li>
+<li>接收props对象作为第一个参数，接收来的props对象，可以通过watch监视其变化。</li>
+<li>接受context对象作为第二个参数，这个对象包含attrs，slots，emit三个属性。</li>
+</ul>
 
     </div>
     
