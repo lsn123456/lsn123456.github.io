@@ -1,0 +1,373 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0">
+        <title>Ref与reactive | Mynote</title>
+        <meta name="author" content="参商">
+        <meta name="description" content="个人笔记">
+        <meta name="keywords" content="love&peace">
+        <link rel="icon" href="https://img.gejiba.com/images/39def1210a35239bb3777e2c504985f1.jpg">
+        <script src="https://cdn.staticfile.org/instant.page/5.1.0/instantpage.min.js" type="module"></script>
+        <script src="https://cdn.staticfile.org/font-awesome/6.1.1/js/all.min.js"></script>
+        <link rel="stylesheet" href="/css/fonts.min.css">
+        <link rel="stylesheet" href="/css/particlex.css">
+        <script src="https://cdn.staticfile.org/vue/3.2.33/vue.global.prod.min.js"></script>
+    <meta name="generator" content="Hexo 6.2.0"></head>
+    <body>
+        <div id="loading" style="height:100vh;width:100vw;position:fixed;display:flex;z-index:200;justify-content:space-between;background:#fff;transition:opacity 0.3s ease-out"><div style="position:fixed;height:100vh;width:100vw;display:flex;justify-content:center;align-items:center"><div id="loadcontent" style="width:50vmin;height:50vmin;padding:50px;border-radius:50%;display:flex;justify-content:center;align-items:center;border:solid 10px #a3ddfb;text-align:center"><div><h2>LOADING...</h2><p style="word-break:keep-all">加载过慢请开启缓存(浏览器默认开启)</p><div><img alt="loading" src="/loading.gif"></div></div></div></div></div>
+        <div id="layout">
+            <i data-fa-symbol="calendar-solid" class="fa-solid fa-calendar fa-fw"></i>
+            <i data-fa-symbol="bookmark-solid" class="fa-solid fa-bookmark fa-fw"></i>
+            <i data-fa-symbol="tags-solid" class="fa-solid fa-tags fa-fw"></i>
+            <transition name="into">
+                <div v-show="show_page" style="display: -not-none">
+                    <div id="menu_show">
+                         
+<nav id="menu">
+    <div class="desktop-menu">
+        <a href="/">
+            <span class="title">mynote</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;home</span>
+        </a>
+        
+        <a href="/about">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span>&ensp;about</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;archives</span>
+        </a>
+        
+        <a href="/categories">
+            <i class="fa-solid fa-bookmark fa-fw"></i>
+            <span>&ensp;categories</span>
+        </a>
+        
+        <a href="/tags">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span>&ensp;tags</span>
+        </a>
+        
+    </div>
+    <div :class="'phone-menu ' + menu_show" id="phone-menu">
+        <div class="curtain" @click="menu_show = !menu_show" v-show="menu_show"></div>
+        <div :class="'title'" @click="menu_show = !menu_show">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;mynote</span>
+        </div>
+        <transition name="slide">
+        <div class="items" v-show="menu_show">
+            
+            <a href="/">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-house fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">home</div>
+                </div>
+            </a>
+            
+            <a href="/about">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-id-card fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">about</div>
+                </div>
+            </a>
+            
+            <a href="/archives">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-box-archive fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">archives</div>
+                </div>
+            </a>
+            
+            <a href="/categories">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-bookmark fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">categories</div>
+                </div>
+            </a>
+            
+            <a href="/tags">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-tags fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">tags</div>
+                </div>
+            </a>
+            
+        </div>
+        </transition>
+    </div>
+</nav>
+                    </div>
+                    <div id="main">
+                        
+<div class="article">
+    <div>
+        <h1>Ref与reactive </h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <svg class="fa-icon"><use xlink:href="#calendar-solid"></use></svg>
+            </span>
+            2022/9/26
+        </span>
+        
+        
+        <span class="tags">
+            <span class="icon">
+                <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/tags/vue3" style="color: #ffa2c4">
+                    vue3
+                </a>
+            </span>
+            
+        </span>
+        
+    </div>
+    <div class="content" v-pre>
+        <h3 id="1-ref"><a href="#1-ref" class="headerlink" title="1. ref"></a>1. ref</h3><p>ref 用于为数据添加响应式状态，可以让某一个变量具备响应式的能力。由于reactive只能传入对象类型的参数，<strong>而对于基本数据类型要添加响应式状态就只能用ref了，同样返回一个具有响应式状态的副本。</strong></p>
+<ul>
+<li>在 js 中使用 ref 的值必须使用 .value 获取，在 Vue 的模板中使用 ref 的值不需要通过 value 获取</li>
+<li>语法：const xxx&#x3D;ref(initValue),创建了一个包含响应式数据的引用对象</li>
+<li>接收的数据可以是：基本类型、对象类型，对于基本数据类型，ref是自己的实现方式且性能优于reactive；而对于对象类型，ref仍然是通过reactive包装实现的</li>
+<li>参数可以传递任意数据类型，传递对象类型时也能保持深度响应式，所以适用性更广。</li>
+<li>vue 3.0 setup里定义数据时推荐优先使用ref，方便逻辑拆分和业务解耦。</li>
+</ul>
+<pre><code class="javascript">import &#123; ref &#125; from &quot;vue&quot;;
+
+setup() &#123;
+    const msg = &quot;张晓明&quot;;
+    let age = ref(18);
+    function add() &#123;
+      age.value += 1;
+    &#125;
+    return &#123; msg, age, add &#125;;
+&#125;
+</code></pre>
+<h3 id="2-reactive"><a href="#2-reactive" class="headerlink" title="2. reactive"></a>2. reactive</h3><p>经过reactive函数处理后的对象能变成响应式的对象，类似于option api里面的data属性的值，<strong>它主要是处理你的对象让它经过 <code>Proxy</code> 的加工变为一个响应式的对象。</strong></p>
+<p><strong>注意点：</strong></p>
+<ul>
+<li><p>语法：<code>const 代理对象=reactive(源对象)</code>,接收一个对象(或数组),返回一个代理对象(proxy对象)</p>
+</li>
+<li><p>如果想要保持对象内容的响应式能力，在 return 的时候必须把整个 <code>reactive()</code> 对象返回出去</p>
+</li>
+<li><p>在引用的时候也必须对整个对象进行引用而无法解构，否则这个对象内容的响应式能力将会丢失。</p>
+</li>
+<li><p><code>reactive()</code>只能包装对象,基本类型不要用它，要用ref函数</p>
+</li>
+<li><p>reactive定义的响应式数据是深层次的，内部基于ES6的Proxy实现，通过代理对象操作源对象内部数据进行操作</p>
+</li>
+</ul>
+<pre><code class="javascript">&lt;template&gt;
+  &lt;div class=&quot;home&quot;&gt;
+    名字:&#123;&#123; state.name &#125;&#125; 价格:&#123;&#123; state.price &#125;&#125;
+    购买数量:&#123;&#123;state.count&#125;&#125;
+    &lt;button @click=&quot;add&quot;&gt;点我加1&lt;/button&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script&gt;
+import &#123; ref, reactive &#125; from &quot;vue&quot;;
+
+export default &#123;
+  name: &quot;Home&quot;,
+  components: &#123;
+  &#125;,
+  setup() &#123;
+    //响应式对象
+    const state = reactive(&#123;
+      count: 0,
+      name:&quot;商品1&quot;,
+      price:100
+    &#125;);
+    //修改响应式对象
+    function add() &#123;
+      state.count += 1;
+    &#125;
+    return &#123; state, add &#125;;
+  &#125;,
+&#125;
+&lt;/script&gt;
+</code></pre>
+<h3 id="3-isRef-amp-toRefs-amp-toRef"><a href="#3-isRef-amp-toRefs-amp-toRef" class="headerlink" title="3. isRef &amp; toRefs &amp; toRef"></a>3. isRef &amp; toRefs &amp; toRef</h3><h4 id="a-isRef"><a href="#a-isRef" class="headerlink" title="a) isRef"></a>a) isRef</h4><p>用来判断某个值是否为ref创建出来的对象。</p>
+<pre><code class="javascript">import &#123; ref, isRef &#125; from &#39;vue&#39;;
+export default &#123;
+    setup () &#123;
+        const count = ref(1);
+        const unwrappend = isRef(count) ? count.value : count;
+ 
+        return &#123;
+           count,
+           unwrappend
+        &#125;;
+    &#125;
+&#125;
+</code></pre>
+<h4 id="b-toRefs"><a href="#b-toRefs" class="headerlink" title="b) toRefs"></a>b) toRefs</h4><p>但是在具体的业务中，如果无法使用解构取出 <code>reactive()</code> 对象的值，每次都需要通过 <code>state.</code> 操作符访问它里面的属性会是非常麻烦的，所以官方提供了 <code>toRefs()</code> 函数来为我们填好这个坑。只要使用 <code>toRefs()</code> 把 <code>reactive()</code> 对象包装一下，就能够通过解构单独使用它里面的内容了。</p>
+<p>toRefs 用于将响应式对象转换为结果对象，其中结果对象的每个属性都是指向原始对象相应属性的ref。</p>
+<ul>
+<li>toRefs之后得到的ref引用在获取数据值的时候需要加.value</li>
+<li>toRefs后的ref数据不是原始数据的拷贝，而是引用，改变结果数据的值也会同时改变原始数据</li>
+<li>作用其实和 toRef 类似，只不过 toRef 是一个个手动赋值，而 toRefs 是自动赋值。</li>
+</ul>
+<pre><code class="javascript">&lt;template&gt;
+  &lt;div class=&quot;home&quot;&gt;
+    名字:&#123;&#123; name &#125;&#125; 价格:&#123;&#123; price &#125;&#125;
+    购买数量:&#123;&#123;count&#125;&#125;
+    &lt;button @click=&quot;add&quot;&gt;点我加1&lt;/button&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script&gt;
+import &#123; ref, reactive,toRefs &#125; from &quot;vue&quot;;
+
+export default &#123;
+  name: &quot;Home&quot;,
+  components: &#123;
+  &#125;,
+  setup() &#123;
+    //响应式对象
+    const state = reactive(&#123;
+      count: 0,
+      name:&quot;商品1&quot;,
+      price:100
+    &#125;);
+    //修改响应式对象
+    function add() &#123;
+      //下面两种写法等效
+      state.count += 1;
+      // stateRefs.count.value+=1;
+    &#125;
+
+    const stateRefs = toRefs(state)
+
+    return &#123; ...stateRefs, add &#125;;
+  &#125;,
+&#125;
+&lt;/script&gt;
+</code></pre>
+<h4 id="c-toRef"><a href="#c-toRef" class="headerlink" title="c) toRef"></a>c) toRef</h4><p>概念：为源响应式对象上的某个属性创建一个ref对象，二者内部操作的是同一个数据值，更新时二者是同步的。相当于浅拷贝一个属性。</p>
+<ul>
+<li>toRef之后得到的ref属性在获取数据值的时候需要加.value</li>
+<li>toRef后的ref数据不是原始数据的拷贝，而是引用，改变结果数据的值也会同时改变原始数据</li>
+</ul>
+<pre><code class="javascript">&lt;template&gt;
+  &lt;div class=&quot;home&quot;&gt;
+    名字:&#123;&#123; name &#125;&#125; 价格:&#123;&#123; price &#125;&#125;
+    购买数量:&#123;&#123;count&#125;&#125;
+    &lt;button @click=&quot;add&quot;&gt;点我加1&lt;/button&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script&gt;
+import &#123; ref, reactive,toRef &#125; from &quot;vue&quot;;
+
+export default &#123;
+  name: &quot;Home&quot;,
+  components: &#123;
+  &#125;,
+  setup() &#123;
+    //响应式对象
+    const state = reactive(&#123;
+      count: 0,
+      name:&quot;商品1&quot;,
+      price:100
+    &#125;);
+    //修改响应式对象
+    function add() &#123;
+      //下面两种写法等效
+      //state.count += 1;
+      count.value += 1;
+    &#125;
+
+    const count = toRef(state, &quot;count&quot;);
+
+    return &#123; count, add &#125;;
+  &#125;,
+&#125;
+&lt;/script&gt;
+</code></pre>
+<h4 id="d-ref-reactive-toRefs-和-toRef的比较"><a href="#d-ref-reactive-toRefs-和-toRef的比较" class="headerlink" title="d) ref reactive toRefs 和 toRef的比较"></a>d) ref reactive toRefs 和 toRef的比较</h4><p>**ref : **原始数据没有变化，而ref“包裹的数据”变成了一个新的对象，而且模板有变化（相当于深拷贝）</p>
+<p>**reactive : **reactive处理的数据无论是原始数据，“包裹后的数据”，还是模板，都有变化（代理模式）</p>
+<p><strong>toRef</strong> : toRef处理的数据会有变化，而原始数据也有变化，如果toRef处理是非响应式数据，此时模板没有变化 （相当于浅拷贝，引用关系）</p>
+<p><strong>toRefs</strong> : toRefs处理的数据响应变化，原始数据也响应变化，如果toRefs处理是非响应式数据，此时模板并没有变化（相当于浅拷贝，引用关系）</p>
+<p><img src="/2022/09/26/ref%E4%B8%8Ereactive/ref%E6%AF%94%E8%BE%83.jpg" alt="ref比较"></p>
+
+    </div>
+    
+    <link rel="stylesheet" href="https://cdn.staticfile.org/gitalk/1.7.2/gitalk.min.css">
+    <div id="comment">
+        <div id="gitalk-container">
+        </div>
+    </div>
+    
+</div>
+                         
+<footer id="footer">
+    <div class="footer-wrap">
+        <div>
+            © 2022 - 2022 mynote
+            <span class="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            @参商
+        </div>
+        <div></div>
+        <div>Based on the <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo Engine</a> & <a
+                target="_blank" rel="noopener" href="https://github.com/korilin/hexo-theme-particle">Particle Theme</a></div>
+        
+    </div>
+</footer>
+                    </div>
+                </div>
+            </transition>
+            <div id="img_show">
+                <img id="img_content" alt="img_show">
+            </div>
+        </div>
+        <script src="https://cdn.staticfile.org/highlight.js/11.5.1/highlight.min.js"></script>
+        <script src="/js/particlex.js"></script>
+        <script src="/js/showimg.js"></script>
+        
+<script src="https://cdn.staticfile.org/gitalk/1.7.2/gitalk.min.js"></script>
+<script>
+    var clientID = "", clientSecret = "";
+    
+    const gitalk = new Gitalk({
+        clientID: clientID,
+        clientSecret: clientSecret,
+        repo: "",
+        owner: "",
+        admin: [""],
+        language: "zh-CN",
+        id: location.pathname,
+        distractionFreeMode: true
+    })
+    gitalk.render("gitalk-container")
+</script>
+
+
+    </body>
+</html>

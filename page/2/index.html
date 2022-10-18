@@ -142,6 +142,84 @@
             
 
 <div class="post">
+    <a href="/2022/07/08/layout布局/">
+        <h2>
+            Layout布局
+        </h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="category">
+            <a href="/categories/ElementUI">
+                <span class="icon">
+                    <svg class="fa-icon"><use xlink:href="#bookmark-solid"></use></svg>
+                ElementUI
+            </a>
+        </span>
+        
+        <span class="date">
+            <span class="icon">
+                <svg class="fa-icon"><use xlink:href="#calendar-solid"></use></svg>
+            </span>
+            2022/7/8
+        </span>
+    </div>
+    <div class="excerpt">
+        <div class="content" v-pre>
+            
+            <p>Layout布局：</p>
+<p>间隔 通过gutter来指定</p>
+<pre><code> &lt;el-row :gutter=&quot;20&quot; style=&quot;margin-top: 30px&quot;&gt;
+      &lt;el-col :span=&quot;8&quot; class=&quot;box&quot;&gt;1&lt;/el-col&gt;
+      &lt;el-col :span=&quot;8&quot; class=&quot;box&quot;&gt;1&lt;/el-col&gt;
+      &lt;el-col :span=&quot;8&quot; class=&quot;box&quot;&gt;1&lt;/el-col&gt;
+    &lt;/el-row&gt;
+    &lt;el-row :gutter=&quot;20&quot; style=&quot;margin-top: 30px&quot;&gt;
+      &lt;el-col :span=&quot;8&quot; style=&quot;height: 30px; background: #ccc&quot;&gt;1&lt;/el-col&gt;
+      &lt;el-col :span=&quot;8&quot; style=&quot;height: 30px; background: #ccc&quot;&gt;1&lt;/el-col&gt;
+      &lt;el-col :span=&quot;8&quot; style=&quot;height: 30px; background: #ccc&quot;&gt;1&lt;/el-col&gt;
+    &lt;/el-row&gt;
+    &lt;el-row :gutter=&quot;20&quot; style=&quot;margin-top: 30px&quot;&gt;
+      &lt;el-col :span=&quot;8&quot;&gt;&lt;div class=&quot;box&quot;&gt;1&lt;/div&gt;&lt;/el-col&gt;
+      &lt;el-col :span=&quot;8&quot;&gt;&lt;div class=&quot;box&quot;&gt;1&lt;/div&gt;&lt;/el-col&gt;
+      &lt;el-col :span=&quot;8&quot;&gt;&lt;div class=&quot;box&quot;&gt;1&lt;/div&gt;&lt;/el-col&gt;
+    &lt;/el-row&gt;
+    &lt;el-row :gutter=&quot;20&quot; style=&quot;margin-top: 30px&quot;&gt;
+      &lt;el-col :span=&quot;8&quot;&gt;1&lt;/el-col&gt;
+      &lt;el-col :span=&quot;8&quot;&gt;1&lt;/el-col&gt;
+      &lt;el-col :span=&quot;8&quot;&gt;1&lt;/el-col&gt;
+    &lt;/el-row&gt;
+</code></pre>
+<p><img src="/2022/07/08/layout%E5%B8%83%E5%B1%80/layout.png"></p>
+<p>一开始我觉得是样式的原因，通过上图可以看出，无论时使用样式选择器，还是直接写style样式，gutter都会失效</p>
+<p><img src="/2022/07/08/layout%E5%B8%83%E5%B1%80/padding.png"></p>
+<p><img src="/2022/07/08/layout%E5%B8%83%E5%B1%80/padding2.png"></p>
+<p>后来发现，gutter的实现是由el-col上的padding实现的，饿了么给每个el-col左右指定了相同的padding,里面使用一个盒子，我们看到的其实是里面这个盒子的宽度，因此使用时需要在el-col里使用一个div将我们要写的内容包裹起来，否则gutter会失效，在此div上写样式就没问题了</p>
+
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        <span class="icon">
+            <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
+        </span>
+        
+        
+        <span class="tag">
+            
+            <a href="/tags/vue" style="color: #ffa2c4">
+                vue
+            </a>
+        </span>
+        
+    </div>
+    <a href="/2022/07/08/layout布局/" class="go-post">
+        阅读全文
+    </a>
+</div>
+
+<div class="post">
     <a href="/2022/07/08/深度选择器/">
         <h2>
             深度选择器
@@ -190,7 +268,7 @@
         
         <span class="tag">
             
-            <a href="/tags/css" style="color: #00a596">
+            <a href="/tags/css" style="color: #ff7d73">
                 css
             </a>
         </span>
@@ -466,7 +544,7 @@ title: &#123;
         
         <span class="tag">
             
-            <a href="/tags/echarts" style="color: #ffa2c4">
+            <a href="/tags/echarts" style="color: #03a9f4">
                 echarts
             </a>
         </span>
@@ -608,7 +686,7 @@ export default new Vuex.store(&#123;
         
         <span class="tag">
             
-            <a href="/tags/vue" style="color: #ffa2c4">
+            <a href="/tags/vue" style="color: #00a596">
                 vue
             </a>
         </span>
@@ -723,7 +801,7 @@ export default&#123;
         
         <span class="tag">
             
-            <a href="/tags/vue" style="color: #00bcd4">
+            <a href="/tags/vue" style="color: #00a596">
                 vue
             </a>
         </span>
@@ -873,7 +951,7 @@ module.exports = function (app) &#123;
         
         <span class="tag">
             
-            <a href="/tags/vue" style="color: #ffa2c4">
+            <a href="/tags/vue" style="color: #ff7d73">
                 vue
             </a>
         </span>
@@ -942,7 +1020,7 @@ module.exports = function (app) &#123;
         
         <span class="tag">
             
-            <a href="/tags/vue" style="color: #03a9f4">
+            <a href="/tags/vue" style="color: #00a596">
                 vue
             </a>
         </span>
@@ -991,7 +1069,7 @@ module.exports = function (app) &#123;
         
         <span class="tag">
             
-            <a href="/tags/vue" style="color: #03a9f4">
+            <a href="/tags/vue" style="color: #00a596">
                 vue
             </a>
         </span>
@@ -1053,76 +1131,13 @@ mounted()&#123;
         
         <span class="tag">
             
-            <a href="/tags/vue" style="color: #00bcd4">
-                vue
-            </a>
-        </span>
-        
-    </div>
-    <a href="/2022/06/08/消息订阅与发布/" class="go-post">
-        阅读全文
-    </a>
-</div>
-
-<div class="post">
-    <a href="/2022/06/08/全局事件总线/">
-        <h2>
-            全局事件总线
-        </h2>
-    </a>
-    <div class="category-and-date">
-        
-        <span class="date">
-            <span class="icon">
-                <svg class="fa-icon"><use xlink:href="#calendar-solid"></use></svg>
-            </span>
-            2022/6/8
-        </span>
-    </div>
-    <div class="excerpt">
-        <div class="content" v-pre>
-            
-            <h3 id="全局事件总线（GlobalEventBus）"><a href="#全局事件总线（GlobalEventBus）" class="headerlink" title="全局事件总线（GlobalEventBus）"></a>全局事件总线（GlobalEventBus）</h3><p>1.全局事件总线是一种组件间通信的方式，适用于任意组件间通信</p>
-<p>2.安装全局事件总线：</p>
-<pre><code>new Vue(&#123;
-    beforeCreate()&#123;
-        Vue.prototype.$bus=this//安装全局事件总线，$bus就是当前应用的vm
-    &#125;
-&#125;)
-</code></pre>
-<p>3.使用事件总线：</p>
-<p>1.接受数据：A组件想要接收数据，则在A组件中给$bus绑定自定义事件，事件的回调留在A组件自身</p>
-<pre><code>methods()&#123;
-    demo(data)&#123;&#125;
-&#125;,
-mounted()&#123;
-    this.$bus.$on(&#39;xxx&#39;,this.demo)
-&#125;
-</code></pre>
-<p>2.提供数据：</p>
-<pre><code>this.$bus.$emit(&#39;xxx&#39;,数据)
-</code></pre>
-<p>4.最好在beforeDestory钩子中，用$off去解绑当前组件所用到的事件</p>
-
-            
-        </div>
-    </div>
-    <div class="post-tags">
-        
-        <span class="icon">
-            <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
-        </span>
-        
-        
-        <span class="tag">
-            
             <a href="/tags/vue" style="color: #03a9f4">
                 vue
             </a>
         </span>
         
     </div>
-    <a href="/2022/06/08/全局事件总线/" class="go-post">
+    <a href="/2022/06/08/消息订阅与发布/" class="go-post">
         阅读全文
     </a>
 </div>
