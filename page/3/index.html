@@ -142,6 +142,68 @@
             
 
 <div class="post">
+    <a href="/2022/06/08/消息订阅与发布/">
+        <h2>
+            消息订阅与发布
+        </h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="date">
+            <span class="icon">
+                <svg class="fa-icon"><use xlink:href="#calendar-solid"></use></svg>
+            </span>
+            2022/6/8
+        </span>
+    </div>
+    <div class="excerpt">
+        <div class="content" v-pre>
+            
+            <h3 id="消息订阅与发布（pubsub）"><a href="#消息订阅与发布（pubsub）" class="headerlink" title="消息订阅与发布（pubsub）"></a>消息订阅与发布（pubsub）</h3><p>1.这是一种组件间通信的方式，适用于任意组件间通信</p>
+<p>2.使用步骤：</p>
+<ul>
+<li><p>安装pubsub: npm i pubsub-js</p>
+</li>
+<li><p>引入：import pubsub from ‘pubsub-js’</p>
+</li>
+<li><p>接收数据：A组件想要接收数据，则在A组件中订阅消息，订阅的回调留在A组件自身</p>
+<pre><code>methods()&#123;
+    demo(msgname,data)&#123;&#125;//传递两个参数，第一个是订阅消息的名字，第二个才是传递的数据
+&#125;
+mounted()&#123;
+    this.pid=pubsub.subscribe(&#39;xxx&#39;,this.demo)//订阅消息
+    或  this.pid=pubsub.subscribe(&#39;xxx&#39;,()=&gt;&#123;&#125;)
+&#125;
+</code></pre>
+<p>提供数据：pubsub.publish(‘xxx’,数据)</p>
+<p>最好在beforeDestory钩子中，用pubsub.unsubscribe(this.pid)去取消订阅</p>
+</li>
+</ul>
+
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        <span class="icon">
+            <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
+        </span>
+        
+        
+        <span class="tag">
+            
+            <a href="/tags/vue" style="color: #00bcd4">
+                vue
+            </a>
+        </span>
+        
+    </div>
+    <a href="/2022/06/08/消息订阅与发布/" class="go-post">
+        阅读全文
+    </a>
+</div>
+
+<div class="post">
     <a href="/2022/06/08/全局事件总线/">
         <h2>
             全局事件总线
@@ -193,7 +255,7 @@ mounted()&#123;
         
         <span class="tag">
             
-            <a href="/tags/vue" style="color: #03a9f4">
+            <a href="/tags/vue" style="color: #00a596">
                 vue
             </a>
         </span>
@@ -258,7 +320,7 @@ mounted()&#123;
         
         <span class="tag">
             
-            <a href="/tags/vue" style="color: #ff7d73">
+            <a href="/tags/vue" style="color: #00a596">
                 vue
             </a>
         </span>
@@ -314,7 +376,7 @@ mounted()&#123;
         
         <span class="tag">
             
-            <a href="/tags/html" style="color: #03a9f4">
+            <a href="/tags/html" style="color: #00a596">
                 html
             </a>
         </span>
@@ -382,7 +444,7 @@ Vue.use(plugins)
         
         <span class="tag">
             
-            <a href="/tags/vue" style="color: #00a596">
+            <a href="/tags/vue" style="color: #00bcd4">
                 vue
             </a>
         </span>
@@ -456,7 +518,7 @@ Vue.mixin(mixin2)
         
         <span class="tag">
             
-            <a href="/tags/vue" style="color: #ffa2c4">
+            <a href="/tags/vue" style="color: #03a9f4">
                 vue
             </a>
         </span>
@@ -534,7 +596,7 @@ Vue.mixin(mixin2)
         
         <span class="tag">
             
-            <a href="/tags/vue" style="color: #00a596">
+            <a href="/tags/vue" style="color: #00bcd4">
                 vue
             </a>
         </span>
@@ -583,7 +645,7 @@ Vue.mixin(mixin2)
         
         <span class="tag">
             
-            <a href="/tags/vue" style="color: #00bcd4">
+            <a href="/tags/vue" style="color: #ffa2c4">
                 vue
             </a>
         </span>
@@ -733,101 +795,13 @@ function Home(props) &#123;
         
         <span class="tag">
             
-            <a href="/tags/echarts" style="color: #00bcd4">
+            <a href="/tags/echarts" style="color: #ff7d73">
                 echarts
             </a>
         </span>
         
     </div>
     <a href="/2022/05/20/echarts警告-There-is-a-chart-instance-already-initialized-on-the-dom/" class="go-post">
-        阅读全文
-    </a>
-</div>
-
-<div class="post">
-    <a href="/2022/05/19/vue组件的注册使用/">
-        <h2>
-            Vue组件的注册使用
-        </h2>
-    </a>
-    <div class="category-and-date">
-        
-        <span class="date">
-            <span class="icon">
-                <svg class="fa-icon"><use xlink:href="#calendar-solid"></use></svg>
-            </span>
-            2022/5/19
-        </span>
-    </div>
-    <div class="excerpt">
-        <div class="content" v-pre>
-            
-            <p>Vue使用组件的三大步骤：</p>
-<p>1.定义组件（创建组件）</p>
-<p>2.注册组件</p>
-<p>3.使用组件（组件标签）</p>
-<p>如何定义一个组件：</p>
-<p>使用Vue.extend(options)创建，其中options和new Vue(options)时传入的那个options几乎一样，但也有区别，如下：</p>
-<p>1.el不可以写，因为所有的组件最终都要经过一个vm的管理，由vm中的el决定服务于哪个组件</p>
-<p>2.data必须写成函数，因为组件被复用时，数据存在引用关系</p>
-<p>3.使用template可以配置组件结构</p>
-<p>如何注册组件：</p>
-<p>1.局部注册：靠new Vue的时候传入component选项</p>
-<p>2.全局注册：靠Vue.component(‘组件名’，组件)</p>
-<p>编写组件标签：使用组件</p>
-<p>组件名规则：</p>
-<p>1.一个单词组成：</p>
-<p>​                   首字母小写：school</p>
-<p>​                   首字母大写：School</p>
-<p>2.多个单词组成：</p>
-<p>​                    kebab-case命名：my-school</p>
-<p>​                     CamelCase命名：MySchool(需要脚手架支持)</p>
-<p>备注：</p>
-<p>​         1.组件名尽可能回避HTML中已有的元素，例如h2,H2都不行</p>
-<p>​         2.可以使用name配置项指定组件在开发者工具中的名称</p>
-<p>关于组件标签：</p>
-<p>第一种写法：</p>
-<pre><code>&lt;school&gt;&lt;/school&gt;
-</code></pre>
-<p>第二种写法:</p>
-<pre><code>&lt;school/&gt;
-</code></pre>
-<p>简写方式：</p>
-<pre><code>const school=Vue.extend(options)可简写为 : const school=options
-</code></pre>
-<p>关于VueComponent:</p>
-<p>1.school组件本质是一个名为VueComponent的构造函数，且不是程序员定义的，是Vue.extend生成的</p>
-<p>2.我们只需要写<school>或<school></school>，Vue解析时会帮我们创建school组件的实例对象，即Vue帮我们执行:new VueComponent(options)</school></p>
-<p>3.特别注意：每次调用Vue.extend,返回的都是一个全新的VueComponent</p>
-<p>4.关于this指向：</p>
-<p>​           1.组件配置中：data函数，methods中的函数，watch中的函数，computed中的函数，它们的this均是【VueComponent实例对象】</p>
-<p>​            2.new Vue(options)配置中：data函数，methods中的函数，watch中的函数，computed中的函数，它们的this均是【Vue实例对象】</p>
-<p>5.VueComponent实例对象：也可以称之为组件实例对象，可用vc简称,Vue实例对象，可简称为vm</p>
-<p>内置关系：</p>
-<pre><code>VueComponent.prototype__proto__=Vue.prototype
-</code></pre>
-<p>作用：让组件实例对象（vc）可以访问到Vue原型上的属性、方法。</p>
-<p><img src="/2022/05/19/vue%E7%BB%84%E4%BB%B6%E7%9A%84%E6%B3%A8%E5%86%8C%E4%BD%BF%E7%94%A8/vuecomponent.png"></p>
-
-            
-        </div>
-    </div>
-    <div class="post-tags">
-        
-        <span class="icon">
-            <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
-        </span>
-        
-        
-        <span class="tag">
-            
-            <a href="/tags/vue" style="color: #03a9f4">
-                vue
-            </a>
-        </span>
-        
-    </div>
-    <a href="/2022/05/19/vue组件的注册使用/" class="go-post">
         阅读全文
     </a>
 </div>

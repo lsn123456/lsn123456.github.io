@@ -1,0 +1,469 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0">
+        <title>Vue3中的watch和computed | Mynote</title>
+        <meta name="author" content="参商">
+        <meta name="description" content="个人笔记">
+        <meta name="keywords" content="love&peace">
+        <link rel="icon" href="https://img.gejiba.com/images/39def1210a35239bb3777e2c504985f1.jpg">
+        <script src="https://cdn.staticfile.org/instant.page/5.1.0/instantpage.min.js" type="module"></script>
+        <script src="https://cdn.staticfile.org/font-awesome/6.1.1/js/all.min.js"></script>
+        <link rel="stylesheet" href="/css/fonts.min.css">
+        <link rel="stylesheet" href="/css/particlex.css">
+        <script src="https://cdn.staticfile.org/vue/3.2.33/vue.global.prod.min.js"></script>
+    <meta name="generator" content="Hexo 6.2.0"></head>
+    <body>
+        <div id="loading" style="height:100vh;width:100vw;position:fixed;display:flex;z-index:200;justify-content:space-between;background:#fff;transition:opacity 0.3s ease-out"><div style="position:fixed;height:100vh;width:100vw;display:flex;justify-content:center;align-items:center"><div id="loadcontent" style="width:50vmin;height:50vmin;padding:50px;border-radius:50%;display:flex;justify-content:center;align-items:center;border:solid 10px #a3ddfb;text-align:center"><div><h2>LOADING...</h2><p style="word-break:keep-all">加载过慢请开启缓存(浏览器默认开启)</p><div><img alt="loading" src="/loading.gif"></div></div></div></div></div>
+        <div id="layout">
+            <i data-fa-symbol="calendar-solid" class="fa-solid fa-calendar fa-fw"></i>
+            <i data-fa-symbol="bookmark-solid" class="fa-solid fa-bookmark fa-fw"></i>
+            <i data-fa-symbol="tags-solid" class="fa-solid fa-tags fa-fw"></i>
+            <transition name="into">
+                <div v-show="show_page" style="display: -not-none">
+                    <div id="menu_show">
+                         
+<nav id="menu">
+    <div class="desktop-menu">
+        <a href="/">
+            <span class="title">mynote</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;home</span>
+        </a>
+        
+        <a href="/about">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span>&ensp;about</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;archives</span>
+        </a>
+        
+        <a href="/categories">
+            <i class="fa-solid fa-bookmark fa-fw"></i>
+            <span>&ensp;categories</span>
+        </a>
+        
+        <a href="/tags">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span>&ensp;tags</span>
+        </a>
+        
+    </div>
+    <div :class="'phone-menu ' + menu_show" id="phone-menu">
+        <div class="curtain" @click="menu_show = !menu_show" v-show="menu_show"></div>
+        <div :class="'title'" @click="menu_show = !menu_show">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;mynote</span>
+        </div>
+        <transition name="slide">
+        <div class="items" v-show="menu_show">
+            
+            <a href="/">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-house fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">home</div>
+                </div>
+            </a>
+            
+            <a href="/about">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-id-card fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">about</div>
+                </div>
+            </a>
+            
+            <a href="/archives">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-box-archive fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">archives</div>
+                </div>
+            </a>
+            
+            <a href="/categories">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-bookmark fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">categories</div>
+                </div>
+            </a>
+            
+            <a href="/tags">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-tags fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">tags</div>
+                </div>
+            </a>
+            
+        </div>
+        </transition>
+    </div>
+</nav>
+                    </div>
+                    <div id="main">
+                        
+<div class="article">
+    <div>
+        <h1>Vue3中的watch和computed </h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <svg class="fa-icon"><use xlink:href="#calendar-solid"></use></svg>
+            </span>
+            2022/10/24
+        </span>
+        
+        
+        <span class="tags">
+            <span class="icon">
+                <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/tags/vue3" style="color: #00bcd4">
+                    vue3
+                </a>
+            </span>
+            
+        </span>
+        
+    </div>
+    <div class="content" v-pre>
+        <h2 id="a-computed"><a href="#a-computed" class="headerlink" title="a) computed"></a>a) computed</h2><p>computed函数用来创造计算属性，和过去一样，它返回的值是一个ref对象。里面可以传方法，或者一个对象，对象中包含set()、get()方法</p>
+<p><strong>只读的计算属性：</strong></p>
+<pre><code class="javascript">  姓: &lt;input type=&quot;text&quot; v-model=&quot;person.firstName&quot; /&gt; &lt;br /&gt;
+  名: &lt;input type=&quot;text&quot; v-model=&quot;person.lastName&quot; /&gt; &lt;br /&gt;
+  &lt;span&gt;全名:&#123;&#123; person.fullName &#125;&#125;&lt;/span&gt;
+
+import &#123; reactive, computed &#125; from &quot;vue&quot;;
+setup() &#123;
+    const person = reactive(&#123;
+      firstName: &quot;张&quot;,
+      lastName: &quot;三&quot;,
+    &#125;);
+
+    person.fullName = computed(() =&gt; &#123;
+      return person.firstName + &quot;-&quot; + person.lastName;
+    &#125;);
+
+    return &#123; person &#125;;
+  &#125;,
+</code></pre>
+<p><strong>可读可改的计算属性：</strong></p>
+<pre><code class="javascript">   姓: &lt;input type=&quot;text&quot; v-model=&quot;person.firstName&quot; /&gt; &lt;br /&gt;
+   名: &lt;input type=&quot;text&quot; v-model=&quot;person.lastName&quot; /&gt; &lt;br /&gt;
+   全名：&lt;input type=&quot;text&quot; v-model=&quot;person.fullName&quot; /&gt; &lt;br /&gt;
+   import &#123; reactive, computed &#125; from &quot;vue&quot;;
+     setup() &#123;
+    const person = reactive(&#123;
+      firstName: &quot;张&quot;,
+      lastName: &quot;三&quot;,
+    &#125;);
+    //完整形式
+    person.fullName = computed(&#123;
+      get() &#123;
+        return person.firstName + &quot;-&quot; + person.lastName;
+      &#125;,
+      set(value) &#123;
+        const nameArr = value.split(&quot;-&quot;);
+        person.firstName = nameArr[0];
+        person.lastName = nameArr[1];
+      &#125;,
+    &#125;);
+
+    return &#123; person &#125;;
+  &#125;,    
+   
+</code></pre>
+<h2 id="b-watch"><a href="#b-watch" class="headerlink" title="b) watch"></a>b) watch</h2><p>与vue2中watch配置功能一致</p>
+<ul>
+<li>监视reactive定义的响应式数据时：oldValue无法正确获取，强制开启了深度监视（deep配置失效）</li>
+<li>监视reactive定义的响应式数据中某个属性(对象)时，deep配置有效</li>
+</ul>
+<p> <strong>1.监视ref定义的一个响应式对象</strong></p>
+<pre><code class="javascript"> let count = ref(0);
+    let msg = ref(&quot;你好啊&quot;);
+
+    const person = reactive(&#123;
+      name: &quot;张三&quot;,
+      age: 18,
+      jobs: &#123;
+        job1: &#123;
+          salary: 20,
+        &#125;,
+      &#125;,
+    &#125;);
+
+
+    watch(count, (newVal, oldVal) =&gt; &#123;
+      console.log(&quot;count的值改变了&quot;, newVal, oldVal);
+    &#125;);
+</code></pre>
+<p> <strong>2.监视ref定义的多个响应式对象</strong></p>
+<pre><code>   watch(
+      [count, msg],
+      (newVal, oldVal) =&gt; &#123;
+        console.log(&quot;count或者msg的数据改变了&quot;, newVal, oldVal);
+      &#125;,
+      &#123; immediate: true, deep: true &#125;
+    );
+    
+    
+</code></pre>
+<p><strong>3.监视reactive定义的响应式对象的全部属性,但是这里无法正确的获取oldVal,强制开启了深度监视(deep配置无效)</strong></p>
+<pre><code>  watch(person, (newVal, oldVal) =&gt; &#123;
+      console.log(&quot;person改变了&quot;, newVal, oldVal);
+    &#125;,&#123;deep:false&#125;);//deep配置无效
+</code></pre>
+<p><strong>4.监视reactive定义的响应式数据的一个属性，这种方式可获取oldVal</strong></p>
+<pre><code> watch(
+      () =&gt; person.age,
+      (newVal, oldVal) =&gt; &#123;
+        console.log(&quot;person的age改变了&quot;, newVal, oldVal);
+      &#125;
+    );
+</code></pre>
+<p><strong>5.监视reactive定义的响应式数据的某些属性,这种方式可获取oldVal</strong></p>
+<pre><code>    watch([() =&gt; person.age, () =&gt; person.name], (newVal, oldVal) =&gt; &#123;
+      console.log(&quot;person的age或name改变了&quot;, newVal, oldVal);
+    &#125;);
+</code></pre>
+<p><strong>6.特殊情况，监视reactive定义的响应式对象中的某个对象,这里deep配置有效，获取不到oldVal</strong></p>
+<pre><code>    watch(
+      () =&gt; person.jobs,
+      (newVal, oldVal) =&gt; &#123;
+        console.log(&quot;person的job改变了&quot;, newVal, oldVal);
+      &#125;,
+      &#123; deep: true &#125;
+    );
+</code></pre>
+<p><strong>7.ref定义的响应式对象</strong></p>
+<p>如果定义的对象是基本数据，则不用加<code>.value</code>,例如<code> let count=ref(0)</code>,如果在监视时加了<code>.value</code>，则监视的则是0这个数字，不是我们想要的refImpl数据对象，如果定义的对象是一个对象，则需要加<code>.value</code>，否则监听时虽然对象内的数据改变，但整个对象没有改变（其内存地址没有发生变化），会认为没有发生变化，也就监听不到对象内数据的变化</p>
+<pre><code>    const person = ref(&#123;
+      name: &quot;张三&quot;,
+      age: 18,
+      jobs: &#123;
+        job1: &#123;
+          salary: 20,
+        &#125;,
+      &#125;,
+    &#125;);
+
+
+
+1.数据为对象时，需要加.value
+ watch(person.value, (newVal, oldVal) =&gt; &#123;
+      console.log(&quot;person的值改变了&quot;, newVal, oldVal);
+    &#125;);
+2.若不加.value，则需要深度监听(deep:true)，才能监听到对象的改变
+    watch(
+      person,
+      (newVal, oldVal) =&gt; &#123;
+        console.log(&quot;person的值改变了&quot;, newVal, oldVal);
+      &#125;,
+      &#123; deep: true &#125;
+    );
+</code></pre>
+<h1 id="watch和watchEffect"><a href="#watch和watchEffect" class="headerlink" title="watch和watchEffect"></a>watch和watchEffect</h1><h4 id="a-纯函数与副作用"><a href="#a-纯函数与副作用" class="headerlink" title="a) 纯函数与副作用"></a>a) 纯函数与副作用</h4><p>effect全称叫side effect，副作用。</p>
+<p>什么是副作用呢，一个函数运行后产生了可以影响其外部或可以看到的效果，就叫副作用，比如document. Body. Append，alert再或者是showModel（在页面中展示一个弹层），或者window.open打开一个新窗口。<br><img src="/2022/10/24/vue3%E4%B8%AD%E7%9A%84watch%E5%92%8Ccomputed/%E8%AF%BE%E4%BB%B6/19.Vue3%E8%BF%9B%E9%98%B6&vite/19.Vue3%E8%BF%9B%E9%98%B6&vite/readme/assets/Snipaste_2021-11-23_10-58-18.jpg" alt="Snipaste_2021-11-23_10-58-18"></p>
+<pre><code class="javascript">// 纯函数：如果函数的调用参数相同，则永远返回相同的结果。它不依赖于程序执行期间函数外部任何状态或数据的变化，必须只依赖于其输入参数。它不应修改程序的状态或引起副作用。
+function priceAfterTax(productPrice) &#123; 
+    return (productPrice * 0.20) + productPrice;
+&#125;
+
+// 副作用：一个可以被观察的副作用是在函数内部与其外部的任意交互。这可能是在函数内修改外部的变量，或者在函数里调用另外一个函数等。
+var tax = 20;
+function calculateTax(productPrice) &#123;
+    tax = tax/100
+    return (productPrice * tax) + productPrice;
+&#125;
+</code></pre>
+<ul>
+<li><p>react中副作用可以这样理解：组件初始化的时候，组件根据开发者的设定，由自身驱动的第一次DOM修改，就是主作用。主作用之后，组件开始执行用户逻辑，这时你眼里的业务逻辑代码，在React眼里都是副作用。</p>
+</li>
+<li><p>vue3中的副作用与react中副作用的定义类似，响应式数据的变更造成的其他连锁反应，以及后续逻辑，这些连锁反应都叫副作用。</p>
+</li>
+</ul>
+<p>哪些函数没有副作用呢，只用来计算结果的函数，比如Math.max，JSON.parse，它们的运行除了返回结果外不会有其它效果，这就叫不产生副作用。</p>
+<p>基本上可以简化的理解为副作用就是执行某种操作(副作用函数)，无副作用就是执行某种计算(纯函数)。</p>
+<p>这里watchEffect的意思就是在观察（watch）到变化后执行一些操作（effect）。</p>
+<h4 id="b-watchEffect的基本使用"><a href="#b-watchEffect的基本使用" class="headerlink" title="b) watchEffect的基本使用"></a>b) watchEffect的基本使用</h4><pre><code class="javascript">import &#123; watchEffect, ref &#125; from &#39;vue&#39;
+setup () &#123;
+    const userID = ref(0)
+    
+    watchEffect(() =&gt; console.log(userID))
+    
+    setTimeout(() =&gt; &#123;
+      userID.value = 1
+    &#125;, 1000)
+
+    return &#123;
+      userID
+    &#125;
+ &#125;
+</code></pre>
+<h4 id="c-watch和watchEffect的异同"><a href="#c-watch和watchEffect的异同" class="headerlink" title="c) watch和watchEffect的异同"></a>c) watch和watchEffect的异同</h4><p>watch和watchEffect都可以侦听副作用，区别在于：</p>
+<ul>
+<li>第一点我们可以从示例代码中看到 <code>watchEffect</code> 不需要指定监听的属性，他会自动的收集依赖， 只要我们回调中引用到了 响应式的属性， 那么当这些属性变更的时候，这个回调都会执行；而 <code>watch</code> 只能监听指定的属性而做出变更。</li>
+<li>第二点就是 watch 可以获取到新值与旧值（更新前的值），而 <code>watchEffect</code> 是拿不到的。</li>
+<li>第三点是 watchEffect 如果存在的话，在组件初始化的时候就会执行一次用以收集依赖（与<code>computed</code>同理），而后收集到的依赖发生变化，这个回调才会再次执行；而 watch 不需要，因为他一开始就指定了依赖。</li>
+</ul>
+<h4 id="d-watchEffect的刷新时机"><a href="#d-watchEffect的刷新时机" class="headerlink" title="d) watchEffect的刷新时机"></a>d) watchEffect的刷新时机</h4><p>watchEffect会在所有的组件 <code>update</code> <strong>前</strong>执行。</p>
+<pre><code class="javascript">&lt;template&gt;
+  &lt;div&gt;&#123;&#123; count &#125;&#125;&lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script&gt;
+export default &#123;
+  setup() &#123;
+    const count = ref(0)
+
+    watchEffect(() =&gt; &#123;
+      console.log(count.value)
+    &#125;)
+
+    return &#123;
+      count
+    &#125;
+  &#125;
+&#125;
+&lt;/script&gt;
+</code></pre>
+<p>在这个例子中：</p>
+<ul>
+<li><code>count</code> 会在初始运行时同步打印出来，因为watchEffect会在组件初始化的时候默认收集一次依赖</li>
+<li>更改 <code>count</code> 时，将在组件<strong>更新前</strong>执行副作用。</li>
+</ul>
+<p>如果需要在组件更新(例如：当与<a target="_blank" rel="noopener" href="https://v3.cn.vuejs.org/guide/composition-api-template-refs.html#%E4%BE%A6%E5%90%AC%E6%A8%A1%E6%9D%BF%E5%BC%95%E7%94%A8">模板引用</a>一起)<strong>后</strong>重新运行侦听器副作用，我们可以传递带有 <code>flush</code> 选项的附加 <code>options</code> 对象 (默认为 <code>&#39;pre&#39;</code>)：</p>
+<pre><code class="javascript">watchEffect(
+  () =&gt; &#123;
+    /* ... */
+  &#125;,
+  &#123;
+    flush: &#39;post&#39;
+  &#125;
+)
+</code></pre>
+<h4 id="e-停止侦听"><a href="#e-停止侦听" class="headerlink" title="e) 停止侦听"></a>e) 停止侦听</h4><p>当 <code>watchEffect</code> 在组件的 <a target="_blank" rel="noopener" href="https://v3.cn.vuejs.org/guide/composition-api-setup.html">setup()</a> 函数或<a target="_blank" rel="noopener" href="https://v3.cn.vuejs.org/guide/composition-api-lifecycle-hooks.html">生命周期钩子</a>被调用时，侦听器会被链接到该组件的生命周期，并在组件卸载时自动停止。</p>
+<p>在一些情况下，也可以显式调用返回值以停止侦听：</p>
+<pre><code class="javascript">const stop = watchEffect(() =&gt; &#123;
+  /* ... */
+&#125;)
+
+stop()
+</code></pre>
+<h4 id="f-清除副作用的函数"><a href="#f-清除副作用的函数" class="headerlink" title="f) 清除副作用的函数"></a>f) 清除副作用的函数</h4><p>watchEffect函数的onInvalidate方法就是用来清除副作用的，但副作用不一定是不被需要的。它可以是获取数据、事件监听或订阅、改变应用状态、修改 DOM、输出日志等等。清除副作用实际上是Vue3提供给用户的一种取消异步副作用的实现方法。</p>
+<pre><code class="javascript">&lt;template&gt;
+  &lt;div&gt;
+    &lt;div&gt;&#123;&#123;count&#125;&#125;&lt;/div&gt;
+    &lt;button @click=&quot;doAdd&quot;&gt;点我+1&lt;/button&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script&gt;
+import &#123; ref, watchEffect, watch &#125; from &quot;vue&quot;;
+
+export default &#123;
+  setup() &#123;
+    const count = ref(1);
+
+    const doAdd = ()=&gt;&#123;
+      count.value++
+    &#125;
+
+    watchEffect(onInvalidate =&gt; &#123;
+      console.log(count.value)
+      // 异步api调用，返回一个操作对象
+      const timer = setInterval(() =&gt; &#123;
+        console.log(&quot;timer执行了&quot;)
+      &#125;, 1000);
+
+      //onInvalidate(fn)传入的回调会在watchEffect重新运行或者watchEffect停止的时候执行。
+      onInvalidate(()=&gt;&#123;
+        clearInterval(timer)
+      &#125;)
+    &#125;);
+
+    return &#123;
+      count,
+      doAdd
+    &#125;;
+  &#125;
+&#125;;
+&lt;/script&gt;
+</code></pre>
+<h3 id><a href="#" class="headerlink" title></a></h3>
+    </div>
+    
+    <link rel="stylesheet" href="https://cdn.staticfile.org/gitalk/1.7.2/gitalk.min.css">
+    <div id="comment">
+        <div id="gitalk-container">
+        </div>
+    </div>
+    
+</div>
+                         
+<footer id="footer">
+    <div class="footer-wrap">
+        <div>
+            © 2022 - 2022 mynote
+            <span class="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            @参商
+        </div>
+        <div></div>
+        <div>Based on the <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo Engine</a> & <a
+                target="_blank" rel="noopener" href="https://github.com/korilin/hexo-theme-particle">Particle Theme</a></div>
+        
+    </div>
+</footer>
+                    </div>
+                </div>
+            </transition>
+            <div id="img_show">
+                <img id="img_content" alt="img_show">
+            </div>
+        </div>
+        <script src="https://cdn.staticfile.org/highlight.js/11.5.1/highlight.min.js"></script>
+        <script src="/js/particlex.js"></script>
+        <script src="/js/showimg.js"></script>
+        
+<script src="https://cdn.staticfile.org/gitalk/1.7.2/gitalk.min.js"></script>
+<script>
+    var clientID = "", clientSecret = "";
+    
+    const gitalk = new Gitalk({
+        clientID: clientID,
+        clientSecret: clientSecret,
+        repo: "",
+        owner: "",
+        admin: [""],
+        language: "zh-CN",
+        id: location.pathname,
+        distractionFreeMode: true
+    })
+    gitalk.render("gitalk-container")
+</script>
+
+
+    </body>
+</html>

@@ -138,7 +138,7 @@
             
             <span class="tag">
                 
-                <a href="/tags/vue3" style="color: #ffa2c4">
+                <a href="/tags/vue3" style="color: #ff7d73">
                     vue3
                 </a>
             </span>
@@ -314,6 +314,7 @@ export default &#123;
 <p><strong>toRef</strong> : toRef处理的数据会有变化，而原始数据也有变化，如果toRef处理是非响应式数据，此时模板没有变化 （相当于浅拷贝，引用关系）</p>
 <p><strong>toRefs</strong> : toRefs处理的数据响应变化，原始数据也响应变化，如果toRefs处理是非响应式数据，此时模板并没有变化（相当于浅拷贝，引用关系）</p>
 <p><img src="/2022/09/26/ref%E4%B8%8Ereactive/ref%E6%AF%94%E8%BE%83.jpg" alt="ref比较"></p>
+<p>备注：ref也可以用来定义对象或数组，但内部会自动通过reactive转为代理对象</p>
 
     </div>
     

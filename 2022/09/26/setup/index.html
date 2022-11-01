@@ -138,7 +138,7 @@
             
             <span class="tag">
                 
-                <a href="/tags/vue3" style="color: #ff7d73">
+                <a href="/tags/vue3" style="color: #00bcd4">
                     vue3
                 </a>
             </span>
@@ -166,12 +166,21 @@
 <p><code>setup</code> 函数是个新的入口函数，相当于 vue2.x 中 <code>beforeCreate </code>和 <code>created</code>，在 <code>beforeCreate</code> 之后 <code>created </code>之前执行。</p>
 <p><strong>setup函数的特性：</strong></p>
 <ul>
-<li>使用Composition API 的入口</li>
-<li>在beforeCreate之后在created之前执行</li>
-<li>在setup中没有this</li>
-<li>可以返回一个对象，这个对象的属性被合并到渲染上下文，并可以在模板中直接使用；</li>
-<li>接收props对象作为第一个参数，接收来的props对象，可以通过watch监视其变化。</li>
-<li>接受context对象作为第二个参数，这个对象包含attrs，slots，emit三个属性。</li>
+<li><p>使用Composition API 的入口</p>
+</li>
+<li><p>在beforeCreate之后在created之前执行</p>
+</li>
+<li><p>在setup中没有this,或者说this是undefined</p>
+</li>
+<li><p>可以返回一个对象，这个对象的属性被合并到渲染上下文，并可以在模板中直接使用；</p>
+</li>
+<li><p>接收props对象作为第一个参数，接收来的props对象，包含组件外部传递过来，且组件内部声明接收了的属性，可以通过watch监视其变化。</p>
+</li>
+<li><p>接受context对象作为第二个参数，这个对象包含attrs，slots，emit三个属性。</p>
+<p>​       attrs:值为对象，包含：组件外部传递过来，但没有在props配置中声明的属性，相当于<code>this.$attrs</code></p>
+<p>​       slots:收到的插槽内容，相当于<code>this.$slots</code></p>
+<p>​       emit:分发的自定义事件函数，相当于<code>this.$emit</code></p>
+</li>
 </ul>
 
     </div>

@@ -142,6 +142,94 @@
             
 
 <div class="post">
+    <a href="/2022/05/19/vue组件的注册使用/">
+        <h2>
+            Vue组件的注册使用
+        </h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="date">
+            <span class="icon">
+                <svg class="fa-icon"><use xlink:href="#calendar-solid"></use></svg>
+            </span>
+            2022/5/19
+        </span>
+    </div>
+    <div class="excerpt">
+        <div class="content" v-pre>
+            
+            <p>Vue使用组件的三大步骤：</p>
+<p>1.定义组件（创建组件）</p>
+<p>2.注册组件</p>
+<p>3.使用组件（组件标签）</p>
+<p>如何定义一个组件：</p>
+<p>使用Vue.extend(options)创建，其中options和new Vue(options)时传入的那个options几乎一样，但也有区别，如下：</p>
+<p>1.el不可以写，因为所有的组件最终都要经过一个vm的管理，由vm中的el决定服务于哪个组件</p>
+<p>2.data必须写成函数，因为组件被复用时，数据存在引用关系</p>
+<p>3.使用template可以配置组件结构</p>
+<p>如何注册组件：</p>
+<p>1.局部注册：靠new Vue的时候传入component选项</p>
+<p>2.全局注册：靠Vue.component(‘组件名’，组件)</p>
+<p>编写组件标签：使用组件</p>
+<p>组件名规则：</p>
+<p>1.一个单词组成：</p>
+<p>​                   首字母小写：school</p>
+<p>​                   首字母大写：School</p>
+<p>2.多个单词组成：</p>
+<p>​                    kebab-case命名：my-school</p>
+<p>​                     CamelCase命名：MySchool(需要脚手架支持)</p>
+<p>备注：</p>
+<p>​         1.组件名尽可能回避HTML中已有的元素，例如h2,H2都不行</p>
+<p>​         2.可以使用name配置项指定组件在开发者工具中的名称</p>
+<p>关于组件标签：</p>
+<p>第一种写法：</p>
+<pre><code>&lt;school&gt;&lt;/school&gt;
+</code></pre>
+<p>第二种写法:</p>
+<pre><code>&lt;school/&gt;
+</code></pre>
+<p>简写方式：</p>
+<pre><code>const school=Vue.extend(options)可简写为 : const school=options
+</code></pre>
+<p>关于VueComponent:</p>
+<p>1.school组件本质是一个名为VueComponent的构造函数，且不是程序员定义的，是Vue.extend生成的</p>
+<p>2.我们只需要写<school>或<school></school>，Vue解析时会帮我们创建school组件的实例对象，即Vue帮我们执行:new VueComponent(options)</school></p>
+<p>3.特别注意：每次调用Vue.extend,返回的都是一个全新的VueComponent</p>
+<p>4.关于this指向：</p>
+<p>​           1.组件配置中：data函数，methods中的函数，watch中的函数，computed中的函数，它们的this均是【VueComponent实例对象】</p>
+<p>​            2.new Vue(options)配置中：data函数，methods中的函数，watch中的函数，computed中的函数，它们的this均是【Vue实例对象】</p>
+<p>5.VueComponent实例对象：也可以称之为组件实例对象，可用vc简称,Vue实例对象，可简称为vm</p>
+<p>内置关系：</p>
+<pre><code>VueComponent.prototype__proto__=Vue.prototype
+</code></pre>
+<p>作用：让组件实例对象（vc）可以访问到Vue原型上的属性、方法。</p>
+<p><img src="/2022/05/19/vue%E7%BB%84%E4%BB%B6%E7%9A%84%E6%B3%A8%E5%86%8C%E4%BD%BF%E7%94%A8/vuecomponent.png"></p>
+
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        <span class="icon">
+            <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
+        </span>
+        
+        
+        <span class="tag">
+            
+            <a href="/tags/vue" style="color: #00bcd4">
+                vue
+            </a>
+        </span>
+        
+    </div>
+    <a href="/2022/05/19/vue组件的注册使用/" class="go-post">
+        阅读全文
+    </a>
+</div>
+
+<div class="post">
     <a href="/2022/05/18/vue的生命周期/">
         <h2>
             Vue的生命周期
@@ -187,7 +275,7 @@
         
         <span class="tag">
             
-            <a href="/tags/vue" style="color: #00a596">
+            <a href="/tags/vue" style="color: #03a9f4">
                 vue
             </a>
         </span>
@@ -257,7 +345,7 @@
         
         <span class="tag">
             
-            <a href="/tags/vue" style="color: #00a596">
+            <a href="/tags/vue" style="color: #00bcd4">
                 vue
             </a>
         </span>
@@ -327,7 +415,7 @@
         
         <span class="tag">
             
-            <a href="/tags/vue" style="color: #00bcd4">
+            <a href="/tags/vue" style="color: #03a9f4">
                 vue
             </a>
         </span>
@@ -436,7 +524,7 @@
         
         <span class="tag">
             
-            <a href="/tags/vue" style="color: #ffa2c4">
+            <a href="/tags/vue" style="color: #ff7d73">
                 vue
             </a>
         </span>
@@ -489,7 +577,7 @@
         
         <span class="tag">
             
-            <a href="/tags/vue" style="color: #ffa2c4">
+            <a href="/tags/vue" style="color: #03a9f4">
                 vue
             </a>
         </span>
@@ -577,7 +665,7 @@
         
         <span class="tag">
             
-            <a href="/tags/vue" style="color: #00a596">
+            <a href="/tags/vue" style="color: #03a9f4">
                 vue
             </a>
         </span>
@@ -838,7 +926,7 @@
         
         <span class="tag">
             
-            <a href="/tags/vue" style="color: #ff7d73">
+            <a href="/tags/vue" style="color: #00bcd4">
                 vue
             </a>
         </span>
@@ -1060,82 +1148,6 @@
         
     </div>
     <a href="/2022/05/16/样式绑定/" class="go-post">
-        阅读全文
-    </a>
-</div>
-
-<div class="post">
-    <a href="/2022/05/13/vue中的监视属性/">
-        <h2>
-            Vue中的监视属性
-        </h2>
-    </a>
-    <div class="category-and-date">
-        
-        <span class="date">
-            <span class="icon">
-                <svg class="fa-icon"><use xlink:href="#calendar-solid"></use></svg>
-            </span>
-            2022/5/13
-        </span>
-    </div>
-    <div class="excerpt">
-        <div class="content" v-pre>
-            
-            <p>监视属性watch:</p>
-<ol>
-<li>当被监视的属性发生变化时，回调函数自动调用，进行相关操作</li>
-<li>监视的属性必须存在，才能进行监视，可以监视计算属性</li>
-<li>监视的两种写法：<ul>
-<li>new Vue时传入watch配置</li>
-<li>通过vm.$watch监视</li>
-</ul>
-</li>
-</ol>
-<p><img src="/2022/05/13/vue%E4%B8%AD%E7%9A%84%E7%9B%91%E8%A7%86%E5%B1%9E%E6%80%A7/watch.png"></p>
-<p>handler调用时机：监视的属性发生变化时调用</p>
-<p>handler(newValue,oldValue):传入两个参数，修改后的值和原来的值</p>
-<p>watch监视的属性还有其他配置项，比如：immediate:true，初始化时handler()函数立即执行一次</p>
-<p>深度监视：</p>
-<ol>
-<li>Vue中的watch默认不监视对象内部值的改变（一层）</li>
-<li>配置deep:true可以监视对象内部值的改变（多层）</li>
-<li>vue自身可以监测对象内部值的改变，但是vue中的watch默认不可以</li>
-<li>使用watch时根据数据的具体结构，决定是否采用深度监视</li>
-</ol>
-<p><img src="/2022/05/13/vue%E4%B8%AD%E7%9A%84%E7%9B%91%E8%A7%86%E5%B1%9E%E6%80%A7/deepwatch.png"></p>
-<p>当监视属性中只用到handler函数而没有其他配置项时，可以简写，有两种简写方式，如下：</p>
-<p><img src="/2022/05/13/vue%E4%B8%AD%E7%9A%84%E7%9B%91%E8%A7%86%E5%B1%9E%E6%80%A7/jianxie.png"></p>
-<p>computed和watch之间的区别：</p>
-<ol>
-<li>computed能完成的功能，watch都可以完成</li>
-<li>watch能完成的功能，computed不一定能完成，例如：watch可以进行异步操作</li>
-</ol>
-<p>两个重要的小原则:</p>
-<ol>
-<li>被vue所管理的函数，最好写成普通函数，这样this的指向才是vm或组件实例对象</li>
-<li>不被vue所管理的函数（定时器的回调函数，ajax的回调函数，promise的回调函数），最好写成箭头函数，这样this的指向才是vm或组件实例对象。</li>
-</ol>
-
-            
-        </div>
-    </div>
-    <div class="post-tags">
-        
-        <span class="icon">
-            <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
-        </span>
-        
-        
-        <span class="tag">
-            
-            <a href="/tags/vue" style="color: #00a596">
-                vue
-            </a>
-        </span>
-        
-    </div>
-    <a href="/2022/05/13/vue中的监视属性/" class="go-post">
         阅读全文
     </a>
 </div>
