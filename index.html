@@ -142,6 +142,157 @@
             
 
 <div class="post">
+    <a href="/2022/11/07/echarts的入门整理/">
+        <h2>
+            Echarts的入门整理
+        </h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="date">
+            <span class="icon">
+                <svg class="fa-icon"><use xlink:href="#calendar-solid"></use></svg>
+            </span>
+            2022/11/7
+        </span>
+    </div>
+    <div class="excerpt">
+        <div class="content" v-pre>
+            
+            <h2 id="1-安装方式"><a href="#1-安装方式" class="headerlink" title="1.安装方式"></a>1.安装方式</h2><pre><code>npm install echarts --save
+</code></pre>
+<h2 id="2-引入-ECharts"><a href="#2-引入-ECharts" class="headerlink" title="2.引入 ECharts"></a>2.引入 ECharts</h2><pre><code>import * as echarts from &#39;echarts&#39;;
+// 基于准备好的dom，初始化echarts实例
+var myChart = echarts.init(document.getElementById(&#39;main&#39;));
+// 绘制图表
+myChart.setOption(&#123;
+  title: &#123;
+    text: &#39;ECharts 入门示例&#39;
+  &#125;,
+  tooltip: &#123;&#125;,
+  xAxis: &#123;
+    data: [&#39;衬衫&#39;, &#39;羊毛衫&#39;, &#39;雪纺衫&#39;, &#39;裤子&#39;, &#39;高跟鞋&#39;, &#39;袜子&#39;]
+  &#125;,
+  yAxis: &#123;&#125;,
+  series: [
+    &#123;
+      name: &#39;销量&#39;,
+      type: &#39;bar&#39;,
+      data: [5, 20, 36, 10, 10, 20]
+    &#125;
+  ]
+&#125;);
+</code></pre>
+<h2 id="3-图表容器及大小"><a href="#3-图表容器及大小" class="headerlink" title="3.图表容器及大小"></a>3.图表容器及大小</h2><h5 id="1-在-HTML-中定义有宽度和高度的父容器（推荐）"><a href="#1-在-HTML-中定义有宽度和高度的父容器（推荐）" class="headerlink" title="1.在 HTML 中定义有宽度和高度的父容器（推荐）"></a>1.在 HTML 中定义有宽度和高度的父容器（推荐）</h5><p>通常来说，需要在 HTML 中先定义一个 <code>&lt;div&gt;</code> 节点，并且通过 CSS 使得该节点具有宽度和高度。初始化的时候，传入该节点，图表的大小默认即为该节点的大小，除非声明了 <code>opts.width</code> 或 <code>opts.height</code> 将其覆盖。需要注意的是，使用这种方法在调用 <code>echarts.init</code> 时需保证容器已经有宽度和高度了。</p>
+<pre><code>&lt;div id=&quot;main&quot; style=&quot;width: 600px;height:400px;&quot;&gt;&lt;/div&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+  var myChart = echarts.init(document.getElementById(&#39;main&#39;));
+&lt;/script&gt;
+</code></pre>
+<h5 id="2-指定图表的大小"><a href="#2-指定图表的大小" class="headerlink" title="2.指定图表的大小"></a>2.指定图表的大小</h5><p>如果图表容器不存在宽度和高度，或者，你希望图表宽度和高度不等于容器大小，也可以在初始化的时候指定大小。</p>
+<pre><code>&lt;div id=&quot;main&quot;&gt;&lt;/div&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+  var myChart = echarts.init(document.getElementById(&#39;main&#39;), null, &#123;
+    width: 600,
+    height: 400
+  &#125;);
+&lt;/script&gt;
+</code></pre>
+<h5 id="3-响应容器大小的变化"><a href="#3-响应容器大小的变化" class="headerlink" title="3.响应容器大小的变化"></a>3.响应容器大小的变化</h5><p>监听图标容器的大小并改变图表大小</p>
+<pre><code>&lt;script type=&quot;text/javascript&quot;&gt;
+  var myChart = echarts.init(document.getElementById(&#39;main&#39;));
+  window.onresize = function() &#123;
+    myChart.resize();
+  &#125;;
+&lt;/script&gt;
+</code></pre>
+<h5 id="4-为图表设置特定的大小"><a href="#4-为图表设置特定的大小" class="headerlink" title="4.为图表设置特定的大小"></a>4.为图表设置特定的大小</h5><p>除了直接调用 <code>resize()</code> 不含参数的形式之外，还可以指定宽度和高度，实现图表大小不等于容器大小的效果。</p>
+<pre><code>myChart.resize(&#123;
+  width: 800,
+  height: 400
+&#125;);
+</code></pre>
+<h3 id="4-容器节点被销毁以及被重建时"><a href="#4-容器节点被销毁以及被重建时" class="headerlink" title="4.容器节点被销毁以及被重建时"></a>4.容器节点被销毁以及被重建时</h3><p>假设页面中存在多个标签页，每个标签页都包含一些图表。当选中一个标签页的时候，其他标签页的内容在 DOM 中被移除了。这样，当用户再选中这些标签页的时候，就会发现图表“不见”了。</p>
+<p>本质上，这是由于图表的容器节点被移除导致的。即使之后该节点被重新添加，图表所在的节点也已经不存在了。</p>
+<p>正确的做法是，在图表容器被销毁之后，调用 <a target="_blank" rel="noopener" href="https://echarts.apache.org/api.html#echartsInstance.dispose"><code>echartsInstance.dispose</code></a> 销毁实例，在图表容器重新被添加后再次调用 <a target="_blank" rel="noopener" href="https://echarts.apache.org//api.html#echarts.init">echarts.init</a> 初始化。</p>
+<p>完整基础用法：</p>
+<pre><code>    async mounted() &#123;
+      window.addEventListener(&#39;resize&#39;, () =&gt; &#123;
+        this.myChart.resize()
+      &#125;)
+    &#125;,
+     //收支情况柱状图
+      drawTotalChart() &#123;
+        if (
+          this.myChart != null &amp;&amp;
+          this.myChart != &#39;&#39; &amp;&amp;
+          this.myChart != undefined
+        ) &#123;
+          this.myChart.dispose()
+        &#125;
+        let chartDom = document.getElementById(&#39;totalmain&#39;)
+        this.myChart = echarts.init(chartDom)
+
+        let option = &#123;
+          color: [&#39;rgba(96, 154, 240, 1)&#39;, &#39;rgba(107, 204, 212, 1)&#39;],
+          tooltip: &#123;
+            trigger: &#39;axis&#39;,
+            axisPointer: &#123;
+              type: &#39;shadow&#39;,
+            &#125;,
+          &#125;,
+          grid: &#123;
+            top: 50,
+            left: 0,
+            right: 0,
+            bottom: 20,
+            containLabel: true,
+          &#125;,
+          legend: &#123;
+            data: [&#39;收入&#39;, &#39;支出&#39;],
+            x: &#39;left&#39;,
+            padding: [0, 0, 0, 0],
+            itemStyle: &#123;&#125;,
+          &#125;,
+          xAxis: &#123;
+            type: &#39;category&#39;,
+            data: this.monthList,
+          &#125;,
+          yAxis: &#123;&#125;,
+          series: [
+            &#123; data: this.totalincome, type: &#39;bar&#39;, name: &#39;收入&#39; &#125;,
+            &#123; data: this.totalspend, type: &#39;bar&#39;, name: &#39;支出&#39; &#125;,
+          ],
+        &#125;
+        option &amp;&amp; this.myChart.setOption(option)
+      &#125;,
+    
+</code></pre>
+
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        <span class="icon">
+            <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
+        </span>
+        
+        
+        <span class="tag">
+            
+            <a href="/tags/echarts" style="color: #03a9f4">
+                echarts
+            </a>
+        </span>
+        
+    </div>
+    <a href="/2022/11/07/echarts的入门整理/" class="go-post">
+        阅读全文
+    </a>
+</div>
+
+<div class="post">
     <a href="/2022/10/24/vue3中的watch和computed/">
         <h2>
             Vue3中的watch和computed
@@ -435,7 +586,7 @@ export default &#123;
         
         <span class="tag">
             
-            <a href="/tags/vue3" style="color: #00bcd4">
+            <a href="/tags/vue3" style="color: #00a596">
                 vue3
             </a>
         </span>
@@ -517,7 +668,7 @@ const p=new Proxy(person,&#123;
         
         <span class="tag">
             
-            <a href="/tags/vue3" style="color: #ff7d73">
+            <a href="/tags/vue3" style="color: #00a596">
                 vue3
             </a>
         </span>
@@ -727,7 +878,7 @@ export default &#123;
         
         <span class="tag">
             
-            <a href="/tags/vue3" style="color: #00bcd4">
+            <a href="/tags/vue3" style="color: #03a9f4">
                 vue3
             </a>
         </span>
@@ -804,7 +955,7 @@ export default &#123;
         
         <span class="tag">
             
-            <a href="/tags/vue3" style="color: #03a9f4">
+            <a href="/tags/vue3" style="color: #00bcd4">
                 vue3
             </a>
         </span>
@@ -873,7 +1024,7 @@ export default &#123;
         
         <span class="tag">
             
-            <a href="/tags/css" style="color: #00a596">
+            <a href="/tags/css" style="color: #ffa2c4">
                 css
             </a>
         </span>
@@ -919,7 +1070,7 @@ export default &#123;
         
         <span class="tag">
             
-            <a href="/tags/js" style="color: #00bcd4">
+            <a href="/tags/js" style="color: #ffa2c4">
                 js
             </a>
         </span>
@@ -1005,7 +1156,7 @@ export default &#123;
         
         <span class="tag">
             
-            <a href="/tags/js" style="color: #00a596">
+            <a href="/tags/js" style="color: #00bcd4">
                 js
             </a>
         </span>
@@ -1062,7 +1213,7 @@ export default &#123;
         
         <span class="tag">
             
-            <a href="/tags/js" style="color: #ff7d73">
+            <a href="/tags/js" style="color: #00bcd4">
                 js
             </a>
         </span>
@@ -1136,276 +1287,6 @@ export default &#123;
         
     </div>
     <a href="/2022/08/03/js数据类型/" class="go-post">
-        阅读全文
-    </a>
-</div>
-
-<div class="post">
-    <a href="/2022/08/01/vue-router/">
-        <h2>
-            Vue-Router
-        </h2>
-    </a>
-    <div class="category-and-date">
-        
-        <span class="date">
-            <span class="icon">
-                <svg class="fa-icon"><use xlink:href="#calendar-solid"></use></svg>
-            </span>
-            2022/8/1
-        </span>
-    </div>
-    <div class="excerpt">
-        <div class="content" v-pre>
-            
-            <p><strong>路由：</strong></p>
-<p>1.理解：一个路由(route)就是一组映射关系(key-value)，多个路由需要路由器(router进行管理)。</p>
-<p>2.前端路由：key是路径，value是组件。</p>
-<p><strong>基本使用</strong></p>
-<p>1.安装vue-router,命令：npm i vue-router@3（vue2中使用）</p>
-<p>2.应用插件:在main.js中引入并应用</p>
-<p><code>import VueRouter from &#39;vue-router&#39;</code></p>
-<p><code>Vue.use(VueRouter)</code></p>
-<p><strong>编写router配置项</strong></p>
-<pre><code>//引入VueRouter
-
-import VueRout from &#39;vue-router&#39;
-
-//引入组件
-
-import About from &#39;xxx&#39;
-
-import Home from &#39;xxx&#39;
-
-//创建router实例对象，去管理一组一组的路由规则
-
-const router=new VueRouter(&#123;
-
-routes:[
-
-&#123;
-
-path:&#39;/about&#39;,
-
-component:About
-
-&#125;,
-
-&#123;
-
-path:&#39;/home&#39;,
-
-component:Home
-
-&#125;
-
-]
-
-&#125;)
-export default router
-</code></pre>
-<p>或</p>
-<pre><code>const router=new VueRouter(&#123;
-
-routes:[
-
-&#123;
-
-path:&#39;/about&#39;,
-
-component:()=&gt;imoort (&#39;@/views/xxx&#39;)
-
-&#125;,
-
-&#123;
-
-path:&#39;/home&#39;,
-
-component:()=&gt;imoort (&#39;@/views/xxx&#39;)
-
-&#125;
-
-]
-
-&#125;)
-export default router
-</code></pre>
-<p><strong>切换(ative-class可配置高亮样式)</strong></p>
-<p><code>&lt;router-link active-class=&quot;active&quot; to=&quot;/about&quot;&gt;about&lt;/router-link/&gt;</code></p>
-<p><strong>指定展示位置</strong></p>
-<p><code>&lt;router-view&gt;&lt;/router-link&gt;</code></p>
-<p><strong>注意：</strong></p>
-<p>1.路由组件通常存放在<code>pages</code>文件夹，一般组件通常存放在<code>components</code>文件夹</p>
-<p>2.通过切换，”隐藏”了的路由组件，默认是被销毁掉的，需要的时候再去挂载</p>
-<p>3.每个组件都有自己的<code>$route</code>属性，里面存储着自己的路由信息</p>
-<p>4.整个应用只有一个router，可以通过组建的<code>$route</code>r属性获取到</p>
-<p><strong>多级路由(嵌套路由)</strong></p>
-<pre><code>import Messag from &#39;xxx&#39;
-import News from &#39;xxx&#39;
-const router=new VueRouter(&#123;
-
-routes:[
-
-&#123;
-
-path:&#39;/home&#39;,
-
-component:Home，
-children:[
-    &#123;
-        path:&#39;news&#39;,//子路由的path中无需/
-        component:News
-    &#125;,
-     &#123;
-        path:&#39;message&#39;,
-        component:Message
-    &#125;
-]
-
-&#125;
-
-]
-
-&#125;)
-export default router
-</code></pre>
-<pre><code>&lt;router-link active-class=&quot;active&quot; to=&quot;/home/news&quot;&gt;news&lt;/router-link/&gt;//跳转时路径为完整路径（需带着父组件的路径）
-</code></pre>
-<p><strong>路由的query参数</strong></p>
-<p>1.传递参数</p>
-<pre><code>&lt;router-link :to=&quot;`/home/message/detail?id=$&#123;item.id&#125;&amp;title=$&#123;item.title&#125;`&quot;跳转&lt;/router-link&gt;
-&lt;router-link :to=&quot;&#123;
-    path:&#39;/home/message/detail&#39;,
-    query:&#123;
-        id:item.id,
-        title:item.title
-    &#125;
-&#125;&quot;跳转&lt;/router-link&gt;
-</code></pre>
-<p>2.接收参数</p>
-<pre><code>this.$route.query.id
-this.$route.query.title
-</code></pre>
-<p><strong>命名路由</strong></p>
-<p>1.作用：简化路由的跳转</p>
-<p>2.使用</p>
-<pre><code>1.给路由命名
-
-&#123;
-
-path:&#39;/home&#39;,
-
-component:Home，
-children:[
-     &#123;
-        path:&#39;news&#39;,
-        component:News
-    &#125;，
-    children:[
-        &#123;
-             name:&#39;xiangqing&#39;,
-             path:&#39;detail&#39;,
-             component:Detail
-        &#125;
-    ]
-]
-
-&#125;
-
-]
-2.简化跳转
-//简化前
-&lt;router-link to=&quot;/home/news/detail&quot;&gt;跳转&lt;/router-link&gt;
-//简化后
-&lt;router-link :to=&quot;&#123;name:&#39;xiangqing&#39;,query:&#123;id:item.id,title,item.title&#125;&#125;&quot;&gt;跳转&lt;/router-link&gt;
-</code></pre>
-<p><strong>路由的params参数</strong></p>
-<p>1.配置路由，声明接受params参数</p>
-<pre><code>&#123;
- path:&#39;/home&#39;,
- component:Home，
- children:[
-     &#123;
-        path:&#39;news&#39;,
-        component:News,
-        children:&#123;
-             name:&#39;xiangqing&#39;,
-             path:&#39;detail/:id/:title&#39;,//使用占位符声明接受params参数
-             component:Detail
-        &#125;
-     &#125;
- ]
-&#125;
-</code></pre>
-<p>2.传递参数</p>
-<pre><code>//跳转并携带params参数，to的字符串写法
-&lt;router-link :to=&quot;/home/message/detail/001/你好&quot;&gt;跳转&lt;/router-link&gt;
-//跳转并携带params参数，to的对象写法
-&lt;router-link
-:to=&quot;&#123;
-    name:&#39;xiangqing&#39;,
-    params:&#123;
-        id:001,
-        title:&#39;你好&#39;
-    &#125;
-&#125;&quot;
-//使用对象写法时，不能使用path配置项，必须使用name配置
-</code></pre>
-<p>3.接收参数</p>
-<pre><code>this.$route.params.id
-this.$route.params.title
-</code></pre>
-<p><strong>使用props接收路由参数</strong></p>
-<pre><code>&#123;
- path:&#39;/home&#39;,
- component:Home，
- children:[
-     &#123;
-        path:&#39;news&#39;,
-        component:News,
-        children:&#123;
-             name:&#39;xiangqing&#39;,
-             path:&#39;detail/:id/:title&#39;,//使用占位符声明接受params参数
-             component:Detail,
-             props:&#123;a:1,b:&#39;hello&#39;&#125;//props的第一种写法，值为对象，该对象中的所有key-value都会以props的形式传给Detail组件，不过数值是死的，固定为a:1,b:&#39;hello&#39;
-             props:true,//props的第二种写法，值为布尔值，若其为真，则会把该路由组件接收到的所有params参数，以props的形式传给Detail组件
-             props($route)&#123;
-                 return &#123;id:$route.query.id,title:$route.query.title&#125;//props的第三种写法，值为函数
-             &#125;或解构赋值为
-                props(&#123;$route&#125;)&#123;
-                 return &#123;id:query.id,title:query.title&#125;//props的第三种写法，值为函数
-             &#125;
-            
-        &#125;
-     &#125;
- ]
-&#125;
-
-接收：
-props:[&#39;a&#39;,&#39;b&#39;]
-props:[&#39;id&#39;,&#39;title&#39;]
-props:[&#39;id&#39;,&#39;title&#39;]
-</code></pre>
-
-            
-        </div>
-    </div>
-    <div class="post-tags">
-        
-        <span class="icon">
-            <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
-        </span>
-        
-        
-        <span class="tag">
-            
-            <a href="/tags/vue" style="color: #03a9f4">
-                vue
-            </a>
-        </span>
-        
-    </div>
-    <a href="/2022/08/01/vue-router/" class="go-post">
         阅读全文
     </a>
 </div>

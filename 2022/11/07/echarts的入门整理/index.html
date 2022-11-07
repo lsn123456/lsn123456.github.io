@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0">
-        <title>Vue中的条件渲染 | Mynote</title>
+        <title>Echarts的入门整理 | Mynote</title>
         <meta name="author" content="参商">
         <meta name="description" content="个人笔记">
         <meta name="keywords" content="love&peace">
@@ -120,14 +120,14 @@
                         
 <div class="article">
     <div>
-        <h1>Vue中的条件渲染 </h1>
+        <h1>Echarts的入门整理 </h1>
     </div>
     <div class="info">
         <span class="date">
             <span class="icon">
                 <svg class="fa-icon"><use xlink:href="#calendar-solid"></use></svg>
             </span>
-            2022/5/17
+            2022/11/7
         </span>
         
         
@@ -138,8 +138,8 @@
             
             <span class="tag">
                 
-                <a href="/tags/vue" style="color: #ff7d73">
-                    vue
+                <a href="/tags/echarts" style="color: #03a9f4">
+                    echarts
                 </a>
             </span>
             
@@ -147,24 +147,115 @@
         
     </div>
     <div class="content" v-pre>
-        <p>条件渲染：</p>
-<ol>
-<li>v-if:</li>
-</ol>
-<ul>
-<li>v-if&#x3D;”表达式”</li>
-<li>v-else-if&#x3D;”表达式”</li>
-<li>v-else&#x3D;”表达式”</li>
-<li>适用于切换频率比较低的场景，不展示的dom元素直接被移除</li>
-<li>v-if可以和v-else-if、v-else一起使用，但要求结构不能被打断</li>
-<li>v-if可以和template一起使用，解析时浏览器中的源代码里template不会出现，结构不会被改变，但v-show不可以。</li>
-</ul>
-<p>2.v-show:</p>
-<ul>
-<li>v-show&#x3D;”表达式”</li>
-<li>适用于切换频率比较高的场景，不展示的dom元素未被移除，仅仅是使用样式隐藏掉</li>
-<li>使用v-if时，元素可能无法获取到，但使用v-show一定可以获取到</li>
-</ul>
+        <h2 id="1-安装方式"><a href="#1-安装方式" class="headerlink" title="1.安装方式"></a>1.安装方式</h2><pre><code>npm install echarts --save
+</code></pre>
+<h2 id="2-引入-ECharts"><a href="#2-引入-ECharts" class="headerlink" title="2.引入 ECharts"></a>2.引入 ECharts</h2><pre><code>import * as echarts from &#39;echarts&#39;;
+// 基于准备好的dom，初始化echarts实例
+var myChart = echarts.init(document.getElementById(&#39;main&#39;));
+// 绘制图表
+myChart.setOption(&#123;
+  title: &#123;
+    text: &#39;ECharts 入门示例&#39;
+  &#125;,
+  tooltip: &#123;&#125;,
+  xAxis: &#123;
+    data: [&#39;衬衫&#39;, &#39;羊毛衫&#39;, &#39;雪纺衫&#39;, &#39;裤子&#39;, &#39;高跟鞋&#39;, &#39;袜子&#39;]
+  &#125;,
+  yAxis: &#123;&#125;,
+  series: [
+    &#123;
+      name: &#39;销量&#39;,
+      type: &#39;bar&#39;,
+      data: [5, 20, 36, 10, 10, 20]
+    &#125;
+  ]
+&#125;);
+</code></pre>
+<h2 id="3-图表容器及大小"><a href="#3-图表容器及大小" class="headerlink" title="3.图表容器及大小"></a>3.图表容器及大小</h2><h5 id="1-在-HTML-中定义有宽度和高度的父容器（推荐）"><a href="#1-在-HTML-中定义有宽度和高度的父容器（推荐）" class="headerlink" title="1.在 HTML 中定义有宽度和高度的父容器（推荐）"></a>1.在 HTML 中定义有宽度和高度的父容器（推荐）</h5><p>通常来说，需要在 HTML 中先定义一个 <code>&lt;div&gt;</code> 节点，并且通过 CSS 使得该节点具有宽度和高度。初始化的时候，传入该节点，图表的大小默认即为该节点的大小，除非声明了 <code>opts.width</code> 或 <code>opts.height</code> 将其覆盖。需要注意的是，使用这种方法在调用 <code>echarts.init</code> 时需保证容器已经有宽度和高度了。</p>
+<pre><code>&lt;div id=&quot;main&quot; style=&quot;width: 600px;height:400px;&quot;&gt;&lt;/div&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+  var myChart = echarts.init(document.getElementById(&#39;main&#39;));
+&lt;/script&gt;
+</code></pre>
+<h5 id="2-指定图表的大小"><a href="#2-指定图表的大小" class="headerlink" title="2.指定图表的大小"></a>2.指定图表的大小</h5><p>如果图表容器不存在宽度和高度，或者，你希望图表宽度和高度不等于容器大小，也可以在初始化的时候指定大小。</p>
+<pre><code>&lt;div id=&quot;main&quot;&gt;&lt;/div&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+  var myChart = echarts.init(document.getElementById(&#39;main&#39;), null, &#123;
+    width: 600,
+    height: 400
+  &#125;);
+&lt;/script&gt;
+</code></pre>
+<h5 id="3-响应容器大小的变化"><a href="#3-响应容器大小的变化" class="headerlink" title="3.响应容器大小的变化"></a>3.响应容器大小的变化</h5><p>监听图标容器的大小并改变图表大小</p>
+<pre><code>&lt;script type=&quot;text/javascript&quot;&gt;
+  var myChart = echarts.init(document.getElementById(&#39;main&#39;));
+  window.onresize = function() &#123;
+    myChart.resize();
+  &#125;;
+&lt;/script&gt;
+</code></pre>
+<h5 id="4-为图表设置特定的大小"><a href="#4-为图表设置特定的大小" class="headerlink" title="4.为图表设置特定的大小"></a>4.为图表设置特定的大小</h5><p>除了直接调用 <code>resize()</code> 不含参数的形式之外，还可以指定宽度和高度，实现图表大小不等于容器大小的效果。</p>
+<pre><code>myChart.resize(&#123;
+  width: 800,
+  height: 400
+&#125;);
+</code></pre>
+<h3 id="4-容器节点被销毁以及被重建时"><a href="#4-容器节点被销毁以及被重建时" class="headerlink" title="4.容器节点被销毁以及被重建时"></a>4.容器节点被销毁以及被重建时</h3><p>假设页面中存在多个标签页，每个标签页都包含一些图表。当选中一个标签页的时候，其他标签页的内容在 DOM 中被移除了。这样，当用户再选中这些标签页的时候，就会发现图表“不见”了。</p>
+<p>本质上，这是由于图表的容器节点被移除导致的。即使之后该节点被重新添加，图表所在的节点也已经不存在了。</p>
+<p>正确的做法是，在图表容器被销毁之后，调用 <a target="_blank" rel="noopener" href="https://echarts.apache.org/api.html#echartsInstance.dispose"><code>echartsInstance.dispose</code></a> 销毁实例，在图表容器重新被添加后再次调用 <a target="_blank" rel="noopener" href="https://echarts.apache.org//api.html#echarts.init">echarts.init</a> 初始化。</p>
+<p>完整基础用法：</p>
+<pre><code>    async mounted() &#123;
+      window.addEventListener(&#39;resize&#39;, () =&gt; &#123;
+        this.myChart.resize()
+      &#125;)
+    &#125;,
+     //收支情况柱状图
+      drawTotalChart() &#123;
+        if (
+          this.myChart != null &amp;&amp;
+          this.myChart != &#39;&#39; &amp;&amp;
+          this.myChart != undefined
+        ) &#123;
+          this.myChart.dispose()
+        &#125;
+        let chartDom = document.getElementById(&#39;totalmain&#39;)
+        this.myChart = echarts.init(chartDom)
+
+        let option = &#123;
+          color: [&#39;rgba(96, 154, 240, 1)&#39;, &#39;rgba(107, 204, 212, 1)&#39;],
+          tooltip: &#123;
+            trigger: &#39;axis&#39;,
+            axisPointer: &#123;
+              type: &#39;shadow&#39;,
+            &#125;,
+          &#125;,
+          grid: &#123;
+            top: 50,
+            left: 0,
+            right: 0,
+            bottom: 20,
+            containLabel: true,
+          &#125;,
+          legend: &#123;
+            data: [&#39;收入&#39;, &#39;支出&#39;],
+            x: &#39;left&#39;,
+            padding: [0, 0, 0, 0],
+            itemStyle: &#123;&#125;,
+          &#125;,
+          xAxis: &#123;
+            type: &#39;category&#39;,
+            data: this.monthList,
+          &#125;,
+          yAxis: &#123;&#125;,
+          series: [
+            &#123; data: this.totalincome, type: &#39;bar&#39;, name: &#39;收入&#39; &#125;,
+            &#123; data: this.totalspend, type: &#39;bar&#39;, name: &#39;支出&#39; &#125;,
+          ],
+        &#125;
+        option &amp;&amp; this.myChart.setOption(option)
+      &#125;,
+    
+</code></pre>
 
     </div>
     
