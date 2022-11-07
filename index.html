@@ -393,6 +393,223 @@ myChart.setOption(&#123;
           ],
 </code></pre>
 <h5 id="4-直接的样式设置"><a href="#4-直接的样式设置" class="headerlink" title="4.直接的样式设置"></a>4.直接的样式设置</h5><p>直接的样式设置是比较常用设置方式。纵观 ECharts 的 <a target="_blank" rel="noopener" href="https://echarts.apache.org/option.html#">option</a> 中，很多地方可以设置 <a target="_blank" rel="noopener" href="https://echarts.apache.org/option.html#series-bar.itemStyle">itemStyle</a>、<a target="_blank" rel="noopener" href="https://echarts.apache.org/option.html#series-line.lineStyle">lineStyle</a>、<a target="_blank" rel="noopener" href="https://echarts.apache.org/option.html#series-line.areaStyle">areaStyle</a>、<a target="_blank" rel="noopener" href="https://echarts.apache.org/option.html#series-bar.label">label</a> 等等。这些的地方可以直接设置图形元素的颜色、线宽、点的大小、标签的文字、标签的样式等等。上面的示例中已举例</p>
+<h1 id="6-坐标轴"><a href="#6-坐标轴" class="headerlink" title="6.坐标轴"></a>6.坐标轴</h1><h5 id="1-x-轴、y-轴"><a href="#1-x-轴、y-轴" class="headerlink" title="1.x 轴、y 轴"></a>1.x 轴、y 轴</h5><p>x 轴和 y 轴都由轴线、刻度、刻度标签、轴标题四个部分组成。部分图表中还会有网格线来帮助查看和计算数据</p>
+<p><img src="/2022/11/07/echarts%E7%9A%84%E5%85%A5%E9%97%A8%E6%95%B4%E7%90%86/3.jpg"></p>
+<p>普通的二维数据坐标系都有 x 轴和 y 轴，通常情况下，x 轴显示在图表的底部，y 轴显示在左侧，一般配置如下：</p>
+<pre><code>option = &#123;
+  xAxis: &#123;
+    // ...
+  &#125;,
+  yAxis: &#123;
+    // ...
+  &#125;
+&#125;;
+</code></pre>
+<p>在二维数据中，轴也可以有多个。ECharts 中一般情况下单个 grid 组件最多只能放两个 x&#x2F;y 轴，多于两个 x&#x2F;y 轴需要通过配置 <a target="_blank" rel="noopener" href="https://echarts.apache.org/option.html#xAxis.offset">offset</a> 属性防止同个位置多个轴的重叠。两个 x 轴显示在上下，两个 y 轴显示在左右两侧。</p>
+<pre><code>option = &#123;
+  xAxis: &#123;
+    type: &#39;time&#39;,
+    name: &#39;销售时间&#39;
+    // ...
+  &#125;,
+  yAxis: [
+    &#123;
+      type: &#39;value&#39;,
+      name: &#39;销售数量&#39;
+      // ...
+    &#125;,
+    &#123;
+      type: &#39;value&#39;,
+      name: &#39;销售金额&#39;
+      // ...
+    &#125;
+  ]
+  // ...
+&#125;;
+</code></pre>
+<p>轴线：ECharts 提供了轴线 <a target="_blank" rel="noopener" href="https://echarts.apache.org/option.html#xAxis.axisLine">axisLine</a> 相关的配置，我们可以根据实际情况调整，例如轴线两端的箭头，轴线的样式等。</p>
+<pre><code>option = &#123;
+  xAxis: &#123;
+    axisLine: &#123;
+      symbol: &#39;arrow&#39;,
+      lineStyle: &#123;
+        type: &#39;dashed&#39;
+        // ...
+      &#125;
+    &#125;
+    // ...
+  &#125;,
+  yAxis: &#123;
+    axisLine: &#123;
+      symbol: &#39;arrow&#39;,
+      lineStyle: &#123;
+        type: &#39;dashed&#39;
+        // ...
+      &#125;
+    &#125;
+  &#125;
+  // ...
+&#125;;
+</code></pre>
+<p>刻度：ECharts 提供了轴线 <a target="_blank" rel="noopener" href="https://echarts.apache.org/option.html#xAxis.axisTick">axisTick</a> 相关的配置，我们可以根据实际情况调整，例如刻度线的长度，样式等。</p>
+<pre><code>option = &#123;
+  xAxis: &#123;
+    axisTick: &#123;
+      length: 6,
+      lineStyle: &#123;
+        type: &#39;dashed&#39;
+        // ...
+      &#125;
+    &#125;
+    // ...
+  &#125;,
+  yAxis: &#123;
+    axisTick: &#123;
+      length: 6,
+      lineStyle: &#123;
+        type: &#39;dashed&#39;
+        // ...
+      &#125;
+    &#125;
+  &#125;
+  // ...
+&#125;;
+</code></pre>
+<p>刻度标签：ECharts 提供了轴线 <a target="_blank" rel="noopener" href="https://echarts.apache.org/option.html#xAxis.axisLabel">axisLabel</a> 相关的配置，我们可以根据实际情况调整，例如文字对齐方式，自定义刻度标签内容等。</p>
+<pre><code>option = &#123;
+  xAxis: &#123;
+    axisLabel: &#123;
+      formatter: &#39;&#123;value&#125; kg&#39;,
+      align: &#39;center&#39;
+      // ...
+    &#125;
+    // ...
+  &#125;,
+  yAxis: &#123;
+    axisLabel: &#123;
+      formatter: &#39;&#123;value&#125; 元&#39;,
+      align: &#39;center&#39;
+      // ...
+    &#125;
+  &#125;
+  // ...
+&#125;;
+</code></pre>
+<p>示例：图左侧的 y 轴代表东京月平均气温，右侧的 y 轴表示东京降水量，x 轴表示时间。两组 y 轴在一起，反映了平均气温和降水量间的趋势关系。</p>
+<pre><code>option = &#123;
+  tooltip: &#123;
+    trigger: &#39;axis&#39;,
+    axisPointer: &#123; type: &#39;cross&#39; &#125;
+  &#125;,
+  legend: &#123;&#125;,
+  xAxis: [
+    &#123;
+      type: &#39;category&#39;,
+      axisTick: &#123;
+        alignWithLabel: true
+      &#125;,
+      data: [
+        &#39;1月&#39;,
+        &#39;2月&#39;,
+        &#39;3月&#39;,
+        &#39;4月&#39;,
+        &#39;5月&#39;,
+        &#39;6月&#39;,
+        &#39;7月&#39;,
+        &#39;8月&#39;,
+        &#39;9月&#39;,
+        &#39;10月&#39;,
+        &#39;11月&#39;,
+        &#39;12月&#39;
+      ]
+    &#125;
+  ],
+  yAxis: [
+    &#123;
+      type: &#39;value&#39;,
+      name: &#39;降水量&#39;,
+      min: 0,
+      max: 250,
+      position: &#39;right&#39;,
+      axisLabel: &#123;
+        formatter: &#39;&#123;value&#125; ml&#39;
+      &#125;
+    &#125;,
+    &#123;
+      type: &#39;value&#39;,
+      name: &#39;温度&#39;,
+      min: 0,
+      max: 25,
+      position: &#39;left&#39;,
+      axisLabel: &#123;
+        formatter: &#39;&#123;value&#125; °C&#39;
+      &#125;
+    &#125;
+  ],
+  series: [
+    &#123;
+      name: &#39;降水量&#39;,
+      type: &#39;bar&#39;,
+      yAxisIndex: 0,
+      data: [6, 32, 70, 86, 68.7, 100.7, 125.6, 112.2, 78.7, 48.8, 36.0, 19.3]
+    &#125;,
+    &#123;
+      name: &#39;温度&#39;,
+      type: &#39;line&#39;,
+      smooth: true,
+      yAxisIndex: 1,
+      data: [
+        6.0,
+        10.2,
+        10.3,
+        11.5,
+        10.3,
+        13.2,
+        14.3,
+        16.4,
+        18.0,
+        16.5,
+        12.0,
+        5.2
+      ]
+    &#125;
+  ]
+&#125;;
+</code></pre>
+<p><img src="/2022/11/07/echarts%E7%9A%84%E5%85%A5%E9%97%A8%E6%95%B4%E7%90%86/4.jpg"></p>
+<h2 id="7-事件与行为"><a href="#7-事件与行为" class="headerlink" title="7.事件与行为"></a>7.事件与行为</h2><p>在 Apache ECharts 的图表中用户的操作将会触发相应的事件。开发者可以监听这些事件，然后通过回调函数做相应的处理。在 ECharts 中事件分为两种类型，一种是用户鼠标操作点击，或者 hover 图表的图形时触发的事件，还有一种是用户在使用可以交互的组件后触发的行为事件，例如在切换图例开关时触发的 <a target="_blank" rel="noopener" href="https://echarts.apache.org/api.html#events.legendselectchanged">‘legendselectchanged’</a> 事件（这里需要注意切换图例开关是不会触发 <code>&#39;legendselected&#39;</code> 事件的），数据区域缩放时触发的 <a target="_blank" rel="noopener" href="https://echarts.apache.org/api.html#events.legendselectchanged">‘datazoom’</a> 事件等等。</p>
+<h5 id="1-鼠标事件的处理"><a href="#1-鼠标事件的处理" class="headerlink" title="1.鼠标事件的处理"></a>1.鼠标事件的处理</h5><p>ECharts 支持常规的鼠标事件类型，包括 <code>&#39;click&#39;</code>、 <code>&#39;dblclick&#39;</code>、 <code>&#39;mousedown&#39;</code>、 <code>&#39;mousemove&#39;</code>、 <code>&#39;mouseup&#39;</code>、 <code>&#39;mouseover&#39;</code>、 <code>&#39;mouseout&#39;</code>、 <code>&#39;globalout&#39;</code>、 <code>&#39;contextmenu&#39;</code> 事件。</p>
+<pre><code>myChart.on(&#39;click&#39;, function(params) &#123;
+  window.open(&#39;https://www.baidu.com/s?wd=&#39; + encodeURIComponent(params.name));
+&#125;);
+</code></pre>
+<p>所有的鼠标事件包含参数 <code>params</code>，这是一个包含点击图形的数据信息的对象，如下格式：</p>
+<pre><code>type EventParams = &#123;
+  // 当前点击的图形元素所属的组件名称，
+  // 其值如 &#39;series&#39;、&#39;markLine&#39;、&#39;markPoint&#39;、&#39;timeLine&#39; 等。
+  componentType: string;
+  // 系列类型。值可能为：&#39;line&#39;、&#39;bar&#39;、&#39;pie&#39; 等。当 componentType 为 &#39;series&#39; 时有意义。
+  seriesType: string;
+  // 系列在传入的 option.series 中的 index。当 componentType 为 &#39;series&#39; 时有意义。
+  seriesIndex: number;
+  // 系列名称。当 componentType 为 &#39;series&#39; 时有意义。
+  seriesName: string;
+  // 数据名，类目名
+  name: string;
+  // 数据在传入的 data 数组中的 index
+  dataIndex: number;
+  // 传入的原始数据项
+  data: Object;
+  // sankey、graph 等图表同时含有 nodeData 和 edgeData 两种 data，
+  // dataType 的值会是 &#39;node&#39; 或者 &#39;edge&#39;，表示当前点击在 node 还是 edge 上。
+  // 其他大部分图表中只有一种 data，dataType 无意义。
+  dataType: string;
+  // 传入的数据值
+  value: number | Array;
+  // 数据图形的颜色。当 componentType 为 &#39;series&#39; 时有意义。
+  color: string;
+&#125;;
+</code></pre>
 
             
         </div>
@@ -406,7 +623,7 @@ myChart.setOption(&#123;
         
         <span class="tag">
             
-            <a href="/tags/echarts" style="color: #ff7d73">
+            <a href="/tags/echarts" style="color: #00bcd4">
                 echarts
             </a>
         </span>
@@ -711,7 +928,7 @@ export default &#123;
         
         <span class="tag">
             
-            <a href="/tags/vue3" style="color: #ff7d73">
+            <a href="/tags/vue3" style="color: #ffa2c4">
                 vue3
             </a>
         </span>
@@ -1003,7 +1220,7 @@ export default &#123;
         
         <span class="tag">
             
-            <a href="/tags/vue3" style="color: #ff7d73">
+            <a href="/tags/vue3" style="color: #00a596">
                 vue3
             </a>
         </span>
@@ -1080,7 +1297,7 @@ export default &#123;
         
         <span class="tag">
             
-            <a href="/tags/vue3" style="color: #03a9f4">
+            <a href="/tags/vue3" style="color: #ff7d73">
                 vue3
             </a>
         </span>
@@ -1149,7 +1366,7 @@ export default &#123;
         
         <span class="tag">
             
-            <a href="/tags/css" style="color: #ff7d73">
+            <a href="/tags/css" style="color: #03a9f4">
                 css
             </a>
         </span>
@@ -1195,7 +1412,7 @@ export default &#123;
         
         <span class="tag">
             
-            <a href="/tags/js" style="color: #ff7d73">
+            <a href="/tags/js" style="color: #00a596">
                 js
             </a>
         </span>
@@ -1281,7 +1498,7 @@ export default &#123;
         
         <span class="tag">
             
-            <a href="/tags/js" style="color: #03a9f4">
+            <a href="/tags/js" style="color: #00bcd4">
                 js
             </a>
         </span>
@@ -1405,7 +1622,7 @@ export default &#123;
         
         <span class="tag">
             
-            <a href="/tags/js" style="color: #03a9f4">
+            <a href="/tags/js" style="color: #00a596">
                 js
             </a>
         </span>
