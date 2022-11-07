@@ -268,6 +268,131 @@ myChart.setOption(&#123;
       &#125;,
     
 </code></pre>
+<h2 id="5-ECharts-中的样式"><a href="#5-ECharts-中的样式" class="headerlink" title="5.ECharts 中的样式"></a>5.ECharts 中的样式</h2><h5 id="1-颜色主题"><a href="#1-颜色主题" class="headerlink" title="1.颜色主题"></a>1.颜色主题</h5><ul>
+<li>ECharts 中默认内置了两套主题: light dark。可以像这样切换成深色模式：</li>
+</ul>
+<pre><code>var chart = echarts.init(dom, &#39;dark&#39;);
+</code></pre>
+<ul>
+<li><p>其他的主题，没有内置在 ECharts 中，需要自己加载</p>
+</li>
+<li><p>在echarts资源&#x2F;主题构建工具中下载需要的主题并引入,在echarts初始化时，使用主题。可以使用多个不同的主题。例如：</p>
+</li>
+</ul>
+<p><code>let myChart = echarts.init(document.getElementById(&quot;School&quot;),&#39;macarons&#39;);</code></p>
+<ul>
+<li>注意：使用时不能自己指定color，否则主题的颜色将失效，变为指定的颜色</li>
+</ul>
+<p><img src="/2022/11/07/echarts%E7%9A%84%E5%85%A5%E9%97%A8%E6%95%B4%E7%90%86/1.jpg"></p>
+<p><img src="/2022/11/07/echarts%E7%9A%84%E5%85%A5%E9%97%A8%E6%95%B4%E7%90%86/2.jpg"></p>
+<pre><code>  import &#39;@/utils/purple-passion&#39;
+  import &#39;@/utils/infographic&#39;
+  
+  let chartDom = document.getElementById(&#39;paymentMain&#39;)
+  this.paymentMyChart = echarts.init(chartDom, &#39;infographic&#39;)
+   
+  let chartDom = document.getElementById(&#39;totalmain&#39;)
+  this.myChart = echarts.init(chartDom, &#39;purple-passion&#39;)
+</code></pre>
+<h5 id="2-调色盘"><a href="#2-调色盘" class="headerlink" title="2.调色盘"></a>2.调色盘</h5><p>调色盘，可以在 option 中设置。它给定了一组颜色，图形、系列会自动从其中选择颜色。 可以设置全局的调色盘，也可以设置系列自己专属的调色盘。</p>
+<pre><code>option = &#123;
+  // 全局调色盘。
+  color: [
+    &#39;#c23531&#39;,
+    &#39;#2f4554&#39;,
+    &#39;#61a0a8&#39;,
+    &#39;#d48265&#39;,
+    &#39;#91c7ae&#39;,
+    &#39;#749f83&#39;,
+    &#39;#ca8622&#39;,
+    &#39;#bda29a&#39;,
+    &#39;#6e7074&#39;,
+    &#39;#546570&#39;,
+    &#39;#c4ccd3&#39;
+  ],
+
+  series: [
+    &#123;
+      type: &#39;bar&#39;,
+      // 此系列自己的调色盘。
+      color: [
+        &#39;#dd6b66&#39;,
+        &#39;#759aa0&#39;,
+        &#39;#e69d87&#39;,
+        &#39;#8dc1a9&#39;,
+        &#39;#ea7e53&#39;,
+        &#39;#eedd78&#39;,
+        &#39;#73a373&#39;,
+        &#39;#73b9bc&#39;,
+        &#39;#7289ab&#39;,
+        &#39;#91ca8c&#39;,
+        &#39;#f49f42&#39;
+      ]
+      // ...
+    &#125;,
+    &#123;
+      type: &#39;pie&#39;,
+      // 此系列自己的调色盘。
+      color: [
+        &#39;#37A2DA&#39;,
+        &#39;#32C5E9&#39;,
+        &#39;#67E0E3&#39;,
+        &#39;#9FE6B8&#39;,
+        &#39;#FFDB5C&#39;,
+        &#39;#ff9f7f&#39;,
+        &#39;#fb7293&#39;,
+        &#39;#E062AE&#39;,
+        &#39;#E690D1&#39;,
+        &#39;#e7bcf3&#39;,
+        &#39;#9d96f5&#39;,
+        &#39;#8378EA&#39;,
+        &#39;#96BFFF&#39;
+      ]
+      // ...
+    &#125;
+  ]
+&#125;;
+</code></pre>
+<h5 id="3-高亮的样式：emphasis"><a href="#3-高亮的样式：emphasis" class="headerlink" title="3.高亮的样式：emphasis"></a>3.高亮的样式：emphasis</h5><p>在鼠标悬浮到图形元素上时，一般会出现高亮的样式。默认情况下，高亮的样式是根据普通样式自动生成的。但是高亮的样式也可以自己定义，主要是通过 <a target="_blank" rel="noopener" href="https://echarts.apache.org/option.html#series-bar.emphasis">emphasis</a> 属性来定制。<a target="_blank" rel="noopener" href="https://echarts.apache.org/option.html#series-bar.emphasis">emphsis</a> 中的结构，和普通样式的结构相同，例如：</p>
+<pre><code>         series: [
+            &#123;
+              name: &#39;报销&#39;,
+              type: &#39;pie&#39;,
+              radius: &#39;90%&#39;,
+              hoverAnimation: false,
+              emphasis: &#123;
+                itemStyle: &#123;
+                  // 高亮时点的颜色。
+                  color: &#39;skyblue&#39;,
+                &#125;,
+                label: &#123;
+                  show: true,
+                  // 高亮时标签的文字。
+                  formatter: &#39;This is a emphasis label.&#39;,
+                &#125;,
+              &#125;,
+              label: &#123;
+                normal: &#123;
+                  show: true,
+                  formatter: &#39;&#123;d&#125;%&#39;,
+                  position: &#39;inner&#39;,
+                  textStyle: &#123;
+                    align: &#39;center&#39;,
+                    baseline: &#39;middle&#39;,
+                    fontFamily: &#39;微软雅黑&#39;,
+                    fontSize: 14,
+                    color: &#39;white&#39;,
+                  &#125;,
+                &#125;,
+                labelLine: &#123;
+                  show: false,
+                &#125;,
+              &#125;,
+              data: this.data.reservationReimburseItemList,
+            &#125;,
+          ],
+</code></pre>
+<h5 id="4-直接的样式设置"><a href="#4-直接的样式设置" class="headerlink" title="4.直接的样式设置"></a>4.直接的样式设置</h5><p>直接的样式设置是比较常用设置方式。纵观 ECharts 的 <a target="_blank" rel="noopener" href="https://echarts.apache.org/option.html#">option</a> 中，很多地方可以设置 <a target="_blank" rel="noopener" href="https://echarts.apache.org/option.html#series-bar.itemStyle">itemStyle</a>、<a target="_blank" rel="noopener" href="https://echarts.apache.org/option.html#series-line.lineStyle">lineStyle</a>、<a target="_blank" rel="noopener" href="https://echarts.apache.org/option.html#series-line.areaStyle">areaStyle</a>、<a target="_blank" rel="noopener" href="https://echarts.apache.org/option.html#series-bar.label">label</a> 等等。这些的地方可以直接设置图形元素的颜色、线宽、点的大小、标签的文字、标签的样式等等。上面的示例中已举例</p>
 
             
         </div>
@@ -281,7 +406,7 @@ myChart.setOption(&#123;
         
         <span class="tag">
             
-            <a href="/tags/echarts" style="color: #03a9f4">
+            <a href="/tags/echarts" style="color: #ff7d73">
                 echarts
             </a>
         </span>
@@ -586,7 +711,7 @@ export default &#123;
         
         <span class="tag">
             
-            <a href="/tags/vue3" style="color: #00a596">
+            <a href="/tags/vue3" style="color: #ff7d73">
                 vue3
             </a>
         </span>
@@ -668,7 +793,7 @@ const p=new Proxy(person,&#123;
         
         <span class="tag">
             
-            <a href="/tags/vue3" style="color: #00a596">
+            <a href="/tags/vue3" style="color: #ff7d73">
                 vue3
             </a>
         </span>
@@ -878,7 +1003,7 @@ export default &#123;
         
         <span class="tag">
             
-            <a href="/tags/vue3" style="color: #03a9f4">
+            <a href="/tags/vue3" style="color: #ff7d73">
                 vue3
             </a>
         </span>
@@ -955,7 +1080,7 @@ export default &#123;
         
         <span class="tag">
             
-            <a href="/tags/vue3" style="color: #00bcd4">
+            <a href="/tags/vue3" style="color: #03a9f4">
                 vue3
             </a>
         </span>
@@ -1024,7 +1149,7 @@ export default &#123;
         
         <span class="tag">
             
-            <a href="/tags/css" style="color: #ffa2c4">
+            <a href="/tags/css" style="color: #ff7d73">
                 css
             </a>
         </span>
@@ -1070,7 +1195,7 @@ export default &#123;
         
         <span class="tag">
             
-            <a href="/tags/js" style="color: #ffa2c4">
+            <a href="/tags/js" style="color: #ff7d73">
                 js
             </a>
         </span>
@@ -1156,7 +1281,7 @@ export default &#123;
         
         <span class="tag">
             
-            <a href="/tags/js" style="color: #00bcd4">
+            <a href="/tags/js" style="color: #03a9f4">
                 js
             </a>
         </span>
@@ -1213,7 +1338,7 @@ export default &#123;
         
         <span class="tag">
             
-            <a href="/tags/js" style="color: #00bcd4">
+            <a href="/tags/js" style="color: #00a596">
                 js
             </a>
         </span>
