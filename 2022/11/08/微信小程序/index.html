@@ -1,0 +1,734 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0">
+        <title>微信小程序 | Mynote</title>
+        <meta name="author" content="参商">
+        <meta name="description" content="个人笔记">
+        <meta name="keywords" content="love&peace">
+        <link rel="icon" href="https://img.gejiba.com/images/39def1210a35239bb3777e2c504985f1.jpg">
+        <script src="https://cdn.staticfile.org/instant.page/5.1.0/instantpage.min.js" type="module"></script>
+        <script src="https://cdn.staticfile.org/font-awesome/6.1.1/js/all.min.js"></script>
+        <link rel="stylesheet" href="/css/fonts.min.css">
+        <link rel="stylesheet" href="/css/particlex.css">
+        <script src="https://cdn.staticfile.org/vue/3.2.33/vue.global.prod.min.js"></script>
+    <meta name="generator" content="Hexo 6.2.0"></head>
+    <body>
+        <div id="loading" style="height:100vh;width:100vw;position:fixed;display:flex;z-index:200;justify-content:space-between;background:#fff;transition:opacity 0.3s ease-out"><div style="position:fixed;height:100vh;width:100vw;display:flex;justify-content:center;align-items:center"><div id="loadcontent" style="width:50vmin;height:50vmin;padding:50px;border-radius:50%;display:flex;justify-content:center;align-items:center;border:solid 10px #a3ddfb;text-align:center"><div><h2>LOADING...</h2><p style="word-break:keep-all">加载过慢请开启缓存(浏览器默认开启)</p><div><img alt="loading" src="/loading.gif"></div></div></div></div></div>
+        <div id="layout">
+            <i data-fa-symbol="calendar-solid" class="fa-solid fa-calendar fa-fw"></i>
+            <i data-fa-symbol="bookmark-solid" class="fa-solid fa-bookmark fa-fw"></i>
+            <i data-fa-symbol="tags-solid" class="fa-solid fa-tags fa-fw"></i>
+            <transition name="into">
+                <div v-show="show_page" style="display: -not-none">
+                    <div id="menu_show">
+                         
+<nav id="menu">
+    <div class="desktop-menu">
+        <a href="/">
+            <span class="title">mynote</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;home</span>
+        </a>
+        
+        <a href="/about">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span>&ensp;about</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;archives</span>
+        </a>
+        
+        <a href="/categories">
+            <i class="fa-solid fa-bookmark fa-fw"></i>
+            <span>&ensp;categories</span>
+        </a>
+        
+        <a href="/tags">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span>&ensp;tags</span>
+        </a>
+        
+    </div>
+    <div :class="'phone-menu ' + menu_show" id="phone-menu">
+        <div class="curtain" @click="menu_show = !menu_show" v-show="menu_show"></div>
+        <div :class="'title'" @click="menu_show = !menu_show">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;mynote</span>
+        </div>
+        <transition name="slide">
+        <div class="items" v-show="menu_show">
+            
+            <a href="/">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-house fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">home</div>
+                </div>
+            </a>
+            
+            <a href="/about">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-id-card fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">about</div>
+                </div>
+            </a>
+            
+            <a href="/archives">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-box-archive fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">archives</div>
+                </div>
+            </a>
+            
+            <a href="/categories">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-bookmark fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">categories</div>
+                </div>
+            </a>
+            
+            <a href="/tags">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-tags fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">tags</div>
+                </div>
+            </a>
+            
+        </div>
+        </transition>
+    </div>
+</nav>
+                    </div>
+                    <div id="main">
+                        
+<div class="article">
+    <div>
+        <h1>微信小程序 </h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <svg class="fa-icon"><use xlink:href="#calendar-solid"></use></svg>
+            </span>
+            2022/11/8
+        </span>
+        
+        
+        <span class="tags">
+            <span class="icon">
+                <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/tags/微信小程序" style="color: #03a9f4">
+                    微信小程序
+                </a>
+            </span>
+            
+        </span>
+        
+    </div>
+    <div class="content" v-pre>
+        <h3 id="1-主体文件结构"><a href="#1-主体文件结构" class="headerlink" title="1. 主体文件结构"></a>1. 主体文件结构</h3><p>主体部分由三个文件组成，必须放在项目的根目录，如下：</p>
+<table>
+<thead>
+<tr>
+<th>文件</th>
+<th>必填</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/debug/wxadoc/dev/framework/app-service/app.html">app.js</a></td>
+<td>是</td>
+<td>小程序逻辑</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/debug/wxadoc/dev/framework/config.html">app.json</a></td>
+<td>是</td>
+<td>小程序公共设置( 严格的JSON语法，不能用单引号，不能写注释，否则编译报错 )</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/debug/wxadoc/dev/framework/view/wxss.html">app.wxss</a></td>
+<td>否</td>
+<td>小程序公共样式表( <strong>拓展了rpx尺寸单位，微信专属响应式像素</strong> )</td>
+</tr>
+</tbody></table>
+<h3 id="2-页面文件结构"><a href="#2-页面文件结构" class="headerlink" title="2. 页面文件结构"></a>2. 页面文件结构</h3><p>页面由四个文件组成，分别是：</p>
+<table>
+<thead>
+<tr>
+<th>文件类型</th>
+<th>必填</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/debug/wxadoc/dev/framework/app-service/page.html">js</a></td>
+<td>是</td>
+<td>页面逻辑 ( 微信小程序没有window和document对象 )</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/debug/wxadoc/dev/framework/view/wxml/">wxml</a></td>
+<td>是</td>
+<td>页面结构  ( XML语法，不是HTML语法 )</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/debug/wxadoc/dev/framework/view/wxss.html">wxss</a></td>
+<td>否</td>
+<td>页面样式表 ( <strong>拓展了rpx尺寸单位，微信专属响应式像素</strong> )</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/debug/wxadoc/dev/framework/config.html#pagejson">json</a></td>
+<td>否</td>
+<td>页面配置 ( 严格的JSON语法，不能用单引号，不能写注释，否则编译报错 )</td>
+</tr>
+</tbody></table>
+<h3 id="3-其他文件"><a href="#3-其他文件" class="headerlink" title="3. 其他文件"></a>3. 其他文件</h3><p>project.config.json : 项目的配置文件</p>
+<p>sitemap.json : 用来配置小程序及其页面是否允许被微信索引（上线的时候使用）</p>
+<pre><code>&#123;
+  &quot;rules&quot;:[&#123;
+    &quot;action&quot;: &quot;allow&quot;,
+    &quot;page&quot;: &quot;path/to/page&quot;
+  &#125;, &#123;
+    &quot;action&quot;: &quot;disallow&quot;,
+    &quot;page&quot;: &quot;*&quot;
+  &#125;]
+&#125;
+</code></pre>
+<p>小程序启动过程：</p>
+<p>1.把小程序的代码包下载到本地</p>
+<p>2.解析app.json全局配置文件</p>
+<p>3.执行app.js小程序入口文件，调用App()创建小程序实例</p>
+<p>4.渲染小程序首页</p>
+<p>5.小程序启动完成</p>
+<p>页面渲染过程</p>
+<p>1.加载解析页面的.json配置文件</p>
+<p>2.加载页面的.wxml模板和.wxss样式</p>
+<p>3.执行页面的.js文件，调用Page()创建页面实例</p>
+<p>4.页面渲染完成</p>
+<h2 id="2-微信小程序-app-json"><a href="#2-微信小程序-app-json" class="headerlink" title="2. 微信小程序-app.json"></a>2. 微信小程序-app.json</h2><h3 id="1-app-json-配置项列表"><a href="#1-app-json-配置项列表" class="headerlink" title="1. app.json 配置项列表"></a>1. app.json 配置项列表</h3><p><a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/reference/configuration/app.html">https://developers.weixin.qq.com/miniprogram/dev/reference/configuration/app.html</a></p>
+<pre><code class="javascript">&#123;
+  &quot;pages&quot;: [
+    &quot;pages/index/index&quot;,
+    &quot;pages/logs/index&quot;
+  ],
+  &quot;window&quot;: &#123;
+    &quot;navigationBarTitleText&quot;: &quot;Demo&quot;
+  &#125;,
+  &quot;tabBar&quot;: &#123;
+    &quot;color&quot;: &quot;#dddddd&quot;,
+    &quot;selectedColor&quot;: &quot;#3cc51f&quot;,
+    &quot;borderStyle&quot;: &quot;black&quot;,
+    &quot;backgroundColor&quot;: &quot;#ffffff&quot;,
+    &quot;list&quot;: [&#123;
+      &quot;pagePath&quot;: &quot;page/component/index&quot;,
+      &quot;iconPath&quot;: &quot;image/icon_component.png&quot;,
+      &quot;selectedIconPath&quot;: &quot;image/icon_component_HL.png&quot;,
+      &quot;text&quot;: &quot;组件&quot;
+    &#125;, &#123;
+      &quot;pagePath&quot;: &quot;page/API/index/index&quot;,
+      &quot;iconPath&quot;: &quot;image/icon_API.png&quot;,
+      &quot;selectedIconPath&quot;: &quot;image/icon_API_HL.png&quot;,
+      &quot;text&quot;: &quot;接口&quot;
+    &#125;]
+  &#125;,
+  &quot;networkTimeout&quot;: &#123;
+    &quot;request&quot;: 10000,
+    &quot;downloadFile&quot;: 10000
+  &#125;,
+  &quot;debug&quot;: true,
+  &quot;navigateToMiniProgramAppIdList&quot;: [
+    &quot;wxe5f52902cf4de896&quot;
+  ]
+&#125;
+
+//如果要新增页面可以直接在pages里面编辑
+</code></pre>
+<blockquote>
+<p><code>app.json</code>文件用来对微信小程序进行全局配置，决定页面文件的路径、窗口表现、设置网络超时时间、设置多 tab 等。</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>类型</th>
+<th>必填</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/debug/wxadoc/dev/framework/config.html#pages">pages</a></td>
+<td>String Array</td>
+<td>是</td>
+<td>设置页面路径</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/debug/wxadoc/dev/framework/config.html#window">window</a></td>
+<td>Object</td>
+<td>否</td>
+<td>设置默认页面的窗口表现</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/debug/wxadoc/dev/framework/config.html#tabbar">tabBar</a></td>
+<td>Object</td>
+<td>否</td>
+<td>设置底部 tab 的表现</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/debug/wxadoc/dev/framework/config.html#debug">debug</a></td>
+<td>Boolean</td>
+<td>否</td>
+<td>设置是否开启 debug 模式</td>
+</tr>
+</tbody></table>
+<h3 id="2-window配置"><a href="#2-window配置" class="headerlink" title="2 .window配置"></a>2 .window配置</h3><blockquote>
+<p>用于设置小程序的状态栏、导航条、标题、窗口背景色。</p>
+<p>注意：页面的<code>.json</code>只能设置 <code>window</code> 相关的配置项，以决定本页面的窗口表现，所以无需写 <code>window</code> 这个键。</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>类型</th>
+<th>默认值</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>navigationBarBackgroundColor</td>
+<td>HexColor</td>
+<td>#000000</td>
+<td>导航栏背景颜色，如”#000000”</td>
+</tr>
+<tr>
+<td>navigationBarTextStyle</td>
+<td>String</td>
+<td>white</td>
+<td>导航栏标题颜色，仅支持 black&#x2F;white</td>
+</tr>
+<tr>
+<td>navigationBarTitleText</td>
+<td>String</td>
+<td></td>
+<td>导航栏标题文字内容</td>
+</tr>
+<tr>
+<td>backgroundColor</td>
+<td>HexColor</td>
+<td>#ffffff</td>
+<td>窗口的背景色，可以通过开启 “enablePullDownRefresh”:true来查看窗口颜色</td>
+</tr>
+<tr>
+<td>backgroundTextStyle</td>
+<td>String</td>
+<td>dark</td>
+<td>下拉刷新的背景字体、loading 图的样式，仅支持 dark&#x2F;light</td>
+</tr>
+<tr>
+<td>enablePullDownRefresh</td>
+<td>Boolean</td>
+<td>false</td>
+<td>是否开启下拉刷新，详见<a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/debug/wxadoc/dev/framework/app-service/page.html#%E9%A1%B5%E9%9D%A2%E7%9B%B8%E5%85%B3%E4%BA%8B%E4%BB%B6%E5%A4%84%E7%90%86%E5%87%BD%E6%95%B0">页面相关事件处理函数</a>。</td>
+</tr>
+<tr>
+<td>onReachBottomDistance</td>
+<td>Number</td>
+<td>50</td>
+<td>页面上拉触底事件触发时距页面底部距离，单位为px</td>
+</tr>
+</tbody></table>
+<h3 id="3-tabBar"><a href="#3-tabBar" class="headerlink" title="3. tabBar"></a>3. tabBar</h3><p><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/debug/wxadoc/dev/framework/config.html#tabbar">https://mp.weixin.qq.com/debug/wxadoc/dev/framework/config.html#tabbar</a></p>
+<p>如果小程序是一个多 tab 应用（客户端窗口的底部或顶部有 tab 栏可以切换页面），可以通过 tabBar 配置项指定 tab 栏的表现，以及 tab 切换时显示的对应页面。</p>
+<p><strong>Tip：</strong></p>
+<ol>
+<li>当设置 position 为 top 时，将不会显示 icon。</li>
+<li>tabBar 中的 list 是一个数组，<strong>只能配置最少2个、最多5个 tab</strong>，tab 按数组的顺序排序。</li>
+</ol>
+<p><strong>属性说明：</strong></p>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>类型</th>
+<th>必填</th>
+<th>默认值</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>color</td>
+<td>HexColor</td>
+<td>是</td>
+<td></td>
+<td>tab 上的文字默认颜色</td>
+</tr>
+<tr>
+<td>selectedColor</td>
+<td>HexColor</td>
+<td>是</td>
+<td></td>
+<td>tab 上的文字选中时的颜色</td>
+</tr>
+<tr>
+<td>backgroundColor</td>
+<td>HexColor</td>
+<td>是</td>
+<td></td>
+<td>tab 的背景色</td>
+</tr>
+<tr>
+<td>borderStyle</td>
+<td>String</td>
+<td>否</td>
+<td>black</td>
+<td>tabbar上边框的颜色， 仅支持 black&#x2F;white</td>
+</tr>
+<tr>
+<td>list</td>
+<td>Array</td>
+<td>是</td>
+<td></td>
+<td>tab 的列表，详见 list 属性说明，最少2个、最多5个 tab</td>
+</tr>
+<tr>
+<td>position</td>
+<td>String</td>
+<td>否</td>
+<td>bottom</td>
+<td>可选值 bottom、top，设置成top是无图标</td>
+</tr>
+</tbody></table>
+<p>其中 list 接受一个数组，数组中的每个项都是一个对象，其属性值如下：</p>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>类型</th>
+<th>必填</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>pagePath</td>
+<td>String</td>
+<td>是</td>
+<td>页面路径，必须在 pages 中先定义</td>
+</tr>
+<tr>
+<td>text</td>
+<td>String</td>
+<td>是</td>
+<td>tab 上按钮文字</td>
+</tr>
+<tr>
+<td>iconPath</td>
+<td>String</td>
+<td>否</td>
+<td>图片路径，icon 大小限制为40kb，建议尺寸为 81px * 81px，当 postion 为 top 时，此参数无效</td>
+</tr>
+<tr>
+<td>selectedIconPath</td>
+<td>String</td>
+<td>否</td>
+<td>选中时的图片路径，icon 大小限制为40kb，建议尺寸为 81px * 81px ，当 postion 为 top 时，此参数无效</td>
+</tr>
+</tbody></table>
+<h3 id="4-页面配置–-json"><a href="#4-页面配置–-json" class="headerlink" title="4.页面配置–.json"></a>4.页面配置–.json</h3><p>在页面配置中，可以修改全局配置的部分信息，用来指定当前页面的一些特有配置</p>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>类型</th>
+<th>默认值</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>navigationBarBackgroundColor</td>
+<td>HexColor</td>
+<td>#000000</td>
+<td>导航栏背景颜色，如”#000000”</td>
+</tr>
+<tr>
+<td>navigationBarTextStyle</td>
+<td>String</td>
+<td>white</td>
+<td>导航栏标题颜色，仅支持 black&#x2F;white</td>
+</tr>
+<tr>
+<td>navigationBarTitleText</td>
+<td>String</td>
+<td></td>
+<td>导航栏标题文字内容</td>
+</tr>
+<tr>
+<td>backgroundColor</td>
+<td>HexColor</td>
+<td>#ffffff</td>
+<td>窗口的背景色，可以通过开启 “enablePullDownRefresh”:true来查看窗口颜色</td>
+</tr>
+<tr>
+<td>backgroundTextStyle</td>
+<td>String</td>
+<td>dark</td>
+<td>下拉刷新的背景字体、loading 图的样式，仅支持 dark&#x2F;light</td>
+</tr>
+<tr>
+<td>enablePullDownRefresh</td>
+<td>Boolean</td>
+<td>false</td>
+<td>是否开启下拉刷新，详见<a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/debug/wxadoc/dev/framework/app-service/page.html#%E9%A1%B5%E9%9D%A2%E7%9B%B8%E5%85%B3%E4%BA%8B%E4%BB%B6%E5%A4%84%E7%90%86%E5%87%BD%E6%95%B0">页面相关事件处理函数</a>。</td>
+</tr>
+<tr>
+<td>onReachBottomDistance</td>
+<td>Number</td>
+<td>50</td>
+<td>页面上拉触底事件触发时距页面底部距离，单位为px</td>
+</tr>
+<tr>
+<td>disableScroll</td>
+<td>Boolean</td>
+<td>false</td>
+<td>设置为true则页面整体不能上下滚动，只在页面配置中有效，无法在app.json中设置该项</td>
+</tr>
+</tbody></table>
+<h2 id="3-wxml语法"><a href="#3-wxml语法" class="headerlink" title="3.wxml语法"></a>3.wxml语法</h2><table>
+<thead>
+<tr>
+<th></th>
+<th>wxml</th>
+<th>html</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>标签名称</td>
+<td>view,text,image,navigator</td>
+<td>div,span,img,a</td>
+</tr>
+<tr>
+<td>属性节点</td>
+<td><code>&lt;a href=&quot;#&quot;&gt;超链接&lt;/a&gt;</code></td>
+<td><code>&lt;navigator url=&quot;/apges/home/home&quot;&gt;超链接&lt;/navigator&gt;</code></td>
+</tr>
+</tbody></table>
+<h2 id="4-样式"><a href="#4-样式" class="headerlink" title="4.样式"></a>4.样式</h2><p>   与 CSS 相比，WXSS 扩展的特性有： </p>
+<ul>
+<li><p>尺寸单位(rpx  rem)</p>
+</li>
+<li><p>vw和vh是css3中的新单位，是一种视窗单位，在小程序中同样适用</p>
+</li>
+<li><p>样式导入</p>
+</li>
+<li><p>提供了全局的样式和局部样式（项目根目录下的app.wxss会作用于所有小程序页面，局部页面的.wxss样式仅对当前页面生效）</p>
+</li>
+<li><p>wxss仅支持部分css选择器</p>
+<h3 id="1-尺寸单位"><a href="#1-尺寸单位" class="headerlink" title="1.尺寸单位"></a>1.尺寸单位</h3><p><strong>1.rpx（responsive pixel）</strong>: </p>
+<p>​      可以根据屏幕宽度进行自适应。规定屏幕宽为750rpx。如在 iPhone6 上，屏幕宽度为375px，共有750个物理像素，则750rpx &#x3D; 375px &#x3D; 750物理像素，1rpx &#x3D; 0.5px &#x3D; 1物理像素。</p>
+<p><strong>2.vw和vh：</strong></p>
+<p>​      是css3中的新单位，是一种视窗单位，在小程序中也同样适用。</p>
+<p>小程序中，窗口宽度固定为100vw，将窗口宽度平均分成100份，1份是1vw</p>
+<p>小程序中，窗口高度固定为100vh ，将窗口高度平均分成100份，1份是1vh</p>
+<h3 id="2-样式引入"><a href="#2-样式引入" class="headerlink" title="2.样式引入"></a>2.样式引入</h3><p>使用<code>@import</code>语句可以导入外联样式表，<code>@import</code>后跟需要导入的外联样式表的相对路径，用<code>;</code>表示语句结束。</p>
+<pre><code class="javascript">/** common.wxss **/
+.small-p &#123;
+  padding:5px;
+&#125;
+
+/** app.wxss **/
+@import &quot;common.wxss&quot;;
+.middle-p &#123;
+  padding:15px;
+&#125;
+
+
+.box2&#123;
+    border: 1px solid red;
+    width: 600rpx;
+    height: 600rpx;
+    /*background-image可以指定网络图片，但是不可以指定本地图片*/
+    background-image: url(&quot;https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1586254613140&amp;di=33474e16f9fc5342f7a1e2be72f287f6&amp;imgtype=0&amp;src=http%3A%2F%2Fdmimg.5054399.com%2Fallimg%2Fpkm%2Fpk%2F22.jpg&quot;);
+    /* background-image: url(../../icons/timg.jpg); */
+&#125;
+</code></pre>
+<h3 id="3-选择器"><a href="#3-选择器" class="headerlink" title="3. 选择器"></a>3. 选择器</h3><p>特别需要注意的是小程序 不支持通配符 * ，因此以下代码无效！</p>
+<pre><code>*&#123;
+    margin:0;
+    padding:0;   
+    box-sizing:border-box;
+&#125;
+</code></pre>
+<p>目前支持的选择器有：</p>
+<table>
+<thead>
+<tr>
+<th>选择器</th>
+<th>样例</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>.class</td>
+<td>.container</td>
+<td>选择所有拥有class&#x3D;”container”的组件</td>
+</tr>
+<tr>
+<td>#id</td>
+<td>#main</td>
+<td>选择拥有id&#x3D;”main”的组件</td>
+</tr>
+<tr>
+<td>element</td>
+<td>view</td>
+<td>选择所有view组件</td>
+</tr>
+<tr>
+<td>element,element</td>
+<td>view,text</td>
+<td>选择所有文档的view组件和所有text组件</td>
+</tr>
+<tr>
+<td>element element</td>
+<td>view text</td>
+<td>选择view 下的所有text组件</td>
+</tr>
+<tr>
+<td>::after</td>
+<td>view::after</td>
+<td>在view组件后边插入内容</td>
+</tr>
+<tr>
+<td>::before</td>
+<td>view::before</td>
+<td>在view组件前边插入内容</td>
+</tr>
+<tr>
+<td>nth-child(n)</td>
+<td>view:nth-child(n)</td>
+<td>选择某个索引的标签</td>
+</tr>
+</tbody></table>
+<h3 id="4-小程序中使用less"><a href="#4-小程序中使用less" class="headerlink" title="4. 小程序中使用less"></a>4. 小程序中使用less</h3><p>原声小程序不支持 less ，其他基于小程序的框架基本都支持，如 wepy ， mpvue ， taro ，uni-app等。<br>但是仅仅因为一个less功能，而去引用框架，肯定是不可取的。因此可以使用以下方式来实现</p>
+<ol>
+<li>编辑器是 vscode</li>
+<li>安装插件 easy less</li>
+<li>在vs code的设置中加如下，配置</li>
+</ol>
+<pre><code>&#123;
+    &quot;workbench.sideBar.location&quot;: &quot;left&quot;,
+    &quot;less.compile&quot;: &#123;        
+      &quot;outExt&quot;:&quot;.wxss&quot;
+    &#125;
+&#125;
+</code></pre>
+<ol>
+<li>在要编写样式的地方新建 less 文件，如 index.less ,然后正常编辑即可。</li>
+</ol>
+<h3 id="5-js文件分类"><a href="#5-js文件分类" class="headerlink" title="5.js文件分类"></a>5.js文件分类</h3><p><strong>1.app.js</strong>:</p>
+<p>  是整个小程序项目的入口文件，通过调用App()函数来启动整个小程序</p>
+<p><strong>2.页面的.js文件：</strong></p>
+<p>是页面的入口文件，通过调用Page()函数来创建并运行页面</p>
+<p><strong>3.普通的.js文件：</strong></p>
+<p>普通的功能模块文件，用来封装公共的函数或属性供页面使用</p>
+<p><strong>4.小程序不是运行在浏览器中，所以没有window和document对象</strong></p>
+<pre><code>1.小程序不是运行在浏览器中，所以没有window和document对象
+console.log(window);
+console.log(document);
+
+2.小程序js的一些额外成员
+App(&#123;&#125;)方法：用于创建应用程序实例，指定应用程序的生命周期
+Page()方法：用于创建页面对象
+getApp()方法：用于获取全局的应用程序对象
+getCurrentPages()方法：用于获取当前页面的调用栈 
+   # https://developers.weixin.qq.com/miniprogram/dev/framework/app-service/route.html
+wx : 微信小程序获取API的对象
+
+
+</code></pre>
+<p><strong>5.import 和 include（小程序支持CommonJS规范）</strong></p>
+<pre><code>1.小程序支持CommonJS规范
+exports.aa 或者module.exports导出
+require 引入
+
+&lt;import src=&quot;a.wxml&quot;/&gt;   作用可以引入目标文件中定义的template，然后在当前的wxml中使用template。注意点不能使用引入目标文件中所引入的第三方的template，比如A import B,B import C，A可以使用B中声明的template，但是A不可以使用C中声明的template
+
+&lt;include src=&quot;header.wxml&quot;/&gt;  作用可以引入目标文件中除了template wxs之外的所有代码
+</code></pre>
+<h1 id="3-小程序中的组件"><a href="#3-小程序中的组件" class="headerlink" title="3.小程序中的组件"></a>3.小程序中的组件</h1><p>​</p>
+</li>
+</ul>
+
+    </div>
+    
+    <link rel="stylesheet" href="https://cdn.staticfile.org/gitalk/1.7.2/gitalk.min.css">
+    <div id="comment">
+        <div id="gitalk-container">
+        </div>
+    </div>
+    
+</div>
+                         
+<footer id="footer">
+    <div class="footer-wrap">
+        <div>
+            © 2022 - 2022 mynote
+            <span class="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            @参商
+        </div>
+        <div></div>
+        <div>Based on the <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo Engine</a> & <a
+                target="_blank" rel="noopener" href="https://github.com/korilin/hexo-theme-particle">Particle Theme</a></div>
+        
+    </div>
+</footer>
+                    </div>
+                </div>
+            </transition>
+            <div id="img_show">
+                <img id="img_content" alt="img_show">
+            </div>
+        </div>
+        <script src="https://cdn.staticfile.org/highlight.js/11.5.1/highlight.min.js"></script>
+        <script src="/js/particlex.js"></script>
+        <script src="/js/showimg.js"></script>
+        
+<script src="https://cdn.staticfile.org/gitalk/1.7.2/gitalk.min.js"></script>
+<script>
+    var clientID = "", clientSecret = "";
+    
+    const gitalk = new Gitalk({
+        clientID: clientID,
+        clientSecret: clientSecret,
+        repo: "",
+        owner: "",
+        admin: [""],
+        language: "zh-CN",
+        id: location.pathname,
+        distractionFreeMode: true
+    })
+    gitalk.render("gitalk-container")
+</script>
+
+
+    </body>
+</html>
