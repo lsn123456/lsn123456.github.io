@@ -644,24 +644,26 @@
   padding:15px;
 &#125;
 
-
-.box2&#123;
-    border: 1px solid red;
-    width: 600rpx;
-    height: 600rpx;
-    /*background-image可以指定网络图片，但是不可以指定本地图片*/
-    background-image: url(&quot;https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1586254613140&amp;di=33474e16f9fc5342f7a1e2be72f287f6&amp;imgtype=0&amp;src=http%3A%2F%2Fdmimg.5054399.com%2Fallimg%2Fpkm%2Fpk%2F22.jpg&quot;);
-    /* background-image: url(../../icons/timg.jpg); */
-&#125;
+  .box2&#123;
+      border: 1px solid red;
+      width: 600rpx;
+      height: 600rpx;
+      /*background-image可以指定网络图片，但是不可以指定本地图片*/
+      background-image: url(&quot;https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1586254613140&amp;di=33474e16f9fc5342f7a1e2be72f287f6&amp;imgtype=0&amp;src=http%3A%2F%2Fdmimg.5054399.com%2Fallimg%2Fpkm%2Fpk%2F22.jpg&quot;);
+      /* background-image: url(../../icons/timg.jpg); */
+  &#125;
 </code></pre>
-<h3 id="3-选择器"><a href="#3-选择器" class="headerlink" title="3. 选择器"></a>3. 选择器</h3><p>特别需要注意的是小程序 不支持通配符 * ，因此以下代码无效！</p>
-<pre><code>*&#123;
+</li>
+</ul>
+<h3 id="3-选择器"><a href="#3-选择器" class="headerlink" title="3.选择器"></a>3.选择器</h3><p>  特别需要注意的是小程序 不支持通配符 * ，因此以下代码无效！</p>
+<pre><code>
+  *&#123;
     margin:0;
-    padding:0;   
+    padding:0;   
     box-sizing:border-box;
 &#125;
 </code></pre>
-<p>目前支持的选择器有：</p>
+<p>  目前支持的选择器有：</p>
 <table>
 <thead>
 <tr>
@@ -711,29 +713,30 @@
 <td>选择某个索引的标签</td>
 </tr>
 </tbody></table>
-<h3 id="4-小程序中使用less"><a href="#4-小程序中使用less" class="headerlink" title="4. 小程序中使用less"></a>4. 小程序中使用less</h3><p>原声小程序不支持 less ，其他基于小程序的框架基本都支持，如 wepy ， mpvue ， taro ，uni-app等。<br>但是仅仅因为一个less功能，而去引用框架，肯定是不可取的。因此可以使用以下方式来实现</p>
-<ol>
-<li>编辑器是 vscode</li>
-<li>安装插件 easy less</li>
-<li>在vs code的设置中加如下，配置</li>
-</ol>
-<pre><code>&#123;
+<h3 id="4-小程序中使用less"><a href="#4-小程序中使用less" class="headerlink" title="4.小程序中使用less"></a>4.小程序中使用less</h3><p>  原声小程序不支持 less ，其他基于小程序的框架基本都支持，如 wepy ， mpvue ， taro ，uni-app等。<br>  但是仅仅因为一个less功能，而去引用框架，肯定是不可取的。因此可以使用以下方式来实现</p>
+<pre><code>1. 编辑器是 vscode
+2. 安装插件 easy less
+3. 在vs code的设置中加如下，配置
+</code></pre>
+<pre><code>
+&#123;
     &quot;workbench.sideBar.location&quot;: &quot;left&quot;,
-    &quot;less.compile&quot;: &#123;        
+    &quot;less.compile&quot;: &#123;        
       &quot;outExt&quot;:&quot;.wxss&quot;
     &#125;
 &#125;
 </code></pre>
-<ol>
+<ol start="4">
 <li>在要编写样式的地方新建 less 文件，如 index.less ,然后正常编辑即可。</li>
 </ol>
-<h3 id="5-js文件分类"><a href="#5-js文件分类" class="headerlink" title="5.js文件分类"></a>5.js文件分类</h3><p><strong>1.app.js</strong>:</p>
-<p>  是整个小程序项目的入口文件，通过调用App()函数来启动整个小程序</p>
-<p><strong>2.页面的.js文件：</strong></p>
-<p>是页面的入口文件，通过调用Page()函数来创建并运行页面</p>
-<p><strong>3.普通的.js文件：</strong></p>
-<p>普通的功能模块文件，用来封装公共的函数或属性供页面使用</p>
-<p><strong>4.小程序不是运行在浏览器中，所以没有window和document对象</strong></p>
+<h3 id="5-js文件分类"><a href="#5-js文件分类" class="headerlink" title="5.js文件分类"></a>5.js文件分类</h3><p>  <strong>1.app.js</strong>:</p>
+<pre><code>是整个小程序项目的入口文件，通过调用App()函数来启动整个小程序
+</code></pre>
+<p>  <strong>2.页面的.js文件：</strong></p>
+<p>  是页面的入口文件，通过调用Page()函数来创建并运行页面</p>
+<p>  <strong>3.普通的.js文件：</strong></p>
+<p>  普通的功能模块文件，用来封装公共的函数或属性供页面使用</p>
+<p>  <strong>4.小程序不是运行在浏览器中，所以没有window和document对象</strong></p>
 <pre><code>1.小程序不是运行在浏览器中，所以没有window和document对象
 console.log(window);
 console.log(document);
@@ -745,10 +748,8 @@ getApp()方法：用于获取全局的应用程序对象
 getCurrentPages()方法：用于获取当前页面的调用栈 
    # https://developers.weixin.qq.com/miniprogram/dev/framework/app-service/route.html
 wx : 微信小程序获取API的对象
-
-
 </code></pre>
-<p><strong>5.import 和 include（小程序支持CommonJS规范）</strong></p>
+<p> <strong>5.import 和 include（小程序支持CommonJS规范）</strong></p>
 <pre><code>1.小程序支持CommonJS规范
 exports.aa 或者module.exports导出
 require 引入
@@ -757,9 +758,761 @@ require 引入
 
 &lt;include src=&quot;header.wxml&quot;/&gt;  作用可以引入目标文件中除了template wxs之外的所有代码
 </code></pre>
-<h1 id="3-小程序中的组件"><a href="#3-小程序中的组件" class="headerlink" title="3.小程序中的组件"></a>3.小程序中的组件</h1><p>​</p>
-</li>
+<h1 id="5-wxml语法参考"><a href="#5-wxml语法参考" class="headerlink" title="5.wxml语法参考"></a>5.wxml语法参考</h1><p>1.数据绑定</p>
+<p>WXML 中的动态数据均来自对应 Page 的 data。</p>
+<p>简单绑定</p>
+<p>数据绑定使用 Mustache 语法（双大括号）将变量包起来，可以作用于：</p>
+<p>内容</p>
+<pre><code>&lt;view&gt; &#123;&#123; message &#125;&#125; &lt;/view&gt;
+Page(&#123;
+  data: &#123;
+    message: &#39;Hello MINA!&#39;
+  &#125;
+&#125;)
+</code></pre>
+<h3 id="组件属性-需要在双引号之内"><a href="#组件属性-需要在双引号之内" class="headerlink" title="组件属性(需要在双引号之内)"></a>组件属性(需要在双引号之内)</h3><pre><code>&lt;view src=&quot;&#123;&#123;imgurl&#125;&#125;&quot;&gt; &lt;/view&gt;
+Page(&#123;
+  data: &#123;
+    imgurl: &#39;/assets/imgs/icon-daokuanrenling.png&#39;
+  &#125;
+&#125;)
+</code></pre>
+<h3 id="控制属性-需要在双引号之内"><a href="#控制属性-需要在双引号之内" class="headerlink" title="控制属性(需要在双引号之内)"></a>控制属性(需要在双引号之内)</h3><pre><code>&lt;view wx:if=&quot;&#123;&#123;condition&#125;&#125;&quot;&gt; &lt;/view&gt;
+Page(&#123;
+  data: &#123;
+    condition: true
+  &#125;
+&#125;)
+</code></pre>
+<h3 id="关键字-需要在双引号之内"><a href="#关键字-需要在双引号之内" class="headerlink" title="关键字(需要在双引号之内)"></a>关键字(需要在双引号之内)</h3><p><code>true</code>：boolean 类型的 true，代表真值。</p>
+<p><code>false</code>： boolean 类型的 false，代表假值。</p>
+<p><strong>特别注意：</strong>不要直接写 checked&#x3D;”false”，其计算结果是一个字符串，转成 boolean 类型后代表真值。</p>
+<pre><code>&lt;checkbox checked=&quot;&#123;&#123;false&#125;&#125;&quot;&gt; &lt;/checkbox&gt;
+</code></pre>
+<h3 id="三元运算"><a href="#三元运算" class="headerlink" title="三元运算"></a>三元运算</h3><pre><code>&lt;view hidden=&quot;&#123;&#123;flag ? true : false&#125;&#125;&quot;&gt; Hidden &lt;/view&gt;
+</code></pre>
+<h3 id="算数运算"><a href="#算数运算" class="headerlink" title="算数运算"></a>算数运算</h3><pre><code>&lt;view&gt; &#123;&#123;a + b&#125;&#125; + &#123;&#123;c&#125;&#125; + d &lt;/view&gt;
+Page(&#123;
+  data: &#123;
+    a: 1,
+    b: 2,
+    c: 3
+  &#125;
+&#125;)
+view中的内容为 3 + 3 + d。
+</code></pre>
+<h3 id="逻辑判断"><a href="#逻辑判断" class="headerlink" title="逻辑判断"></a>逻辑判断</h3><pre><code>&lt;view wx:if=&quot;&#123;&#123;length > 5&#125;&#125;&quot;&gt; &lt;/view&gt;
+</code></pre>
+<h3 id="字符串运算"><a href="#字符串运算" class="headerlink" title="字符串运算"></a>字符串运算</h3><pre><code>&lt;view&gt;&#123;&#123;"hello" + name&#125;&#125;&lt;/view&gt;
+Page(&#123;
+  data:&#123;
+    name: &#39;MINA&#39;
+  &#125;
+&#125;)
+</code></pre>
+<h3 id="数据路径运算"><a href="#数据路径运算" class="headerlink" title="数据路径运算"></a>数据路径运算</h3><pre><code>&lt;view&gt;&#123;&#123;object.key&#125;&#125; &#123;&#123;array[0]&#125;&#125;&lt;/view&gt;
+</code></pre>
+<pre><code>Page(&#123;
+  data: &#123;
+    object: &#123;
+      key: &#39;Hello &#39;
+    &#125;,
+    array: [&#39;MINA&#39;]
+  &#125;
+&#125;)
+</code></pre>
+<h2 id="组合"><a href="#组合" class="headerlink" title="组合"></a>组合</h2><p>也可以在 Mustache 内直接进行组合，构成新的对象或者数组。</p>
+<h3 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h3><pre><code>&lt;view wx:for=&quot;&#123;&#123;[zero, 1, 2, 3, 4]&#125;&#125;&quot;&gt; &#123;&#123;item&#125;&#125; &lt;/view&gt;
+</code></pre>
+<pre><code>Page(&#123;
+  data: &#123;
+    zero: 0
+  &#125;
+&#125;)
+</code></pre>
+<p>最终组合成数组<code>[0, 1, 2, 3, 4]</code>。</p>
+<h3 id="对象"><a href="#对象" class="headerlink" title="对象"></a>对象</h3><pre><code>&lt;template is=&quot;objectCombine&quot; data=&quot;&#123;&#123;for: a, bar: b&#125;&#125;&quot;&gt;&lt;/template&gt;
+</code></pre>
+<pre><code>Page(&#123;
+  data: &#123;
+    a: 1,
+    b: 2
+  &#125;
+&#125;)
+</code></pre>
+<p>最终组合成的对象是 <code>&#123;for: 1, bar: 2&#125;</code></p>
+<p>也可以用扩展运算符 <code>...</code> 来将一个对象展开</p>
+<pre><code>&lt;template is=&quot;objectCombine&quot; data=&quot;&#123;&#123;...obj1, ...obj2, e: 5&#125;&#125;&quot;&gt;&lt;/template&gt;
+</code></pre>
+<pre><code>Page(&#123;
+  data: &#123;
+    obj1: &#123;
+      a: 1,
+      b: 2
+    &#125;,
+    obj2: &#123;
+      c: 3,
+      d: 4
+    &#125;
+  &#125;
+&#125;)
+</code></pre>
+<p>最终组合成的对象是 <code>&#123;a: 1, b: 2, c: 3, d: 4, e: 5&#125;</code>。</p>
+<p>如果对象的 key 和 value 相同，也可以间接地表达。</p>
+<pre><code>&lt;template is=&quot;objectCombine&quot; data=&quot;&#123;&#123;foo, bar&#125;&#125;&quot;&gt;&lt;/template&gt;
+</code></pre>
+<pre><code>Page(&#123;
+  data: &#123;
+    foo: &#39;my-foo&#39;,
+    bar: &#39;my-bar&#39;
+  &#125;
+&#125;)
+</code></pre>
+<p>最终组合成的对象是 <code>&#123;foo: &#39;my-foo&#39;, bar:&#39;my-bar&#39;&#125;</code>。</p>
+<p><strong>注意</strong>：上述方式可以随意组合，但是如有存在变量名相同的情况，后边的会覆盖前面，如：</p>
+<pre><code>&lt;template is=&quot;objectCombine&quot; data=&quot;&#123;&#123;...obj1, ...obj2, a, c: 6&#125;&#125;&quot;&gt;&lt;/template&gt;
+</code></pre>
+<pre><code>Page(&#123;
+  data: &#123;
+    obj1: &#123;
+      a: 1,
+      b: 2
+    &#125;,
+    obj2: &#123;
+      b: 3,
+      c: 4
+    &#125;,
+    a: 5
+  &#125;
+&#125;)
+</code></pre>
+<p>最终组合成的对象是 <code>&#123;a: 5, b: 3, c: 6&#125;</code>。</p>
+<p><strong>注意：</strong> 花括号和引号之间如果有空格，将最终被解析成为字符串</p>
+<pre><code>&lt;view wx:for=&quot;&#123;&#123;[1,2,3]&#125;&#125; &quot;&gt;
+  &#123;&#123;item&#125;&#125;
+&lt;/view&gt;
+</code></pre>
+<p>等同于</p>
+<pre><code>&lt;view wx:for=&quot;&#123;&#123;[1,2,3] + ' '&#125;&#125;&quot;&gt;
+  &#123;&#123;item&#125;&#125;
+&lt;/view&gt;
+</code></pre>
+<h1 id="列表渲染"><a href="#列表渲染" class="headerlink" title="列表渲染"></a>列表渲染</h1><h2 id="wx-for"><a href="#wx-for" class="headerlink" title="wx:for"></a>wx:for</h2><p>在组件上使用 <code>wx:for</code> 控制属性绑定一个数组，即可使用数组中各项的数据重复渲染该组件。</p>
+<p>默认数组的当前项的下标变量名默认为 <code>index</code>，数组当前项的变量名默认为 <code>item</code></p>
+<pre><code>&lt;view wx:for=&quot;&#123;&#123;array&#125;&#125;&quot;&gt;
+  &#123;&#123;index&#125;&#125;: &#123;&#123;item.message&#125;&#125;
+&lt;/view&gt;
+</code></pre>
+<pre><code>Page(&#123;
+  data: &#123;
+    array: [&#123;
+      message: &#39;foo&#39;,
+    &#125;, &#123;
+      message: &#39;bar&#39;
+    &#125;]
+  &#125;
+&#125;)
+</code></pre>
+<p>使用 <code>wx:for-item</code> 可以指定数组当前元素的变量名，</p>
+<p>使用 <code>wx:for-index</code> 可以指定数组当前下标的变量名：</p>
+<pre><code>&lt;view wx:for=&quot;&#123;&#123;array&#125;&#125;&quot; wx:for-index=&quot;idx&quot; wx:for-item=&quot;itemName&quot;&gt;
+  &#123;&#123;idx&#125;&#125;: &#123;&#123;itemName.message&#125;&#125;
+&lt;/view&gt;
+</code></pre>
+<p><code>wx:for</code> 也可以嵌套，下边是一个九九乘法表</p>
+<pre><code>&lt;view wx:for=&quot;&#123;&#123;[1, 2, 3, 4, 5, 6, 7, 8, 9]&#125;&#125;&quot; wx:for-item=&quot;i&quot;&gt;
+  &lt;view wx:for=&quot;&#123;&#123;[1, 2, 3, 4, 5, 6, 7, 8, 9]&#125;&#125;&quot; wx:for-item=&quot;j&quot;&gt;
+    &lt;view wx:if=&quot;&#123;&#123;i <= j&#125;&#125;&quot;&gt; &#123;&#123;i&#125;&#125; * &#123;&#123;j&#125;&#125;="&#123;&#123;i" j&#125;&#125; &lt; view&gt; < code></=></code></pre>
+<h2 id="block-wx-for"><a href="#block-wx-for" class="headerlink" title="block wx:for"></a>block wx:for</h2><p>类似 <code>block wx:if</code>，也可以将 <code>wx:for</code> 用在<code>&lt;block/&gt;</code>标签上，以渲染一个包含多节点的结构块。例如：</p>
+<pre><code>&lt;block wx:for=&quot;&#123;&#123;[1, 2, 3]&#125;&#125;&quot;&gt;
+  &lt;view&gt; &#123;&#123;index&#125;&#125;: &lt;/view&gt;
+  &lt;view&gt; &#123;&#123;item&#125;&#125; &lt;/view&gt;
+&lt;/block&gt;
+</code></pre>
+<h2 id="wx-key"><a href="#wx-key" class="headerlink" title="wx:key"></a>wx:key</h2><p>如果列表中项目的位置会动态改变或者有新的项目添加到列表中，并且希望列表中的项目保持自己的特征和状态（如 <a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/component/input.html">input</a> 中的输入内容，<a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/component/switch.html">switch</a> 的选中状态），需要使用 <code>wx:key</code> 来指定列表中项目的唯一的标识符。</p>
+<p><code>wx:key</code> 的值以两种形式提供</p>
+<ol>
+<li>字符串，代表在 for 循环的 array 中 item 的某个 property，该 property 的值需要是列表中唯一的字符串或数字，且不能动态改变。</li>
+<li>保留关键字 <code>*this</code> 代表在 for 循环中的 item 本身，这种表示需要 item 本身是一个唯一的字符串或者数字。</li>
+</ol>
+<p>当数据改变触发渲染层重新渲染的时候，会校正带有 key 的组件，框架会确保他们被重新排序，而不是重新创建，以确保使组件保持自身的状态，并且提高列表渲染时的效率。</p>
+<p><strong>如不提供 wx:key，会报一个 warning， 如果明确知道该列表是静态，或者不必关注其顺序，可以选择忽略。</strong></p>
+<h2 id="示例代码"><a href="#示例代码" class="headerlink" title="示例代码"></a>示例代码</h2><p><a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/s/tpg5tKmv6kZt">在开发者工具中预览效果</a></p>
+<pre><code>&lt;switch wx:for=&quot;&#123;&#123;objectArray&#125;&#125;&quot; wx:key=&quot;unique&quot; style=&quot;display: block;&quot;&gt; &#123;&#123;item.id&#125;&#125; &lt;/switch&gt;
+&lt;button bindtap=&quot;switch&quot;&gt; Switch &lt;/button&gt;
+&lt;button bindtap=&quot;addToFront&quot;&gt; Add to the front &lt;/button&gt;
+
+&lt;switch wx:for=&quot;&#123;&#123;numberArray&#125;&#125;&quot; wx:key=&quot;*this&quot; style=&quot;display: block;&quot;&gt; &#123;&#123;item&#125;&#125; &lt;/switch&gt;
+&lt;button bindtap=&quot;addNumberToFront&quot;&gt; Add to the front &lt;/button&gt;
+</code></pre>
+<pre><code>Page(&#123;
+  data: &#123;
+    objectArray: [
+      &#123;id: 5, unique: &#39;unique_5&#39;&#125;,
+      &#123;id: 4, unique: &#39;unique_4&#39;&#125;,
+      &#123;id: 3, unique: &#39;unique_3&#39;&#125;,
+      &#123;id: 2, unique: &#39;unique_2&#39;&#125;,
+      &#123;id: 1, unique: &#39;unique_1&#39;&#125;,
+      &#123;id: 0, unique: &#39;unique_0&#39;&#125;,
+    ],
+    numberArray: [1, 2, 3, 4]
+  &#125;,
+  switch: function(e) &#123;
+    const length = this.data.objectArray.length
+    for (let i = 0; i &lt; length; ++i) &#123;
+      const x = Math.floor(Math.random() * length)
+      const y = Math.floor(Math.random() * length)
+      const temp = this.data.objectArray[x]
+      this.data.objectArray[x] = this.data.objectArray[y]
+      this.data.objectArray[y] = temp
+    &#125;
+    this.setData(&#123;
+      objectArray: this.data.objectArray
+    &#125;)
+  &#125;,
+  addToFront: function(e) &#123;
+    const length = this.data.objectArray.length
+    this.data.objectArray = [&#123;id: length, unique: &#39;unique_&#39; + length&#125;].concat(this.data.objectArray)
+    this.setData(&#123;
+      objectArray: this.data.objectArray
+    &#125;)
+  &#125;,
+  addNumberToFront: function(e)&#123;
+    this.data.numberArray = [ this.data.numberArray.length + 1 ].concat(this.data.numberArray)
+    this.setData(&#123;
+      numberArray: this.data.numberArray
+    &#125;)
+  &#125;
+&#125;)
+</code></pre>
+<h2 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h2><p>当 <code>wx:for</code> 的值为字符串时，会将字符串解析成字符串数组</p>
+<pre><code>&lt;view wx:for=&quot;array&quot;&gt;
+  &#123;&#123;item&#125;&#125;
+&lt;/view&gt;
+</code></pre>
+<p>等同于</p>
+<pre><code>&lt;view wx:for=&quot;&#123;&#123;['a','r','r','a','y']&#125;&#125;&quot;&gt;
+  &#123;&#123;item&#125;&#125;
+&lt;/view&gt;
+</code></pre>
+<p><strong>注意：</strong> 花括号和引号之间如果有空格，将最终被解析成为字符串</p>
+<pre><code>&lt;view wx:for=&quot;&#123;&#123;[1,2,3]&#125;&#125; &quot;&gt;
+  &#123;&#123;item&#125;&#125;
+&lt;/view&gt;
+</code></pre>
+<p>等同于</p>
+<pre><code>&lt;view wx:for=&quot;&#123;&#123;[1,2,3] + ' '&#125;&#125;&quot; &gt;
+  &#123;&#123;item&#125;&#125;
+&lt;/view&gt;
+</code></pre>
+<h1 id="条件渲染"><a href="#条件渲染" class="headerlink" title="条件渲染"></a>条件渲染</h1><h2 id="wx-if"><a href="#wx-if" class="headerlink" title="wx:if"></a>wx:if</h2><p>在框架中，使用 <code>wx:if=&quot;&quot;</code> 来判断是否需要渲染该代码块：</p>
+<pre><code>&lt;view wx:if=&quot;&#123;&#123;condition&#125;&#125;&quot;&gt; True &lt;/view&gt;
+</code></pre>
+<p>也可以用 <code>wx:elif</code> 和 <code>wx:else</code> 来添加一个 else 块：</p>
+<pre><code>&lt;view wx:if=&quot;&#123;&#123;length > 5&#125;&#125;&quot;&gt; 1 &lt;/view&gt;
+&lt;view wx:elif=&quot;&#123;&#123;length > 2&#125;&#125;&quot;&gt; 2 &lt;/view&gt;
+&lt;view wx:else&gt; 3 &lt;/view&gt;
+</code></pre>
+<h2 id="block-wx-if"><a href="#block-wx-if" class="headerlink" title="block wx:if"></a>block wx:if</h2><p>因为 <code>wx:if</code> 是一个控制属性，需要将它添加到一个标签上。如果要一次性判断多个组件标签，可以使用一个 <code>&lt;block/&gt;</code> 标签将多个组件包装起来，并在上边使用 <code>wx:if</code> 控制属性。</p>
+<pre><code>&lt;block wx:if=&quot;&#123;&#123;true&#125;&#125;&quot;&gt;
+  &lt;view&gt; view1 &lt;/view&gt;
+  &lt;view&gt; view2 &lt;/view&gt;
+&lt;/block&gt;
+</code></pre>
+<p><strong>注意：</strong> <code>&lt;block/&gt;</code> 并不是一个组件，它仅仅是一个包装元素，不会在页面中做任何渲染，只接受控制属性。</p>
+<h2 id="wx-if-vs-hidden"><a href="#wx-if-vs-hidden" class="headerlink" title="wx:if vs hidden"></a><code>wx:if</code> vs <code>hidden</code></h2><p>因为 <code>wx:if</code> 之中的模板也可能包含数据绑定，所以当 <code>wx:if</code> 的条件值切换时，框架有一个局部渲染的过程，因为它会确保条件块在切换时销毁或重新渲染。</p>
+<p>同时 <code>wx:if</code> 也是<strong>惰性的</strong>，如果在初始渲染条件为 <code>false</code>，框架什么也不做，在条件第一次变成真的时候才开始局部渲染。</p>
+<p>相比之下，<code>hidden</code> 就简单的多，组件始终会被渲染，只是简单的控制显示与隐藏。</p>
+<p>一般来说，<code>wx:if</code> 有更高的切换消耗而 <code>hidden</code> 有更高的初始渲染消耗。因此，如果需要频繁切换的情景下，用 <code>hidden</code> 更好，如果在运行时条件不大可能改变则 <code>wx:if</code> 较好。</p>
+<h1 id="模板"><a href="#模板" class="headerlink" title="模板"></a>模板</h1><p>WXML提供模板（template），可以在模板中定义代码片段，然后在不同的地方调用。</p>
+<h2 id="定义模板"><a href="#定义模板" class="headerlink" title="定义模板"></a>定义模板</h2><p>使用 name 属性，作为模板的名字。然后在<code>&lt;template/&gt;</code>内定义代码片段，如：</p>
+<pre><code>&lt;!--
+  index: int
+  msg: string
+  time: string
+--&gt;
+&lt;template name=&quot;msgItem&quot;&gt;
+  &lt;view&gt;
+    &lt;text&gt; &#123;&#123;index&#125;&#125;: &#123;&#123;msg&#125;&#125; &lt;/text&gt;
+    &lt;text&gt; Time: &#123;&#123;time&#125;&#125; &lt;/text&gt;
+  &lt;/view&gt;
+&lt;/template&gt;
+</code></pre>
+<h2 id="使用模板"><a href="#使用模板" class="headerlink" title="使用模板"></a>使用模板</h2><p>使用 is 属性，声明需要的使用的模板，然后将模板所需要的 data 传入，如：</p>
+<pre><code>&lt;template is=&quot;msgItem&quot; data=&quot;&#123;&#123;...item&#125;&#125;&quot;/&gt;
+</code></pre>
+<pre><code>Page(&#123;
+  data: &#123;
+    item: &#123;
+      index: 0,
+      msg: &#39;this is a template&#39;,
+      time: &#39;2016-09-15&#39;
+    &#125;
+  &#125;
+&#125;)
+</code></pre>
+<p>is 属性可以使用 Mustache 语法，来动态决定具体需要渲染哪个模板：</p>
+<pre><code>&lt;template name=&quot;odd&quot;&gt;
+  &lt;view&gt; odd &lt;/view&gt;
+&lt;/template&gt;
+&lt;template name=&quot;even&quot;&gt;
+  &lt;view&gt; even &lt;/view&gt;
+&lt;/template&gt;
+
+&lt;block wx:for=&quot;&#123;&#123;[1, 2, 3, 4, 5]&#125;&#125;&quot;&gt;
+  &lt;template is=&quot;&#123;&#123;item % 2 == 0 ? 'even' : 'odd'&#125;&#125;&quot;/&gt;
+&lt;/block&gt;
+</code></pre>
+<h2 id="模板的作用域"><a href="#模板的作用域" class="headerlink" title="模板的作用域"></a>模板的作用域</h2><p>模板拥有自己的作用域，只能使用 data 传入的数据以及模板定义文件中定义的 <code>&lt;wxs /&gt;</code> 模块。</p>
+<h1 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h1><p>WXML 提供两种文件引用方式<code>import</code>和<code>include</code>。</p>
+<h2 id="import"><a href="#import" class="headerlink" title="import"></a>import</h2><p><code>import</code>可以在该文件中使用目标文件定义的<code>template</code>，如：</p>
+<p>在 item.wxml 中定义了一个叫<code>item</code>的<code>template</code>：</p>
+<pre><code>&lt;!-- item.wxml --&gt;
+&lt;template name=&quot;item&quot;&gt;
+  &lt;text&gt;&#123;&#123;text&#125;&#125;&lt;/text&gt;
+&lt;/template&gt;
+</code></pre>
+<p>在 index.wxml 中引用了 item.wxml，就可以使用<code>item</code>模板：</p>
+<pre><code>&lt;import src=&quot;item.wxml&quot;/&gt;
+&lt;template is=&quot;item&quot; data=&quot;&#123;&#123;text: 'forbar'&#125;&#125;&quot;/&gt;
+</code></pre>
+<h2 id="import-的作用域"><a href="#import-的作用域" class="headerlink" title="import 的作用域"></a>import 的作用域</h2><p>import 有作用域的概念，即只会 import 目标文件中定义的 template，而不会 import 目标文件 import 的 template。</p>
+<p><strong>如：C import B，B import A，在 C 中可以使用 B 定义的template，在 B 中可以使用 A 定义的template，但是 C 不能使用 A 定义的template</strong>。</p>
+<pre><code>&lt;!-- A.wxml --&gt;
+&lt;template name=&quot;A&quot;&gt;
+  &lt;text&gt; A template &lt;/text&gt;
+&lt;/template&gt;
+</code></pre>
+<pre><code>&lt;!-- B.wxml --&gt;
+&lt;import src=&quot;a.wxml&quot;/&gt;
+&lt;template name=&quot;B&quot;&gt;
+  &lt;text&gt; B template &lt;/text&gt;
+&lt;/template&gt;
+</code></pre>
+<pre><code>&lt;!-- C.wxml --&gt;
+&lt;import src=&quot;b.wxml&quot;/&gt;
+&lt;template is=&quot;A&quot;/&gt;  &lt;!-- Error! Can not use tempalte when not import A. --&gt;
+&lt;template is=&quot;B&quot;/&gt;
+</code></pre>
+<h2 id="include"><a href="#include" class="headerlink" title="include"></a>include</h2><p><code>include</code> 可以将目标文件<strong>除了</strong> <code>&lt;template/&gt;</code> <code>&lt;wxs/&gt;</code> 外的整个代码引入，相当于是拷贝到 <code>include</code> 位置，如：</p>
+<pre><code>&lt;!-- index.wxml --&gt;
+&lt;include src=&quot;header.wxml&quot;/&gt;
+&lt;view&gt; body &lt;/view&gt;
+&lt;include src=&quot;footer.wxml&quot;/&gt;
+&lt;!-- header.wxml --&gt;
+&lt;view&gt; header &lt;/view&gt;
+&lt;!-- footer.wxml --&gt;
+&lt;view&gt; footer &lt;/view&gt;
+</code></pre>
+<h1 id="事件"><a href="#事件" class="headerlink" title="事件"></a>事件</h1><h2 id="什么是事件"><a href="#什么是事件" class="headerlink" title="什么是事件"></a>什么是事件</h2><ul>
+<li>事件是视图层到逻辑层的通讯方式。</li>
+<li>事件可以将用户的行为反馈到逻辑层进行处理。</li>
+<li>事件可以绑定在组件上，当达到触发事件，就会执行逻辑层中对应的事件处理函数。</li>
+<li>事件对象可以携带额外信息，如 id, dataset, touches。</li>
 </ul>
+<h2 id="事件的使用方式"><a href="#事件的使用方式" class="headerlink" title="事件的使用方式"></a>事件的使用方式</h2><ul>
+<li>在组件中绑定一个事件处理函数。</li>
+</ul>
+<p>如<code>bindtap</code>，当用户点击该组件的时候会在该页面对应的 Page 中找到相应的事件处理函数。</p>
+<pre><code>&lt;view id=&quot;tapTest&quot; data-hi=&quot;Weixin&quot; bindtap=&quot;tapName&quot;&gt; Click me! &lt;/view&gt;
+</code></pre>
+<ul>
+<li>在相应的 Page 定义中写上相应的事件处理函数，参数是event。</li>
+</ul>
+<pre><code>Page(&#123;
+  tapName: function(event) &#123;
+    console.log(event)
+  &#125;
+&#125;)
+</code></pre>
+<h3 id="事件分类"><a href="#事件分类" class="headerlink" title="事件分类"></a>事件分类</h3><p>事件分为冒泡事件和非冒泡事件：</p>
+<ol>
+<li>冒泡事件：当一个组件上的事件被触发后，该事件会向父节点传递。</li>
+<li>非冒泡事件：当一个组件上的事件被触发后，该事件不会向父节点传递。</li>
+</ol>
+<p>WXML的冒泡事件列表：</p>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>触发条件</th>
+<th>绑定方式</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>touchstart</td>
+<td>手指触摸动作开始</td>
+<td></td>
+</tr>
+<tr>
+<td>touchmove</td>
+<td>手指触摸后移动</td>
+<td></td>
+</tr>
+<tr>
+<td>touchcancel</td>
+<td>手指触摸动作被打断，如来电提醒，弹窗</td>
+<td></td>
+</tr>
+<tr>
+<td>touchend</td>
+<td>手指触摸动作结束</td>
+<td></td>
+</tr>
+<tr>
+<td>tap</td>
+<td>手指触摸后马上离开</td>
+<td>bindtap或bind:tap</td>
+</tr>
+<tr>
+<td>longpress</td>
+<td>手指触摸后，超过350ms再离开，如果指定了事件回调函数并触发了这个事件，tap事件将不被触发</td>
+<td><a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/framework/compatibility.html">1.5.0</a></td>
+</tr>
+<tr>
+<td>longtap</td>
+<td>手指触摸后，超过350ms再离开（推荐使用 longpress 事件代替）</td>
+<td></td>
+</tr>
+<tr>
+<td>transitionend</td>
+<td>会在 WXSS transition 或 wx.createAnimation 动画结束后触发</td>
+<td></td>
+</tr>
+<tr>
+<td>animationstart</td>
+<td>会在一个 WXSS animation 动画开始时触发</td>
+<td></td>
+</tr>
+<tr>
+<td>animationiteration</td>
+<td>会在一个 WXSS animation 一次迭代结束时触发</td>
+<td></td>
+</tr>
+<tr>
+<td>animationend</td>
+<td>会在一个 WXSS animation 动画完成时触发</td>
+<td></td>
+</tr>
+<tr>
+<td>touchforcechange</td>
+<td>在支持 3D Touch 的 iPhone 设备，重按时会触发</td>
+<td><a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/framework/compatibility.html">1.9.90</a></td>
+</tr>
+</tbody></table>
+<p><strong>注：除上表之外的其他组件自定义事件如无特殊声明都是非冒泡事件，如 form 的submit事件，input 的input事件，scroll-view 的scroll事件，(详见各个组件)</strong></p>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>绑定方式</th>
+<th>事件描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>tap</td>
+<td>bindtap或bind:tap</td>
+<td></td>
+</tr>
+<tr>
+<td>input</td>
+<td>bindinput或bind:input</td>
+<td></td>
+</tr>
+<tr>
+<td>change</td>
+<td>bindchange或bind:change</td>
+<td></td>
+</tr>
+</tbody></table>
+<h3 id="普通事件绑定"><a href="#普通事件绑定" class="headerlink" title="普通事件绑定"></a>普通事件绑定</h3><p>事件绑定的写法类似于组件的属性，如：</p>
+<pre><code>&lt;view bindtap=&quot;handleTap&quot;&gt;
+    Click here!
+&lt;/view&gt;
+</code></pre>
+<p>如果用户点击这个 view ，则页面的 <code>handleTap</code> 会被调用。</p>
+<p>事件绑定函数可以是一个数据绑定，如：</p>
+<pre><code>&lt;view bindtap=&quot;&#123;&#123; handlerName &#125;&#125;&quot;&gt;
+    Click here!
+&lt;/view&gt;
+</code></pre>
+<p>此时，页面的 <code>this.data.handlerName</code> 必须是一个字符串，指定事件处理函数名；如果它是个空字符串，则这个绑定会失效（可以利用这个特性来暂时禁用一些事件）。</p>
+<p>自基础库版本 <a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/framework/compatibility.html">1.5.0</a> 起，在大多数组件和自定义组件中， <code>bind</code> 后可以紧跟一个冒号，其含义不变，如 <code>bind:tap</code> 。基础库版本 <a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/framework/compatibility.html">2.8.1</a> 起，在所有组件中开始提供这个支持。</p>
+<h3 id="绑定并阻止事件冒泡"><a href="#绑定并阻止事件冒泡" class="headerlink" title="绑定并阻止事件冒泡"></a>绑定并阻止事件冒泡</h3><p>除 <code>bind</code> 外，也可以用 <code>catch</code> 来绑定事件。与 <code>bind</code> 不同， <code>catch</code> 会阻止事件向上冒泡。</p>
+<p>例如在下边这个例子中，点击 inner view 会先后调用<code>handleTap3</code>和<code>handleTap2</code>(因为 tap 事件会冒泡到 middle view，而 middle view 阻止了 tap 事件冒泡，不再向父节点传递)，点击 middle view 会触发<code>handleTap2</code>，点击 outer view 会触发<code>handleTap1</code>。</p>
+<pre><code>&lt;view id=&quot;outer&quot; bindtap=&quot;handleTap1&quot;&gt;
+  outer view
+  &lt;view id=&quot;middle&quot; catchtap=&quot;handleTap2&quot;&gt;
+    middle view
+    &lt;view id=&quot;inner&quot; bindtap=&quot;handleTap3&quot;&gt;
+      inner view
+    &lt;/view&gt;
+  &lt;/view&gt;
+&lt;/view&gt;
+</code></pre>
+<h3 id="互斥事件绑定"><a href="#互斥事件绑定" class="headerlink" title="互斥事件绑定"></a>互斥事件绑定</h3><p>自基础库版本 <a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/framework/compatibility.html">2.8.2</a> 起，除 <code>bind</code> 和 <code>catch</code> 外，还可以使用 <code>mut-bind</code> 来绑定事件。一个 <code>mut-bind</code> 触发后，如果事件冒泡到其他节点上，其他节点上的 <code>mut-bind</code> 绑定函数不会被触发，但 <code>bind</code> 绑定函数和 <code>catch</code> 绑定函数依旧会被触发。</p>
+<p>换而言之，所有 <code>mut-bind</code> 是“互斥”的，只会有其中一个绑定函数被触发。同时，它完全不影响 <code>bind</code> 和 <code>catch</code> 的绑定效果。</p>
+<p>例如在下边这个例子中，点击 inner view 会先后调用 <code>handleTap3</code> 和 <code>handleTap2</code> ，点击 middle view 会调用 <code>handleTap2</code> 和 <code>handleTap1</code> 。</p>
+<pre><code>&lt;view id=&quot;outer&quot; mut-bind:tap=&quot;handleTap1&quot;&gt;
+  outer view
+  &lt;view id=&quot;middle&quot; bindtap=&quot;handleTap2&quot;&gt;
+    middle view
+    &lt;view id=&quot;inner&quot; mut-bind:tap=&quot;handleTap3&quot;&gt;
+      inner view
+    &lt;/view&gt;
+  &lt;/view&gt;
+&lt;/view&gt;
+</code></pre>
+<h3 id="事件的捕获阶段"><a href="#事件的捕获阶段" class="headerlink" title="事件的捕获阶段"></a>事件的捕获阶段</h3><p>自基础库版本 <a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/framework/compatibility.html">1.5.0</a> 起，触摸类事件支持捕获阶段。捕获阶段位于冒泡阶段之前，且在捕获阶段中，事件到达节点的顺序与冒泡阶段恰好相反。需要在捕获阶段监听事件时，可以采用<code>capture-bind</code>、<code>capture-catch</code>关键字，后者将中断捕获阶段和取消冒泡阶段。</p>
+<p>在下面的代码中，点击 inner view 会先后调用<code>handleTap2</code>、<code>handleTap4</code>、<code>handleTap3</code>、<code>handleTap1</code>。</p>
+<pre><code>&lt;view id=&quot;outer&quot; bind:touchstart=&quot;handleTap1&quot; capture-bind:touchstart=&quot;handleTap2&quot;&gt;
+  outer view
+  &lt;view id=&quot;inner&quot; bind:touchstart=&quot;handleTap3&quot; capture-bind:touchstart=&quot;handleTap4&quot;&gt;
+    inner view
+  &lt;/view&gt;
+&lt;/view&gt;
+</code></pre>
+<p>如果将上面代码中的第一个<code>capture-bind</code>改为<code>capture-catch</code>，将只触发<code>handleTap2</code>。</p>
+<pre><code>&lt;view id=&quot;outer&quot; bind:touchstart=&quot;handleTap1&quot; capture-catch:touchstart=&quot;handleTap2&quot;&gt;
+  outer view
+  &lt;view id=&quot;inner&quot; bind:touchstart=&quot;handleTap3&quot; capture-bind:touchstart=&quot;handleTap4&quot;&gt;
+    inner view
+  &lt;/view&gt;
+&lt;/view&gt;
+</code></pre>
+<h3 id="事件对象"><a href="#事件对象" class="headerlink" title="事件对象"></a>事件对象</h3><p>如无特殊说明，当组件触发事件时，逻辑层绑定该事件的处理函数会收到一个事件对象。</p>
+<p><strong>BaseEvent 基础事件对象属性列表：</strong></p>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>类型</th>
+<th>说明</th>
+<th>基础库版本</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/framework/view/wxml/event.html#type">type</a></td>
+<td>String</td>
+<td>事件类型</td>
+<td></td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/framework/view/wxml/event.html#timeStamp">timeStamp</a></td>
+<td>Integer</td>
+<td>事件生成时的时间戳</td>
+<td></td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/framework/view/wxml/event.html#target">target</a></td>
+<td>Object</td>
+<td>触发事件的组件的一些属性值集合</td>
+<td></td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/framework/view/wxml/event.html#currenttarget">currentTarget</a></td>
+<td>Object</td>
+<td>当前组件的一些属性值集合</td>
+<td></td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/framework/view/wxml/event.html#mark">mark</a></td>
+<td>Object</td>
+<td>事件标记数据</td>
+<td><a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/framework/compatibility.html">2.7.1</a></td>
+</tr>
+</tbody></table>
+<p><strong>CustomEvent 自定义事件对象属性列表（继承 BaseEvent）：</strong></p>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/framework/view/wxml/event.html#detail">detail</a></td>
+<td>Object</td>
+<td>额外的信息</td>
+</tr>
+</tbody></table>
+<p><strong>TouchEvent 触摸事件对象属性列表（继承 BaseEvent）：</strong></p>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/framework/view/wxml/event.html#touches">touches</a></td>
+<td>Array</td>
+<td>触摸事件，当前停留在屏幕中的触摸点信息的数组</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/framework/view/wxml/event.html#changedTouches">changedTouches</a></td>
+<td>Array</td>
+<td>触摸事件，当前变化的触摸点信息的数组</td>
+</tr>
+</tbody></table>
+<p><strong>特殊事件： canvas 中的触摸事件不可冒泡，所以没有 currentTarget。</strong></p>
+<h3 id="type"><a href="#type" class="headerlink" title="type"></a>type</h3><p>代表事件的类型。</p>
+<h3 id="timeStamp"><a href="#timeStamp" class="headerlink" title="timeStamp"></a>timeStamp</h3><p>页面打开到触发事件所经过的毫秒数。</p>
+<h3 id="target"><a href="#target" class="headerlink" title="target"></a>target</h3><p><strong>触发事件的源组件。</strong></p>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>id</td>
+<td>String</td>
+<td>事件源组件的id</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/framework/view/wxml/event.html#dataset">dataset</a></td>
+<td>Object</td>
+<td>事件源组件上由<code>data-</code>开头的自定义属性组成的集合</td>
+</tr>
+</tbody></table>
+<h3 id="currentTarget"><a href="#currentTarget" class="headerlink" title="currentTarget"></a>currentTarget</h3><p><strong>事件绑定的当前组件。</strong></p>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>id</td>
+<td>String</td>
+<td>当前组件的id</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/framework/view/wxml/event.html#dataset">dataset</a></td>
+<td>Object</td>
+<td>当前组件上由<code>data-</code>开头的自定义属性组成的集合</td>
+</tr>
+</tbody></table>
+<p><strong>说明： target 和 currentTarget 可以参考上例中，点击 inner view 时，handleTap3 收到的事件对象 target 和 currentTarget 都是 inner，而 handleTap2 收到的事件对象 target 就是 inner，currentTarget 就是 middle。</strong></p>
+<h3 id="dataset"><a href="#dataset" class="headerlink" title="dataset"></a>dataset</h3><p>在组件节点中可以附加一些自定义数据。这样，在事件中可以获取这些自定义的节点数据，用于事件的逻辑处理。</p>
+<p>在 WXML 中，这些自定义数据以 <code>data-</code> 开头，多个单词由连字符 <code>-</code> 连接。这种写法中，连字符写法会转换成驼峰写法，而大写字符会自动转成小写字符。如：</p>
+<ul>
+<li><code>data-element-type</code> ，最终会呈现为 <code>event.currentTarget.dataset.elementType</code> ；</li>
+<li><code>data-elementType</code> ，最终会呈现为 <code>event.currentTarget.dataset.elementtype</code> 。</li>
+</ul>
+<p><strong>示例：</strong></p>
+<pre><code>&lt;view data-alpha-beta=&quot;1&quot; data-alphaBeta=&quot;2&quot; bindtap=&quot;bindViewTap&quot;&gt; DataSet Test &lt;/view&gt;
+</code></pre>
+<pre><code>Page(&#123;
+  bindViewTap:function(event)&#123;
+    event.currentTarget.dataset.alphaBeta === 1 // - 会转为驼峰写法
+    event.currentTarget.dataset.alphabeta === 2 // 大写会转为小写
+  &#125;
+&#125;)
+</code></pre>
+<h3 id="mark"><a href="#mark" class="headerlink" title="mark"></a>mark</h3><p>在基础库版本 <a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/framework/compatibility.html">2.7.1</a> 以上，可以使用 <code>mark</code> 来识别具体触发事件的 target 节点。此外， <code>mark</code> 还可以用于承载一些自定义数据（类似于 <code>dataset</code> ）。</p>
+<p>当事件触发时，事件冒泡路径上所有的 <code>mark</code> 会被合并，并返回给事件回调函数。（即使事件不是冒泡事件，也会 <code>mark</code> 。）</p>
+<p><strong>代码示例：</strong></p>
+<p><a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/s/7LwTKvmi7woT">在开发者工具中预览效果</a></p>
+<pre><code>&lt;view mark:myMark=&quot;last&quot; bindtap=&quot;bindViewTap&quot;&gt;
+  &lt;button mark:anotherMark=&quot;leaf&quot; bindtap=&quot;bindButtonTap&quot;&gt;按钮&lt;/button&gt;
+&lt;/view&gt;
+</code></pre>
+<p>在上述 WXML 中，如果按钮被点击，将触发 <code>bindViewTap</code> 和 <code>bindButtonTap</code> 两个事件，事件携带的 <code>event.mark</code> 将包含 <code>myMark</code> 和 <code>anotherMark</code> 两项。</p>
+<pre><code>Page(&#123;
+  bindViewTap: function(e) &#123;
+    e.mark.myMark === &quot;last&quot; // true
+    e.mark.anotherMark === &quot;leaf&quot; // true
+  &#125;
+&#125;)
+</code></pre>
+<p><code>mark</code> 和 <code>dataset</code> 很相似，主要区别在于： <code>mark</code> 会包含从触发事件的节点到根节点上所有的 <code>mark:</code> 属性值；而 <code>dataset</code> 仅包含一个节点的 <code>data-</code> 属性值。</p>
+<p>细节注意事项：</p>
+<ul>
+<li>如果存在同名的 <code>mark</code> ，父节点的 <code>mark</code> 会被子节点覆盖。</li>
+<li>在自定义组件中接收事件时， <code>mark</code> 不包含自定义组件外的节点的 <code>mark</code> 。</li>
+<li>不同于 <code>dataset</code> ，节点的 <code>mark</code> 不会做连字符和大小写转换。</li>
+</ul>
+<h3 id="touches"><a href="#touches" class="headerlink" title="touches"></a>touches</h3><p>touches 是一个数组，每个元素为一个 Touch 对象（canvas 触摸事件中携带的 touches 是 CanvasTouch 数组）。 表示当前停留在屏幕上的触摸点。</p>
+<h4 id="Touch-对象"><a href="#Touch-对象" class="headerlink" title="Touch 对象"></a>Touch 对象</h4><table>
+<thead>
+<tr>
+<th>属性</th>
+<th>类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>identifier</td>
+<td>Number</td>
+<td>触摸点的标识符</td>
+</tr>
+<tr>
+<td>pageX, pageY</td>
+<td>Number</td>
+<td>距离文档左上角的距离，文档的左上角为原点 ，横向为 X 轴，纵向为 Y 轴</td>
+</tr>
+<tr>
+<td>clientX, clientY</td>
+<td>Number</td>
+<td>距离页面可显示区域（屏幕除去导航条）左上角距离，横向为 X 轴，纵向为 Y 轴</td>
+</tr>
+</tbody></table>
+<h4 id="CanvasTouch-对象"><a href="#CanvasTouch-对象" class="headerlink" title="CanvasTouch 对象"></a>CanvasTouch 对象</h4><table>
+<thead>
+<tr>
+<th>属性</th>
+<th>类型</th>
+<th>说明</th>
+<th>特殊说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>identifier</td>
+<td>Number</td>
+<td>触摸点的标识符</td>
+<td></td>
+</tr>
+<tr>
+<td>x, y</td>
+<td>Number</td>
+<td>距离 Canvas 左上角的距离，Canvas 的左上角为原点 ，横向为 X 轴，纵向为 Y 轴</td>
+<td></td>
+</tr>
+</tbody></table>
+<h3 id="changedTouches"><a href="#changedTouches" class="headerlink" title="changedTouches"></a>changedTouches</h3><p>changedTouches 数据格式同 touches。 表示有变化的触摸点，如从无变有（touchstart），位置变化（touchmove），从有变无（touchend、touchcancel）。</p>
+<h3 id="detail"><a href="#detail" class="headerlink" title="detail"></a>detail</h3><p>自定义事件所携带的数据，如表单组件的提交事件会携带用户的输入，媒体的错误事件会携带错误信息，详见<a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/component">组件</a>定义中各个事件的定义。</p>
+<p>点击事件的<code>detail</code> 带有的 x, y 同 pageX, pageY 代表距离文档左上角的距离。</p>
+<p><strong>事件绑定修改数据</strong></p>
+<pre><code> bindtap=&quot;handleclick&quot;
+ 
+ handleclick()&#123;
+      this.setData(&#123;
+      count: this.data.count + 1
+    &#125;)
+ &#125;
+</code></pre>
+<p><strong>事件传参</strong></p>
+<p>小程序中的事件传参比较特殊，不能在绑定事件的同时为事件处理函数传递参数，因为小程序会把bindtap的属性值统一当作事件名称来处理。例如：下面代码将会被认为调用了一个名称为<code>toLink（item.link</code>）的函数，</p>
+<pre><code> bindtap=&quot;toLink（item.link）&quot;
+</code></pre>
+<p>可以为组件提供<code>data-*</code>自定义属性传参，其中<code>*</code>代表的是参数的名字，示例如下</p>
+<pre><code>    
+bindtap=&quot;toLink&quot;
+data-link=&quot;&#123;&#123;item.link&#125;&#125;&quot;
+
+  toLink(e) &#123;
+    console.log(&quot;点击了图标，要跳转页面&quot;, e.currentTarget.dataset.link)
+  &#125;,
+</code></pre>
+<p><strong>bindinput的语法格式</strong></p>
 
             
         </div>
@@ -773,7 +1526,7 @@ require 引入
         
         <span class="tag">
             
-            <a href="/tags/微信小程序" style="color: #03a9f4">
+            <a href="/tags/微信小程序" style="color: #00a596">
                 微信小程序
             </a>
         </span>
@@ -1266,7 +2019,7 @@ myChart.setOption(&#123;
         
         <span class="tag">
             
-            <a href="/tags/echarts" style="color: #03a9f4">
+            <a href="/tags/echarts" style="color: #00bcd4">
                 echarts
             </a>
         </span>
@@ -1653,7 +2406,7 @@ const p=new Proxy(person,&#123;
         
         <span class="tag">
             
-            <a href="/tags/vue3" style="color: #ff7d73">
+            <a href="/tags/vue3" style="color: #00bcd4">
                 vue3
             </a>
         </span>
@@ -1863,7 +2616,7 @@ export default &#123;
         
         <span class="tag">
             
-            <a href="/tags/vue3" style="color: #03a9f4">
+            <a href="/tags/vue3" style="color: #ff7d73">
                 vue3
             </a>
         </span>
@@ -2009,7 +2762,7 @@ export default &#123;
         
         <span class="tag">
             
-            <a href="/tags/css" style="color: #03a9f4">
+            <a href="/tags/css" style="color: #00a596">
                 css
             </a>
         </span>
@@ -2055,7 +2808,7 @@ export default &#123;
         
         <span class="tag">
             
-            <a href="/tags/js" style="color: #00bcd4">
+            <a href="/tags/js" style="color: #00a596">
                 js
             </a>
         </span>
@@ -2141,7 +2894,7 @@ export default &#123;
         
         <span class="tag">
             
-            <a href="/tags/js" style="color: #03a9f4">
+            <a href="/tags/js" style="color: #ffa2c4">
                 js
             </a>
         </span>
