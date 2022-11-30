@@ -142,6 +142,294 @@
             
 
 <div class="post">
+    <a href="/2022/07/05/echarts的一些配置项/">
+        <h2>
+            Echarts的一些配置项
+        </h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="date">
+            <span class="icon">
+                <svg class="fa-icon"><use xlink:href="#calendar-solid"></use></svg>
+            </span>
+            2022/7/5
+        </span>
+    </div>
+    <div class="excerpt">
+        <div class="content" v-pre>
+            
+            <p>title:标题</p>
+<pre><code>主标题和副标题
+title: &#123;
+    text: &#39;主标题&#39;,
+    subtext: &#39;副标题&#39;,
+    top: 10,
+    left: 10
+  &#125;,
+  也可以多个标题
+   title: [ &#123;
+     text:&#39;标题1&#39;,
+     left:20,
+     show:false//是否显示标题
+   &#125;,
+   &#123;
+     text:&#39;这是一个长长的标题，可以换行\n哈哈&#39;,//标题文本，支持换行
+     left:20,
+     top:40,
+    textStyle:&#123;//文本样式
+      color:&#39;skyblue&#39;,
+      fontSize:20,
+    &#125;
+   &#125;],
+</code></pre>
+<p>legend</p>
+<pre><code> legend: &#123;
+            orient: &#39;vertical&#39;,//图例方向
+            icon: &#39;circle&#39;,//
+            type:&#39;scroll&#39;,//图例过多时可滚动，默认plain
+            itemWidth: 8, // 设置宽度
+            itemHeight: 8, // 设置高度
+            itemGap: 15, // 设置间距
+            left: &#39;right&#39;,//图例组件离容器左侧的距离,可为像素值，百分比，center等
+            //top:&#39;40%&#39;,//图例组件离容器上侧的距离,同上
+            bottom:&#39;10%&#39;,//百分比或像素值，right相同
+            show:true,//是否显示图例
+            width:120,//图例组件的宽度。默认自适应。
+            height:200,//图例组件的高度。默认自适应。
+            padding: [5, 10],
+            formatter: function (name) &#123;
+                let data = option.series[0].data
+                let total = 0
+                let tarValue
+                for (let i = 0; i &lt; data.length; i++) &#123;
+                   total += data[i].value
+                   if (data[i].name === name) &#123;
+                    tarValue = data[i].value
+                    &#125;
+                  &#125;
+               let v = tarValue
+                return name+v+&#39;元&#39;
+            &#125;,
+            textStyle: &#123;
+              fontWeight: 400,
+              fontSize: 14,
+              color: &#39;#606266&#39;,
+            &#125;,
+          &#125;,
+          或
+             legend: &#123;
+             orient: &#39;vertical&#39;,
+             icon: &#39;circle&#39;,
+             itemWidth: 8, // 设置宽度
+             itemHeight: 8, // 设置高度
+             itemGap: 15, // 设置间距
+             left: &#39;45%&#39;,
+             textStyle: &#123;
+               fontWeight: 400,
+               fontSize: 14,
+               color: &#39;#606266&#39;,
+               rich: &#123;
+               one: &#123;
+                   fontSize: 14,
+                   fontWeight: 400,
+                   fontFamily: &#39;Microsoft YaHei-Regular, Microsoft YaHei&#39;,
+                   width: 110,
+                   color: &#39;#606266&#39;,
+                   padding: [0, 0, 0, 4],
+                 &#125;,
+                 two: &#123;
+                   fontSize: 14,
+                   fontWeight: 400,
+                   color: &#39;#606266&#39;,
+                 &#125;,
+               &#125;,
+             &#125;,
+           &#125;,
+             formatter: function (name) &#123;
+             let data = option.series[0].data
+             let total = 0
+             let tarValue
+             for (let i = 0; i &lt; data.length; i++) &#123;
+               total += data[i].value
+               if (data[i].name === name) &#123;
+                 tarValue = data[i].value
+               &#125;
+             &#125;
+             // 数量
+             let v = tarValue
+             // 百分比
+             let p = Math.round((tarValue / total) * 100)
+             return `&#123;one|$&#123;name&#125;&#125; &#123;two|$&#123;number_format(v, 0)&#125;元&#125;`
+           &#125;,
+</code></pre>
+
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        <span class="icon">
+            <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
+        </span>
+        
+        
+        <span class="tag">
+            
+            <a href="/tags/echarts" style="color: #00bcd4">
+                echarts
+            </a>
+        </span>
+        
+    </div>
+    <a href="/2022/07/05/echarts的一些配置项/" class="go-post">
+        阅读全文
+    </a>
+</div>
+
+<div class="post">
+    <a href="/2022/06/13/Vuex/">
+        <h2>
+            Vuex
+        </h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="date">
+            <span class="icon">
+                <svg class="fa-icon"><use xlink:href="#calendar-solid"></use></svg>
+            </span>
+            2022/6/13
+        </span>
+    </div>
+    <div class="excerpt">
+        <div class="content" v-pre>
+            
+            <h3 id="Vuex介绍"><a href="#Vuex介绍" class="headerlink" title="Vuex介绍"></a>Vuex介绍</h3><p><img src="/2022/06/13/Vuex/vuex.png"></p>
+<p><strong>1.概念：</strong>Vuex是Vue中实现集中式状态（数据）管理的Vue插件，对vue应用中多个组件的共享状态进行集中式管理（读&#x2F;写），也是一种组件间通信的方式，且适用于任意组件间通信</p>
+<p><strong>2.何时使用</strong>：多个组件需要共享数据时</p>
+<p><strong>3.搭建vuex环境</strong>：1.创建文件：<code>src/store/index.js</code></p>
+<pre><code>//引入Vue核心库
+import Vue from &#39;Vue&#39;
+//引入Vuex
+//import Vuex from &#39;vuex&#39;
+//应用Vuex插件
+Vue.use(Vuex)
+
+//准备actions:用于响应组件中的动作
+const actions=&#123;&#125;
+//准备mutations:用于操作数据（state）
+const mutations=&#123;&#125;
+//准备state:用于存储数据（state）
+const state=&#123;&#125;
+
+//创建并暴露store
+export default new Vuex.Store(&#123;
+    actions,
+    mutations,
+    state
+&#125;)
+</code></pre>
+<p>2.在<code>main.js</code>中创建vm时传入<code>store</code>配置项</p>
+<pre><code>//引入store
+import store from &#39;./store&#39;
+//创建vm
+new Vue(&#123;
+    el:&#39;#app&#39;,
+    render:h=&gt;h(App),
+    store
+&#125;)
+</code></pre>
+<p><img src="/2022/06/13/Vuex/store.png"></p>
+<p><img src="/2022/06/13/Vuex/main.png"></p>
+<p><strong>使用案例：</strong></p>
+<p>context:minstore，缩水的store</p>
+<p><img src="/2022/06/13/Vuex/anli1.png"></p>
+<p><img src="/2022/06/13/Vuex/anli2.png"></p>
+<p><img src="/2022/06/13/Vuex/anli3.png"></p>
+<p>1.组件中读取vuex中的数据：<code>$store.state.sum</code></p>
+<p>2.组件中修改vuex中的数据：<code>$store.dispatch(&#39;action中的方法名&#39;,数据)</code>或<code>$store.commit(&#39;mutations中的方法名&#39;，数据)</code></p>
+<p>3.如果没有网络请求或其他业务逻辑，组件中也可以越过actions，即不写dispatch，直接写commit，actions中，如果业务逻辑过于复杂，可以拆分成几个函数，不断dispatch调用新的函数去执行</p>
+<p><img src="/2022/06/13/Vuex/anli4.png"></p>
+<p><strong>4.getters的使用：</strong></p>
+<p>1.概念：当state中的数据需要经过加工后再使用时，可以使用getters加工</p>
+<p>2.再store.js中追加gettres配置</p>
+<pre><code>const getters=&#123;
+    bigSum(state)&#123;
+        return state.sum*10
+    &#125;
+&#125;
+export default new Vuex.store(&#123;
+    getters
+&#125;)
+</code></pre>
+<p>组件中读取数据：<code>$store.getters.bigSum</code></p>
+<p><strong>5.四个map方法的使用：mapState、mapGetters、mapActions、mapMutations</strong></p>
+<p>**1.mapState:**用于帮助我们映射state中的数据为计算属性</p>
+<pre><code>computed:&#123;
+    //借助mapState生成计算属性：sum、school、subject（对象写法）
+    ...mapState(&#123;sum:&#39;sum&#39;,school:&#39;school&#39;,subject:&#39;subject&#39;&#125;)
+    //借助mapState生成计算属性：sum、school、subject（数组写法）,计算属性的名字需要和state中的Key一致
+    ...mapState([&#39;sum&#39;,&#39;school&#39;,&#39;subject&#39;])
+&#125;
+</code></pre>
+<p><img src="/2022/06/13/Vuex/anli5.png"></p>
+<p><img src="/2022/06/13/Vuex/anli6.png"></p>
+<p><strong>2.mapGetters</strong>方法：用于帮助我们映射getters中的数据为计算属性</p>
+<pre><code>computed:&#123;
+    //借助mapGetters生成计算属性：bigSum(对象写法)
+    ...mapGetters(&#123;bigSum:&#39;bigSum&#39;&#125;)
+    //借助mapGetters生成计算属性：bigSum(数组写法)
+    ...mapGetters([&#39;bigSum&#39;])
+&#125;
+</code></pre>
+<p><img src="/2022/06/13/Vuex/anli7.png"></p>
+<p>**3.mapActions:**用于帮助我们生成与actions对话的方法，即：包含<code>$store.dispatch(xxx)</code>的函数</p>
+<pre><code>methods:&#123;
+    //靠mapActions生成:incrementOdd、incrementWait(对象形式)
+    ...mapActions(&#123;incrementOdd:&#39;jiaOdd&#39;,incrementWait:&#39;jiaWait&#39;&#125;)
+    //靠mapActions生成:incrementOdd、incrementWait(数组形式),方法名需要与actions中的相同
+    ...mapActions([&#39;jiaOdd&#39;,&#39;jiaWait&#39;])
+&#125;
+</code></pre>
+<p><img src="/2022/06/13/Vuex/anli8.png"></p>
+<p><img src="/2022/06/13/Vuex/anli9.png"></p>
+<p><img src="/2022/06/13/Vuex/anli10.png"></p>
+<p>**4.mapMutations:**用于帮助我们生成与mutations对话的方法，即包含<code>$store.commit(xxx)</code>的函数</p>
+<pre><code>methods:&#123;
+    //靠mapActions生成：increment、decrement(对象形式)
+    ...mapActions(&#123;increment:&#39;JIA&#39;,decrement:&#39;JIAN&#39;&#125;)
+    //靠mapActions生成：increment、decrement(数组形式)
+    ...mapActions([&#39;JIA&#39;,&#39;JIAN&#39;])
+&#125;
+</code></pre>
+<p><img src="/2022/06/13/Vuex/anli11.png"></p>
+<p>**备注:**mapActions与mapMutations使用时，若需要传递参数：在模板中绑定事件时传递参数，否则参数是事件对象</p>
+
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        <span class="icon">
+            <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
+        </span>
+        
+        
+        <span class="tag">
+            
+            <a href="/tags/vue" style="color: #03a9f4">
+                vue
+            </a>
+        </span>
+        
+    </div>
+    <a href="/2022/06/13/Vuex/" class="go-post">
+        阅读全文
+    </a>
+</div>
+
+<div class="post">
     <a href="/2022/06/10/vue插槽/">
         <h2>
             Vue插槽
@@ -245,7 +533,7 @@ export default&#123;
         
         <span class="tag">
             
-            <a href="/tags/vue" style="color: #00bcd4">
+            <a href="/tags/vue" style="color: #ffa2c4">
                 vue
             </a>
         </span>
@@ -395,7 +683,7 @@ module.exports = function (app) &#123;
         
         <span class="tag">
             
-            <a href="/tags/vue" style="color: #ffa2c4">
+            <a href="/tags/vue" style="color: #00a596">
                 vue
             </a>
         </span>
@@ -464,7 +752,7 @@ module.exports = function (app) &#123;
         
         <span class="tag">
             
-            <a href="/tags/vue" style="color: #00a596">
+            <a href="/tags/vue" style="color: #ffa2c4">
                 vue
             </a>
         </span>
@@ -513,7 +801,7 @@ module.exports = function (app) &#123;
         
         <span class="tag">
             
-            <a href="/tags/vue" style="color: #00bcd4">
+            <a href="/tags/vue" style="color: #03a9f4">
                 vue
             </a>
         </span>
@@ -575,7 +863,7 @@ mounted()&#123;
         
         <span class="tag">
             
-            <a href="/tags/vue" style="color: #00a596">
+            <a href="/tags/vue" style="color: #ff7d73">
                 vue
             </a>
         </span>
@@ -638,7 +926,7 @@ mounted()&#123;
         
         <span class="tag">
             
-            <a href="/tags/vue" style="color: #00a596">
+            <a href="/tags/vue" style="color: #ff7d73">
                 vue
             </a>
         </span>
@@ -759,155 +1047,13 @@ mounted()&#123;
         
         <span class="tag">
             
-            <a href="/tags/html" style="color: #00bcd4">
+            <a href="/tags/html" style="color: #03a9f4">
                 html
             </a>
         </span>
         
     </div>
     <a href="/2022/06/07/浏览器的本地存储/" class="go-post">
-        阅读全文
-    </a>
-</div>
-
-<div class="post">
-    <a href="/2022/05/26/vue插件/">
-        <h2>
-            Vue插件
-        </h2>
-    </a>
-    <div class="category-and-date">
-        
-        <span class="date">
-            <span class="icon">
-                <svg class="fa-icon"><use xlink:href="#calendar-solid"></use></svg>
-            </span>
-            2022/5/26
-        </span>
-    </div>
-    <div class="excerpt">
-        <div class="content" v-pre>
-            
-            <p>功能：用于增强Vue</p>
-<p>本质：包含install方法的一个对象，install的第一个参数是Vue，第二个以后的参数是插件使用者传递的数据。</p>
-<pre><code>定义：在main.js同级目录下定义一个插件文件plugins.js
-
-export default&#123;
-    install(Vue，options)&#123;
-        //使用全局过滤器
-        Vue.filter()&#123;&#125;
-        
-        //定义全局指令
-        Vue.directive(&#39;&#39;,&#123;&#125;)
-        
-        //定义全局混入
-        Vue.mixin(&#123;&#125;)
-        
-        //给vue原型上添加一个方法
-        Vue.prototype.方法名=()=&gt;&#123;&#125;
-    &#125;
-&#125;
-
-引入：在main.js中引入，需要在new Vue实例前引入
-import Plugins from &#39;xxxx&#39;
-
-使用：
-Vue.use(plugins)
-</code></pre>
-
-            
-        </div>
-    </div>
-    <div class="post-tags">
-        
-        <span class="icon">
-            <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
-        </span>
-        
-        
-        <span class="tag">
-            
-            <a href="/tags/vue" style="color: #ffa2c4">
-                vue
-            </a>
-        </span>
-        
-    </div>
-    <a href="/2022/05/26/vue插件/" class="go-post">
-        阅读全文
-    </a>
-</div>
-
-<div class="post">
-    <a href="/2022/05/26/mixin混入（混合）/">
-        <h2>
-            Mixin混入（混合）
-        </h2>
-    </a>
-    <div class="category-and-date">
-        
-        <span class="date">
-            <span class="icon">
-                <svg class="fa-icon"><use xlink:href="#calendar-solid"></use></svg>
-            </span>
-            2022/5/26
-        </span>
-    </div>
-    <div class="excerpt">
-        <div class="content" v-pre>
-            
-            <p>mixin(混入)：</p>
-<p>功能：可以把多个组件共用的配置提取成一个混入对象</p>
-<p>使用方式：</p>
-<pre><code>第一步定义混合：在main.js同级目录下定义一个mixin.js文件，然后定义混合的数据或方法
-
-组件中的data,methods,mounted,computed等都可以在这里配置，data,methods这些，如果组件中定义了，混入的不再使用，使用组件自己的，但是生命周期钩子函数，组件和混入的都会使用
-
-export const mixin =&#123;
-   data()&#123;
-    return&#123;       
-    &#125;
-    &#125;,
-    methods:&#123;&#125;,
-    mounted()&#123;&#125;
-&#125;
-export const mixin2=&#123;&#125;
-
-
-第二步使用混入:
-import &#123;mixin,mixin2&#125;form &#39;xxx&#39;
-export default&#123;
-    data()&#123;&#125;,
-    mixins:[mixin，mixin2]
-&#125;
-</code></pre>
-<p>全局混入：</p>
-<pre><code>在main.js中设置，然后所有组件均可以使用混入的方法、数据等
-
-import &#123;mixin,mixin2&#125;form &#39;xxx&#39;
-Vue.mixin(mixin)
-Vue.mixin(mixin2)
-</code></pre>
-
-            
-        </div>
-    </div>
-    <div class="post-tags">
-        
-        <span class="icon">
-            <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
-        </span>
-        
-        
-        <span class="tag">
-            
-            <a href="/tags/vue" style="color: #00bcd4">
-                vue
-            </a>
-        </span>
-        
-    </div>
-    <a href="/2022/05/26/mixin混入（混合）/" class="go-post">
         阅读全文
     </a>
 </div>

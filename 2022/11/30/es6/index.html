@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0">
-        <title>Tags: ElementUI | Mynote</title>
+        <title>Es6 | Mynote</title>
         <meta name="author" content="参商">
         <meta name="description" content="个人笔记">
         <meta name="keywords" content="love&peace">
@@ -117,143 +117,97 @@
 </nav>
                     </div>
                     <div id="main">
-                         
-<div class="categories-tags">
-    
-    <div class="all-s">
-        
-        
-        <span>
-            <a href="/tags/vue/" style="background: #00bcd4">
-                <span class="icon">
-                    <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
-                </span>
-                vue
-            </a>
-        </span>
-        
-        
-        <span>
-            <a href="/tags/echarts/" style="background: #00bcd4">
-                <span class="icon">
-                    <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
-                </span>
-                echarts
-            </a>
-        </span>
-        
-        
-        <span>
-            <a href="/tags/ElementUI/" style="background: linear-gradient(120deg, #9abbf7 0%, #ffbbf4 100%)">
-                <span class="icon">
-                    <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
-                </span>
-                ElementUI
-            </a>
-        </span>
-        
-        
-        <span>
-            <a href="/tags/css/" style="background: #03a9f4">
-                <span class="icon">
-                    <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
-                </span>
-                css
-            </a>
-        </span>
-        
-        
-        <span>
-            <a href="/tags/js/" style="background: #00bcd4">
-                <span class="icon">
-                    <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
-                </span>
-                js
-            </a>
-        </span>
-        
-        
-        <span>
-            <a href="/tags/markdown/" style="background: #03a9f4">
-                <span class="icon">
-                    <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
-                </span>
-                markdown
-            </a>
-        </span>
-        
-        
-        <span>
-            <a href="/tags/vue3/" style="background: #ff7d73">
-                <span class="icon">
-                    <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
-                </span>
-                vue3
-            </a>
-        </span>
-        
-        
-        <span>
-            <a href="/tags/微信小程序/" style="background: #ffa2c4">
-                <span class="icon">
-                    <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
-                </span>
-                微信小程序
-            </a>
-        </span>
-        
-        
-        <span>
-            <a href="/tags/html/" style="background: #ffa2c4">
-                <span class="icon">
-                    <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
-                </span>
-                html
-            </a>
-        </span>
-        
-        
-        <span>
-            <a href="/tags/鼠标事件/" style="background: #00a596">
-                <span class="icon">
-                    <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
-                </span>
-                鼠标事件
-            </a>
-        </span>
-        
+                        
+<div class="article">
+    <div>
+        <h1>Es6 </h1>
     </div>
-    <div id="archives">
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <svg class="fa-icon"><use xlink:href="#calendar-solid"></use></svg>
+            </span>
+            2022/11/30
+        </span>
         
-        <div class="timeline">
-            <div class="timeline-tail"></div>
-            <div class="timeline-content">
-                <div class="item-time">2022/11/30</div>
-                <a href="/2022/11/30/elementui日期选择器禁用日期/">
-                    <h3>elementui日期选择器禁用日期</h3>
+        
+        <span class="tags">
+            <span class="icon">
+                <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/tags/js" style="color: #00a596">
+                    js
                 </a>
-                <div class="info">
-                    
-                    
-                    <span class="tags">
-                        <span class="icon">
-                            <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
-                        </span>
-                        
-                        <span class="tag">
-                            
-                            <a href="/tags/ElementUI" style="color: #00a596">
-                                ElementUI
-                            </a>
-                        </span>
-                        
-                    </span>
-                    
-                </div>
-            </div>
-        </div>
+            </span>
+            
+        </span>
         
     </div>
+    <div class="content" v-pre>
+        <h3 id="1-Array-from"><a href="#1-Array-from" class="headerlink" title="1.Array.from()"></a>1.Array.from()</h3><p>就是将一个类数组对象或者可遍历对象转换成一个真正的数组，也是ES6的新增方法.</p>
+<p>类数组对象，最基本的要求就是具有length属性的对象。</p>
+<p>1.将类数组对象转换为真正数组(属性名为数字类型)：</p>
+<pre><code>    let obj1 = &#123;
+      &#39;0&#39;: &#39;james&#39;,
+      &#39;1&#39;: &#39;kobe&#39;,
+      &#39;length&#39;: 2
+    &#125;
+    let arr4 = Array.from(obj1)
+    console.log(arr4);//[&quot;james&quot;, &quot;kobe&quot;]
+</code></pre>
+<p>2.将类数组对象转换为真正数组(属性名为字符串类型)：</p>
+<pre><code>   let obj2 = &#123;
+      &#39;name1&#39;: &#39;james&#39;,
+      &#39;name2&#39;: &#39;kobe&#39;,
+      length: 2
+    &#125;
+    let arr5 = Array.from(obj2)
+    console.log(arr5);//[undefined, undefined]
+</code></pre>
+<p>3.没有length属性：</p>
+<pre><code>    let obj3 = &#123;
+      &#39;0&#39;: &#39;james&#39;,
+      &#39;1&#39;: &#39;kobe&#39;
+    &#125;
+    let arr6 = Array.from(obj3)
+    console.log(arr6);//[]
+</code></pre>
+<p>由上可知，类数组对象中必须具有length属性，用于指定数组的长度。如果没有length属性，那么类数组转换后的数组是一个空数组;<br>类数组对象的属性名必须为数值型或者是字符串型的数字</p>
+<p>4.Array.from还可以接受第二个参数，作用类似于数组的map方法，用来对每个元素进行处理，将处理后的值放入返回的数组。</p>
+<pre><code> let arr = [1, 3, 5, 7]
+    let arr2 = Array.from(arr, item =&gt; &#123;
+      return item *= 2
+    &#125;)
+    console.log(arr2)//[2, 6, 10, 14]
+</code></pre>
+<p>5.将Set结构的数据转换为真正的数组：</p>
+<pre><code>    let arr = [1, 3, 5, 7]
+    let arr2 = new Set(arr)
+    let arr3 = Array.from(arr2)
+    console.log(arr2, arr3)//Set(4) &#123;1, 3, 5, 7&#125;  (4) [1, 3, 5, 7]
+</code></pre>
+<p>6.将字符串转换为数组</p>
+<pre><code>    let str = &quot;happy birthday&quot;
+    let arr = Array.from(str)
+    console.log(arr)//[&quot;h&quot;, &quot;a&quot;, &quot;p&quot;, &quot;p&quot;, &quot;y&quot;, &quot; &quot;, &quot;b&quot;, &quot;i&quot;, &quot;r&quot;, &quot;t&quot;, &quot;h&quot;, &quot;d&quot;, &quot;a&quot;, &quot;y&quot;]
+</code></pre>
+<p>7.Array.from参数是一个真正的数组，Array.from会返回一个一模一样的新数组：</p>
+<pre><code>    let arr = [1, 2, 3, 4]
+    let arr2 = Array.from(arr)
+    console.log(arr2)//[1, 2, 3, 4]
+</code></pre>
+
+    </div>
+    
+    <link rel="stylesheet" href="https://cdn.staticfile.org/gitalk/1.7.2/gitalk.min.css">
+    <div id="comment">
+        <div id="gitalk-container">
+        </div>
+    </div>
+    
 </div>
                          
 <footer id="footer">
@@ -282,6 +236,23 @@
         <script src="/js/particlex.js"></script>
         <script src="/js/showimg.js"></script>
         
+<script src="https://cdn.staticfile.org/gitalk/1.7.2/gitalk.min.js"></script>
+<script>
+    var clientID = "", clientSecret = "";
+    
+    const gitalk = new Gitalk({
+        clientID: clientID,
+        clientSecret: clientSecret,
+        repo: "",
+        owner: "",
+        admin: [""],
+        language: "zh-CN",
+        id: location.pathname,
+        distractionFreeMode: true
+    })
+    gitalk.render("gitalk-container")
+</script>
+
 
     </body>
 </html>
