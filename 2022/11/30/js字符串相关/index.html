@@ -138,7 +138,7 @@
             
             <span class="tag">
                 
-                <a href="/tags/js" style="color: #00a596">
+                <a href="/tags/js" style="color: #ff7d73">
                     js
                 </a>
             </span>
@@ -147,8 +147,7 @@
         
     </div>
     <div class="content" v-pre>
-        <p>将字符串转为数组</p>
-<p>**1.split:**split()方法用于将给定字符串拆分为字符串数组，该方法是使用参数中提供的指定分隔符将其分隔为子字符串。</p>
+        <h3 id="将字符串转为数组"><a href="#将字符串转为数组" class="headerlink" title="将字符串转为数组"></a>将字符串转为数组</h3><p>**1.split:**split()方法用于将给定字符串拆分为字符串数组，该方法是使用参数中提供的指定分隔符将其分隔为子字符串。</p>
 <p><code>str.split(separator, limit)</code>:</p>
 <p><code>separator</code>:  可选。字符串或正则表达式，从该参数指定的地方分割 string Object。</p>
 <p><code>limit</code>:  可选。该参数可指定返回的数组的最大长度。如果设置了该参数，返回的子串不会多于这个参数指定的数组。如果没有设置该参数，整个字符串都会被分割，不考虑它的长度。</p>
@@ -165,6 +164,61 @@ arr2: [&quot;happy&quot;, &quot;new&quot;, &quot;year&quot;]
 <pre><code>    let str = &quot;happy birthday&quot;
     let arr = Array.from(str)
     console.log(arr)//[&quot;h&quot;, &quot;a&quot;, &quot;p&quot;, &quot;p&quot;, &quot;y&quot;, &quot; &quot;, &quot;b&quot;, &quot;i&quot;, &quot;r&quot;, &quot;t&quot;, &quot;h&quot;, &quot;d&quot;, &quot;a&quot;, &quot;y&quot;]
+</code></pre>
+<h3 id="删除字符串前后的空格"><a href="#删除字符串前后的空格" class="headerlink" title="删除字符串前后的空格"></a>删除字符串前后的空格</h3><p>3.<strong>trim()</strong>:trim方法用来删除字符串前后的空格</p>
+<h3 id="字符串大小写转换方法"><a href="#字符串大小写转换方法" class="headerlink" title="字符串大小写转换方法"></a>字符串大小写转换方法</h3><pre><code>    let str = &#39;HELLO WORLD&#39;
+    let str2 = &#39;hello world&#39;
+    let xiaoxie = str.toLowerCase()
+    let daxie = str2.toUpperCase()
+    console.log(xiaoxie, daxie)//hello world HELLO WORLD
+</code></pre>
+<h3 id="slice-截取"><a href="#slice-截取" class="headerlink" title="slice:截取"></a>slice:截取</h3><p><code>slice(start,end)</code>:</p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>start</td>
+<td>必须。 要抽取的片断的起始下标，第一个字符位置为 0。如果为负数，则从尾部开始截取。</td>
+</tr>
+<tr>
+<td>end</td>
+<td>可选。 紧接着要截取的片段结尾的下标。若未指定此参数，则要提取的子串包括 start 到原字符串结尾的字符串。如果该参数是负数，那么它规定的是从字符串的尾部开始算起的位置。slice(-2) 表示提取原数组中的倒数第二个元素到最后一个元素（包含最后一个元素）。</td>
+</tr>
+</tbody></table>
+<pre><code>        let str = &#39;hello world&#39;
+        let str1 = str.slice(2, 8)
+        console.log(str1)//llo wo
+        
+        //截取最后两个字符串
+        let str = &#39;hello world&#39;
+        let str1 = str.slice(-2)
+        console.log(str1)
+</code></pre>
+<h3 id="join-：将数组元素转为字符串"><a href="#join-：将数组元素转为字符串" class="headerlink" title="join()：将数组元素转为字符串"></a>join()：将数组元素转为字符串</h3><p>array.join(separator)</p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>separator</td>
+<td>可选。指定要使用的分隔符。如果省略该参数，则使用逗号作为分隔符。</td>
+</tr>
+</tbody></table>
+<p>返回一个字符串。该字符串是通过把 arrayObject 的每个元素转换为字符串，然后把这些字符串连接起来，在两个元素之间插入 separator 字符串而生成的。</p>
+<pre><code>        let arr = [1, 5, 6, 8, 7]
+        let arr1 = arr.join()
+        console.log(arr1)//1,5,6,8,7
+        
+        let arr = [1, 5, 6, 8, 7]
+        let arr1 = arr.join(&#39;-&#39;)
+        console.log(arr1)//1-5-6-8-7
 </code></pre>
 
     </div>
