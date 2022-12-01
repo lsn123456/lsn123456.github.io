@@ -142,6 +142,71 @@
             
 
 <div class="post">
+    <a href="/2022/06/08/vue组件通信（子传父自定义事件）/">
+        <h2>
+            Vue组件通信（子传父自定义事件）
+        </h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="date">
+            <span class="icon">
+                <svg class="fa-icon"><use xlink:href="#calendar-solid"></use></svg>
+            </span>
+            2022/6/8
+        </span>
+    </div>
+    <div class="excerpt">
+        <div class="content" v-pre>
+            
+            <h3 id="vue组件通信-子传父"><a href="#vue组件通信-子传父" class="headerlink" title="vue组件通信-子传父"></a>vue组件通信-子传父</h3><p>1.使用场景：A是父组件，B是子组件，子组件B想给父组件A传数据，那么就需要在父组件A中给子组件B绑定自定义事件（事件的回调在父组件A中）</p>
+<p>2.绑定自定义事件：</p>
+<p>1.第一种方式：在父组件中 </p>
+<pre><code>&lt;Demo  @peiqi=&quot;test&quot;/&gt;或&lt;Demo  v-on:peiqi=&quot;test&quot;/&gt;
+</code></pre>
+<p>子组件中触发自定义事件</p>
+<pre><code>this.$emit(&#39;peiqi&#39;,数据)
+</code></pre>
+<p>2.第二种方式：在父组件中</p>
+<pre><code>&lt;Demo ref=&quot;demo&quot;  /&gt;
+
+mounted()&#123;
+    this.$refs.demo.$on(&#39;peiqi&#39;,this.test)
+&#125;
+</code></pre>
+<p>3.如果想要自定义事件只触发一次，可以使用once修饰符，或者$once方法</p>
+<p>4.解绑自定义事件：this.$off(‘peiqi’)</p>
+<p>5.组件上也可以绑定原生DOM事件，需要使用native修饰符</p>
+<ol start="6">
+<li></li>
+</ol>
+<pre><code>通过this.$refs.xxx.$on(&#39;peiqi&#39;,回调)绑定自定义事件时，回调要么配置在methods中，要么用箭头函数，否则会出现this指向问题
+</code></pre>
+
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        <span class="icon">
+            <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
+        </span>
+        
+        
+        <span class="tag">
+            
+            <a href="/tags/vue" style="color: #ffa2c4">
+                vue
+            </a>
+        </span>
+        
+    </div>
+    <a href="/2022/06/08/vue组件通信（子传父自定义事件）/" class="go-post">
+        阅读全文
+    </a>
+</div>
+
+<div class="post">
     <a href="/2022/06/07/浏览器的本地存储/">
         <h2>
             浏览器的本地存储
@@ -186,7 +251,7 @@
         
         <span class="tag">
             
-            <a href="/tags/html" style="color: #ffa2c4">
+            <a href="/tags/html" style="color: #00a596">
                 html
             </a>
         </span>
@@ -254,7 +319,7 @@ Vue.use(plugins)
         
         <span class="tag">
             
-            <a href="/tags/vue" style="color: #03a9f4">
+            <a href="/tags/vue" style="color: #ff7d73">
                 vue
             </a>
         </span>
@@ -328,7 +393,7 @@ Vue.mixin(mixin2)
         
         <span class="tag">
             
-            <a href="/tags/vue" style="color: #00a596">
+            <a href="/tags/vue" style="color: #ffa2c4">
                 vue
             </a>
         </span>
@@ -406,7 +471,7 @@ Vue.mixin(mixin2)
         
         <span class="tag">
             
-            <a href="/tags/vue" style="color: #ff7d73">
+            <a href="/tags/vue" style="color: #ffa2c4">
                 vue
             </a>
         </span>
@@ -455,7 +520,7 @@ Vue.mixin(mixin2)
         
         <span class="tag">
             
-            <a href="/tags/vue" style="color: #00bcd4">
+            <a href="/tags/vue" style="color: #ff7d73">
                 vue
             </a>
         </span>
@@ -506,7 +571,7 @@ render:h=&gt;h(App)
         
         <span class="tag">
             
-            <a href="/tags/vue" style="color: #ffa2c4">
+            <a href="/tags/vue" style="color: #03a9f4">
                 vue
             </a>
         </span>
@@ -605,7 +670,7 @@ function Home(props) &#123;
         
         <span class="tag">
             
-            <a href="/tags/echarts" style="color: #03a9f4">
+            <a href="/tags/echarts" style="color: #ffa2c4">
                 echarts
             </a>
         </span>
@@ -757,76 +822,6 @@ function Home(props) &#123;
         
     </div>
     <a href="/2022/05/18/vue的生命周期/" class="go-post">
-        阅读全文
-    </a>
-</div>
-
-<div class="post">
-    <a href="/2022/05/18/vue的自定义指令/">
-        <h2>
-            Vue的自定义指令
-        </h2>
-    </a>
-    <div class="category-and-date">
-        
-        <span class="category">
-            <a href="/categories/bid项目总结">
-                <span class="icon">
-                    <svg class="fa-icon"><use xlink:href="#bookmark-solid"></use></svg>
-                bid项目总结
-            </a>
-        </span>
-        
-        <span class="date">
-            <span class="icon">
-                <svg class="fa-icon"><use xlink:href="#calendar-solid"></use></svg>
-            </span>
-            2022/5/18
-        </span>
-    </div>
-    <div class="excerpt">
-        <div class="content" v-pre>
-            
-            <p>自定义指令调用的时机：</p>
-<p>1.指令与元素成功绑定时</p>
-<p>2.指令所在的模板被重新解析时</p>
-<p>定义语法：</p>
-<p>1.局部指令：</p>
-<p>directives:{   指令名：配置对象 }   或    directives:{   指令名：回调函数 }</p>
-<p>2.全局指令：</p>
-<p>Vue.directive(‘指令名’，配置对象)    或   Vue.directive(‘指令名’，回调函数)</p>
-<p>配置对象中常用的三个回调：</p>
-<p>1.bind:指令与元素成功绑定时调用。</p>
-<p>2.inserted:指令所在元素被插入页面时调用</p>
-<p>3.update:指令所在模板结构被重新解析时调用</p>
-<p>备注：</p>
-<p>1.指令定义时不加v-,但使用时要加v-</p>
-<p>2.指令名如果是多个单词，要使用kebab-case命名（如user-name），不要用camelCase命名（userName）</p>
-<p><img src="/2022/05/18/vue%E7%9A%84%E8%87%AA%E5%AE%9A%E4%B9%89%E6%8C%87%E4%BB%A4/directives.png"></p>
-<p>一个实际应用案例：elementui 远程搜索，下拉加载更多，通过懒加载实现，添加去抖减少消耗</p>
-<p><img src="/2022/05/18/vue%E7%9A%84%E8%87%AA%E5%AE%9A%E4%B9%89%E6%8C%87%E4%BB%A4/selectmore.png"></p>
-<p><img src="/2022/05/18/vue%E7%9A%84%E8%87%AA%E5%AE%9A%E4%B9%89%E6%8C%87%E4%BB%A4/loadmore.png"></p>
-<p>遇到的问题：因为远程搜索可能有选中的项，比如选中的项是第十三条，但是懒加载首次只加载了十条数据，这样一来选中的项无法展示出来，展现出来的是没有文字的框。我解决的方法是，将选中的项从数组中提取出来，添加到首次加载的数组里前面，这样点开远程搜索，上方展示的就是已经选中的内容。对剩下的数组进行遍历，如果数组中的内容含有选中项，已经加载过了，那么将这项从数组中删除，然后将数组添加到加载出来的数组中，可能比较麻烦，但是是我能想出来的唯一办法了，但是公司需求改了，代码被删了，上方是远程搜索的代码。</p>
-
-            
-        </div>
-    </div>
-    <div class="post-tags">
-        
-        <span class="icon">
-            <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
-        </span>
-        
-        
-        <span class="tag">
-            
-            <a href="/tags/vue" style="color: #03a9f4">
-                vue
-            </a>
-        </span>
-        
-    </div>
-    <a href="/2022/05/18/vue的自定义指令/" class="go-post">
         阅读全文
     </a>
 </div>

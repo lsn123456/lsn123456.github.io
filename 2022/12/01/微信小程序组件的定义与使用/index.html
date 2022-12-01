@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0">
-        <title>浏览器的本地存储 | Mynote</title>
+        <title>微信小程序组件的定义与使用 | Mynote</title>
         <meta name="author" content="参商">
         <meta name="description" content="个人笔记">
         <meta name="keywords" content="love&peace">
@@ -120,14 +120,14 @@
                         
 <div class="article">
     <div>
-        <h1>浏览器的本地存储 </h1>
+        <h1>微信小程序组件的定义与使用 </h1>
     </div>
     <div class="info">
         <span class="date">
             <span class="icon">
                 <svg class="fa-icon"><use xlink:href="#calendar-solid"></use></svg>
             </span>
-            2022/6/7
+            2022/12/1
         </span>
         
         
@@ -138,8 +138,8 @@
             
             <span class="tag">
                 
-                <a href="/tags/html" style="color: #03a9f4">
-                    html
+                <a href="/tags/微信小程序" style="color: #00a596">
+                    微信小程序
                 </a>
             </span>
             
@@ -147,20 +147,89 @@
         
     </div>
     <div class="content" v-pre>
-        <h3 id="webStorage"><a href="#webStorage" class="headerlink" title="webStorage"></a>webStorage</h3><p>1.存储内容一般支持5MB左右（不同浏览器可能不同）</p>
-<p>2.浏览器端通过Window.sessionStorage和Window.localStorage属性来实现本地存储机制</p>
-<p>3.相关API：</p>
+        <h3 id="1-自定义组件"><a href="#1-自定义组件" class="headerlink" title="1.自定义组件"></a>1.自定义组件</h3><p><strong>1.新建组件</strong>：在根目录下新建components文件夹，在该文件夹下新建组件文件夹，右键新建Component</p>
+<p><strong>2.组件的引入</strong>：全局引入在app.json中，新增 “usingComponents”: {},在其中引入组件名及对应的路径，如：</p>
+<pre><code> &quot;usingComponents&quot;: &#123;
+    &quot;timeline&quot;:&quot;/components/timeline/timeline&quot;
+  &#125;
+</code></pre>
+<p>如果是局部引入，则在对应的页面json中添加如上代码</p>
+<p><strong>3.组件的使用</strong>：在页面中将组件名作为标签使用，如：</p>
+<pre><code>    &lt;timeline/&gt;
+</code></pre>
+<p><strong>4.组件与页面的区别</strong>：</p>
 <ul>
-<li>xxxxStorage.setItem(‘key’,’value’):该方法接受一个键和值作为参数，会把键值对添加到存储中，如果键名存在，则更新其对应的值</li>
-<li>xxxxStorage.getItem(‘person’):该方法接受一个键名作为参数，并把该键名从存储中删除</li>
-<li>xxxxStorage.removeItem(‘key’):该方法接受一个键名作为参数，并把该键名从存储中删除</li>
-<li>xxxxStorage.clear():该方法会清空存储中的所有数据</li>
+<li>组件的json文件中的component为true</li>
 </ul>
-<p>4.备注：</p>
-<p>1.SessionStorage存储的内容会随着浏览器的窗口关闭而消失</p>
-<p>2.LocalStorage存储的内容需要手动清楚才会消失</p>
-<p>3.xxxxstorage.getItem(xxx)如果xxx对应的value获取不到，那么getItem的返回值是null</p>
-<p>4.JSON.parse(null)的结果依然是null</p>
+<pre><code> &quot;component&quot;: true,
+</code></pre>
+<ul>
+<li>组件的js文件中调用的是Component()函数，页面调用的是Page()函数</li>
+</ul>
+<pre><code>组件：
+Component(&#123;&#125;)
+页面：
+Page(&#123;&#125;)
+</code></pre>
+<ul>
+<li>组件的事件处理函数需要定义到methods节点中，页面则是放在data同层级下</li>
+</ul>
+<pre><code>组件：
+data:&#123;&#125;,
+methods: &#123;
+    getlist()&#123;&#125;
+&#125;
+页面：
+data:&#123;&#125;,
+getlist()&#123;&#125;
+</code></pre>
+<h3 id="2-组件样式隔离："><a href="#2-组件样式隔离：" class="headerlink" title="2.组件样式隔离："></a>2.组件样式隔离：</h3><p>默认情况下，自定义组件的样式只对当前组件生效，不会影响到组件之外的UI结构，小程序页面的样式也不会影响到组件的样式，防止样式之间的互相影响</p>
+<ul>
+<li>app.wxss中的样式对组件无效</li>
+<li>只有class选择器会有样式隔离的效果，id选择器，属性选择器，标签选择器不受样式隔离的影响</li>
+</ul>
+<p>默认情况下，自定义组件的样式隔离特性能够防止组件内外样式互相干扰的问题，如果希望外界能够控制组件内部的样式，可以通过styleIsolation修改组件的样式隔离选项。</p>
+<ul>
+<li><p>在options中修改：</p>
+<pre><code>Component(&#123;
+    options:&#123;
+        styleIsolation:&#39;isolated&#39;
+    &#125;
+&#125;)
+</code></pre>
+</li>
+<li><p>在组件的json文件中添加如下配置：</p>
+<pre><code>&#123;
+    &quot;styleIsolation&quot;:&quot;isolated&quot;
+&#125;
+</code></pre>
+<p><strong>styleIsolation的可选值：</strong></p>
+<table>
+<thead>
+<tr>
+<th>可选值</th>
+<th>默认值</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>isolated</td>
+<td>是</td>
+<td>表示启用样式隔离，在自定义组件内外，使用 class 指定的样式将不会相互影响（一般情况下的默认值）；</td>
+</tr>
+<tr>
+<td>apply-shared</td>
+<td>否</td>
+<td>表示页面 wxss 样式将影响到自定义组件，但自定义组件 wxss 中指定的样式不会影响页面；</td>
+</tr>
+<tr>
+<td>shared</td>
+<td>否</td>
+<td>表示页面 wxss 样式将影响到自定义组件，自定义组件 wxss 中指定的样式也会影响页面和其他设置了 <code>apply-shared</code> 或 <code>shared</code> 的自定义组件。（这个选项在插件中不可用。）</td>
+</tr>
+</tbody></table>
+<h3 id="3-组件数据、方法和属性"><a href="#3-组件数据、方法和属性" class="headerlink" title="3.组件数据、方法和属性"></a>3.组件数据、方法和属性</h3></li>
+</ul>
 
     </div>
     
