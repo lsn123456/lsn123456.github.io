@@ -142,6 +142,83 @@
             
 
 <div class="post">
+    <a href="/2022/09/26/setup/">
+        <h2>
+            Setup
+        </h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="date">
+            <span class="icon">
+                <svg class="fa-icon"><use xlink:href="#calendar-solid"></use></svg>
+            </span>
+            2022/9/26
+        </span>
+    </div>
+    <div class="excerpt">
+        <div class="content" v-pre>
+            
+            <p>1.理解：vue3.0中一个新的配置项，值为一个函数</p>
+<p>2.setup是所有Composition API(组合API)表演的舞台</p>
+<p>3.组件中所用到的：数据、方法等等，均要配置在setup中</p>
+<p>4.setup函数的两种返回值</p>
+<p>​    1.若要返回一个对象，则对象中的属性、方法，在模板中均可以直接使用。</p>
+<p>​    2.若返回一个渲染函数，则可以自定义渲染内容</p>
+<p>5.注意点：</p>
+<p>1.尽量不要与vue2.x配置混用</p>
+<ul>
+<li>vue2.x配置（data、methods、computed…）中可以访问到setup中的属性、方法。</li>
+<li>但在setup中不能访问到vue2.x配置（data、methods、computed…）</li>
+<li>如果有重名，setup优先</li>
+</ul>
+<p>2.setup不能是一个async函数，因为返回值不再是return的对象，而是promise，模板看不到return对象中的属性。</p>
+<h3 id="1-setup"><a href="#1-setup" class="headerlink" title="1 setup"></a>1 setup</h3><p>vue3.0将组件的逻辑都写在了函数内部，<code>setup()</code>会取代options API的<code>data()</code>函数，返回一个对象暴露给模板。</p>
+<p> <code>setup</code> 选项在组件创建<strong>之前</strong>执行(所以在setup内部无法通过this来访问组件对象)，一旦 <code>props</code> 被解析，就将作为组合式 API 的入口。</p>
+<p><code>setup</code> 函数是个新的入口函数，相当于 vue2.x 中 <code>beforeCreate </code>和 <code>created</code>，在 <code>beforeCreate</code> 之后 <code>created </code>之前执行。</p>
+<p><strong>setup函数的特性：</strong></p>
+<ul>
+<li><p>使用Composition API 的入口</p>
+</li>
+<li><p>在beforeCreate之后在created之前执行</p>
+</li>
+<li><p>在setup中没有this,或者说this是undefined</p>
+</li>
+<li><p>可以返回一个对象，这个对象的属性被合并到渲染上下文，并可以在模板中直接使用；</p>
+</li>
+<li><p>接收props对象作为第一个参数，接收来的props对象，包含组件外部传递过来，且组件内部声明接收了的属性，可以通过watch监视其变化。</p>
+</li>
+<li><p>接受context对象作为第二个参数，这个对象包含attrs，slots，emit三个属性。</p>
+<p>​       attrs:值为对象，包含：组件外部传递过来，但没有在props配置中声明的属性，相当于<code>this.$attrs</code></p>
+<p>​       slots:收到的插槽内容，相当于<code>this.$slots</code></p>
+<p>​       emit:分发的自定义事件函数，相当于<code>this.$emit</code></p>
+</li>
+</ul>
+
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        <span class="icon">
+            <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
+        </span>
+        
+        
+        <span class="tag">
+            
+            <a href="/tags/vue3" style="color: #ffa2c4">
+                vue3
+            </a>
+        </span>
+        
+    </div>
+    <a href="/2022/09/26/setup/" class="go-post">
+        阅读全文
+    </a>
+</div>
+
+<div class="post">
     <a href="/2022/08/10/iconfont的使用/">
         <h2>
             Iconfont的使用
@@ -245,7 +322,7 @@
         
         <span class="tag">
             
-            <a href="/tags/js" style="color: #ffa2c4">
+            <a href="/tags/js" style="color: #00a596">
                 js
             </a>
         </span>
@@ -331,7 +408,7 @@
         
         <span class="tag">
             
-            <a href="/tags/js" style="color: #ff7d73">
+            <a href="/tags/js" style="color: #ffa2c4">
                 js
             </a>
         </span>
@@ -455,7 +532,7 @@
         
         <span class="tag">
             
-            <a href="/tags/js" style="color: #03a9f4">
+            <a href="/tags/js" style="color: #ffa2c4">
                 js
             </a>
         </span>
@@ -779,7 +856,7 @@ props:[&#39;id&#39;,&#39;title&#39;]
         
         <span class="tag">
             
-            <a href="/tags/vue" style="color: #03a9f4">
+            <a href="/tags/vue" style="color: #ffa2c4">
                 vue
             </a>
         </span>
@@ -857,7 +934,7 @@ props:[&#39;id&#39;,&#39;title&#39;]
         
         <span class="tag">
             
-            <a href="/tags/vue" style="color: #ffa2c4">
+            <a href="/tags/vue" style="color: #00bcd4">
                 vue
             </a>
         </span>
@@ -917,143 +994,13 @@ props:[&#39;id&#39;,&#39;title&#39;]
         
         <span class="tag">
             
-            <a href="/tags/css" style="color: #ff7d73">
+            <a href="/tags/css" style="color: #ffa2c4">
                 css
             </a>
         </span>
         
     </div>
     <a href="/2022/07/08/深度选择器/" class="go-post">
-        阅读全文
-    </a>
-</div>
-
-<div class="post">
-    <a href="/2022/07/08/鼠标相关的一些事件/">
-        <h2>
-            鼠标相关的一些事件
-        </h2>
-    </a>
-    <div class="category-and-date">
-        
-        <span class="category">
-            <a href="/categories/bid项目总结">
-                <span class="icon">
-                    <svg class="fa-icon"><use xlink:href="#bookmark-solid"></use></svg>
-                bid项目总结
-            </a>
-        </span>
-        
-        <span class="date">
-            <span class="icon">
-                <svg class="fa-icon"><use xlink:href="#calendar-solid"></use></svg>
-            </span>
-            2022/7/8
-        </span>
-    </div>
-    <div class="excerpt">
-        <div class="content" v-pre>
-            
-            <p><strong>鼠标右键：  @contextmenu.prevent&#x3D;”handleMemberEditShow(index, $event)”</strong></p>
-<p><img src="/2022/07/08/%E9%BC%A0%E6%A0%87%E7%9B%B8%E5%85%B3%E7%9A%84%E4%B8%80%E4%BA%9B%E4%BA%8B%E4%BB%B6/team.png"></p>
-<p><strong>鼠标移入移出事件</strong>：<a target="_blank" rel="noopener" href="https://blog.csdn.net/JackieDYH/article/details/120197449">大佬原博</a></p>
-<p>1.mouseover 和 mouseout</p>
-<p>2.mouseenter 和 mouseleave</p>
-<p><strong>1.mouseover 和 mouseout：根据鼠标事件的target进行触发，是一种精确触发。</strong></p>
-<p>当为某一组件(如div或ul)设置这两个事件时，当事件的target是该组件时，就会触发mouseover，但是当鼠标划到该组件的子组件上时，因为target改变了，所以就触发了 mouseout 事件，这往往就会造成页面元素的闪烁。<br>在实际开发过程中，更多的是针对范围的操作。如果鼠标在某个组件(如div)范围内就触发进入组件的操作，如果离开这个组件的页面范围，就触发离开的事件。</p>
-<p><strong>2.mouseenter 和 mouseleave：根据组件在页面的范围(坐标)进行触发的。</strong></p>
-<p>不管组件中是否有子组件，只要鼠标进入到组件的范围内，就可以触发mouseenter事件，离开范围，则触发mouseleave事件。</p>
-<p><strong>鼠标右键</strong>（案例：鼠标右键弹出编辑删除，再次右键隐藏）</p>
-<p>要求：右键小盒子出现，再次右键小盒子消失。</p>
-<p>思路：当memberIndex与当前index相同时，让小盒子出现，否则隐藏。</p>
-<p>遍历每个li，右键时传递当前点击的li的index,让this.memberIndex &#x3D; index，两者相同盒子出现。再次点击时让 this.memberIndex &#x3D; -1，两者不相同，盒子消失</p>
-<pre><code>
-  
-  
-    &lt;ul style=&quot;padding-right: 9px; height: 175px; overflow: auto&quot;&gt;
-            &lt;li
-              v-for=&quot;(user, index) in userList&quot;
-              :key=&quot;user.id&quot;
-              :class=&quot;memberIndex === index ? &#39;teamactive&#39; : &#39;&#39;&quot;
-              @contextmenu.prevent=&quot;handleMemberEditShow(index, $event)&quot;
-              @mouseleave=&quot;hiddenBox2&quot;
-            &gt;
-              &lt;div&gt;
-                &#123;&#123; user.name.slice(0, 1) &#125;&#125;
-              &lt;/div&gt;
-              &lt;div&gt;
-                &#123;&#123; user.name &#125;&#125;
-              &lt;/div&gt;
-              &lt;div
-                style=&quot;font-size: 14px; color: #2864d7; float: right&quot;
-              &gt;
-                &#123;&#123; user.role &#125;&#125;
-              &lt;/div&gt;
-              &lt;div
-                class=&quot;deatils&quot;
-                :class=&quot;
-                  memberIndex === index &amp;&amp; myrole == &#39;组长&#39;
-                    ? &#39;active&#39;
-                    : &#39;hidden&#39;
-                &quot;&gt;
-                &lt;div @click=&quot;deleteMember(user)&quot; &gt;
-                  移除
-                &lt;/div&gt;
-                &lt;div @click=&quot;setLeader(user)&quot;&gt;
-                  设为副组长
-                &lt;/div&gt;
-              &lt;/div&gt;
-            &lt;/li&gt;
-          &lt;/ul&gt;
-          
-   data() &#123;
-      return &#123;
-        memberIndex: -1,
-      &#125;
-    &#125;,
-                  
-      handleMemberEditShow(index, e) &#123;
-        if (index != this.memberIndex) &#123;
-          this.memberIndex = index
-        &#125; else &#123;
-          this.memberIndex = -1
-        &#125;
-      &#125;,
-</code></pre>
-<p><strong>鼠标移入移出</strong>（鼠标移除当前li后，盒子消失）</p>
-<p>还是这个案例，如果用mouseout，点击编辑时，因为进入了子组件，会被认为鼠标离开，因此盒子消失，因此这里应该使用mouseleave</p>
-<pre><code>           &lt;li
-              v-for=&quot;(user, index) in userList&quot;
-              :key=&quot;user.id&quot;
-              :class=&quot;memberIndex === index ? &#39;teamactive&#39; : &#39;&#39;&quot;
-              @contextmenu.prevent=&quot;handleMemberEditShow(index, $event)&quot;
-              @mouseleave=&quot;hiddenBox2&quot;
-            &gt;
- 
-       hiddenBox2() &#123;
-        this.memberIndex = -1
-      &#125;,
-</code></pre>
-
-            
-        </div>
-    </div>
-    <div class="post-tags">
-        
-        <span class="icon">
-            <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
-        </span>
-        
-        
-        <span class="tag">
-            
-            <a href="/tags/鼠标事件" style="color: #00a596">
-                鼠标事件
-            </a>
-        </span>
-        
-    </div>
-    <a href="/2022/07/08/鼠标相关的一些事件/" class="go-post">
         阅读全文
     </a>
 </div>

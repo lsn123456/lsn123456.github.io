@@ -1,0 +1,711 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0">
+        <title>Js数组相关 | Mynote</title>
+        <meta name="author" content="参商">
+        <meta name="description" content="个人笔记">
+        <meta name="keywords" content="love&peace">
+        <link rel="icon" href="https://img.gejiba.com/images/39def1210a35239bb3777e2c504985f1.jpg">
+        <script src="https://cdn.staticfile.org/instant.page/5.1.0/instantpage.min.js" type="module"></script>
+        <script src="https://cdn.staticfile.org/font-awesome/6.1.1/js/all.min.js"></script>
+        <link rel="stylesheet" href="/css/fonts.min.css">
+        <link rel="stylesheet" href="/css/particlex.css">
+        <script src="https://cdn.staticfile.org/vue/3.2.33/vue.global.prod.min.js"></script>
+    <meta name="generator" content="Hexo 6.2.0"></head>
+    <body>
+        <div id="loading" style="height:100vh;width:100vw;position:fixed;display:flex;z-index:200;justify-content:space-between;background:#fff;transition:opacity 0.3s ease-out"><div style="position:fixed;height:100vh;width:100vw;display:flex;justify-content:center;align-items:center"><div id="loadcontent" style="width:50vmin;height:50vmin;padding:50px;border-radius:50%;display:flex;justify-content:center;align-items:center;border:solid 10px #a3ddfb;text-align:center"><div><h2>LOADING...</h2><p style="word-break:keep-all">加载过慢请开启缓存(浏览器默认开启)</p><div><img alt="loading" src="/loading.gif"></div></div></div></div></div>
+        <div id="layout">
+            <i data-fa-symbol="calendar-solid" class="fa-solid fa-calendar fa-fw"></i>
+            <i data-fa-symbol="bookmark-solid" class="fa-solid fa-bookmark fa-fw"></i>
+            <i data-fa-symbol="tags-solid" class="fa-solid fa-tags fa-fw"></i>
+            <transition name="into">
+                <div v-show="show_page" style="display: -not-none">
+                    <div id="menu_show">
+                         
+<nav id="menu">
+    <div class="desktop-menu">
+        <a href="/">
+            <span class="title">mynote</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;home</span>
+        </a>
+        
+        <a href="/about">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span>&ensp;about</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;archives</span>
+        </a>
+        
+        <a href="/categories">
+            <i class="fa-solid fa-bookmark fa-fw"></i>
+            <span>&ensp;categories</span>
+        </a>
+        
+        <a href="/tags">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span>&ensp;tags</span>
+        </a>
+        
+    </div>
+    <div :class="'phone-menu ' + menu_show" id="phone-menu">
+        <div class="curtain" @click="menu_show = !menu_show" v-show="menu_show"></div>
+        <div :class="'title'" @click="menu_show = !menu_show">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;mynote</span>
+        </div>
+        <transition name="slide">
+        <div class="items" v-show="menu_show">
+            
+            <a href="/">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-house fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">home</div>
+                </div>
+            </a>
+            
+            <a href="/about">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-id-card fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">about</div>
+                </div>
+            </a>
+            
+            <a href="/archives">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-box-archive fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">archives</div>
+                </div>
+            </a>
+            
+            <a href="/categories">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-bookmark fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">categories</div>
+                </div>
+            </a>
+            
+            <a href="/tags">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-tags fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">tags</div>
+                </div>
+            </a>
+            
+        </div>
+        </transition>
+    </div>
+</nav>
+                    </div>
+                    <div id="main">
+                        
+<div class="article">
+    <div>
+        <h1>Js数组相关 </h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <svg class="fa-icon"><use xlink:href="#calendar-solid"></use></svg>
+            </span>
+            2022/11/30
+        </span>
+        
+        
+        <span class="tags">
+            <span class="icon">
+                <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/tags/js" style="color: #00bcd4">
+                    js
+                </a>
+            </span>
+            
+        </span>
+        
+    </div>
+    <div class="content" v-pre>
+        <h3 id="1-splice-方法"><a href="#1-splice-方法" class="headerlink" title="1.splice() 方法"></a>1.splice() 方法</h3><p>splice() 方法用于添加或删除数组中的元素。<strong>这种方法会改变原始数组。</strong></p>
+<p><code>array.splice(index,howmany,item1,.....,itemX)</code>:</p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>index</td>
+<td>必需。规定从何处添加&#x2F;删除元素。该参数是开始插入和（或）删除的数组元素的下标，必须是数字。</td>
+</tr>
+<tr>
+<td>howmany</td>
+<td>可选。规定应该删除多少元素。必须是数字，但可以是 “0”。如果未规定此参数，则删除从 index 开始到原数组结尾的所有元素。</td>
+</tr>
+<tr>
+<td>item1, …, itemX</td>
+<td>可选。要添加到数组的新元素</td>
+</tr>
+</tbody></table>
+<p>如果从 arrayObject 中删除了元素，则返回的是含有被删除的元素的数组。</p>
+<p>1.从指定位置删除元素</p>
+<pre><code>    //从第三个位置开始删除两个元素
+    let arr = [1, 2, 3, 4]
+    console.log(arr.splice(2, 2))// [1, 2]
+    
+    let arr = [1, 2, 3, 4]
+    console.log(arr.splice(2, 0))// [1, 2, 3, 4]
+</code></pre>
+<p>2.添加元素</p>
+<pre><code>        let arr = [1, 2, 3, 4]
+        arr.splice(2, 0, 9, 8, 6)
+        console.log(arr)//[1, 2, 9, 8, 6, 3, 4]
+</code></pre>
+<p>3.替换元素</p>
+<pre><code>        let arr = [1, 2, 3, 4]
+        arr.splice(1, 2, 9, 8)
+        console.log(arr)//[1, 9, 8, 4]
+</code></pre>
+<h3 id="2-slice-截取"><a href="#2-slice-截取" class="headerlink" title="2.slice:截取"></a>2.slice:截取</h3><p><code>slice(start,end)</code>:<strong>这种方法不会改变原始数组。</strong></p>
+<p><code>start</code>：start:开始位置的索引</p>
+<p><code>end</code>：结束位置的索引(但不包含该索引位置的元素)</p>
+<pre><code>        let arr = [1, 2, 3, 4]
+        let arr2 = arr.slice(0, 2)
+        console.log(arr, arr2)//[1, 2, 3, 4] ， [1, 2]
+        
+        let str = &#39;hello world&#39;
+        let str1 = str.slice(0, -2)
+        console.log(str1)//hello wor
+</code></pre>
+<h3 id="3-join-：将数组元素转为字符串"><a href="#3-join-：将数组元素转为字符串" class="headerlink" title="3.join()：将数组元素转为字符串"></a>3.join()：将数组元素转为字符串</h3><p>array.join(separator)</p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>separator</td>
+<td>可选。指定要使用的分隔符。如果省略该参数，则使用逗号作为分隔符。</td>
+</tr>
+</tbody></table>
+<p>返回一个字符串。该字符串是通过把 arrayObject 的每个元素转换为字符串，然后把这些字符串连接起来，在两个元素之间插入 separator 字符串而生成的。</p>
+<pre><code>        let arr = [1, 5, 6, 8, 7]
+        let arr1 = arr.join()
+        console.log(arr1)//1,5,6,8,7
+        
+        let arr = [1, 5, 6, 8, 7]
+        let arr1 = arr.join(&#39;-&#39;)
+        console.log(arr1)//1-5-6-8-7
+</code></pre>
+<h3 id="4-toString-将数组转换为字符串"><a href="#4-toString-将数组转换为字符串" class="headerlink" title="4.toString(): 将数组转换为字符串"></a>4.toString(): 将数组转换为字符串</h3><p>array.toString()</p>
+<p>返回数组的所有值用逗号隔开的字符串</p>
+<pre><code>        let arr = [1, 5, 6, 8, 7]
+        let arr1 = arr.toString()
+        console.log(arr1)//1,5,6,8,7
+</code></pre>
+<h3 id="5-sort-数组排序"><a href="#5-sort-数组排序" class="headerlink" title="5.sort:数组排序"></a>5.sort:数组排序</h3><p>array.sort(sortfunction)：</p>
+<p>sort() 方法用于对数组的元素进行排序。</p>
+<p>1.排序顺序可以是字母或数字，并按升序或降序。</p>
+<p>2.默认排序顺序为按字母升序。</p>
+<p>3.使用数字排序，你必须通过一个函数作为参数来调用。函数指定数字是按照升序还是降序排列。</p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>sortfunction</td>
+<td>可选。规定排序顺序。必须是函数。</td>
+</tr>
+</tbody></table>
+<pre><code>        //字母顺序
+        let fruits = [&#39;Banana&#39;, &#39;Orange&#39;, &#39;Apple&#39;, &#39;Mango&#39;]
+        fruits.sort()
+        console.log(fruits)// [&#39;Apple&#39;, &#39;Banana&#39;, &#39;Mango&#39;, &#39;Orange&#39;]
+        
+        //字母逆序
+        let fruits = [&#39;Banana&#39;, &#39;Orange&#39;, &#39;Apple&#39;, &#39;Mango&#39;]
+        fruits.sort()
+        fruits.reverse()
+        console.log(fruits)
+</code></pre>
+<pre><code>        let arr = [1, 3, 2, 6, 4, 7]
+        arr.sort()
+        console.log(arr)// [1, 2, 3, 4, 6, 7]
+        //数字顺序
+        let arr = [1, 3, 2, 6, 4, 7]
+        arr.sort((a, b) =&gt; a - b)
+        console.log(arr)// [1, 2, 3, 4, 6, 7]
+        //数字逆序
+        let arr = [1, 3, 2, 6, 4, 7]
+        arr.sort((a, b) =&gt; b - a)
+        console.log(arr)//[7, 6, 4, 3, 2, 1]       
+</code></pre>
+<h3 id="6-reverse-：颠倒数组中元素的顺序"><a href="#6-reverse-：颠倒数组中元素的顺序" class="headerlink" title="6.reverse() ：颠倒数组中元素的顺序"></a>6.reverse() ：颠倒数组中元素的顺序</h3><p>array.reverse()</p>
+<p>返回颠倒顺序后的数组</p>
+<pre><code>        let arr = [1, 5, 6, 8, 7]
+        arr.reverse()
+        console.log(arr)//[7, 8, 6, 5, 1]
+</code></pre>
+<h3 id="7-concat-：于连接两个或多个数组。"><a href="#7-concat-：于连接两个或多个数组。" class="headerlink" title="7.concat() ：于连接两个或多个数组。"></a>7.concat() ：于连接两个或多个数组。</h3><p>array1.concat(array2,array3,…,arrayX)</p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>array2, array3, …, arrayX</td>
+<td>必需。该参数可以是具体的值，也可以是数组对象。可以是任意多个。</td>
+</tr>
+</tbody></table>
+<p>返回一个新的数组。该数组是通过把所有 arrayX 参数添加到 arrayObject 中生成的。如果要进行 concat() 操作的参数是数组，那么添加的是数组中的元素，而不是数组。</p>
+<pre><code>        let arr = [1, 5, 6, 8, 7]
+        let arr1 = [2, 3, 6]
+        let arr2 = [3, 5, 9]
+        let arr3 = arr.concat(arr1, arr2)
+        console.log(arr3)//[1, 5, 6, 8, 7, 2, 3, 6, 3, 5, 9]
+</code></pre>
+<h3 id="8-every：用于检测数组所有元素是否都符合指定条件"><a href="#8-every：用于检测数组所有元素是否都符合指定条件" class="headerlink" title="8.every：用于检测数组所有元素是否都符合指定条件"></a>8.every：用于检测数组所有元素是否都符合指定条件</h3><pre><code>array.every(function(currentValue,index,arr), thisValue)
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>function(currentValue, index,arr)</td>
+<td>必须。函数，数组中的每个元素都会执行这个函数函数参数:</td>
+</tr>
+<tr>
+<td>currentValue</td>
+<td>必须。当前元素的值</td>
+</tr>
+<tr>
+<td>index</td>
+<td>可选。当前元素的索引值</td>
+</tr>
+<tr>
+<td>arr</td>
+<td>可选。当前元素属于的数组对象</td>
+</tr>
+<tr>
+<td>thisValue</td>
+<td>可选。对象作为该执行回调时使用，传递给函数，用作 “this” 的值。如果省略了 thisValue ，”this” 的值为 “undefined”</td>
+</tr>
+</tbody></table>
+<p>返回布尔值。如果所有元素都通过检测返回 true，否则返回 false。</p>
+<p>every() 方法使用指定函数检测数组中的所有元素：</p>
+<ul>
+<li>如果数组中检测到有一个元素不满足，则整个表达式返回 <em>false</em> ，且剩余的元素不会再进行检测。</li>
+<li>如果所有元素都满足条件，则返回 true。</li>
+</ul>
+<p><strong>注意：</strong> every() 不会对空数组进行检测。</p>
+<p><strong>注意：</strong> every() 不会改变原始数组。</p>
+<pre><code>        let arr = [2, 8, 14, 9, 25, 6, 32]
+        let flag = arr.every((item) =&gt; &#123;
+          return item &gt; 10
+        &#125;)
+        console.log(flag)//false
+        
+        let arr = [2, 8, 14, 9, 25, 6, 32]
+        let flag = arr.every((item) =&gt; &#123;
+          return item &lt; 40
+        &#125;)
+        console.log(flag)//true
+</code></pre>
+<h3 id="9-some-用于检测数组中的元素是否满足指定条件"><a href="#9-some-用于检测数组中的元素是否满足指定条件" class="headerlink" title="9.some:用于检测数组中的元素是否满足指定条件"></a>9.some:用于检测数组中的元素是否满足指定条件</h3><pre><code>array.some(function(currentValue,index,arr),thisValue)
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>function(currentValue, index,arr)</td>
+<td>必须。函数，数组中的每个元素都会执行这个函数函数参数:</td>
+</tr>
+<tr>
+<td>currentValue</td>
+<td>必须。当前元素的值</td>
+</tr>
+<tr>
+<td>index</td>
+<td>可选。当前元素的索引值</td>
+</tr>
+<tr>
+<td>arr</td>
+<td>可选。当前元素属于的数组对象</td>
+</tr>
+<tr>
+<td>thisValue</td>
+<td>可选。对象作为该执行回调时使用，传递给函数，用作 “this” 的值。如果省略了 thisValue ，”this” 的值为 “undefined”</td>
+</tr>
+</tbody></table>
+<p>返回布尔值。如果数组中有元素满足条件返回 true，否则返回 false。</p>
+<p>some() 方法会依次执行数组的每个元素：</p>
+<ul>
+<li>如果有一个元素满足条件，则表达式返回<em>true</em> , 剩余的元素不会再执行检测。</li>
+<li>如果没有满足条件的元素，则返回false。</li>
+</ul>
+<p><strong>注意：</strong> some() 不会对空数组进行检测。</p>
+<p><strong>注意：</strong> some() 不会改变原始数组。</p>
+<pre><code>        let arr = [2, 8, 14, 9, 25, 6, 32]
+        let flag = arr.some((item) =&gt; &#123;
+          return item &gt; 10
+        &#125;)
+        console.log(flag)//true
+        
+        let arr = [2, 8, 14, 9, 25, 6, 32]
+        let flag = arr.some((item) =&gt; &#123;
+          return item &gt; 40
+        &#125;)
+        console.log(flag)//false
+</code></pre>
+<h3 id="10-shift-用于把数组的第一个元素从其中删除，并返回第一个元素的值。"><a href="#10-shift-用于把数组的第一个元素从其中删除，并返回第一个元素的值。" class="headerlink" title="10.shift:用于把数组的第一个元素从其中删除，并返回第一个元素的值。"></a>10.shift:用于把数组的第一个元素从其中删除，并返回第一个元素的值。</h3><h5 id="此方法改变数组的长度！"><a href="#此方法改变数组的长度！" class="headerlink" title="此方法改变数组的长度！"></a>此方法改变数组的长度！</h5><pre><code>array.shift()
+</code></pre>
+<pre><code>        let arr = [2, 8, 14, 9, 25, 6, 32]
+        arr.shift()
+        console.log(arr)// [8, 14, 9, 25, 6, 32]
+</code></pre>
+<h3 id="11-unshift-向数组的开头添加一个或更多元素，并返回新的长度。"><a href="#11-unshift-向数组的开头添加一个或更多元素，并返回新的长度。" class="headerlink" title="11.unshift() :向数组的开头添加一个或更多元素，并返回新的长度。"></a>11.unshift() :向数组的开头添加一个或更多元素，并返回新的长度。</h3><pre><code>array.unshift(item1,item2, ..., itemX)
+</code></pre>
+<pre><code>        let arr = [14, 9, 25, 6, 32]
+        arr.unshift(2, 4, 5)
+        console.log(arr)//[2, 4, 5, 14, 9, 25, 6, 32]
+</code></pre>
+<h3 id="12-push-向数组的末尾添加一个或多个元素，并返回新的长度。"><a href="#12-push-向数组的末尾添加一个或多个元素，并返回新的长度。" class="headerlink" title="12.push:向数组的末尾添加一个或多个元素，并返回新的长度。"></a>12.push:向数组的末尾添加一个或多个元素，并返回新的长度。</h3><pre><code>array.push(item1, item2, ..., itemX)
+</code></pre>
+<pre><code>        let arr = [14, 9, 25, 6, 32]
+        arr.push(2, 4, 5)
+        console.log(arr)//[14, 9, 25, 6, 32, 2, 4, 5]
+</code></pre>
+<h3 id="13-pop-用于删除数组的最后一个元素并返回删除的元素。"><a href="#13-pop-用于删除数组的最后一个元素并返回删除的元素。" class="headerlink" title="13.pop:用于删除数组的最后一个元素并返回删除的元素。"></a>13.pop:用于删除数组的最后一个元素并返回删除的元素。</h3><pre><code>array.pop()
+</code></pre>
+<pre><code>        let arr = [14, 9, 25, 6, 32]
+        arr.pop()
+        console.log(arr)//[14, 9, 25, 6]
+</code></pre>
+<h3 id="14-map-返回一个新数组，数组中的元素为原始数组元素调用函数处理后的值。"><a href="#14-map-返回一个新数组，数组中的元素为原始数组元素调用函数处理后的值。" class="headerlink" title="14.map:返回一个新数组，数组中的元素为原始数组元素调用函数处理后的值。"></a>14.map:返回一个新数组，数组中的元素为原始数组元素调用函数处理后的值。</h3><pre><code>array.map(function(currentValue,index,arr), thisValue)
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>function(currentValue, index,arr)</td>
+<td>必须。函数，数组中的每个元素都会执行这个函数函数参数:</td>
+</tr>
+<tr>
+<td>currentValue</td>
+<td>必须。当前元素的值</td>
+</tr>
+<tr>
+<td>index</td>
+<td>可选。当前元素的索引值</td>
+</tr>
+<tr>
+<td>arr</td>
+<td>可选。当前元素属于的数组对象</td>
+</tr>
+<tr>
+<td>thisValue</td>
+<td>可选。对象作为该执行回调时使用，传递给函数，用作 “this” 的值。如果省略了 thisValue ，”this” 的值为 “undefined”</td>
+</tr>
+</tbody></table>
+<pre><code>        let arr = [14, 9, 25, 6, 32]
+        let arr1 = []
+        arr.map((item) =&gt; &#123;
+          item = item + 1
+          arr1.push(item)
+        &#125;)
+        console.log(arr, arr1)//[14, 9, 25, 6, 32]  [15, 10, 26, 7, 33]
+</code></pre>
+<h3 id="15-filter-方法创建一个新的数组，新数组中的元素是通过检查指定数组中符合条件的所有元素。"><a href="#15-filter-方法创建一个新的数组，新数组中的元素是通过检查指定数组中符合条件的所有元素。" class="headerlink" title="15.filter() 方法创建一个新的数组，新数组中的元素是通过检查指定数组中符合条件的所有元素。"></a>15.filter() 方法创建一个新的数组，新数组中的元素是通过检查指定数组中符合条件的所有元素。</h3><p><strong>注意：</strong> filter() 不会对空数组进行检测。</p>
+<p><strong>注意：</strong> filter() 不会改变原始数组。</p>
+<pre><code>array.filter(function(currentValue,index,arr), thisValue)
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>function(currentValue, index,arr)</td>
+<td>必须。函数，数组中的每个元素都会执行这个函数函数参数:</td>
+</tr>
+<tr>
+<td>currentValue</td>
+<td>必须。当前元素的值</td>
+</tr>
+<tr>
+<td>index</td>
+<td>可选。当前元素的索引值</td>
+</tr>
+<tr>
+<td>arr</td>
+<td>可选。当前元素属于的数组对象</td>
+</tr>
+<tr>
+<td>thisValue</td>
+<td>可选。对象作为该执行回调时使用，传递给函数，用作 “this” 的值。如果省略了 thisValue ，”this” 的值为 “undefined”</td>
+</tr>
+</tbody></table>
+<pre><code>        let arr = [14, 9, 25, 6, 32]
+        let arr1 = arr.filter((item) =&gt; &#123;
+          return item &gt; 20
+        &#125;)
+        console.log(arr, arr1)//[14, 9, 25, 6, 32] (2) [25, 32]
+</code></pre>
+<h3 id="16-find-返回通过测试（函数内判断）的数组的第一个元素的值。"><a href="#16-find-返回通过测试（函数内判断）的数组的第一个元素的值。" class="headerlink" title="16.find:返回通过测试（函数内判断）的数组的第一个元素的值。"></a>16.find:返回通过测试（函数内判断）的数组的第一个元素的值。</h3><p>find() 方法为数组中的每个元素都调用一次函数执行：</p>
+<ul>
+<li>当数组中的元素在测试条件时返回 <em>true</em> 时, find() 返回符合条件的元素，之后的值不会再调用执行函数。</li>
+<li>如果没有符合条件的元素返回 undefined</li>
+</ul>
+<p><strong>注意:</strong> find() 对于空数组，函数是不会执行的。</p>
+<p><strong>注意:</strong> find() 并没有改变数组的原始值。</p>
+<pre><code>array.find(function(currentValue, index, arr),thisValue)
+</code></pre>
+<pre><code>       //返回通过测试（函数内判断）的数组的第一个元素的值。之后的值不会再调用执行函数。
+       let arr = [14, 9, 25, 6, 32]
+        let arr1 = arr.find((item) =&gt; &#123;
+          return item &gt; 20
+        &#125;)
+        console.log(arr, arr1)//[14, 9, 25, 6, 32] 25
+        
+        //没有符合条件的元素返回 undefined
+        let arr = [14, 9, 25, 6, 32]
+        let arr1 = arr.find((item) =&gt; &#123;
+          return item &gt; 40
+        &#125;)
+        console.log(arr, arr1)//[14, 9, 25, 6, 32] undefined
+</code></pre>
+<h3 id="17-findIndex-方法返回传入一个测试条件（函数）符合条件的数组第一个元素位置。"><a href="#17-findIndex-方法返回传入一个测试条件（函数）符合条件的数组第一个元素位置。" class="headerlink" title="17.findIndex() 方法返回传入一个测试条件（函数）符合条件的数组第一个元素位置。"></a>17.findIndex() 方法返回传入一个测试条件（函数）符合条件的数组第一个元素位置。</h3><p>findIndex() 方法为数组中的每个元素都调用一次函数执行：</p>
+<ul>
+<li>当数组中的元素在测试条件时返回 <em>true</em> 时, findIndex() 返回符合条件的元素的索引位置，之后的值不会再调用执行函数。</li>
+<li>如果没有符合条件的元素返回 -1</li>
+</ul>
+<p><strong>注意:</strong> findIndex() 对于空数组，函数是不会执行的。</p>
+<p><strong>注意:</strong> findIndex() 并没有改变数组的原始值。</p>
+<pre><code>array.findIndex(function(currentValue, index, arr), thisValue)
+</code></pre>
+<pre><code>        //返回符合条件的数组第一个元素位置。之后的值不会再调用执行函数。
+        let arr = [14, 9, 25, 6, 32]
+        let index = arr.findIndex((item) =&gt; &#123;
+          return item &gt; 20
+        &#125;)
+        console.log(arr, index)//[14, 9, 25, 6, 32] 2
+        
+        //如果没有符合条件的元素返回 -1
+        let arr = [14, 9, 25, 6, 32]
+        let index = arr.findIndex((item) =&gt; &#123;
+          return item &gt; 40
+        &#125;)
+        console.log(arr, index)//[14, 9, 25, 6, 32] -1
+</code></pre>
+<h3 id="18-isArray-方法用于判断一个对象是否为数组。"><a href="#18-isArray-方法用于判断一个对象是否为数组。" class="headerlink" title="18.isArray() 方法用于判断一个对象是否为数组。"></a>18.isArray() 方法用于判断一个对象是否为数组。</h3><p>如果对象是数组返回 true，否则返回 false。</p>
+<pre><code>Array.isArray(obj)
+</code></pre>
+<pre><code>        let arr = [14, 9, 25, 6, 32]
+        let obj = &#123;
+          name: &#39;张三&#39;,
+          sex: &#39;男&#39;,
+        &#125;
+        let num = 18
+        let x = Array.isArray(arr)
+        let y = Array.isArray(obj)
+        let z = Array.isArray(num)
+        console.log(x, y, z)//true false false
+</code></pre>
+<h3 id="19-indexOf-方法可返回数组中某个指定的元素位置。"><a href="#19-indexOf-方法可返回数组中某个指定的元素位置。" class="headerlink" title="19.indexOf() 方法可返回数组中某个指定的元素位置。"></a>19.indexOf() 方法可返回数组中某个指定的元素位置。</h3><p>该方法将从头到尾地检索数组，看它是否含有对应的元素。开始检索的位置在数组 start 处或数组的开头（没有指定 start 参数时）。如果找到一个 item，则返回 item 的第一次出现的位置。开始位置的索引为 0。</p>
+<p>如果在数组中没找到指定元素则返回 -1。</p>
+<pre><code>array.indexOf(item,start)
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>item</td>
+<td>必须。查找的元素。</td>
+</tr>
+<tr>
+<td>start</td>
+<td>可选的整数参数。规定在数组中开始检索的位置。它的合法取值是 0 到 stringObject.length - 1。如省略该参数，则将从字符串的首字符开始检索。</td>
+</tr>
+</tbody></table>
+<p>返回元素在数组中的位置，如果没有搜索到则返回 -1。</p>
+<pre><code>        let arr = [14, 9, 25, 6, 32]
+        let arr1 = [
+          &#123;
+            name: &#39;张三&#39;,
+            age: 18,
+          &#125;,
+          &#123;
+            name: &#39;李四&#39;,
+            age: 16,
+          &#125;,
+          &#123;
+            name: &#39;王五&#39;,
+            age: 21,
+          &#125;,
+        ]
+        let index = arr.indexOf(9)
+        //数组元素为对象时查找不了
+        let index2 = arr1.indexOf(&#123;
+          name: &#39;李四&#39;,
+          age: 16,
+        &#125;)
+        console.log(index, index2)//1 -1
+        
+        
+        let arr = [14, 6, 9, 25, 6, 32]
+        let index = arr.indexOf(6)
+        console.log(index)//1
+</code></pre>
+<h3 id="20-lastIndexOf-方法可返回一个指定的元素在数组中最后出现的位置，从该字符串的后面向前查找。"><a href="#20-lastIndexOf-方法可返回一个指定的元素在数组中最后出现的位置，从该字符串的后面向前查找。" class="headerlink" title="20.lastIndexOf() 方法可返回一个指定的元素在数组中最后出现的位置，从该字符串的后面向前查找。"></a>20.lastIndexOf() 方法可返回一个指定的元素在数组中最后出现的位置，从该字符串的后面向前查找。</h3><p>如果要检索的元素没有出现，则该方法返回 -1。</p>
+<p>该方法将从尾到头地检索数组中指定元素 item。开始检索的位置在数组的 start 处或数组的结尾（没有指定 start 参数时）。如果找到一个 item，则返回 item 从尾向前检索第一个次出现在数组的位置。数组的索引开始位置是从 0 开始的。</p>
+<p>如果在数组中没找到指定元素则返回 -1。</p>
+<pre><code>array.lastIndexOf(item,start)
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>item</td>
+<td>必需。规定需检索的字符串值。</td>
+</tr>
+<tr>
+<td>start</td>
+<td>可选的整数参数。规定在字符串中开始检索的位置。它的合法取值是 0 到 stringObject.length - 1。如省略该参数，则将从字符串的最后一个字符处开始检索。</td>
+</tr>
+</tbody></table>
+<p>如果在 stringObject 中的 fromindex 位置之前存在 searchvalue，则返回的是出现的最后一个 searchvalue 的位置。</p>
+<pre><code>        let arr = [14, 6, 9, 25, 6, 32]
+        let lastIndex = arr.lastIndexOf(6)
+        console.log(lastIndex)//4
+</code></pre>
+<h3 id="21-includes-方法用来判断一个数组是否包含一个指定的值，如果是返回-true，否则false。"><a href="#21-includes-方法用来判断一个数组是否包含一个指定的值，如果是返回-true，否则false。" class="headerlink" title="21.includes() 方法用来判断一个数组是否包含一个指定的值，如果是返回 true，否则false。"></a>21.includes() 方法用来判断一个数组是否包含一个指定的值，如果是返回 true，否则false。</h3><pre><code>arr.includes(searchElement)
+arr.includes(searchElement, fromIndex)
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>searchElement</td>
+<td>必须。需要查找的元素值。</td>
+</tr>
+<tr>
+<td>fromIndex</td>
+<td>可选。从该索引处开始查找 searchElement。如果为负值，则按升序从 array.length + fromIndex 的索引开始搜索。默认为 0。</td>
+</tr>
+</tbody></table>
+<p>如果找到指定值返回 true，否则返回 false。</p>
+<pre><code>        let arr = [14, 6, 9, 25, 6, 32]
+        let flag = arr.includes(6)
+        console.log(flag)//true
+</code></pre>
+
+    </div>
+    
+    <link rel="stylesheet" href="https://cdn.staticfile.org/gitalk/1.7.2/gitalk.min.css">
+    <div id="comment">
+        <div id="gitalk-container">
+        </div>
+    </div>
+    
+</div>
+                         
+<footer id="footer">
+    <div class="footer-wrap">
+        <div>
+            © 2022 - 2022 mynote
+            <span class="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            @参商
+        </div>
+        <div></div>
+        <div>Based on the <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo Engine</a> & <a
+                target="_blank" rel="noopener" href="https://github.com/korilin/hexo-theme-particle">Particle Theme</a></div>
+        
+    </div>
+</footer>
+                    </div>
+                </div>
+            </transition>
+            <div id="img_show">
+                <img id="img_content" alt="img_show">
+            </div>
+        </div>
+        <script src="https://cdn.staticfile.org/highlight.js/11.5.1/highlight.min.js"></script>
+        <script src="/js/particlex.js"></script>
+        <script src="/js/showimg.js"></script>
+        
+<script src="https://cdn.staticfile.org/gitalk/1.7.2/gitalk.min.js"></script>
+<script>
+    var clientID = "", clientSecret = "";
+    
+    const gitalk = new Gitalk({
+        clientID: clientID,
+        clientSecret: clientSecret,
+        repo: "",
+        owner: "",
+        admin: [""],
+        language: "zh-CN",
+        id: location.pathname,
+        distractionFreeMode: true
+    })
+    gitalk.render("gitalk-container")
+</script>
+
+
+    </body>
+</html>
