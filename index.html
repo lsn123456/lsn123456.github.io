@@ -142,6 +142,51 @@
             
 
 <div class="post">
+    <a href="/2024/03/05/关于三种布局/">
+        <h2>
+            关于三种布局
+        </h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="date">
+            <span class="icon">
+                <svg class="fa-icon"><use xlink:href="#calendar-solid"></use></svg>
+            </span>
+            2024/3/5
+        </span>
+    </div>
+    <div class="excerpt">
+        <div class="content" v-pre>
+            
+            <p>1.流式布局</p>
+<p>2.弹性布局</p>
+<p>3.响应式布局</p>
+
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        <span class="icon">
+            <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
+        </span>
+        
+        
+        <span class="tag">
+            
+            <a href="/tags/css" style="color: #00a596">
+                css
+            </a>
+        </span>
+        
+    </div>
+    <a href="/2024/03/05/关于三种布局/" class="go-post">
+        阅读全文
+    </a>
+</div>
+
+<div class="post">
     <a href="/2022/12/01/微信小程序组件的定义与使用/">
         <h2>
             微信小程序组件的定义与使用
@@ -240,7 +285,49 @@ getlist()&#123;&#125;
 <td>表示页面 wxss 样式将影响到自定义组件，自定义组件 wxss 中指定的样式也会影响页面和其他设置了 <code>apply-shared</code> 或 <code>shared</code> 的自定义组件。（这个选项在插件中不可用。）</td>
 </tr>
 </tbody></table>
-<h3 id="3-组件数据、方法和属性"><a href="#3-组件数据、方法和属性" class="headerlink" title="3.组件数据、方法和属性"></a>3.组件数据、方法和属性</h3></li>
+<h3 id="3-组件通信"><a href="#3-组件通信" class="headerlink" title="3.组件通信"></a>3.组件通信</h3><p><strong>1.properties</strong></p>
+<p>小程序中，properties是组件的对外属性，用来接收外界传递到组件中的数据</p>
+<pre><code>父组件js
+data:&#123;
+     steplist: [&#123;
+      taskName: &#39;申请人发起&#39;,
+      passFlag: 1
+    &#125;, &#123;
+      taskName: &#39;银行人员审批&#39;,
+      passFlag: 1
+
+    &#125;, &#123;
+      taskName: &#39;银行人员办结&#39;,
+      passFlag: 1
+
+    &#125;]
+&#125;
+父组件wxml
+&lt;timeline  steplist=&quot;&#123;&#123;steplist&#125;&#125;&quot;/&gt;
+
+
+组件js中通过properties接收
+Component(&#123;
+    peoperties:&#123;
+        //接收方式1:完整定义属性方式，当需要指定默认值时可采用
+        steplist:&#123;
+            type:Array，//属性类型
+            value:null//属性默认值
+        &#125;,
+        //接收方式2：简化定义属性方式，不需要指定属性默认值时可采用
+        steplist:Array
+    &#125;
+&#125;)
+</code></pre>
+<p><strong>2.data和properties的区别</strong></p>
+<p>在小程序中properties属性和data的用法相同，都是可读可写的：</p>
+<ul>
+<li><p>data更倾向于存储组件的私有数据</p>
+</li>
+<li><p>properties更倾向于存储外界传递到组件中的数据</p>
+</li>
+</ul>
+</li>
 </ul>
 
             
@@ -255,7 +342,7 @@ getlist()&#123;&#125;
         
         <span class="tag">
             
-            <a href="/tags/微信小程序" style="color: #00a596">
+            <a href="/tags/微信小程序" style="color: #ff7d73">
                 微信小程序
             </a>
         </span>
@@ -802,7 +889,7 @@ arr.includes(searchElement, fromIndex)
         
         <span class="tag">
             
-            <a href="/tags/js" style="color: #00bcd4">
+            <a href="/tags/js" style="color: #ff7d73">
                 js
             </a>
         </span>
@@ -896,7 +983,7 @@ arr.includes(searchElement, fromIndex)
         
         <span class="tag">
             
-            <a href="/tags/js" style="color: #03a9f4">
+            <a href="/tags/js" style="color: #00bcd4">
                 js
             </a>
         </span>
@@ -2799,7 +2886,7 @@ onUnLoad:function()&#123;&#125;//监听页面卸载，一个页面只调用一�
         
         <span class="tag">
             
-            <a href="/tags/微信小程序" style="color: #00bcd4">
+            <a href="/tags/微信小程序" style="color: #03a9f4">
                 微信小程序
             </a>
         </span>
@@ -3292,7 +3379,7 @@ myChart.setOption(&#123;
         
         <span class="tag">
             
-            <a href="/tags/echarts" style="color: #00bcd4">
+            <a href="/tags/echarts" style="color: #03a9f4">
                 echarts
             </a>
         </span>
@@ -3608,88 +3695,6 @@ export default &#123;
     </a>
 </div>
 
-<div class="post">
-    <a href="/2022/10/18/vue3中的响应式原理/">
-        <h2>
-            Vue3中的响应式原理
-        </h2>
-    </a>
-    <div class="category-and-date">
-        
-        <span class="date">
-            <span class="icon">
-                <svg class="fa-icon"><use xlink:href="#calendar-solid"></use></svg>
-            </span>
-            2022/10/18
-        </span>
-    </div>
-    <div class="excerpt">
-        <div class="content" v-pre>
-            
-            <p>vue2.x的响应式：</p>
-<p>实现原理：</p>
-<p>对象类型：通过<code>Object.definProperty()</code>对属性的读取、修改进行拦截（数据劫持）。</p>
-<p>数组类型：通过重写更新数组的一系列方法来实现拦截（对数组的变更方法进行了包裹）</p>
-<pre><code>Objet.defineProperty(data,&#39;count&#39;,&#123;
-    get()&#123;&#125;,
-    set()&#123;&#125;
-&#125;)
-</code></pre>
-<p>存在问题：</p>
-<p>新增属性、删除属性，界面不会更新</p>
-<p>直接通过下标修改数组，界面不会自动更新</p>
-<p>vue3.x的响应式</p>
-<p>实现原理：</p>
-<p>通过Proxy（代理）：拦截对象中任意属性的变化，包括：属性值的读写、属性的增加、属性的删除等</p>
-<p>通过Reflect  (反射)  ：对源对象的属性进行操作</p>
-<p>模拟vue3中实现响应式</p>
-<pre><code>//源数据
-let person=&#123;
-    name:&#39;张三&#39;,
-    age:18
-&#125;
-const p=new Proxy(person,&#123;
-    //有人读取p的某个属性时调用
-    get(target,propName)&#123;
-    console.log(`有人读取了p身上的$&#123;propName&#125;属性`)
-    return Reflect.get(target,propName)
-    &#125;，
-    //有人修改p的某个属性、或给p追加某个属性时调用
-    set(target,propName,value)&#123;
-    console.log(`有人修改了了p身上的$&#123;propName&#125;属性`)
-    Reflect.set(target,propName,value)
-    &#125;,
-    //有人删除p的某个属性时调用
-    deleteProperty(target,propName)&#123;
-    console.log(`有人删除了p身上的$&#123;propName&#125;属性`)
-    return Reflect.deleteProperty(target,peopName)
-    &#125;，
-&#125;)
-</code></pre>
-
-            
-        </div>
-    </div>
-    <div class="post-tags">
-        
-        <span class="icon">
-            <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
-        </span>
-        
-        
-        <span class="tag">
-            
-            <a href="/tags/vue3" style="color: #ff7d73">
-                vue3
-            </a>
-        </span>
-        
-    </div>
-    <a href="/2022/10/18/vue3中的响应式原理/" class="go-post">
-        阅读全文
-    </a>
-</div>
-
              
 <div class="page-current">
     <div class="prev">
@@ -3769,7 +3774,7 @@ const p=new Proxy(person,&#123;
 <footer id="footer">
     <div class="footer-wrap">
         <div>
-            © 2022 - 2022 mynote
+            © 2022 - 2024 mynote
             <span class="footer-icon">
                 <i class="fa-solid fa-font-awesome fa-fw"></i>
             </span>
