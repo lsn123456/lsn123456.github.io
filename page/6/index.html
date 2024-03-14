@@ -247,7 +247,7 @@
         
         <span class="tag">
             
-            <a href="/tags/markdown" style="color: #ffa2c4">
+            <a href="/tags/markdown" style="color: #ff7d73">
                 markdown
             </a>
         </span>
@@ -306,7 +306,7 @@ methods:&#123;
         
         <span class="tag">
             
-            <a href="/tags/vue" style="color: #ff7d73">
+            <a href="/tags/vue" style="color: #ffa2c4">
                 vue
             </a>
         </span>
@@ -439,7 +439,7 @@ methods：&#123;
         
         <span class="tag">
             
-            <a href="/tags/vue" style="color: #ffa2c4">
+            <a href="/tags/vue" style="color: #00a596">
                 vue
             </a>
         </span>
@@ -525,7 +525,7 @@ methods：&#123;
         
         <span class="tag">
             
-            <a href="/tags/vue" style="color: #00a596">
+            <a href="/tags/vue" style="color: #03a9f4">
                 vue
             </a>
         </span>
@@ -575,7 +575,7 @@ methods：&#123;
         
         <span class="tag">
             
-            <a href="/tags/vue" style="color: #03a9f4">
+            <a href="/tags/vue" style="color: #00bcd4">
                 vue
             </a>
         </span>
@@ -640,6 +640,90 @@ console.log(obj.x, obj2.x)//300 300
         
     </div>
     <a href="/2022/05/11/关于object.defineproperty/" class="go-post">
+        阅读全文
+    </a>
+</div>
+
+<div class="post">
+    <a href="/2021/03/10/锚点跳转/">
+        <h2>
+            锚点跳转
+        </h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="date">
+            <span class="icon">
+                <svg class="fa-icon"><use xlink:href="#calendar-solid"></use></svg>
+            </span>
+            2021/3/10
+        </span>
+    </div>
+    <div class="excerpt">
+        <div class="content" v-pre>
+            
+            <ol>
+<li><p>具有 href 属性的 a 标签是超链接，具有 name 属性的 a 标签是锚点。</p>
+</li>
+<li><p>name 和 id 都是区分大小写的，且 id 最好别是数字开头。</p>
+</li>
+<li><p>具体使用方式：</p>
+<pre><code>&lt;!-- 第一种方式：a标签配合name属性 --&gt;
+&lt;a name=&quot;test1&quot;&gt;&lt;/a&gt;
+&lt;!-- 跳转到test1锚点--&gt;
+&lt;a href=&quot;#test1&quot;&gt;去test1锚点&lt;/a&gt;
+
+推荐：
+&lt;!-- 第二种方式：其他标签配合id属性 --&gt;
+&lt;h2 id=&quot;test2&quot;&gt;我是一个位置&lt;/h2&gt;
+&lt;!-- 跳转到test2锚点--&gt;
+&lt;a href=&quot;#test2&quot;&gt;去test1锚点&lt;/a&gt;
+</code></pre>
+<p>​</p>
+<pre><code>&lt;!-- 跳到本页面顶部 --&gt;
+&lt;a href=&quot;#&quot;&gt;回到顶部&lt;/a&gt;
+
+&lt;!-- 跳转到其他页面锚点 --&gt;
+&lt;a href=&quot;demo.html#test1&quot;&gt;去demo.html页面的test1锚点&lt;/a&gt;
+
+&lt;!-- 刷新本页面 --&gt;
+&lt;a href=&quot;&quot;&gt;刷新本页面&lt;/a&gt;
+
+&lt;!-- 执行一段js,脚本放在:与;之间，可以留空，javascript:; --&gt;
+&lt;a href=&quot;javascript:alert(1);&quot;&gt;点我弹窗&lt;/a&gt;
+</code></pre>
+</li>
+</ol>
+<p>4.超链接可以唤起指定应用</p>
+<pre><code>&lt;!-- 唤起设备拨号 --&gt;
+&lt;a href=&quot;tel:10010&quot;&gt;电话联系&lt;/a&gt;
+
+&lt;!-- 唤起设备发送邮件 --&gt;
+&lt;a href=&quot;mailto:10010@qq.com&quot;&gt;邮件联系&lt;/a&gt;
+
+&lt;!-- 唤起设备发送短信 --&gt;
+&lt;a href=&quot;sms:10086&quot;&gt;短信联系&lt;/a&gt;
+</code></pre>
+
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        <span class="icon">
+            <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
+        </span>
+        
+        
+        <span class="tag">
+            
+            <a href="/tags/html" style="color: #00a596">
+                html
+            </a>
+        </span>
+        
+    </div>
+    <a href="/2021/03/10/锚点跳转/" class="go-post">
         阅读全文
     </a>
 </div>
